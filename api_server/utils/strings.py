@@ -1,0 +1,33 @@
+strMESSAGE = "message"
+strINTERNAL_SERVER_ERROR = "Internal Server Error"
+strAUTH_ERROR = "Authorization Error"
+strINVALID_DATA = "Request not understood."
+
+strUSERNAME = "username"
+strPASSWORD = "password"
+strADMIN = "admin"
+strTIMESTAMP = "timestamp"
+strEXPIRE_SECONDS = "expireAfterSeconds"
+
+strACCESS_TOKEN = "access_token"
+strREFRESH_TOKEN = "refresh_token"
+str__ID = "_id"
+str_ID = "id"
+strJTI = "jti"
+strDATE_TIME = "date_time"
+strRESULT = "result"
+strPAGE_NUM = "page_num"
+strPAGE_LEN = "items_per_page"
+
+strCOUNTRY = "country"
+strCONTINENT = "continent"
+strREGION = "region"
+strNAME = "name"
+strMETA = "meta"
+strQUESTION_ANS = "question_ans"
+strCLUES = "clues"
+
+strDB_NAME = "geo"
+
+EP_TOTAL_COUNTRIES = "/countries/total"
+EP_COUNTRIES = "/countries"

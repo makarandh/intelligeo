@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# pipenv run gunicorn -b 0.0.0.0:5000 -w 4 app:app >> gunicorn_output.log 2>&1 &
+pipenv run gunicorn -b 0.0.0.0:5000 -w 4 app:app
+

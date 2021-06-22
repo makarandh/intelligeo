@@ -1,0 +1,13 @@
+import datetime
+import os
+
+DEBUG = True
+PROPAGATE_EXCEPTIONS = True
+JWT_SECRET_KEY = os.environ["JWT_SECRET_KEY"]
+JWT_BLACKLIST_ENABLED = True
+JWT_BLACKLIST_TOKEN_CHECKS = ["access", "refresh"]
+MAX_CONTENT_LENGTH = 10 * 1024 * 1024
+JWT_ACCESS_TOKEN_EXPIRES=datetime.timedelta(minutes=15)
+JWT_REFRESH_TOKEN_EXPIRES=datetime.timedelta(days=30)
+# TTL_SECONDS = 5
+TTL_SECONDS = 24 * 60 * 60

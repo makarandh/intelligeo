@@ -1,0 +1,49 @@
+.top_bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background: var(--main-blue);
+}
+
+.top_bar_left {
+    display: flex;
+    flex-direction: row;
+}
+
+.nav_item {
+    font-size: 1rem;
+    margin: 0.5rem 0;
+}
+
+.nav_link {
+    padding: 0.5rem 1rem;
+    color: var(--white-blue);
+    border-radius: 0.2rem;
+    transition-property: color, background-color;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in-out;
+}
+
+.active_nav {
+    background-color: var(--light-blue);
+    color: var(--night-blue);
+}
+
+.button.logout {
+    font-size: 1rem;
+    padding: 0.5rem 0.8rem;
+    color: #f0f0f0;
+    background-color: var(--main-red);
+    border-radius: 0.1rem;
+}
+
+.button.logout:focus, .button.logout:hover {
+    transition: all 0.1s ease-in-out;
+    color: white;
+    background-color: var(--light-red);
+    cursor: pointer;
+}
+
+.button.logout:active {
+    background: radial-gradient(circle, var(--light-red), var(--main-red));
+}

@@ -1,0 +1,58 @@
+@import "common.css";
+
+#outer_container {
+    background: rgba(0, 0, 0, 0);
+    margin: 25vh auto auto auto;
+    padding: 2rem 3rem 1rem 3rem;
+    color: #15618e;
+    max-width: 27rem;
+    border-radius: 0.5rem;
+    background-color: rgb(254, 255, 255);
+    border: rgba(105, 131, 141, 0.65) 1px solid;
+    /*box-shadow: 0px 0px 1px 1px rgba(105, 111, 111, 0.65);*/
+}
+
+.form_heading {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+input {
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    padding: 0.6rem 1rem;
+    background-color: rgb(250, 252, 255);
+    border: rgb(215, 224, 230) solid 2px;
+    width: 100%;
+    border-radius: 0.3rem;
+}
+
+input:focus {
+    transition: all 0.25s ease-in-out;
+    border: rgb(45, 100, 180) solid 2px;
+    background-color: rgb(252, 255, 255);
+    outline: none;
+}
+
+.button.login {
+    margin-top: 2.5rem;
+    margin-bottom: 0;
+    width: 100%;
+    border-radius: 2.5rem;
+}
+
+.input_container {
+    position: relative;
+}
+
+.button:focus, .button:hover {
+    transition: all 0.25s ease-in-out;
+    color: white;
+    background-color: rgb(65, 127, 209);
+    cursor: pointer;
+}
+
+.button:active {
+    background: radial-gradient(circle, rgb(128, 194, 249), rgb(65, 127, 209));
+}
