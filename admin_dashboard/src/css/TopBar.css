@@ -18,15 +18,16 @@
 .nav_link {
     padding: 0.5rem 1rem;
     color: var(--white-blue);
-    border-radius: 0.2rem;
-    transition-property: color, background-color;
-    transition-duration: 0.1s;
-    transition-timing-function: ease-in-out;
+    transition: all ease-in-out 0.2s;
+}
+
+.nav_link:focus, .nav_link:hover {
+    box-shadow: 0 0 1px 1px rgba(50, 50, 50, 0.5);
 }
 
 .active_nav {
     background-color: var(--light-blue);
-    color: var(--night-blue);
+    color: var(--text-blue);
 }
 
 .button.logout {

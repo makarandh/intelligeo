@@ -1,0 +1,154 @@
+.create_card.outer_container {
+    max-width: 50rem;
+    margin: 8rem auto;
+}
+
+.create_card.card_container {
+    margin-top: 3.5rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+.create_card.heading {
+    font-size: 2.5rem;
+    margin-bottom: 5rem;
+}
+
+.create_card.subsection {
+    margin-top: 3rem;
+}
+
+.create_card.subheading ~ ul {
+    margin-top: 1rem;
+}
+
+.create_card.sub_subheading {
+    font-size: 1.1rem;
+    display: inline-block;
+    color: var(--text-blue);
+    margin-right: 0.4rem;
+    margin-bottom: 1rem;
+    width: 5rem;
+    text-align: right;
+}
+
+.create_card.sub_subheading ~ input {
+    display: inline-block;
+    width: 70%;
+}
+
+.sub_subheading_container {
+    margin-top: 0;
+}
+
+.create_card.subsection.button_container {
+    text-align: center;
+}
+
+.create_card.button {
+    color: white;
+    width: 50%;
+    border-radius: 2rem;
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.create_card li {
+    margin-bottom: 0.1rem;
+}
+
+.input_field_container {
+    display: flex;
+}
+
+.input_field_container .button {
+    display: inline-block;
+    padding: 0 0 0.1rem 0;
+    font-size: 2rem;
+    border-radius: 50%;
+    text-align: center;
+    margin-left: 0.4rem;
+    margin-top: 0.4rem;
+    align-self: center;
+    font-weight: bold;
+    line-height: 1.7rem;
+    width: 1.9rem;
+}
+
+.create_card.delete_field.button {
+    padding-bottom: 0.2rem;
+}
+
+.input_field_container input {
+    flex-grow: 1;
+    flex-shrink: 1;
+    margin-top: 0.5rem;
+}
+
+.slider_container {
+    position: relative;
+    display: inline-block;
+    width: 4.5rem;
+    height: 2.1rem;
+    align-self: center;
+    margin-top: 0.4rem;
+    margin-left: 0.5rem;
+}
+
+.slider_container input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle_slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: 0.2s;
+    border-radius: 2rem;
+    background-color: var(--main-red);
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.toggle_slider:hover {
+    background-color: var(--light-red);
+}
+
+.toggle_slider span {
+    color: white;
+    position: absolute;
+    top: 0.5rem;
+    left: 0.7rem;
+    font-weight: bold;
+}
+
+.toggle_slider .no {
+    left: 2.2rem
+}
+
+.toggle_slider:before {
+    position: absolute;
+    content: "";
+    height: 1.7rem;
+    width: 1.6rem;
+    left: 0.2rem;
+    bottom: 0.2rem;
+    background-color: white;
+    transition: .2s;
+    border-radius: 50%;
+}
+
+input:checked + .toggle_slider {
+    background-color: var(--button-blue);
+}
+
+input:checked + .toggle_slider:hover {
+    background-color: var(--button-blue-hover);
+}
+
+input:checked + .toggle_slider:before {
+    transform: translateX(2.5rem);
+}

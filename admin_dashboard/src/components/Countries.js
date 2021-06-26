@@ -2,13 +2,14 @@ import React from "react"
 import {
     GET,
     get_url,
-    ITEMS_PER_PAGE,
+    intITEMS_PER_PAGE,
     PATH_COUNTRIES,
-    PATH_COUNTRIES_TOTAL,
-    strITEMS_PER_PAGE,
-    strPAGE_NUM
+    PATH_COUNTRIES_TOTAL, CARDS_LIST_CONTAINER, CARDS_LIST_OUTER,
+    ITEMS_PER_PAGE, PAGE_NUM
 } from "../helper/common"
-import Card from "./Card"
+import Details from "./Details"
+import "../css/CardsList.css"
+import {PageHeading} from "./PageHeading"
 
 export default class Countries extends React.Component {
 
@@ -32,8 +33,8 @@ export default class Countries extends React.Component {
 
     fetchCardsList = async() => {
         const url = get_url(PATH_COUNTRIES,
-            `${strPAGE_NUM}=${this.state.page_num}`,
-            `${strITEMS_PER_PAGE}=${ITEMS_PER_PAGE}`)
+            `${PAGE_NUM}=${this.state.page_num}`,
+            `${ITEMS_PER_PAGE}=${intITEMS_PER_PAGE}`)
         const response = await this.props.fetchOrDie(url, GET)
         if(response.status === 200) {
             const jsonResponse = await response.json()
@@ -55,9 +56,9 @@ export default class Countries extends React.Component {
     createCardsListComponent = () => {
         return <React.Fragment>
             {this.state.cardsList.map((country) => {
-                return <li key={country.name}>
-                    <Card country={country}/>
-                </li>
+                return <div key={country.name}>
+                    <Details country={country}/>
+                </div>
             })}
         </React.Fragment>
     }
@@ -68,15 +69,13 @@ export default class Countries extends React.Component {
 
     render() {
         return (
-            <div>
-                <div>
-                    <h3>Countries</h3>
-                    <div>
-                        <div>There are {this.state.totalCards} cards</div>
-                        {this.state.totalCards > 0 && <ul>{this.createCardsListComponent()}</ul>}
-                    </div>
-                </div>
-            </div>
+            <article className={CARDS_LIST_OUTER}>
+                <PageHeading mainHeading={"Countries"}
+                             subHeading={"You have " + this.state.totalCards + " cards."}/>
+                <section className={CARDS_LIST_CONTAINER}>
+                    {this.state.totalCards > 0 && this.createCardsListComponent()}
+                </section>
+            </article>
         )
     }
 }

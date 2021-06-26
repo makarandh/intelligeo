@@ -1,14 +1,14 @@
 import React from "react"
 import {
-    AUTH_ERROR,
+    AUTH_ERROR, CARD_CONTAINER,
     ERROR_HIDDEN, ERROR_HIGHLIGHT,
-    ERROR_VISIBLE,
-    LOGIN,
+    ERROR_VISIBLE, INPUT_CONTAINER,
+    LOGIN, LOGIN_PAGE,
     MAIN_URL,
     NETWORK_ERROR,
     PASSWORD,
     POST,
-    SERVER_ERROR, TEXT,
+    SERVER_ERROR, SUBHEADING, TEXT,
     UNKNOWN_ERROR,
     USERNAME
 } from "../helper/common"
@@ -120,10 +120,10 @@ export class Login extends React.Component {
 
     render() {
         return (
-            <div id="outer_container">
-                <form id="login-form">
-                    <div className="form_heading">Log in</div>
-                    <div className="input_container username">
+            <article className={LOGIN_PAGE + " " + CARD_CONTAINER}>
+                <form id={LOGIN_PAGE}>
+                    <div className={LOGIN_PAGE + " " + SUBHEADING}>Log in</div>
+                    <section className={LOGIN_PAGE + " " + INPUT_CONTAINER}>
                         <input className={"form_item form_item_0 " + (this.state.displayUserError && ERROR_HIGHLIGHT)}
                                id={USERNAME}
                                type={TEXT}
@@ -131,13 +131,13 @@ export class Login extends React.Component {
                                onChange={this.handleOnChange}
                                autoFocus={this.state.displayUserError}
                                placeholder={USERNAME}/>
-                        <div className={"error_message username "
+                        <div className={"error_message "
                                         + (this.state.displayUserError
                                            ? ERROR_VISIBLE
                                            : ERROR_HIDDEN)}>Username cannot be blank
                         </div>
-                    </div>
-                    <div className="input_container password">
+                    </section>
+                    <section className={LOGIN_PAGE + " " + INPUT_CONTAINER}>
                         <input className={"form_item form_item_1 " + (this.state.displayPassError && ERROR_HIGHLIGHT)}
                                type={PASSWORD}
                                id={PASSWORD}
@@ -150,7 +150,7 @@ export class Login extends React.Component {
                                            ? ERROR_VISIBLE
                                            : ERROR_HIDDEN)}>Password cannot be blank
                         </div>
-                    </div>
+                    </section>
                     <button className="form_item form_item_2 button login"
                             id="submit_button"
                             disabled={this.state.displayPassError || this.state.displayUserError}
@@ -162,7 +162,7 @@ export class Login extends React.Component {
                                        ? ERROR_VISIBLE
                                        : ERROR_HIDDEN)}>{this.state.errorMessage}</div>
                 </form>
-            </div>
+            </article>
         )
     }
 }

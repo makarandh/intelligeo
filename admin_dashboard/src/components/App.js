@@ -3,7 +3,7 @@ import "../css/App.css"
 import ErrorBoundary from "./ErrorBoundary"
 import {Login} from "./Login"
 import {GET, MAIN_URL, NETWORK_ERROR} from "../helper/common"
-import {MainRouter} from "./MainRouter"
+import {TopBar} from "./TopBar"
 
 
 export default class App extends React.Component {
@@ -151,8 +151,8 @@ export default class App extends React.Component {
                                     <button onClick={this.refreshPage}>Refresh Page</button>
                                 </div>
                             </div> :
-                            <MainRouter logout={this.sessionReset}
-                                        fetchOrDie={this.fetchOrDie}/>
+                            <TopBar logout={this.sessionReset}
+                                    fetchOrDie={this.fetchOrDie}/>
                         ) :
                         <Login setRT={this.setRT}
                                setAT={this.setAT}

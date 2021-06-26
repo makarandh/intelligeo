@@ -1,0 +1,15 @@
+.page_heading_section {
+    margin: 2rem 0;
+}
+
+.page_heading_section .heading {
+    font-weight: bold;
+}
+
+.page_sub_heading {
+    color: var(--main-heading-blue);
+    margin-top: 0.3rem;
+    font-size: 1.1rem;
+    font-weight: normal;
+    text-align: center;
+}

@@ -1,0 +1,27 @@
+.card_container.details {
+    color: var(--text-blue);
+    max-width: 34rem;
+}
+
+.details.heading {
+    font-size: 2.5rem;
+}
+
+.card_subheading {
+    margin-bottom: 0.5rem;
+    font-weight: normal;
+    font-size: 1.6rem;
+}
+
+.details.subsection ol li {
+    list-style: decimal;
+    margin-left: 1.5rem;
+    line-height: 1.4rem;
+}
+
+.details.subsection ul li {
+    list-style: disc;
+    margin-left: 1.5rem;
+    line-height: 1.4rem;
+}
+

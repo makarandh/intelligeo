@@ -1,19 +1,19 @@
 import React from "react"
 import {BrowserRouter as Router, Switch, Route, NavLink, Redirect} from "react-router-dom"
 import {Suspense} from "react"
-import "../css/MainRouter.css"
+import "../css/TopBar.css"
 import {BUTTON, NAV_ITEM, NAV_LINK, NAV_LINKS, PATH_HOME, TOP_BAR, TOP_BAR_LEFT, TOP_BAR_RIGHT} from "../helper/common"
 
 const Home = React.lazy(() => import("./Home"))
 const Settings = React.lazy(() => import("./CreateCard"))
 
 
-export class MainRouter extends React.Component {
+export class TopBar extends React.Component {
     render() {
         return (
             <Router>
                 <div>
-                    <div className={TOP_BAR}>
+                    <header className={TOP_BAR}>
                         <nav>
                             <ul className={NAV_LINKS + " " + TOP_BAR_LEFT}>
                                 <li className={NAV_ITEM}>
@@ -31,7 +31,7 @@ export class MainRouter extends React.Component {
                         <div className={TOP_BAR_RIGHT}>
                             <button className={BUTTON + " logout"} onClick={this.props.logout}>Log Out</button>
                         </div>
-                    </div>
+                    </header>
                     <Switch>
                         <Route path="/create">
                             <Suspense fallback={<div>Loading...</div>}>

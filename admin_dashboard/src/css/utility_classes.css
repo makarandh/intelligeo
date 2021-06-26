@@ -1,0 +1,53 @@
+
+.button {
+    font-size: 1.3rem;
+    padding: 1rem;
+    color: #f0f0f0;
+    background-color: var(--button-blue);
+    transition-property: color, background-color, box-shadow;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+    border-radius: 0.2rem;
+}
+
+.button:focus, .button:hover {
+    transition: all 0.25s ease-in-out;
+    color: white;
+    background-color: var(--button-blue-hover);
+    cursor: pointer;
+}
+
+.button:active {
+    background: radial-gradient(circle, var(--light-blue), var(--button-blue-hover));
+}
+
+.button:disabled, .button:disabled:hover, .button:disabled:active, .button:disabled:active {
+    background: rgba(40, 95, 172, 0.72);
+    cursor: unset;
+}
+
+.card_container {
+    background-color: white;
+    box-shadow: 0 0 1px 1px rgba(50, 50, 50, 0.1);
+    padding: 2rem;
+    margin: 2rem;
+    border-radius: 0.5rem;
+}
+
+.heading {
+    color: var(--main-heading-blue);
+    font-size: 2rem;
+    font-weight: normal;
+    text-align: center;
+}
+
+.subheading {
+    color: var(--sub-heading-blue);
+    font-weight: normal;
+    font-size: 1.6rem;
+    margin-bottom: 0.2rem;
+}
+
+.subsection {
+    margin-top: 1.2rem;
+}
