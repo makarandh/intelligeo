@@ -10,11 +10,15 @@
     border-radius: 0.2rem;
 }
 
-.button:focus, .button:hover {
+.button:hover {
     transition: all 0.25s ease-in-out;
     color: white;
     background-color: var(--button-blue-hover);
     cursor: pointer;
+}
+
+.button:focus {
+    outline: none;
 }
 
 .button:active {
@@ -22,7 +26,7 @@
 }
 
 .button:disabled, .button:disabled:hover, .button:disabled:active, .button:disabled:active {
-    background: rgba(40, 95, 172, 0.72);
+    background: rgba(83, 100, 125, 0.72);
     cursor: unset;
 }
 
@@ -50,4 +54,37 @@
 
 .subsection {
     margin-top: 1.2rem;
+}
+
+.tooltip_container {
+    position: relative;
+}
+
+.tooltip_container {
+    height: 0;
+    width: 0;
+}
+
+[tooltip]:after {
+    cursor: default;
+    position : absolute;
+    left: 2.7rem;
+    top: 0;
+    content : attr(tooltip);
+    opacity : 0;
+    color: var(--text-blue);
+    background-color: var(--tooltip-orange);
+    font-size: 1rem;
+    font-weight: normal;
+    padding: 0.25rem;
+    line-height: 1rem;
+    border: 1px dashed var(--night-blue);
+    transition: all ease-in-out 0.2s;
+    transition-delay: 0.2s;
+    backdrop-filter: blur(2px);
+}
+
+[tooltip]:hover:after {
+    cursor: default;
+    opacity : 1;
 }

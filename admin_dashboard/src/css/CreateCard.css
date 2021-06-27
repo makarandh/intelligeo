@@ -1,6 +1,6 @@
 .create_card.outer_container {
     max-width: 50rem;
-    margin: 8rem auto;
+    margin: 4rem auto;
 }
 
 .create_card.card_container {
@@ -11,7 +11,7 @@
 
 .create_card.heading {
     font-size: 2.5rem;
-    margin-bottom: 5rem;
+    margin-bottom: 3rem;
 }
 
 .create_card.subsection {
@@ -67,7 +67,7 @@
     border-radius: 50%;
     text-align: center;
     margin-left: 0.4rem;
-    margin-top: 0.4rem;
+    margin-top: 0.8rem;
     align-self: center;
     font-weight: bold;
     line-height: 1.7rem;
@@ -109,18 +109,18 @@
     bottom: 0;
     transition: 0.2s;
     border-radius: 2rem;
-    background-color: var(--main-red);
+    background-color: var(--main-purple);
     box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
 }
 
 .toggle_slider:hover {
-    background-color: var(--light-red);
+    background-color: var(--light-purple);
 }
 
 .toggle_slider span {
     color: white;
     position: absolute;
-    top: 0.5rem;
+    top: 0.4rem;
     left: 0.7rem;
     font-weight: bold;
 }
@@ -151,4 +151,21 @@ input:checked + .toggle_slider:hover {
 
 input:checked + .toggle_slider:before {
     transform: translateX(2.5rem);
+}
+
+.create_card.subsection ol li {
+    margin-left: 1.5rem;
+    line-height: 1.4rem;
+}
+
+.delete_field.button {
+    background-color: var(--main-red);
+}
+
+.delete_field.button:hover {
+    background-color: var(--light-red);
+}
+
+.delete_field.button:active {
+    background: radial-gradient(circle, var(--light-red), var(--main-red));
 }

@@ -21,13 +21,19 @@
     transition: all ease-in-out 0.2s;
 }
 
-.nav_link:focus, .nav_link:hover {
-    box-shadow: 0 0 1px 1px rgba(50, 50, 50, 0.5);
+.nav_link:hover {
+    transition: all ease-in-out 0.1s;
+    outline: 1px dashed var(--night-blue);
 }
 
-.active_nav {
+.nav_link:focus, .button.logout:focus {
+    outline: 1px dashed;
+}
+
+.active_nav, .active_nav:hover, .active_nav:focus, .active_nav:active {
     background-color: var(--light-blue);
     color: var(--text-blue);
+    outline: none;
 }
 
 .button.logout {
@@ -38,7 +44,7 @@
     border-radius: 0.1rem;
 }
 
-.button.logout:focus, .button.logout:hover {
+.button.logout:hover {
     transition: all 0.1s ease-in-out;
     color: white;
     background-color: var(--light-red);

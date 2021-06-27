@@ -27,6 +27,13 @@ export const NAV_LINK = "nav_link"
 export const BUTTON = "button"
 export const BUTTON_CONTAINER = "button_container"
 export const HEADING = "heading"
+export const YES = "yes"
+export const NO  = "no"
+export const INDEX = "index"
+export const DISABLED = "disabled"
+
+export const TOOLTIP = "tooltip"
+export const TOOLTIP_CONTAINER = "tooltip_container"
 
 export const PAGE_NUM = "page_num"
 export const ITEMS_PER_PAGE = "items_per_page"
@@ -50,6 +57,8 @@ export const DELETE_FIELD = "delete_field"
 export const INPUT_FIELD_CONTAINER = "input_field_container"
 export const TOGGLE_SLIDER = "toggle_slider"
 export const SLIDER_CONTAINER = "slider_container"
+
+export const LATEST_CLUE_ADD = "latest_clue_add"
 
 export const PATH_COUNTRIES = "/countries"
 export const PATH_COUNTRIES_TOTAL = "/countries/total"

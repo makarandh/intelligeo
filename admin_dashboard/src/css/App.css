@@ -18,6 +18,10 @@
 
     --main-red: rgb(182, 3, 37);
     --light-red: rgb(231, 41, 77);
+    --tooltip-orange: rgba(255, 226, 35, 0.93);
+
+    --main-purple: rgb(59, 19, 151);
+    --light-purple: rgb(99, 49, 199);
 }
 
 * {
@@ -42,7 +46,7 @@ code {
     monospace;
 }
 
-ul, ol {
+ul {
     list-style: none;
 }
 
@@ -51,7 +55,7 @@ a, a:link, a:hover, a:visited {
 }
 
 input {
-    padding: 0.6rem 1rem;
+    padding: 0.6rem;
     background-color: var(--white-blue);
     border: rgb(215, 224, 230) solid 2px;
     border-radius: 0.3rem;
