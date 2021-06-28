@@ -1,39 +1,22 @@
 import React from "react"
 import "../css/CreateCard.css"
 import {
-    ADD_FIELD, BUTTON, BUTTON_CONTAINER, CARD_CONTAINER,
-    CREATE_CARD, DELETE_FIELD, HEADING, INDEX, INPUT_FIELD_CONTAINER,
-    LATEST_CLUE_ADD, NO, OUTER_CONTAINER, SLIDER_CONTAINER,
-    SUB_SUBHEADING, SUB_SUBHEADING_CONTAINER, SUBHEADING,
-    SUBSECTION, TOGGLE_SLIDER, TOOLTIP_CONTAINER, YES
+    BUTTON, BUTTON_CONTAINER,
+    CARD_CONTAINER, CREATE_CARD,
+    HEADING, OUTER_CONTAINER,
+    SUB_SUBHEADING, SUB_SUBHEADING_CONTAINER,
+    SUBHEADING, SUBSECTION
 } from "../helper/common"
+import CreateCardClues from "./CreateCardClues"
+import CreateCardQA from "./CreateCardQA"
 
 
 export default class CreateCard extends React.Component {
 
     state = {
         name: "",
-        clues: [
-            "It's a big country.", "It's in an island.", "It's a tropical country."
-        ],
-        questionAns: [
-            [
-                "Is it a landlocked country?",
-                false
-            ],
-            [
-                "Is it a constitutional monarchy?",
-                true
-            ],
-            [
-                "Is it a cold country?",
-                false
-            ],
-            [
-                "Is it a touristic country?",
-                true
-            ]
-        ],
+        clues: [],
+        questionAns: [],
         meta: {
             continent: "",
             region: ""
@@ -43,241 +26,91 @@ export default class CreateCard extends React.Component {
         latestAns: false
     }
 
-    handleCluesListChange = (e) => {
-        const i = e.target.name
-        const newVal = e.target.value
+    getClues = () => {
+        return this.state.clues
+    }
+
+    setClues = (clues) => {
+        this.setState({clues})
+    }
+
+    getClue = (index) => {
+        return this.state.clues[index]
+    }
+
+    setClue = (index, clue) => {
         this.setState((prevState) => {
-            let clues = prevState.clues
-            clues[i] = newVal
-            return {clues}
+            const newClues = [...prevState.clues.slice(0, index), clue, ...prevState.clues.slice(index + 1)]
+            return {clues: newClues}
         })
     }
 
-    deleteClue = (e) => {
-        let element = e.target
-        if(element.className === TOOLTIP_CONTAINER) {
-            element = element.firstChild
-        }
-        const index = parseInt(element.getAttribute(INDEX))
+    getLatestClue = () => {
+        return this.state.latestClue
+    }
+
+    setLatestClue = (latestClue) => {
+        this.setState({latestClue})
+    }
+
+    deleteClue = (index) => {
         this.setState((prevState) => {
             const clues = [...prevState.clues.slice(0, index), ...prevState.clues.slice(index + 1)]
             return {clues}
         })
     }
 
-    renderClues = () => {
-        return <React.Fragment>
-            {this.state.clues.map((clue, index) => {
-                return (
-                    <li key={`clue_${index}`}>
-                        <div className={INPUT_FIELD_CONTAINER}>
-                            <input name={index}
-                                   type="text"
-                                   value={clue}
-                                   onChange={this.handleCluesListChange}/>
-                            <div className={TOOLTIP_CONTAINER}
-                                 onClick={this.deleteClue}>
-                                <span tooltip={"Delete clue"}
-                                      index={index}
-                                      className={CREATE_CARD + " " + DELETE_FIELD + " " + BUTTON}>-</span>
-                            </div>
-                        </div>
-                    </li>
-                )
-            })}
-        </React.Fragment>
+    getQAs = () => {
+        return this.state.questionAns
     }
 
-    handleQuestionListChange = (e) => {
-        console.log("QuestionListChange")
-        console.log(e.target)
-        const i = e.target.name
-        const newVal = e.target.value
+    setQAs = (questionAns) => {
+        this.setState({questionAns})
+    }
+
+    getQA = (index) => {
+        return this.state.questionAns[index]
+    }
+
+    setQA = (index, QA) => {
+        console.log(QA)
+        console.log(index)
+        const newQAs = [...this.state.questionAns.slice(0, index), QA, ...this.state.questionAns.slice(index + 1)]
+        console.log("newQAs:")
+        console.log(newQAs)
+        console.log("State:")
+        console.log(this.state.questionAns)
         this.setState((prevState) => {
-            let qAns = prevState.questionAns
-            qAns[i][0] = newVal
-            return {questionAns: qAns}
+            const newQAs = [...prevState.questionAns.slice(0, index), QA, ...prevState.questionAns.slice(index + 1)]
+            return {questionAns: newQAs}
         })
     }
 
-    handleAnswerListClick = (e) => {
-        console.log("handleAnswerListClick")
-        console.log(e.target)
-        let checkbox = e.target
-        if(e.target.className === "") {
-            return
-        }
-        console.log(e.target.className)
-        switch(checkbox.className) {
-            case TOGGLE_SLIDER:
-            case SLIDER_CONTAINER:
-                checkbox = checkbox.parentElement.firstChild
-                break
-            case YES:
-            case NO:
-                checkbox = checkbox.parentElement.parentElement.firstChild
-                break
-            case INPUT_FIELD_CONTAINER:
-                checkbox = checkbox.firstChild
-                break
-            default:
-                console.error(`${checkbox} not recognized`)
-                return
-        }
-        const index = checkbox.name
-        checkbox.checked = !checkbox.checked
+    getLatestQ = () => {
+        return this.state.latestQuestion
+    }
+
+    getLatestA = () => {
+        return this.state.latestAns
+    }
+
+    setLatestQ = (latestQuestion) => {
+        this.setState({latestQuestion})
+    }
+
+    setLatestA = (latestAns) => {
+        this.setState({latestAns})
+    }
+
+    deleteQA = (index) => {
         this.setState((prevState) => {
-            const qAns = prevState.questionAns
-            console.log(qAns)
-            qAns[index][1] = checkbox.checked
-            return {
-                questionAns: qAns
-            }
+            const questionAns = [...prevState.questionAns.slice(0, index), ...prevState.questionAns.slice(index + 1)]
+            return {questionAns}
         })
     }
 
     stopPropagation = (e) => {
         e.stopPropagation()
-    }
-
-    deleteQuestion = (e) => {
-        let element = e.target
-        if(element.className === TOOLTIP_CONTAINER) {
-            element = element.firstChild
-        }
-        const index = parseInt(element.getAttribute(INDEX))
-        this.setState((prevState) => {
-            const qAns = [...prevState.questionAns.slice(0, index), ...prevState.questionAns.slice(index + 1)]
-            return {questionAns: qAns}
-        })
-    }
-
-    renderQAns = () => {
-        return <React.Fragment>
-            {this.state.questionAns.map((qAns, index) => {
-                return (
-                    <li key={`qAns_${index}`}>
-                        <div className={INPUT_FIELD_CONTAINER}
-                             onClick={this.handleAnswerListClick}>
-                            <input name={index}
-                                   type="text"
-                                   onChange={this.handleQuestionListChange}
-                                   value={qAns[0]}/>
-                            <div className={SLIDER_CONTAINER}>
-                                <input type="checkbox"
-                                       name={index}
-                                       onChange={this.stopPropagation}
-                                       checked={qAns[1]}/>
-                                <span className={TOGGLE_SLIDER}>
-                                    {
-                                        qAns[1]
-                                        ? <span className={"yes"}>Yes</span>
-                                        : <span className={"no"}>No</span>
-                                    }
-                                </span>
-                            </div>
-                            <div className={TOOLTIP_CONTAINER}
-                                 onClick={this.deleteQuestion}>
-                                <span tooltip={"Delete Question"}
-                                      index={index}
-                                      className={CREATE_CARD + " " + DELETE_FIELD + " " + BUTTON}>-</span>
-                            </div>
-                        </div>
-                    </li>
-                )
-            })}
-        </React.Fragment>
-    }
-
-    handleLatestClue = (e) => {
-        const text = e.target.value
-        this.setState({latestClue: text})
-    }
-
-    handleLatestQ = (e) => {
-        e.stopPropagation()
-        const text = e.target.value
-        this.setState({latestQuestion: text})
-    }
-
-    handleLatestAns = (e) => {
-        console.log(e.target)
-        let checkbox = e.target
-        if(e.target.className === "") {
-            return
-        }
-        switch(checkbox.className) {
-            case TOGGLE_SLIDER:
-            case SLIDER_CONTAINER:
-                checkbox = checkbox.parentElement.firstChild
-                break
-            case YES:
-            case NO:
-                checkbox = checkbox.parentElement.parentElement.firstChild
-                break
-            case INPUT_FIELD_CONTAINER:
-                checkbox = checkbox.firstChild
-                break
-            default:
-                console.error(`${checkbox} not recognized`)
-                return
-        }
-        checkbox.checked = !checkbox.checked
-        this.setState((prevState) => {
-            return {
-                latestAns: !prevState.latestAns
-            }
-        })
-    }
-
-    handleAddClue = (e) => {
-        console.log("handleAddClue")
-        console.log(e)
-        e && e.preventDefault()
-        e && console.log(e.target)
-        if(this.state.latestClue.trim() === "") {
-            return
-        }
-        this.setState((prevState) => {
-            const clues = [...prevState.clues, prevState.latestClue]
-            return {
-                clues,
-                latestClue: ""
-            }
-        })
-    }
-
-    handleAddQA = (e) => {
-        console.log("handleAddQA")
-        e && e.preventDefault()
-        e && e.stopPropagation()
-        e && console.log(e.target)
-        if(this.state.latestQuestion.trim() === "") {
-            return
-        }
-        this.setState((prevState) => {
-            const newQA = [prevState.latestQuestion, prevState.latestAns]
-            const qAns = [...prevState.questionAns, newQA]
-            return {
-                questionAns: qAns,
-                latestQuestion: "",
-                latestAns: false
-            }
-        })
-    }
-
-    handleQuestionKeypress = (e) => {
-        e && e.stopPropagation()
-        if(e.key === "Enter") {
-            this.handleAddQA(null)
-        }
-    }
-
-    handleClueKeypress = (e) => {
-        e && e.stopPropagation()
-        if(e.key === "Enter") {
-            this.handleAddClue(null)
-        }
     }
 
     handleContinentChange = (e) => {
@@ -311,66 +144,25 @@ export default class CreateCard extends React.Component {
             <article className={OUTER_CONTAINER + " " + CREATE_CARD}>
                 <form className={CARD_CONTAINER + " " + CREATE_CARD}>
                     <h2 className={HEADING + " " + CREATE_CARD}>Add A New Country</h2>
-                    <section className={CREATE_CARD + " " + SUBSECTION}>
-                        <h3 className={CREATE_CARD + " " + SUBHEADING}>Clues</h3>
-                        <ol>
-                            {this.renderClues()}
-                            <li key={"latestClue"}>
-                                <div key={"cluesFieldContainer"}
-                                     className={INPUT_FIELD_CONTAINER}>
-                                    <input key={"clueLatestInput"}
-                                           type="text"
-                                           onKeyDown={this.handleClueKeypress}
-                                           value={this.state.latestClue}
-                                           onChange={this.handleLatestClue}/>
-                                    <div key={"clueTooltipContainer"}
-                                         className={TOOLTIP_CONTAINER}>
-                                        <button tooltip={"Add clue"}
-                                                onClick={this.handleAddClue}
-                                                id={LATEST_CLUE_ADD}
-                                                disabled={this.state.latestClue === ""}
-                                                className={CREATE_CARD + " " + ADD_FIELD + " " + BUTTON}>+
-                                        </button>
-                                    </div>
-                                </div>
-                            </li>
-                        </ol>
-                    </section>
-                    <section className={CREATE_CARD + " " + SUBSECTION}>
-                        <h3 className={CREATE_CARD + " " + SUBHEADING}>Yes-no Questions and Answers</h3>
-                        <ol>
-                            {this.renderQAns()}
-                            <li key={"latestQA"}>
-                                <div key={"qaFieldContainer"}
-                                     onClick={this.handleLatestAns}
-                                     className={INPUT_FIELD_CONTAINER}>
-                                    <input type="text"
-                                           onChange={this.handleLatestQ}
-                                           onKeyDown={this.handleQuestionKeypress}
-                                           value={this.state.latestQuestion}/>
-                                    <div className={SLIDER_CONTAINER}>
-                                        <input type="checkbox"
-                                               onChange={this.stopPropagation}
-                                               checked={this.state.latestAns}/>
-                                        <span className={TOGGLE_SLIDER}>
-                                            {
-                                                this.state.latestAns
-                                                ? <span className={YES}>Yes</span>
-                                                : <span className={NO}>No</span>
-                                            }
-                                        </span>
-                                    </div>
-                                    <div className={TOOLTIP_CONTAINER}>
-                                        <button tooltip={"Add question"}
-                                                onClick={this.handleAddQA}
-                                                disabled={this.state.latestQuestion === ""}
-                                                className={CREATE_CARD + " " + ADD_FIELD + " " + BUTTON}>+
-                                        </button>
-                                    </div>
-                                </div>
-                            </li>
-                        </ol>
-                    </section>
+
+                    <CreateCardClues setClue={this.setClue}
+                                     getClue={this.getClue}
+                                     setClues={this.setClues}
+                                     getClues={this.getClues}
+                                     deleteClue={this.deleteClue}
+                                     setLatestClue={this.setLatestClue}
+                                     getLatestClue={this.getLatestClue}/>
+
+                    <CreateCardQA setQA={this.setQA}
+                                  getQA={this.getQA}
+                                  setQAs={this.setQAs}
+                                  getQAs={this.getQAs}
+                                  deleteQA={this.deleteQA}
+                                  setLatestQ={this.setLatestQ}
+                                  setLatestA={this.setLatestA}
+                                  getLatestQ={this.getLatestQ}
+                                  getLatestA={this.getLatestA}/>
+
                     <section className={CREATE_CARD + " " + SUBSECTION}>
                         <h3 className={CREATE_CARD + " " + SUBHEADING}>Extra Info</h3>
                         <ul>
