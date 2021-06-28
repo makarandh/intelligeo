@@ -7,8 +7,8 @@ from marshmallow import ValidationError
 from flask_cors import CORS
 
 from api.auth_api import Login, TokenRefresh, Logout
-from api.country_api import Countries
-from utils.strings import strMESSAGE, strAUTH_ERROR, EP_TOTAL_COUNTRIES, EP_COUNTRIES
+from api.country_api import Countries, Country
+from utils.strings import strMESSAGE, strAUTH_ERROR, EP_TOTAL_COUNTRIES, EP_COUNTRIES, EP_COUNTRY
 from database.blacklist_db import BlacklistModel
 
 
@@ -76,10 +76,12 @@ def first_run_init():
     from utils.db_init import initialize_db
     initialize_db()
 
+
 api.add_resource(Login, "/login")
 api.add_resource(TokenRefresh, "/refresh")
 api.add_resource(Logout, "/logout")
 api.add_resource(Countries, EP_COUNTRIES, EP_TOTAL_COUNTRIES)
+api.add_resource(Country, EP_COUNTRY)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)

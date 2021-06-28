@@ -156,7 +156,7 @@ export default class CreateCard extends React.Component {
                 <form className={CARD_CONTAINER + " " + CREATE_CARD}>
                     <h2 className={HEADING + " " + CREATE_CARD}>Add A New Country</h2>
                     <section className={CREATE_CARD + " " + SUBSECTION + " " + NAME}>
-                        <h3 className={CREATE_CARD + " " + SUBHEADING + " " + NAME}>Name</h3>
+                        <h3 className={CREATE_CARD + " " + SUBHEADING + " " + NAME}>Name:</h3>
                         <input type="text"
                                onChange={this.handleNameChange}
                                value={this.state.name}/>

@@ -1,13 +1,48 @@
 import json
 import logging
+import re
+
 from pymongo import WriteConcern
 from database.db_connect import get_db
 
-from utils.strings import str__ID, strNAME, strCLUES, strQUESTION_ANS, strMETA
+from utils.strings import (str__ID, strNAME, strCLUES, strQUESTION_ANS, strMETA, strQUESTION, strANS, strCONTINENT,
+                           strREGION)
 
 logging.basicConfig(level=logging.DEBUG, format='[%(asctime)s] [%(levelname)s] [%(name)s] [%(lineno)s]: %(message)s')
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
+
+
+class QuestionAns:
+
+    def __init__(self, question: str, ans: bool):
+        self.question = question
+        self.ans = ans
+
+    def __repr__(self):
+        return json.dumps(self.to_dict())
+
+    def to_dict(self) -> dict:
+        return {
+            strQUESTION: self.question,
+            strANS: self.ans
+        }
+
+
+class Meta:
+
+    def __init__(self, continent: str, region: str):
+        self.continent = continent
+        self.region = region
+
+    def to_dict(self) -> dict:
+        return {
+            strCONTINENT: self.continent,
+            strREGION: self.region
+        }
+
+    def __repr__(self):
+        return json.dumps(self.to_dict())
 
 
 class CountryModel:
@@ -25,7 +60,7 @@ class CountryModel:
 
     search_filter = {str__ID: 0}
 
-    def __init__(self, name, clues, questions, meta):
+    def __init__(self, name: str, clues: list, questions: list, meta: list):
         self.name = name
         self.clues = clues
         self.questions = questions
@@ -44,6 +79,10 @@ class CountryModel:
             strMETA: self.meta
         }
 
+    @classmethod
+    def from_dict(cls, source_dict):
+        return cls(source_dict[strNAME], source_dict[strCLUES], source_dict[strQUESTION_ANS], source_dict[strMETA])
+
 
     @classmethod
     def get_collection(cls):
@@ -54,7 +93,7 @@ class CountryModel:
         return db.country.with_options(write_concern=WriteConcern(w=1, j=True))
 
 
-    def insert(self) -> str:
+    def insert(self) -> str or bool:
         """
             Description: Inserts a new country to db
             :return: MongoDBID of listing:str
@@ -62,10 +101,15 @@ class CountryModel:
         """
         try:
             collection = self.get_collection()
-            result = collection.insert_one(self.to_dict())
-            logger.info("Country added to db:{} {}".format(result.inserted_id, self.__repr__()))
+            result = collection.find_one({strNAME: re.compile(self.name, re.IGNORECASE)}, self.search_filter)
+            if result:
+                logger.info("Country {} already exists in database: {}".format(self.name, result))
+                return False
+            else:
+                result = collection.insert_one(self.to_dict())
+                logger.info("Country added to db:{} {}".format(result.inserted_id, self.__repr__()))
         except Exception as e:
-            logger.error("Error adding country to db: {}; error: {}".format(self.__repr__(), e))
+            logger.error("Error adding country to db: {}".format(e))
             raise Exception(e)
         return str(result.inserted_id)
 

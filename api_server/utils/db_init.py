@@ -1,10 +1,10 @@
 import logging
 
 from database.blacklist_db import BlacklistModel
+from database.country_model import QuestionAns, Meta
 from database.db_connect import get_db
 from database.user_model import UserModel
-from utils.strings import (strTIMESTAMP, strEXPIRE_SECONDS, strNAME, strCLUES, strQUESTION_ANS, strMETA,
-                           strCONTINENT, strREGION)
+from utils.strings import (strTIMESTAMP, strEXPIRE_SECONDS, strNAME, strCLUES, strQUESTION_ANS, strMETA)
 from utils.default_config import TTL_SECONDS
 
 logging.basicConfig(level=logging.DEBUG, format='[%(asctime)s] [%(levelname)s] [%(name)s] [%(lineno)s]: %(message)s')
@@ -27,7 +27,7 @@ def populate_countries():
         return
 
     logger.info("Populating countries...")
-    db.country.insert_many([
+    objectsToInsert = [
         {
             strNAME: "Malaysia",
             strCLUES: [
@@ -36,25 +36,22 @@ def populate_countries():
                 "Majority population follows Islam."
             ],
             strQUESTION_ANS: [
-                ("Is this country known for its beaches?", True),
-                ("Is this country tiny?", False),
-                ("Is it a landlocked country?", False),
-                ("Is it an island country?", False),
-                ("Does it border China?", False),
-                ("Is the country separated into two parts by a sea?", True),
-                ("Does it border Bangladesh?", False),
-                ("Does it border India?", False),
-                (
-                    "Is it a megadiverse country? [The term megadiverse country refers to any one of a group of "
-                    "nations "
-                    "that "
-                    "harbor the majority of Earth's species and high numbers of endemic species.]",
-                    True)
+                QuestionAns("Is this country known for its beaches?", True).to_dict(),
+                QuestionAns("Is this country tiny?", False).to_dict(),
+                QuestionAns("Is it a landlocked country?", False).to_dict(),
+                QuestionAns("Is it an island country?", False).to_dict(),
+                QuestionAns("Does it border China?", False).to_dict(),
+                QuestionAns("Is the country separated into two parts by a sea?", True).to_dict(),
+                QuestionAns("Does it border Bangladesh?", False).to_dict(),
+                QuestionAns("Does it border India?", False).to_dict(),
+                QuestionAns(
+                        "Is it a megadiverse country? [The term megadiverse country refers to any one of a group of "
+                        "nations "
+                        "that "
+                        "harbor the majority of Earth's species and high numbers of endemic species.]",
+                        True).to_dict()
             ],
-            strMETA: [{
-                strCONTINENT: "Asia",
-                strREGION: "South East Asia"
-            }]
+            strMETA: Meta("Asia", "South East Asia").to_dict()
         },
         {
             strNAME: "Spain",
@@ -64,23 +61,21 @@ def populate_countries():
                 "The first modern novel is from this country."
             ],
             strQUESTION_ANS: [
-                ("Does it share a border with an African country?", True),
-                ("Is it completely inside the Balkans?", False),
-                ("Is it partially inside the Balkans?", False),
-                ("Is football really popular in this country?", True),
-                ("Is it a constitutional monarchy?", True),
-                ("Is it a parliamentary republic?", False),
-                ("Are there any McDonalds in this country?", True),
-                ("Is it in the Iberian peninsula?", True),
-                ("Is Mont Blanc in this country?", False),
-                ("Did pizza originate in this country?", False)
+                QuestionAns("Does it share a border with an African country?", True).to_dict(),
+                QuestionAns("Is it completely inside the Balkans?", False).to_dict(),
+                QuestionAns("Is it partially inside the Balkans?", False).to_dict(),
+                QuestionAns("Is football really popular in this country?", True).to_dict(),
+                QuestionAns("Is it a constitutional monarchy?", True).to_dict(),
+                QuestionAns("Is it a parliamentary republic?", False).to_dict(),
+                QuestionAns("Are there any McDonalds in this country?", True).to_dict(),
+                QuestionAns("Is it in the Iberian peninsula?", True).to_dict(),
+                QuestionAns("Is Mont Blanc in this country?", False).to_dict(),
+                QuestionAns("Did pizza originate in this country?", False).to_dict()
             ],
-            strMETA: [{
-                strCONTINENT: "Europe",
-                strREGION: "Southern Europe"
-            }],
+            strMETA: Meta("Europe", "Southern Europe").to_dict()
         }
-    ])
+    ]
+    db.country.insert_many(objectsToInsert)
 
 
 def add_users():

@@ -21,19 +21,17 @@ export default class Details extends React.Component {
 
     renderMeta = () => {
         return <React.Fragment>
-            {this.props.country.meta.map((meta) => {
-                return <React.Fragment key={meta.continent + meta.region}>
-                    <li>Continent: {meta.continent}</li>
-                    <li>Region: {meta.region} </li>
-                </React.Fragment>
-            })}
+            <li>Continent: {this.props.country.meta.continent}</li>
+            <li>Region: {this.props.country.meta.region} </li>
         </React.Fragment>
     }
 
     renderQAns = () => {
         return <React.Fragment>
             {this.props.country.question_ans.map((qAns) => {
-                return <li key={qAns[0]}>{qAns[0]} ({qAns[1] ? <strong>Yes</strong> : <strong>No</strong>})</li>
+                return <li key={qAns.question}>
+                    {qAns.question} ({qAns.ans ? <strong>Yes</strong> : <strong>No</strong>})
+                </li>
             })}
         </React.Fragment>
     }

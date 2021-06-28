@@ -108,8 +108,6 @@ export default class App extends React.Component {
         }
         try {
             const request = this.getRequest(method, this.state.accessToken, body)
-            console.log(`${MAIN_URL + endpoint} ${method}`)
-            console.log(request)
             let response = await fetch(MAIN_URL + endpoint, request)
             console.log(response)
             if(response.status === 401) {
