@@ -34,7 +34,7 @@
 
 .create_card.sub_subheading ~ input {
     display: inline-block;
-    width: 70%;
+    width: 73%;
 }
 
 .sub_subheading_container {
@@ -168,4 +168,13 @@ input:checked + .toggle_slider:before {
 
 .delete_field.button:active {
     background: radial-gradient(circle, var(--light-red), var(--main-red));
+}
+
+.name h3 {
+    display: inline-block;
+}
+
+.name input {
+    margin-left: 1.3rem;
+    width: 73%;
 }

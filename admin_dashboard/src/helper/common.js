@@ -58,6 +58,8 @@ export const INPUT_FIELD_CONTAINER = "input_field_container"
 export const TOGGLE_SLIDER = "toggle_slider"
 export const SLIDER_CONTAINER = "slider_container"
 
+export const CLUES = "clues"
+export const NAME = "name"
 export const LATEST_CLUE_ADD = "latest_clue_add"
 
 export const PATH_COUNTRIES = "/countries"

@@ -3,11 +3,11 @@ import "../css/CreateCard.css"
 import {
     BUTTON, BUTTON_CONTAINER,
     CARD_CONTAINER, CREATE_CARD,
-    HEADING, OUTER_CONTAINER,
-    SUB_SUBHEADING, SUB_SUBHEADING_CONTAINER,
-    SUBHEADING, SUBSECTION
+    HEADING, NAME, OUTER_CONTAINER, SUBHEADING,
+    SUBSECTION
 } from "../helper/common"
 import CreateCardClues from "./CreateCardClues"
+import CreateCardMeta from "./CreateCardMeta"
 import CreateCardQA from "./CreateCardQA"
 
 
@@ -113,8 +113,15 @@ export default class CreateCard extends React.Component {
         e.stopPropagation()
     }
 
-    handleContinentChange = (e) => {
-        const continent = e.target.value
+    getContinent = () => {
+        return this.state.meta.continent
+    }
+
+    getRegion = () => {
+        return this.state.meta.region
+    }
+
+    setContinent = (continent) => {
         this.setState((prevState) => ({
 
             meta: {
@@ -124,8 +131,7 @@ export default class CreateCard extends React.Component {
         }))
     }
 
-    handleRegionChange = (e) => {
-        const region = e.target.value
+    setRegion = (region) => {
         this.setState((prevState) => ({
 
             meta: {
@@ -139,12 +145,22 @@ export default class CreateCard extends React.Component {
         e.preventDefault()
     }
 
+    handleNameChange = (e) => {
+        const name = e.target.value
+        this.setState({name})
+    }
+
     render() {
         return (
             <article className={OUTER_CONTAINER + " " + CREATE_CARD}>
                 <form className={CARD_CONTAINER + " " + CREATE_CARD}>
                     <h2 className={HEADING + " " + CREATE_CARD}>Add A New Country</h2>
-
+                    <section className={CREATE_CARD + " " + SUBSECTION + " " + NAME}>
+                        <h3 className={CREATE_CARD + " " + SUBHEADING + " " + NAME}>Name</h3>
+                        <input type="text"
+                               onChange={this.handleNameChange}
+                               value={this.state.name}/>
+                    </section>
                     <CreateCardClues setClue={this.setClue}
                                      getClue={this.getClue}
                                      setClues={this.setClues}
@@ -152,7 +168,6 @@ export default class CreateCard extends React.Component {
                                      deleteClue={this.deleteClue}
                                      setLatestClue={this.setLatestClue}
                                      getLatestClue={this.getLatestClue}/>
-
                     <CreateCardQA setQA={this.setQA}
                                   getQA={this.getQA}
                                   setQAs={this.setQAs}
@@ -162,28 +177,10 @@ export default class CreateCard extends React.Component {
                                   setLatestA={this.setLatestA}
                                   getLatestQ={this.getLatestQ}
                                   getLatestA={this.getLatestA}/>
-
-                    <section className={CREATE_CARD + " " + SUBSECTION}>
-                        <h3 className={CREATE_CARD + " " + SUBHEADING}>Extra Info</h3>
-                        <ul>
-                            <li key={"continent"}>
-                                <div className={CREATE_CARD + " " + SUB_SUBHEADING_CONTAINER}>
-                                    <label className={CREATE_CARD + " " + SUB_SUBHEADING}>Continent: </label>
-                                    <input type="text"
-                                           onChange={this.handleContinentChange}
-                                           value={this.state.meta.continent}/>
-                                </div>
-                            </li>
-                            <li key={"region"}>
-                                <div className={CREATE_CARD + " " + SUB_SUBHEADING_CONTAINER}>
-                                    <label className={CREATE_CARD + " " + SUB_SUBHEADING}>Region: </label>
-                                    <input type="text"
-                                           onChange={this.handleRegionChange}
-                                           value={this.state.meta.region}/>
-                                </div>
-                            </li>
-                        </ul>
-                    </section>
+                    <CreateCardMeta setContinent={this.setContinent}
+                                    getContinent={this.getContinent}
+                                    setRegion={this.setRegion}
+                                    getRegion={this.getRegion}/>
                     <section className={CREATE_CARD + " " + SUBSECTION + " " + BUTTON_CONTAINER}>
                         <button className={CREATE_CARD + " " + BUTTON}
                                 onClick={this.handleSubmit}>Add Card

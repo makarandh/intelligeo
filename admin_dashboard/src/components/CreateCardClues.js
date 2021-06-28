@@ -1,12 +1,12 @@
 import React from "react"
 import {
-    ADD_FIELD, BUTTON,
+    ADD_FIELD, BUTTON, CLUES,
     CREATE_CARD, DELETE_FIELD,
     INDEX, INPUT_FIELD_CONTAINER,
     LATEST_CLUE_ADD, SUBHEADING,
     SUBSECTION, TOOLTIP_CONTAINER
 } from "../helper/common"
-
+import "../css/CreateCardClues.css"
 
 export default class CreateCardClues extends React.Component {
 
@@ -30,7 +30,7 @@ export default class CreateCardClues extends React.Component {
             {this.props.getClues().map((clue, index) => {
                 return (
                     <li key={`clue_${index}`}>
-                        <div className={INPUT_FIELD_CONTAINER}>
+                        <div className={INPUT_FIELD_CONTAINER + " " + CLUES}>
                             <input name={index}
                                    type="text"
                                    value={clue}
@@ -72,13 +72,13 @@ export default class CreateCardClues extends React.Component {
 
     render() {
         return (
-            <section className={CREATE_CARD + " " + SUBSECTION}>
+            <section className={`${CREATE_CARD} ${SUBSECTION} ${CLUES}`}>
                 <h3 className={CREATE_CARD + " " + SUBHEADING}>Clues</h3>
                 <ol>
                     {this.renderClues()}
                     <li key={"latestClue"}>
                         <div key={"cluesFieldContainer"}
-                             className={INPUT_FIELD_CONTAINER}>
+                             className={INPUT_FIELD_CONTAINER + " " + CLUES}>
                             <input key={"clueLatestInput"}
                                    type="text"
                                    onKeyDown={this.handleClueKeypress}
