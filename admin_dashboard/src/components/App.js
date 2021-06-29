@@ -2,7 +2,7 @@ import React from "react"
 import "../css/App.css"
 import ErrorBoundary from "./ErrorBoundary"
 import {Login} from "./Login"
-import {GET, MAIN_URL, NETWORK_ERROR} from "../helper/common"
+import {GET, MAIN_URL, NETWORK_ERROR, SUBMIT_MESSAGE} from "../helper/common"
 import {TopBar} from "./TopBar"
 
 
@@ -13,6 +13,10 @@ export default class App extends React.Component {
         accessToken: null,
         refreshToken: null,
         networkError: false
+    }
+
+    setNetworkError = () => {
+        this.setState({networkError: true})
     }
 
     getRT = () => {

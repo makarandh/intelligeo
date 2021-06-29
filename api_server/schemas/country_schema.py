@@ -1,4 +1,4 @@
-from marshmallow import Schema, fields
+from marshmallow import Schema, fields, validate
 
 
 class QuestionAnsSchema(Schema):
@@ -12,7 +12,7 @@ class MetaSchema(Schema):
 
 
 class CountrySchema(Schema):
-    name = fields.String(required=True)
+    name = fields.String(required=True, validate=validate.Length(min=1))
     clues = fields.List(fields.String(required=True))
     question_ans = fields.List(fields.Nested(QuestionAnsSchema, required=True))
     meta = fields.Nested(MetaSchema, required=True)

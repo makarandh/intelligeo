@@ -29,37 +29,6 @@
     position: relative;
 }
 
-.error_message {
-    display: inline-block;
-    position: absolute;
-    left: 0;
-    bottom: -0.8rem;
-    opacity: 0;
-    color: black;
-    font-size: 1rem;
-    background-color: orange;
-    padding: 0.2rem 0.4rem;
-    margin-top: 0;
-    border-radius: 0.1rem;
-    transition: all 0.2s ease-in-out;
-}
-
-.error_message.generic_error {
-    position: static;
-    margin-top: 1rem;
-    padding: 0.4rem;
-    text-align: center;
-}
-
-.error_visible {
-    opacity: 1;
-    transition: all 0.2s ease-in-out;
-}
-
-.error_highlight {
-    background: rgba(224, 7, 7, 0.13);
-}
-
 .button:hover {
     transition: all 0.25s ease-in-out;
     color: white;

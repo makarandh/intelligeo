@@ -20,6 +20,7 @@ class Country(Resource):
     @jwt_required()
     def post():
         json_data = request.get_json()
+        logger.info(json_data)
         if not json_data:
             return {strMESSAGE: strINVALID_DATA}, 400
         try:
@@ -37,7 +38,7 @@ class Country(Resource):
             result = CountryModel.insert(country_obj)
             if not result:
                 logger.error("Country already exists")
-                return {strMESSAGE: "Country already exist"}, 409
+                return {strMESSAGE: "Country already exists."}, 409
             logger.info("Country add successful.")
             return {strRESULT: strSUCCESS}, 201
         except Exception as e:

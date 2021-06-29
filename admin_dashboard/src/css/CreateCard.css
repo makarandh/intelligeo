@@ -42,6 +42,7 @@
 
 .create_card.subsection.button_container {
     text-align: center;
+    position: relative;
 }
 
 .create_card.button {
@@ -176,4 +177,10 @@ input:checked + .toggle_slider:before {
 .name input {
     margin-left: 0.5rem;
     width: 74%;
+}
+
+.create_card .error_message {
+    bottom: unset;
+    left: 13.2rem;
+    top: -2.2rem;
 }

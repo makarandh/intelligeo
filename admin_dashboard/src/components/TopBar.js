@@ -2,10 +2,20 @@ import React from "react"
 import {BrowserRouter as Router, Switch, Route, NavLink, Redirect} from "react-router-dom"
 import {Suspense} from "react"
 import "../css/TopBar.css"
-import {BUTTON, NAV_ITEM, NAV_LINK, NAV_LINKS, PATH_HOME, TOP_BAR, TOP_BAR_LEFT, TOP_BAR_RIGHT} from "../helper/common"
+import {
+    BUTTON,
+    NAV_ITEM,
+    NAV_LINK,
+    NAV_LINKS,
+    PATH_CREATE,
+    PATH_HOME,
+    TOP_BAR,
+    TOP_BAR_LEFT,
+    TOP_BAR_RIGHT
+} from "../helper/common"
 
 const Home = React.lazy(() => import("./Home"))
-const Settings = React.lazy(() => import("./CreateCard"))
+const CreateCard = React.lazy(() => import("./CreateCard"))
 
 
 export class TopBar extends React.Component {
@@ -33,9 +43,9 @@ export class TopBar extends React.Component {
                         </div>
                     </header>
                     <Switch>
-                        <Route path="/create">
+                        <Route path={PATH_CREATE}>
                             <Suspense fallback={<div>Loading...</div>}>
-                                <Settings/>
+                                <CreateCard fetchOrDie={this.props.fetchOrDie}/>
                             </Suspense>
                         </Route>
                         <Route path={PATH_HOME}>

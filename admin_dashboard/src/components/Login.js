@@ -1,7 +1,7 @@
 import React from "react"
 import {
     AUTH_ERROR, CARD_CONTAINER,
-    ERROR_HIDDEN, ERROR_HIGHLIGHT,
+    ERROR_HIDDEN, ERROR_HIGHLIGHT, ERROR_MESSAGE,
     ERROR_VISIBLE, INPUT_CONTAINER,
     LOGIN, LOGIN_PAGE,
     MAIN_URL,
@@ -131,7 +131,7 @@ export class Login extends React.Component {
                                onChange={this.handleOnChange}
                                autoFocus={this.state.displayUserError}
                                placeholder={USERNAME}/>
-                        <div className={"error_message "
+                        <div className={ERROR_MESSAGE + " "
                                         + (this.state.displayUserError
                                            ? ERROR_VISIBLE
                                            : ERROR_HIDDEN)}>Username cannot be blank
@@ -145,7 +145,7 @@ export class Login extends React.Component {
                                onChange={this.handleOnChange}
                                autoFocus={this.state.displayPassError && (!this.state.displayUserError)}
                                placeholder={PASSWORD}/>
-                        <div className={"error_message password "
+                        <div className={ERROR_MESSAGE + " " + PASSWORD
                                         + (this.state.displayPassError
                                            ? ERROR_VISIBLE
                                            : ERROR_HIDDEN)}>Password cannot be blank

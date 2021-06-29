@@ -3,8 +3,8 @@ import {
     GET,
     get_url,
     intITEMS_PER_PAGE,
-    PATH_COUNTRIES,
-    PATH_COUNTRIES_TOTAL, CARDS_LIST_CONTAINER, CARDS_LIST_OUTER,
+    EP_COUNTRIES,
+    EP_COUNTRIES_TOTAL, CARDS_LIST_CONTAINER, CARDS_LIST_OUTER,
     ITEMS_PER_PAGE, PAGE_NUM
 } from "../helper/common"
 import Details from "./Details"
@@ -20,7 +20,7 @@ export default class Countries extends React.Component {
     }
 
     fetchCardsCount = async() => {
-        const response = await this.props.fetchOrDie(PATH_COUNTRIES_TOTAL, GET)
+        const response = await this.props.fetchOrDie(EP_COUNTRIES_TOTAL, GET)
         if(response.status === 200) {
             const jsonResponse = await response.json()
             this.setState({totalCards: jsonResponse.result})
@@ -32,7 +32,7 @@ export default class Countries extends React.Component {
     }
 
     fetchCardsList = async() => {
-        const url = get_url(PATH_COUNTRIES,
+        const url = get_url(EP_COUNTRIES,
             `${PAGE_NUM}=${this.state.page_num}`,
             `${ITEMS_PER_PAGE}=${intITEMS_PER_PAGE}`)
         const response = await this.props.fetchOrDie(url, GET)

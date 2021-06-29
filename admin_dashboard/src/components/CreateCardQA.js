@@ -44,8 +44,11 @@ export default class CreateCardQA extends React.Component {
         const index = parseInt(checkbox.name)
         checkbox.checked = !checkbox.checked
         const ans = checkbox.checked
-        const question = this.props.getQA(index)[0]
-        this.props.setQA(index, [question, ans])
+        const question = this.props.getQA(index).question
+        this.props.setQA(index, {
+            "question": question,
+            "ans": ans
+        })
     }
 
     stopPropagation = (e) => {
@@ -71,15 +74,15 @@ export default class CreateCardQA extends React.Component {
                             <input name={index}
                                    type="text"
                                    onChange={this.handleQuestionListChange}
-                                   value={qAns[0]}/>
+                                   value={qAns.question}/>
                             <div className={SLIDER_CONTAINER}>
                                 <input type="checkbox"
                                        name={index}
                                        onChange={this.stopPropagation}
-                                       checked={qAns[1]}/>
+                                       checked={qAns.ans}/>
                                 <span className={TOGGLE_SLIDER}>
                                     {
-                                        qAns[1]
+                                        qAns.ans
                                         ? <span className={"yes"}>Yes</span>
                                         : <span className={"no"}>No</span>
                                     }
@@ -137,7 +140,10 @@ export default class CreateCardQA extends React.Component {
             return
         }
 
-        const newQA = [this.props.getLatestQ(), this.props.getLatestA()]
+        const newQA = {
+            "question": this.props.getLatestQ(),
+            "ans": this.props.getLatestA()
+        }
         this.props.setQAs([...this.props.getQAs(), newQA])
         this.props.setLatestQ("")
         this.props.setLatestA(false)
@@ -153,6 +159,7 @@ export default class CreateCardQA extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault()
     }
+
 
     render() {
         return (

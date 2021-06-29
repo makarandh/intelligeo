@@ -8,6 +8,7 @@ export const RIGHT = "right"
 export const TEXT = "text"
 export const GET = "GET"
 export const POST = "POST"
+export const ERROR_MESSAGE = "error_message"
 export const ERROR_VISIBLE = "error_visible"
 export const ERROR_HIGHLIGHT = "error_highlight"
 export const ERROR_HIDDEN = "error_hidden"
@@ -62,10 +63,20 @@ export const CLUES = "clues"
 export const NAME = "name"
 export const LATEST_CLUE_ADD = "latest_clue_add"
 
-export const PATH_COUNTRIES = "/countries"
-export const PATH_COUNTRIES_TOTAL = "/countries/total"
+export const EP_COUNTRY = "/country"
+export const EP_COUNTRIES = "/countries"
+export const EP_COUNTRIES_TOTAL = "/countries/total"
 export const PATH_HOME = "/home"
+export const PATH_CREATE = "/create"
+
+export const QUESTION  = "question"
+export const ANS = "ans"
+export const SUBMIT_MESSAGE = "submit_message"
 
 export const get_url = (url, ...args) => {
     return url + "?" + args.reduce((arg1, arg2) => arg1 + "&" + arg2)
+}
+
+export const sleep = async(ms) => {
+    return new Promise(resolve => setTimeout(resolve, ms))
 }
