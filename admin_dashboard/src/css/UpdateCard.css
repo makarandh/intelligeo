@@ -1,8 +1,12 @@
 .edit_card.update.button_container {
-    text-align: left;
+    text-align: center;
 }
 
-.button.undo.edit_card {
+.update .edit_card.button.submit {
+    width: 35%;
+}
+
+.button.undo.edit_card, .button.edit_card.delete {
     width: unset;
     padding: 0.6rem 0.8rem;
     background-color: orange;
@@ -10,6 +14,17 @@
     max-width: 10rem;
     margin-right: 1.5rem;
     color: var(--text-blue);
+}
+
+.button.edit_card.delete {
+    background-color: var(--main-red);
+    color: var(--white-blue);
+    margin-left: 1.5rem;
+}
+
+.button.edit_card.delete:hover {
+    background-color: var(--light-red);
+    color: white;
 }
 
 .button.undo.edit_card:hover {

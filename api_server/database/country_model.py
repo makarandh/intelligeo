@@ -15,6 +15,7 @@ logging.basicConfig(level=logging.DEBUG, format='[%(asctime)s] [%(levelname)s] [
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
+MAX_LIMIT = 100000000
 
 class QuestionAns:
 
@@ -69,7 +70,10 @@ class CountryModel:
         self.questions = questions
         self.meta = meta
         if id == None:
-            self.id = random.randint(1, 100000000)
+            self.id = random.randint(1, MAX_LIMIT)
+            while self.find_by_id(self.id):
+                logger.error("Country with id {} already exist. Creating another random...".format(self.id))
+                self.id = random.randint(1, MAX_LIMIT)
         else:
             self.id = id
 
@@ -143,7 +147,7 @@ class CountryModel:
             else:
                 result = collection.replace_one(search_param, self.to_dict())
                 logger.info("Country update result matched_count:{}, modified_count: {}".format(result.matched_count,
-                                                                                            result.modified_count))
+                                                                                                result.modified_count))
                 return str(result.modified_count)
         except Exception as e:
             logger.error("Error adding country to db: {}".format(e))
@@ -205,4 +209,22 @@ class CountryModel:
             return result
         except Exception as e:
             logger.error("Error retrieving country: {}".format(e))
+            raise Exception(e)
+
+
+    @classmethod
+    def delete(cls, id):
+        try:
+            deleted_collection = get_db().deleted
+            document_to_del = cls.find_by_id(id)
+            if not document_to_del:
+                logger.error("Country with id {} not found".format(id))
+                return False
+            deleted_collection.insert_one(document_to_del)
+            collection = cls.get_collection()
+            result = collection.delete_one({strID: id})
+            logger.info("Documents deleted {}".format(result.deleted_count))
+            return result.deleted_count
+        except Exception as e:
+            logger.error("Error deleting country: {}".format(e))
             raise Exception(e)

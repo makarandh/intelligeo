@@ -9,5 +9,5 @@ JWT_BLACKLIST_TOKEN_CHECKS = ["access", "refresh"]
 MAX_CONTENT_LENGTH = 10 * 1024 * 1024
 JWT_ACCESS_TOKEN_EXPIRES=datetime.timedelta(minutes=15)
 JWT_REFRESH_TOKEN_EXPIRES=datetime.timedelta(days=30)
-# TTL_SECONDS = 5
-TTL_SECONDS = 24 * 60 * 60
+TTL_SECONDS = 30 * 24 * 60 * 60
+DELETED_ENTRY_TTL = 30 * 24 * 60 * 60

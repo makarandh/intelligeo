@@ -106,6 +106,27 @@ class Country(Resource):
             return {strMESSAGE: strINTERNAL_SERVER_ERROR}, 500
 
 
+    @staticmethod
+    @jwt_required()
+    def delete():
+        try:
+            schema = CountryRequestSchema(unknown=EXCLUDE)
+            error = schema.validate(request.args)
+            if error:
+                logger.error("Error parsing request body: {}".format(error))
+                return {strMESSAGE: strINVALID_DATA}, 400
+            args = schema.load(request.args)
+            id = args[strID]
+            logger.info("Requested for country deletion with id {}".format(id))
+            result = CountryModel.delete(id)
+            if result:
+                return {strRESULT: strSUCCESS}, 200
+            return {strMESSAGE: str404}, 404
+        except Exception as e:
+            logger.error(e)
+            return {strMESSAGE: strINTERNAL_SERVER_ERROR}, 500
+
+
 class Countries(Resource):
 
     @staticmethod

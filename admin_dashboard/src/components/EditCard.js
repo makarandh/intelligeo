@@ -4,7 +4,7 @@ import {
     BUTTON, BUTTON_CONTAINER,
     CARD_CONTAINER, CLUES, EDIT_CARD, EP_COUNTRY, ERROR_VISIBLE, ERROR_HIDDEN, ERROR_MESSAGE,
     HEADING, NAME, OUTER_CONTAINER, POST, SUBHEADING,
-    SUBSECTION, sleep, SUBMIT_MESSAGE, UPDATE, GET, PATH_HOME, PUT
+    SUBSECTION, sleep, SUBMIT_MESSAGE, UPDATE, GET, PATH_HOME, PUT, DELETE
 } from "../helper/common"
 import EditCardClues from "./EditCardClues"
 import EditCardMeta from "./EditCardMeta"
@@ -358,6 +358,29 @@ export default class EditCard extends React.Component {
         this.handleUpdateDataLoading()
     }
 
+    handleDelete = async (e) => {
+        e.preventDefault()
+        const response = await this.props.fetchOrDie(`${EP_COUNTRY}?id=${this.props.countryID}`, DELETE)
+        if(response.status === 200) {
+            this.clearAllLocalStorage()
+            this.setState({
+                showNotification: true
+            })
+            document.getElementById(SUBMIT_MESSAGE).innerText = `Country deleted successfully.`
+            await sleep(1000)
+            window.location.href = PATH_HOME
+        }
+        else {
+            const jsonMessage = await response.json()
+            const message = jsonMessage.message
+            document.getElementById(SUBMIT_MESSAGE).innerText = message
+            console.log("Response error: ", message)
+            this.setState({
+                showNotification: true
+            })
+        }
+    }
+
     componentDidMount() {
         if(this.props.operation === UPDATE) {
             this.handleUpdateDataLoading()
@@ -412,10 +435,16 @@ export default class EditCard extends React.Component {
                                        onClick={this.handleReset}>Undo Changes
                             </button>
                         }
-                        <button className={EDIT_CARD + " " + BUTTON}
+                        <button className={EDIT_CARD + " " + BUTTON + " submit"}
                                 disabled={this.state.submitting || this.state.name === ""}
                                 onClick={this.handleSubmit}>{this.props.buttonTitle}
                         </button>
+                        {
+                            this.props.operation === UPDATE
+                            && <button className={EDIT_CARD + " " + BUTTON + " delete"}
+                                       onClick={this.handleDelete}>Delete Country
+                            </button>
+                        }
                     </section>
                 </form>
             </article>
