@@ -1,7 +1,7 @@
 import React from "react"
 import {
     ADD_FIELD, DELETE_FIELD,
-    BUTTON, CREATE_CARD,
+    BUTTON, EDIT_CARD,
     INDEX, YES, NO,
     INPUT_FIELD_CONTAINER,
     SLIDER_CONTAINER,
@@ -10,13 +10,18 @@ import {
 } from "../helper/common"
 
 
-export default class CreateCardQA extends React.Component {
+export default class EditCardQA extends React.Component {
 
     handleQuestionListChange = (e) => {
         const index = e.target.name
         const newQ = e.target.value
-        const ans = this.props.getQA(index)[1]
-        this.props.setQA(index, [newQ, ans])
+        const ans = this.props.getQA(index).ans
+        console.log(ans)
+        this.props.setQA(index, {
+                "question": newQ,
+                "ans": ans
+            }
+        )
     }
 
     handleAnswerListClick = (e) => {
@@ -92,7 +97,7 @@ export default class CreateCardQA extends React.Component {
                                  onClick={this.deleteQuestion}>
                                 <span tooltip={"Delete Question"}
                                       index={index}
-                                      className={CREATE_CARD + " " + DELETE_FIELD + " " + BUTTON}>-</span>
+                                      className={EDIT_CARD + " " + DELETE_FIELD + " " + BUTTON}>-</span>
                             </div>
                         </div>
                     </li>
@@ -163,8 +168,8 @@ export default class CreateCardQA extends React.Component {
 
     render() {
         return (
-            <section className={CREATE_CARD + " " + SUBSECTION}>
-                <h3 className={CREATE_CARD + " " + SUBHEADING}>Yes-no Questions and Answers</h3>
+            <section className={EDIT_CARD + " " + SUBSECTION}>
+                <h3 className={EDIT_CARD + " " + SUBHEADING}>Yes-no Questions and Answers</h3>
                 <ol>
                     {this.renderQAns()}
                     <li key={"latestQA"}>
@@ -191,7 +196,7 @@ export default class CreateCardQA extends React.Component {
                                 <button tooltip={"Add question"}
                                         onClick={this.handleAddQA}
                                         disabled={this.props.getLatestQ().trim() === ""}
-                                        className={CREATE_CARD + " " + ADD_FIELD + " " + BUTTON}>+
+                                        className={EDIT_CARD + " " + ADD_FIELD + " " + BUTTON}>+
                                 </button>
                             </div>
                         </div>

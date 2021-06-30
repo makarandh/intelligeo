@@ -1,13 +1,13 @@
 import React from "react"
 import {BrowserRouter as Router, Switch, Route, NavLink, Redirect} from "react-router-dom"
 import {Suspense} from "react"
-import "../css/TopBar.css"
+import "../css/MainRouter.css"
 import {
     BUTTON,
     NAV_ITEM,
     NAV_LINK,
     NAV_LINKS,
-    PATH_CREATE,
+    PATH_CREATE, PATH_UPDATE,
     PATH_HOME,
     TOP_BAR,
     TOP_BAR_LEFT,
@@ -16,9 +16,10 @@ import {
 
 const Home = React.lazy(() => import("./Home"))
 const CreateCard = React.lazy(() => import("./CreateCard"))
+const UpdateCard = React.lazy(() => import("./UpdateCard"))
 
 
-export class TopBar extends React.Component {
+export class MainRouter extends React.Component {
     render() {
         return (
             <Router>
@@ -48,16 +49,18 @@ export class TopBar extends React.Component {
                                 <CreateCard fetchOrDie={this.props.fetchOrDie}/>
                             </Suspense>
                         </Route>
+                        <Route path={`${PATH_UPDATE}/:id`}>
+                            <Suspense fallback={<div>Loading...</div>}>
+                                <UpdateCard fetchOrDie={this.props.fetchOrDie}/>
+                            </Suspense>
+                        </Route>
                         <Route path={PATH_HOME}>
                             <Suspense fallback={<div>Loading...</div>}>
                                 <Home fetchOrDie={this.props.fetchOrDie}/>
                             </Suspense>
                         </Route>
-                        <Route exact path={"/"}>
+                        <Route path={"/"}>
                             <Redirect to={PATH_HOME}/>
-                        </Route>
-                        <Route path={"*"}>
-                            <div>404</div>
                         </Route>
                     </Switch>
                 </div>

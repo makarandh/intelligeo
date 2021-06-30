@@ -1,8 +1,12 @@
 .card_container.details {
+    position: relative;
     color: var(--text-blue);
     max-width: 34rem;
 }
 
+.card_container.details:hover .hover_text {
+    opacity: 1;
+}
 .details.heading {
     font-size: 2.5rem;
 }
@@ -24,3 +28,8 @@
     line-height: 1.4rem;
 }
 
+.details .hover_text {
+    opacity: 0;
+    right: 1rem;
+    top: 1rem;
+}

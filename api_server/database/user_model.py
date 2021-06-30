@@ -1,7 +1,7 @@
 import datetime
 import logging
 from database.db_connect import get_db
-from utils.strings import strUSERNAME, str__ID, strPASSWORD, strADMIN, strDATE_TIME
+from utils.strings import strUSERNAME, str_ID, strPASSWORD, strADMIN, strDATE_TIME
 from auth.security import hash_password, verify_password
 
 logging.basicConfig(level=logging.DEBUG, format='[%(asctime)s] [%(levelname)s] [%(name)s] [%(lineno)s]: %(message)s')
@@ -31,7 +31,7 @@ class UserModel():
 
     def to_dict(self) -> dict:
         return {
-            str__ID: self.username,
+            str_ID: self.username,
             strUSERNAME: self.username,
             strADMIN: self.admin,
             strPASSWORD: hash_password(self.plaintext_password),

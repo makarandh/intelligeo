@@ -1,27 +1,27 @@
-.create_card.outer_container {
+.edit_card.outer_container {
     max-width: 50rem;
     margin: 5rem auto;
 }
 
-.create_card.card_container {
+.edit_card.card_container {
     margin-top: 3.5rem;
     padding: 2rem 5rem 3rem 3rem;
 }
 
-.create_card.heading {
+.edit_card.heading {
     font-size: 2.5rem;
     margin-bottom: 3rem;
 }
 
-.create_card.subsection {
+.edit_card.subsection {
     margin-top: 3rem;
 }
 
-.create_card.subheading ~ ul {
+.edit_card.subheading ~ ul {
     margin-top: 1rem;
 }
 
-.create_card.sub_subheading {
+.edit_card.sub_subheading {
     font-size: 1.1rem;
     display: inline-block;
     color: var(--text-blue);
@@ -31,7 +31,7 @@
     text-align: right;
 }
 
-.create_card.sub_subheading ~ input {
+.edit_card.sub_subheading ~ input {
     display: inline-block;
     width: 73%;
 }
@@ -40,19 +40,19 @@
     margin-top: 0;
 }
 
-.create_card.subsection.button_container {
+.edit_card.subsection.button_container {
     text-align: center;
     position: relative;
 }
 
-.create_card.button {
+.edit_card.button {
     color: white;
     width: 50%;
     border-radius: 2rem;
     box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
 }
 
-.create_card li {
+.edit_card li {
     margin-bottom: 0.1rem;
 }
 
@@ -74,7 +74,7 @@
     width: 1.9rem;
 }
 
-.create_card.delete_field.button {
+.edit_card.delete_field.button {
     padding-bottom: 0.2rem;
 }
 
@@ -113,7 +113,7 @@
     box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
 }
 
-.toggle_slider:hover {
+.toggle_slider:hover, .toggle_slider:active {
     background-color: var(--light-purple);
 }
 
@@ -153,7 +153,7 @@ input:checked + .toggle_slider:before {
     transform: translateX(2.5rem);
 }
 
-.create_card.subsection ol li {
+.edit_card.subsection ol li {
     margin-left: 5.2rem;
     line-height: 1.4rem;
 }
@@ -175,12 +175,13 @@ input:checked + .toggle_slider:before {
 }
 
 .name input {
-    margin-left: 0.5rem;
+    margin-left: 0.7rem;
     width: 74%;
 }
 
-.create_card .error_message {
+.edit_card .error_message {
     bottom: unset;
     left: 13.2rem;
     top: -2.2rem;
 }
+

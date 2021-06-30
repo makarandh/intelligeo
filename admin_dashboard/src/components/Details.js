@@ -4,7 +4,7 @@ import {
     CARD_CONTAINER,
     DETAILS,
     SUBSECTION,
-    SUBHEADING
+    SUBHEADING, HOVER_TEXT, BUTTON, PATH_UPDATE
 } from "../helper/common"
 import "../css/Details.css"
 
@@ -36,9 +36,17 @@ export default class Details extends React.Component {
         </React.Fragment>
     }
 
+    handleEditCard = (e) => {
+        e.preventDefault()
+        window.location.href = `${PATH_UPDATE}/${this.props.country.id}`
+    }
+
     render() {
         return (
             <article className={CARD_CONTAINER + " " + DETAILS}>
+                <button className={HOVER_TEXT + " " + BUTTON}
+                        onClick={this.handleEditCard}>Edit
+                </button>
                 <h2 className={DETAILS + " " + HEADING}>{this.props.country.name}</h2>
                 <section className={DETAILS + " " + SUBSECTION}>
                     <h3 className={DETAILS + " " + SUBHEADING}>Clues</h3>

@@ -1,7 +1,7 @@
 import logging
 
 from database.blacklist_db import BlacklistModel
-from database.country_model import QuestionAns, Meta
+from database.country_model import QuestionAns, Meta, CountryModel
 from database.db_connect import get_db
 from database.user_model import UserModel
 from utils.strings import (strTIMESTAMP, strEXPIRE_SECONDS, strNAME, strCLUES, strQUESTION_ANS, strMETA)
@@ -28,14 +28,11 @@ def populate_countries():
 
     logger.info("Populating countries...")
     objectsToInsert = [
-        {
-            strNAME: "Malaysia",
-            strCLUES: [
+        CountryModel("Malaysia", [
                 "It's a country in southeast Asia (according to UN geoscheme).",
                 "It's a constitutional monarchy.",
                 "Majority population follows Islam."
-            ],
-            strQUESTION_ANS: [
+            ], [
                 QuestionAns("Is this country known for its beaches?", True).to_dict(),
                 QuestionAns("Is this country tiny?", False).to_dict(),
                 QuestionAns("Is it a landlocked country?", False).to_dict(),
@@ -50,17 +47,12 @@ def populate_countries():
                         "that "
                         "harbor the majority of Earth's species and high numbers of endemic species.]",
                         True).to_dict()
-            ],
-            strMETA: Meta("Asia", "South East Asia").to_dict()
-        },
-        {
-            strNAME: "Spain",
-            strCLUES: [
+            ], Meta("Asia", "South East Asia").to_dict()).to_dict(),
+        CountryModel("Spain", [
                 "It's a country in southern Europe.",
                 "It's a large country compared to other countries in Europe.",
                 "The first modern novel is from this country."
-            ],
-            strQUESTION_ANS: [
+            ], [
                 QuestionAns("Does it share a border with an African country?", True).to_dict(),
                 QuestionAns("Is it completely inside the Balkans?", False).to_dict(),
                 QuestionAns("Is it partially inside the Balkans?", False).to_dict(),
@@ -72,8 +64,8 @@ def populate_countries():
                 QuestionAns("Is Mont Blanc in this country?", False).to_dict(),
                 QuestionAns("Did pizza originate in this country?", False).to_dict()
             ],
-            strMETA: Meta("Europe", "Southern Europe").to_dict()
-        }
+            Meta("Europe", "Southern Europe").to_dict()).to_dict()
+
     ]
     db.country.insert_many(objectsToInsert)
 

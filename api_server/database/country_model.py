@@ -1,12 +1,15 @@
 import json
 import logging
 import re
+import random
 
 from pymongo import WriteConcern
 from database.db_connect import get_db
 
-from utils.strings import (str__ID, strNAME, strCLUES, strQUESTION_ANS, strMETA, strQUESTION, strANS, strCONTINENT,
-                           strREGION)
+from utils.strings import (str_ID, strNAME, strCLUES,
+                           strQUESTION_ANS, strMETA,
+                           strQUESTION, strANS, strCONTINENT,
+                           strREGION, strID)
 
 logging.basicConfig(level=logging.DEBUG, format='[%(asctime)s] [%(levelname)s] [%(name)s] [%(lineno)s]: %(message)s')
 logger = logging.getLogger(__name__)
@@ -58,13 +61,17 @@ class CountryModel:
             }
     """
 
-    search_filter = {str__ID: 0}
+    search_filter = {str_ID: 0}
 
-    def __init__(self, name: str, clues: list, questions: list, meta: list):
+    def __init__(self, name: str, clues: list, questions: list, meta: dict, id: int = None):
         self.name = name
         self.clues = clues
         self.questions = questions
         self.meta = meta
+        if id == None:
+            self.id = random.randint(1, 100000000)
+        else:
+            self.id = id
 
 
     def __repr__(self) -> str:
@@ -76,12 +83,17 @@ class CountryModel:
             strNAME: self.name,
             strCLUES: self.clues,
             strQUESTION_ANS: self.questions,
-            strMETA: self.meta
+            strMETA: self.meta,
+            strID: self.id
         }
 
     @classmethod
     def from_dict(cls, source_dict):
-        return cls(source_dict[strNAME], source_dict[strCLUES], source_dict[strQUESTION_ANS], source_dict[strMETA])
+        if strID in source_dict:
+            return cls(source_dict[strNAME], source_dict[strCLUES], source_dict[strQUESTION_ANS],
+                       source_dict[strMETA], source_dict[strID])
+        return cls(source_dict[strNAME], source_dict[strCLUES], source_dict[strQUESTION_ANS],
+                   source_dict[strMETA])
 
 
     @classmethod
@@ -108,10 +120,34 @@ class CountryModel:
             else:
                 result = collection.insert_one(self.to_dict())
                 logger.info("Country added to db:{} {}".format(result.inserted_id, self.__repr__()))
+                return str(result.inserted_id)
         except Exception as e:
             logger.error("Error adding country to db: {}".format(e))
             raise Exception(e)
-        return str(result.inserted_id)
+
+
+    def update_one(self) -> str or bool:
+        """
+            Description: Inserts a new country to db
+            :return: MongoDBID of listing:str
+            :raises exception if db operations fail
+        """
+        try:
+            collection = self.get_collection()
+            search_param = {strID: self.id}
+            print("\nself.id: {}".format(self.id))
+            result = collection.find_one(search_param, self.search_filter)
+            if not result:
+                logger.info("Country with id {} does not exist in database: {}".format(self.id, result))
+                return False
+            else:
+                result = collection.replace_one(search_param, self.to_dict())
+                logger.info("Country update result matched_count:{}, modified_count: {}".format(result.matched_count,
+                                                                                            result.modified_count))
+                return str(result.modified_count)
+        except Exception as e:
+            logger.error("Error adding country to db: {}".format(e))
+            raise Exception(e)
 
 
     @classmethod
@@ -123,6 +159,22 @@ class CountryModel:
             return result
         except Exception as e:
             logger.error("Exception occurred getting total countries: {}".format(e))
+            raise Exception(e)
+
+
+    @classmethod
+    def find_by_id(cls, id) -> dict:
+        try:
+            collection = cls.get_collection()
+            result = collection.find_one({"id": id}, cls.search_filter)
+            if result:
+                logger.info("Country with id {} found {}".format(id, result))
+                return result
+            else:
+                logger.info("Country with id {} does not exist".format(id))
+                return {}
+        except Exception as e:
+            logger.error("Error retrieving country with id {}: {}".format(id, e))
             raise Exception(e)
 
 

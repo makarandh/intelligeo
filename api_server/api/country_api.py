@@ -5,9 +5,9 @@ from flask_restful import Resource
 from flask import request
 from marshmallow import EXCLUDE
 from database.country_model import CountryModel
-from schemas.country_schema import CountrySchema
+from schemas.country_schema import CountrySchema, CountryRequestSchema
 from utils.strings import (strMESSAGE, strINVALID_DATA, strPAGE_NUM, strPAGE_LEN, strRESULT,
-                           strINTERNAL_SERVER_ERROR, EP_TOTAL_COUNTRIES, strSUCCESS)
+                           strINTERNAL_SERVER_ERROR, EP_TOTAL_COUNTRIES, strSUCCESS, str404, strID)
 
 logging.basicConfig(level=logging.DEBUG, format='[%(asctime)s] [%(levelname)s] [%(name)s] [%(lineno)s]: %(message)s')
 logger = logging.getLogger(__name__)
@@ -23,13 +23,14 @@ class Country(Resource):
         logger.info(json_data)
         if not json_data:
             return {strMESSAGE: strINVALID_DATA}, 400
-        try:
-            schema = CountrySchema(unknown=EXCLUDE)
-            country_dict = schema.load(json_data)
-        except Exception as e:
-            logger.error("Error parsing request body: {}".format(e))
+
+        schema = CountrySchema(unknown=EXCLUDE)
+        error = schema.validate(json_data)
+        if error:
+            logger.error("Error parsing request body: {}".format(error))
             return {strMESSAGE: strINVALID_DATA}, 400
 
+        country_dict = schema.load(json_data)
         country_obj = CountryModel.from_dict(country_dict)
         client_id = get_jwt_identity()
         logger.info("client {} is attempting to add country {}".format(client_id, country_obj))
@@ -46,22 +47,64 @@ class Country(Resource):
             return {strMESSAGE: strINTERNAL_SERVER_ERROR}, 500
 
 
-#     @staticmethod
-#     @jwt_required()
-#     def get():
-#         """
-#             Description: returns total number of listings available
-#         """
-#         client_id = get_jwt_identity()
-#         logger.info("getting total listings for client_id: {}".format(client_id))
-#
-#         try:
-#             result = CountryModel.count_total(client_id=client_id)
-#             return {"items_per_page": result}, 200
-#         except Exception as e:
-#             logger.error(e)
-#             return {strMESSAGE: strINTERNAL_SERVER_ERROR}, 500
-#
+    @staticmethod
+    def get():
+        """
+            Description: returns total number of listings available
+        """
+
+        try:
+            schema = CountryRequestSchema(unknown=EXCLUDE)
+            error = schema.validate(request.args)
+            if error:
+                logger.error("Error parsing request body: {}".format(error))
+                return {strMESSAGE: strINVALID_DATA}, 400
+            args = schema.load(request.args)
+            id = args[strID]
+            logger.info("Requested for country with id {}".format(id))
+            result = CountryModel.find_by_id(id)
+            if len(result) == 0:
+                return {strMESSAGE: str404}, 404
+            return {strRESULT: result}, 200
+        except Exception as e:
+            logger.error(e)
+            return {strMESSAGE: strINTERNAL_SERVER_ERROR}, 500
+
+
+    @staticmethod
+    @jwt_required()
+    def put():
+        json_data = request.get_json()
+        if not json_data:
+            return {strMESSAGE: strINVALID_DATA}, 400
+
+        schema = CountrySchema(unknown=EXCLUDE)
+        error = schema.validate(json_data)
+        if error:
+            logger.error("Error parsing request body: {}".format(error))
+            return {strMESSAGE: strINVALID_DATA}, 400
+
+        country_dict = schema.load(json_data)
+        if strID not in country_dict:
+            logger.error("id not found in request body: {}".format(country_dict))
+            return {strMESSAGE: strINVALID_DATA}, 400
+        logger.info("Country id {}".format(country_dict[strID]))
+
+        country_obj = CountryModel.from_dict(country_dict)
+        client_id = get_jwt_identity()
+        logger.info("client {} is attempting to update country {}".format(client_id, country_obj))
+
+        try:
+            result = CountryModel.update_one(country_obj)
+            if not result:
+                logger.error("Country not found")
+                return {strMESSAGE: "Country not found."}, 409
+            logger.info("Country update successful.")
+            return {strRESULT: strSUCCESS}, 200
+        except Exception as e:
+            logger.error(e)
+            return {strMESSAGE: strINTERNAL_SERVER_ERROR}, 500
+
 
 class Countries(Resource):
 

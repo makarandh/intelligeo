@@ -7,13 +7,17 @@ class QuestionAnsSchema(Schema):
 
 
 class MetaSchema(Schema):
-    continent = fields.String(required=True)
-    region = fields.String(required=True)
+    continent = fields.String(required=False)
+    region = fields.String(required=False)
 
 
 class CountrySchema(Schema):
+    id = fields.Integer(required=False)
     name = fields.String(required=True, validate=validate.Length(min=1))
     clues = fields.List(fields.String(required=True))
     question_ans = fields.List(fields.Nested(QuestionAnsSchema, required=True))
     meta = fields.Nested(MetaSchema, required=True)
 
+
+class CountryRequestSchema(Schema):
+    id = fields.Integer(required=True)
