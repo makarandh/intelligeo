@@ -6,7 +6,7 @@ import {
     INPUT_FIELD_CONTAINER,
     SLIDER_CONTAINER,
     SUBHEADING, SUBSECTION,
-    TOGGLE_SLIDER, TOOLTIP_CONTAINER
+    TOGGLE_SLIDER, TOOLTIP_CONTAINER, DANGER
 } from "../helper/common"
 
 
@@ -97,7 +97,10 @@ export default class EditCardQA extends React.Component {
                                  onClick={this.deleteQuestion}>
                                 <span tooltip={"Delete Question"}
                                       index={index}
-                                      className={EDIT_CARD + " " + DELETE_FIELD + " " + BUTTON}>-</span>
+                                      className={EDIT_CARD + " "
+                                                 + DELETE_FIELD + " "
+                                                 + DANGER + " "
+                                                 + BUTTON}>-</span>
                             </div>
                         </div>
                     </li>

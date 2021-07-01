@@ -1,6 +1,15 @@
+.login_page.outer_container {
+    text-align: center;
+    margin-top: 15vh;
+}
+
+.login_page.outer_container h1 {
+    font-size: 3rem;
+}
+
 .login_page.card_container {
     background: rgba(0, 0, 0, 0);
-    margin: 25vh auto auto auto;
+    margin: 8vh auto auto auto;
     padding: 2rem 3rem 1rem 3rem;
     max-width: 27rem;
     background-color: rgb(255, 255, 255);

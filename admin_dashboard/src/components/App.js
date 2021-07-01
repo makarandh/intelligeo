@@ -2,7 +2,7 @@ import React from "react"
 import "../css/App.css"
 import ErrorBoundary from "./ErrorBoundary"
 import {Login} from "./Login"
-import {GET, MAIN_URL, NETWORK_ERROR} from "../helper/common"
+import {GET, LOGGED_IN_COOKIE, MAIN_URL, NETWORK_ERROR} from "../helper/common"
 import {MainRouter} from "./MainRouter"
 
 
@@ -52,6 +52,7 @@ export default class App extends React.Component {
 
     setLoginState = (loggedIn) => {
         this.setState({loggedIn})
+        this.setLoginCookie(loggedIn)
     }
 
     sessionReset = () => {
@@ -62,6 +63,7 @@ export default class App extends React.Component {
         })
         localStorage.removeItem("rt")
         localStorage.removeItem("at")
+        this.setLoginCookie(false)
     }
 
     getHeaders = (token) => {
@@ -139,12 +141,36 @@ export default class App extends React.Component {
         window.location.reload(true)
     }
 
+    userIsLoggedIn = () => {
+        let cookies = document.cookie.split("; ")
+        cookies = cookies.map((cookie) => {
+            const keyValArray = cookie.split("=")
+            return {
+                "key": keyValArray[0],
+                "val": keyValArray[1]
+            }
+        })
+
+        let loggedInCookie = cookies.filter((cookie) => {
+            if(cookie.key === LOGGED_IN_COOKIE) {
+                return cookie
+            }
+            return null
+        })
+        return loggedInCookie.length > 0 && loggedInCookie[0].val === "true"
+    }
+
+    setLoginCookie = (value) => {
+        value = (value ? "true" : "false")
+        document.cookie = `${LOGGED_IN_COOKIE}=${value}; SameSite=Strict; path=/`
+    }
+
     render() {
         return (
             <div className="app">
                 <ErrorBoundary>
                     {
-                        this.state.loggedIn ?
+                        (this.state.loggedIn && this.userIsLoggedIn()) ?
                         (
                             this.state.networkError ?
                             <div>

@@ -17,6 +17,7 @@ logger.setLevel(logging.DEBUG)
 
 MAX_LIMIT = 100000000
 
+
 class QuestionAns:
 
     def __init__(self, question: str, ans: bool):
@@ -117,14 +118,16 @@ class CountryModel:
         """
         try:
             collection = self.get_collection()
-            result = collection.find_one({strNAME: re.compile(self.name, re.IGNORECASE)}, self.search_filter)
+            result = collection.find_one({
+                strNAME: re.compile(re.escape(self.name), re.IGNORECASE)
+            }, self.search_filter)
             if result:
                 logger.info("Country {} already exists in database: {}".format(self.name, result))
                 return False
             else:
                 result = collection.insert_one(self.to_dict())
                 logger.info("Country added to db:{} {}".format(result.inserted_id, self.__repr__()))
-                return str(result.inserted_id)
+                return str(self.id)
         except Exception as e:
             logger.error("Error adding country to db: {}".format(e))
             raise Exception(e)

@@ -4,7 +4,7 @@ import {
     EDIT_CARD, DELETE_FIELD,
     INDEX, INPUT_FIELD_CONTAINER,
     LATEST_CLUE_ADD, SUBHEADING,
-    SUBSECTION, TOOLTIP_CONTAINER
+    SUBSECTION, TOOLTIP_CONTAINER, DANGER
 } from "../helper/common"
 import "../css/CreateCardClues.css"
 
@@ -39,7 +39,10 @@ export default class EditCardClues extends React.Component {
                                  onClick={this.deleteClue}>
                                 <span tooltip={"Delete clue"}
                                       index={index}
-                                      className={EDIT_CARD + " " + DELETE_FIELD + " " + BUTTON}>-</span>
+                                      className={EDIT_CARD + " "
+                                                 + DELETE_FIELD + " "
+                                                 + DANGER + " "
+                                                 + BUTTON}>-</span>
                             </div>
                         </div>
                     </li>

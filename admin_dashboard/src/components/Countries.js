@@ -7,8 +7,8 @@ import {
     EP_COUNTRIES_TOTAL, CARDS_LIST_CONTAINER, CARDS_LIST_OUTER,
     ITEMS_PER_PAGE, PAGE_NUM
 } from "../helper/common"
-import Details from "./Details"
 import "../css/CardsList.css"
+import CardContent from "./CardContent"
 import {PageHeading} from "./PageHeading"
 
 export default class Countries extends React.Component {
@@ -57,7 +57,7 @@ export default class Countries extends React.Component {
         return <React.Fragment>
             {this.state.cardsList.map((country) => {
                 return <div key={country.name}>
-                    <Details country={country}/>
+                    <CardContent country={country}/>
                 </div>
             })}
         </React.Fragment>

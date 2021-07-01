@@ -5,7 +5,7 @@ import {
     ERROR_VISIBLE, INPUT_CONTAINER,
     LOGIN, LOGIN_PAGE,
     MAIN_URL,
-    NETWORK_ERROR,
+    NETWORK_ERROR, OUTER_CONTAINER,
     PASSWORD,
     POST,
     SERVER_ERROR, SUBHEADING, TEXT,
@@ -120,49 +120,55 @@ export class Login extends React.Component {
 
     render() {
         return (
-            <article className={LOGIN_PAGE + " " + CARD_CONTAINER}>
-                <form id={LOGIN_PAGE}>
-                    <div className={LOGIN_PAGE + " " + SUBHEADING}>Log in</div>
-                    <section className={LOGIN_PAGE + " " + INPUT_CONTAINER}>
-                        <input className={"form_item form_item_0 " + (this.state.displayUserError && ERROR_HIGHLIGHT)}
-                               id={USERNAME}
-                               type={TEXT}
-                               value={this.state.username}
-                               onChange={this.handleOnChange}
-                               autoFocus={this.state.displayUserError}
-                               placeholder={USERNAME}/>
-                        <div className={ERROR_MESSAGE + " "
-                                        + (this.state.displayUserError
+            <div className={OUTER_CONTAINER + " " + LOGIN_PAGE}>
+                <h1>Geo Game Admin Dashboard</h1>
+                <article className={LOGIN_PAGE + " " + CARD_CONTAINER}>
+                    <form id={LOGIN_PAGE}>
+                        <div className={LOGIN_PAGE + " " + SUBHEADING}>Log in</div>
+                        <section className={LOGIN_PAGE + " " + INPUT_CONTAINER}>
+                            <input
+                                className={"form_item form_item_0 " + (this.state.displayUserError && ERROR_HIGHLIGHT)}
+                                id={USERNAME}
+                                type={TEXT}
+                                value={this.state.username}
+                                onChange={this.handleOnChange}
+                                autoFocus={this.state.displayUserError}
+                                placeholder={USERNAME}/>
+                            <div className={ERROR_MESSAGE + " "
+                                            + (this.state.displayUserError
+                                               ? ERROR_VISIBLE
+                                               : ERROR_HIDDEN)}>Username cannot be blank
+                            </div>
+                        </section>
+                        <section className={LOGIN_PAGE + " " + INPUT_CONTAINER}>
+                            <input
+                                className={"form_item form_item_1 " + (this.state.displayPassError && ERROR_HIGHLIGHT)}
+                                type={PASSWORD}
+                                id={PASSWORD}
+                                value={this.state.password}
+                                onChange={this.handleOnChange}
+                                autoFocus={this.state.displayPassError && (!this.state.displayUserError)}
+                                placeholder={PASSWORD}/>
+                            <div className={ERROR_MESSAGE + " " + PASSWORD
+                                            + (this.state.displayPassError
+                                               ? ERROR_VISIBLE
+                                               : ERROR_HIDDEN)}>Password cannot be blank
+                            </div>
+                        </section>
+                        <button className="form_item form_item_2 button login"
+                                id="submit_button"
+                                disabled={this.state.displayPassError || this.state.displayUserError}
+                                type={"submit"}
+                                onClick={this.handleLoginSubmit}>{this.state.attemptingLogin ? "Logging in..." :
+                                                                  "Submit"}
+                        </button>
+                        <div className={"error_message generic_error "
+                                        + (this.state.errorMessage
                                            ? ERROR_VISIBLE
-                                           : ERROR_HIDDEN)}>Username cannot be blank
-                        </div>
-                    </section>
-                    <section className={LOGIN_PAGE + " " + INPUT_CONTAINER}>
-                        <input className={"form_item form_item_1 " + (this.state.displayPassError && ERROR_HIGHLIGHT)}
-                               type={PASSWORD}
-                               id={PASSWORD}
-                               value={this.state.password}
-                               onChange={this.handleOnChange}
-                               autoFocus={this.state.displayPassError && (!this.state.displayUserError)}
-                               placeholder={PASSWORD}/>
-                        <div className={ERROR_MESSAGE + " " + PASSWORD
-                                        + (this.state.displayPassError
-                                           ? ERROR_VISIBLE
-                                           : ERROR_HIDDEN)}>Password cannot be blank
-                        </div>
-                    </section>
-                    <button className="form_item form_item_2 button login"
-                            id="submit_button"
-                            disabled={this.state.displayPassError || this.state.displayUserError}
-                            type={"submit"}
-                            onClick={this.handleLoginSubmit}>{this.state.attemptingLogin ? "Logging in..." : "Submit"}
-                    </button>
-                    <div className={"error_message generic_error "
-                                    + (this.state.errorMessage
-                                       ? ERROR_VISIBLE
-                                       : ERROR_HIDDEN)}>{this.state.errorMessage}</div>
-                </form>
-            </article>
+                                           : ERROR_HIDDEN)}>{this.state.errorMessage}</div>
+                    </form>
+                </article>
+            </div>
         )
     }
 }

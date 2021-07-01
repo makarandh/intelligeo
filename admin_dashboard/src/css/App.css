@@ -16,6 +16,7 @@
     --button-blue: rgb(65, 127, 209);
     --button-blue-hover: rgb(95, 153, 245);
 
+    --text-red: rgb(147, 5, 5);
     --main-red: rgb(182, 3, 37);
     --light-red: rgb(231, 41, 77);
     --tooltip-orange: rgba(255, 226, 35, 0.93);
@@ -30,6 +31,7 @@
     padding: 0;
     box-sizing: border-box;
     border: none;
+    color: var(--text-blue);
 }
 
 body {
@@ -65,4 +67,9 @@ input:focus {
     transition: all 0.25s ease-in-out;
     border: rgb(45, 100, 180) solid 2px;
     outline: none;
+}
+
+h1, h2, h3, h4 {
+    font-weight: unset;
+    color: var(--text-blue);
 }

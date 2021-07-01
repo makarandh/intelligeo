@@ -11,15 +11,17 @@ import {
     PATH_HOME,
     TOP_BAR,
     TOP_BAR_LEFT,
-    TOP_BAR_RIGHT
+    TOP_BAR_RIGHT, DANGER, LOGOUT, PATH_COUNTRY
 } from "../helper/common"
 
 const Home = React.lazy(() => import("./Home"))
 const CreateCard = React.lazy(() => import("./CreateCard"))
 const UpdateCard = React.lazy(() => import("./UpdateCard"))
+const Country = React.lazy(() => import("./Country"))
 
 
 export class MainRouter extends React.Component {
+
     render() {
         return (
             <Router>
@@ -35,12 +37,14 @@ export class MainRouter extends React.Component {
                                 <li className={NAV_ITEM}>
                                     <NavLink className={NAV_LINK}
                                              activeClassName={"active_nav"}
-                                             to="/create">Create A Card</NavLink>
+                                             to={PATH_CREATE}>Create A Card</NavLink>
                                 </li>
                             </ul>
                         </nav>
                         <div className={TOP_BAR_RIGHT}>
-                            <button className={BUTTON + " logout"} onClick={this.props.logout}>Log Out</button>
+                            <button className={BUTTON + " " + DANGER + " " + LOGOUT}
+                                    onClick={this.props.logout}>Log Out
+                            </button>
                         </div>
                     </header>
                     <Switch>
@@ -52,6 +56,11 @@ export class MainRouter extends React.Component {
                         <Route path={`${PATH_UPDATE}/:id`}>
                             <Suspense fallback={<div>Loading...</div>}>
                                 <UpdateCard fetchOrDie={this.props.fetchOrDie}/>
+                            </Suspense>
+                        </Route>
+                        <Route path={`${PATH_COUNTRY}/:id`}>
+                            <Suspense fallback={<div>Loading...</div>}>
+                                <Country fetchOrDie={this.props.fetchOrDie}/>
                             </Suspense>
                         </Route>
                         <Route path={PATH_HOME}>

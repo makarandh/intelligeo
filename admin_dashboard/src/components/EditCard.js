@@ -4,11 +4,13 @@ import {
     BUTTON, BUTTON_CONTAINER,
     CARD_CONTAINER, CLUES, EDIT_CARD, EP_COUNTRY, ERROR_VISIBLE, ERROR_HIDDEN, ERROR_MESSAGE,
     HEADING, NAME, OUTER_CONTAINER, POST, SUBHEADING,
-    SUBSECTION, sleep, SUBMIT_MESSAGE, UPDATE, GET, PATH_HOME, PUT, DELETE
+    SUBSECTION, sleep, SUBMIT_MESSAGE, UPDATE, GET, PATH_HOME, PUT, DELETE, PATH_COUNTRY
 } from "../helper/common"
+import BackArrow from "./BackArrow"
 import EditCardClues from "./EditCardClues"
 import EditCardMeta from "./EditCardMeta"
 import EditCardQA from "./EditCardQA"
+import YesNoModal from "./YesNoModal"
 
 
 export default class EditCard extends React.Component {
@@ -25,7 +27,17 @@ export default class EditCard extends React.Component {
         latestQuestion: "",
         latestAns: false,
         showNotification: false,
-        submitting: false
+        submitting: false,
+        deleteModalVisible: false
+    }
+
+    componentDidMount() {
+        if(this.props.operation === UPDATE) {
+            this.handleUpdateDataLoading()
+        }
+        else {
+            this.loadAllFromLocalStorage()
+        }
     }
 
     getClues = () => {
@@ -193,7 +205,7 @@ export default class EditCard extends React.Component {
     loadAllFromLocalStorage = (name = "",
                                clues = [],
                                questionAns = [],
-                               meta = {},
+                               meta = {"continent": "", "region": ""},
                                latestQuestion = "",
                                latestClue = "",
                                latestAns = false) => {
@@ -267,12 +279,27 @@ export default class EditCard extends React.Component {
         this.clearLocalStorage("latestAns")
     }
 
+    clearState = async() => {
+        await this.setState({
+            name: "",
+            clues: [],
+            questionAns: [],
+            meta: {
+                continent: "",
+                region: ""
+            },
+            latestClue: "",
+            latestQuestion: "",
+            latestAns: false
+        })
+    }
+
     handleSubmit = async(e) => {
         e.preventDefault()
         await this.addLatestItems()
         this.setState({
             submitting: true,
-            showNotification: false
+            showNotification: true
         })
         document.getElementById(SUBMIT_MESSAGE).innerText = "Submitting card..."
         const requestBody = {
@@ -295,30 +322,17 @@ export default class EditCard extends React.Component {
         if(response.status === 201 || response.status === 200) {
             document.getElementById(SUBMIT_MESSAGE).innerText = `Country ${operated} successfully.`
             this.clearAllLocalStorage()
-            if(this.props.operation === UPDATE) {
-                this.setState({
-                    showNotification: true
-                })
-                await sleep(1000)
-                window.location.href = PATH_HOME
-            }
+            this.clearState()
             this.setState({
-                name: "",
-                clues: [],
-                questionAns: [],
-                meta: {
-                    continent: "",
-                    region: ""
-                },
-                latestClue: "",
-                latestQuestion: "",
-                latestAns: false,
                 showNotification: true
             })
-            await sleep(2000)
-            this.setState({
-                showNotification: false
-            })
+            if(this.props.operation === UPDATE) {
+                window.location.href = `${PATH_COUNTRY}/${this.props.countryID}`
+                return
+            }
+            const responseJson = await response.json()
+            const countryID = responseJson.result
+            window.location.href = `${PATH_COUNTRY}/${countryID}`
         }
         else {
             const jsonMessage = await response.json()
@@ -358,10 +372,11 @@ export default class EditCard extends React.Component {
         this.handleUpdateDataLoading()
     }
 
-    handleDelete = async (e) => {
+    handleDelete = async(e) => {
         e.preventDefault()
         const response = await this.props.fetchOrDie(`${EP_COUNTRY}?id=${this.props.countryID}`, DELETE)
         if(response.status === 200) {
+            this.clearState()
             this.clearAllLocalStorage()
             this.setState({
                 showNotification: true
@@ -381,18 +396,41 @@ export default class EditCard extends React.Component {
         }
     }
 
-    componentDidMount() {
-        if(this.props.operation === UPDATE) {
-            this.handleUpdateDataLoading()
-        }
-        else {
-            this.loadAllFromLocalStorage()
-        }
+    handleDeleteYes = (e) => {
+        e.preventDefault()
+        e.stopPropagation()
+        this.setState({deleteModalVisible: false})
+        this.handleDelete(e)
+    }
+
+    handleDeleteNo = (e) => {
+        e.preventDefault()
+        e.stopPropagation()
+        this.setState({deleteModalVisible: false})
+    }
+
+    showConfirmDeleteModal = (e) => {
+        e.preventDefault()
+        this.setState({deleteModalVisible: true})
+    }
+
+    goHome = (e) => {
+        e && e.preventDefault()
+        e && e.stopPropagation()
+        window.location.href = PATH_HOME
     }
 
     render() {
         return (
             <article className={OUTER_CONTAINER + " " + EDIT_CARD}>
+                <BackArrow handleGoBack={this.goHome}
+                           width={1}
+                           height={1}/>
+                <YesNoModal handleYes={this.handleDeleteYes}
+                            handleNo={this.handleDeleteNo}
+                            visible={this.state.deleteModalVisible}
+                            heading={"Delete Card"}
+                            message={"Are you sure you want to delete this country?"}/>
                 <form className={CARD_CONTAINER + " " + EDIT_CARD}>
                     <h2 className={HEADING + " " + EDIT_CARD}>{this.props.heading}</h2>
                     <section className={EDIT_CARD + " " + SUBSECTION + " " + NAME}>
@@ -442,7 +480,7 @@ export default class EditCard extends React.Component {
                         {
                             this.props.operation === UPDATE
                             && <button className={EDIT_CARD + " " + BUTTON + " delete"}
-                                       onClick={this.handleDelete}>Delete Country
+                                       onClick={this.showConfirmDeleteModal}>Delete Country
                             </button>
                         }
                     </section>

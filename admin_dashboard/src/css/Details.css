@@ -1,13 +1,13 @@
-.card_container.details {
+.card_container.card_content {
     position: relative;
     color: var(--text-blue);
     max-width: 34rem;
 }
 
-.card_container.details:hover .hover_text {
+.card_container.card_content:hover .hover_text {
     opacity: 1;
 }
-.details.heading {
+.card_content.heading {
     font-size: 2.5rem;
 }
 
@@ -17,18 +17,18 @@
     font-size: 1.6rem;
 }
 
-.details.subsection ol li {
+.card_content.subsection ol li {
     margin-left: 1.5rem;
     line-height: 1.4rem;
 }
 
-.details.subsection ul li {
+.card_content.subsection ul li {
     list-style: disc;
     margin-left: 1.5rem;
     line-height: 1.4rem;
 }
 
-.details .hover_text {
+.card_content .hover_text {
     opacity: 0;
     right: 1rem;
     top: 1rem;

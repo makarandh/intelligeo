@@ -39,18 +39,5 @@
 .button.logout {
     font-size: 1rem;
     padding: 0.5rem 0.8rem;
-    color: #f0f0f0;
-    background-color: var(--main-red);
     border-radius: 0.1rem;
-}
-
-.button.logout:hover {
-    transition: all 0.1s ease-in-out;
-    color: white;
-    background-color: var(--light-red);
-    cursor: pointer;
-}
-
-.button.logout:active {
-    background: radial-gradient(circle, var(--light-red), var(--main-red));
 }

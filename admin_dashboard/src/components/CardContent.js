@@ -2,14 +2,14 @@ import React from "react"
 import {
     HEADING,
     CARD_CONTAINER,
-    DETAILS,
+    CARD_CONTENT,
     SUBSECTION,
     SUBHEADING, HOVER_TEXT, BUTTON, PATH_UPDATE
 } from "../helper/common"
 import "../css/Details.css"
 
 
-export default class Details extends React.Component {
+export default class CardContent extends React.Component {
 
     renderClues = () => {
         return <React.Fragment>
@@ -42,22 +42,23 @@ export default class Details extends React.Component {
     }
 
     render() {
+        console.log(this.props.country)
         return (
-            <article className={CARD_CONTAINER + " " + DETAILS}>
+            <article className={CARD_CONTAINER + " " + CARD_CONTENT}>
                 <button className={HOVER_TEXT + " " + BUTTON}
                         onClick={this.handleEditCard}>Edit
                 </button>
-                <h2 className={DETAILS + " " + HEADING}>{this.props.country.name}</h2>
-                <section className={DETAILS + " " + SUBSECTION}>
-                    <h3 className={DETAILS + " " + SUBHEADING}>Clues</h3>
+                <h2 className={CARD_CONTENT + " " + HEADING}>{this.props.country.name}</h2>
+                <section className={CARD_CONTENT + " " + SUBSECTION}>
+                    <h3 className={CARD_CONTENT + " " + SUBHEADING}>Clues</h3>
                     <ol>{this.renderClues()}</ol>
                 </section>
-                <section className={DETAILS + " " + SUBSECTION}>
-                    <h3 className={DETAILS + " " + SUBHEADING}>Yes-no Questions and Answers</h3>
+                <section className={CARD_CONTENT + " " + SUBSECTION}>
+                    <h3 className={CARD_CONTENT + " " + SUBHEADING}>Yes-no Questions and Answers</h3>
                     <ol>{this.renderQAns()}</ol>
                 </section>
-                <section className={DETAILS + " " + SUBSECTION}>
-                    <h3 className={DETAILS + " " + SUBHEADING}>Extra Info</h3>
+                <section className={CARD_CONTENT + " " + SUBSECTION}>
+                    <h3 className={CARD_CONTENT + " " + SUBHEADING}>Extra Info</h3>
                     <ul>{this.renderMeta()}</ul>
                 </section>
             </article>

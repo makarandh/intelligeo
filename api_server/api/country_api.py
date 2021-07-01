@@ -41,7 +41,7 @@ class Country(Resource):
                 logger.error("Country already exists")
                 return {strMESSAGE: "Country already exists."}, 409
             logger.info("Country add successful.")
-            return {strRESULT: strSUCCESS}, 201
+            return {strRESULT: result}, 201
         except Exception as e:
             logger.error(e)
             return {strMESSAGE: strINTERNAL_SERVER_ERROR}, 500
