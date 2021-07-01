@@ -42,7 +42,6 @@ export default class CardContent extends React.Component {
     }
 
     render() {
-        console.log(this.props.country)
         return (
             <article className={CARD_CONTAINER + " " + CARD_CONTENT}>
                 <button className={HOVER_TEXT + " " + BUTTON}

@@ -26,8 +26,8 @@ export default class Countries extends React.Component {
             this.setState({totalCards: jsonResponse.result})
         }
         else {
-            console.log("Error fetching total cards")
-            console.log(response)
+            console.error("Error fetching total cards")
+            console.error(response)
         }
     }
 
@@ -41,8 +41,8 @@ export default class Countries extends React.Component {
             this.setState({cardsList: jsonResponse.result})
         }
         else {
-            console.log("Error fetching cards list")
-            console.log(response)
+            console.error("Error fetching cards list")
+            console.error(response)
         }
     }
 

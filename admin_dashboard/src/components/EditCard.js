@@ -254,8 +254,6 @@ export default class EditCard extends React.Component {
         if(value === null || value === "") {
             return value
         }
-        console.log("name: ", name)
-        console.log(value)
         return JSON.parse(value)
     }
 
@@ -338,7 +336,7 @@ export default class EditCard extends React.Component {
             const jsonMessage = await response.json()
             const message = jsonMessage.message
             document.getElementById(SUBMIT_MESSAGE).innerText = message
-            console.log("Response error: ", message)
+            console.error("Response error: ", message)
             this.setState({
                 showNotification: true
             })
@@ -357,7 +355,6 @@ export default class EditCard extends React.Component {
             this.clearAllLocalStorage()
         }
         const jsonData = (await response.json()).result
-        console.log(jsonData.name, jsonData.clues, jsonData.question_ans, jsonData.meta)
         this.loadAllFromLocalStorage(jsonData.name, jsonData.clues, jsonData.question_ans, jsonData.meta)
         this.saveToLocalStorage("id", this.props.countryID)
     }
@@ -389,7 +386,7 @@ export default class EditCard extends React.Component {
             const jsonMessage = await response.json()
             const message = jsonMessage.message
             document.getElementById(SUBMIT_MESSAGE).innerText = message
-            console.log("Response error: ", message)
+            console.error("Response error: ", message)
             this.setState({
                 showNotification: true
             })

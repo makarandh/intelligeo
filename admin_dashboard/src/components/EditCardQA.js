@@ -16,7 +16,6 @@ export default class EditCardQA extends React.Component {
         const index = e.target.name
         const newQ = e.target.value
         const ans = this.props.getQA(index).ans
-        console.log(ans)
         this.props.setQA(index, {
                 "question": newQ,
                 "ans": ans
@@ -25,7 +24,6 @@ export default class EditCardQA extends React.Component {
     }
 
     handleAnswerListClick = (e) => {
-        console.log(e.target)
         let checkbox = e.target
         if(e.target.className === "") {
             return

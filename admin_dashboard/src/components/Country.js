@@ -24,8 +24,6 @@ export default class Country extends React.Component {
             return
         }
         const jsonData = (await response.json()).result
-        console.log("jsonData")
-        console.log(jsonData)
         this.setState({
             country: jsonData,
             dataFetched: true

@@ -2,7 +2,15 @@ import React from "react"
 import "../css/App.css"
 import ErrorBoundary from "./ErrorBoundary"
 import {Login} from "./Login"
-import {GET, LOGGED_IN_COOKIE, MAIN_URL, NETWORK_ERROR} from "../helper/common"
+import {
+    BUTTON,
+    ERROR_MESSAGE,
+    GET,
+    LOGGED_IN_COOKIE,
+    MAIN_URL,
+    NETWORK_ERROR,
+    NETWORK_ERROR_CONTAINER
+} from "../helper/common"
 import {MainRouter} from "./MainRouter"
 
 
@@ -12,11 +20,8 @@ export default class App extends React.Component {
         loggedIn: false,
         accessToken: null,
         refreshToken: null,
-        networkError: false
-    }
-
-    setNetworkError = () => {
-        this.setState({networkError: true})
+        networkError: false,
+        loggedInCookieSet: false
     }
 
     getRT = () => {
@@ -51,7 +56,9 @@ export default class App extends React.Component {
     }
 
     setLoginState = (loggedIn) => {
-        this.setState({loggedIn})
+        this.setState({
+            loggedIn,
+        })
         this.setLoginCookie(loggedIn)
     }
 
@@ -86,24 +93,25 @@ export default class App extends React.Component {
 
     getNewAT = async() => {
         if(!this.state.refreshToken) {
-            console.log("Cannot get a new access token without a refresh token.")
+            console.error("Cannot get a new access token without a refresh token.")
             return
         }
         try {
             const request = this.getRequest(GET, this.state.refreshToken)
             const response = await fetch(MAIN_URL + "/refresh", request)
+            const responseJson = await response.json()
             if(response.status === 401) {
                 this.sessionReset()
             }
             if(response.status !== 200) {
-                console.log("Response status: " + response.status)
+                console.error("Response status: " + response.status)
+                console.error(responseJson)
             }
-            const json = await response.json()
-            const accessToken = await json.access_token
+            const accessToken = await responseJson.access_token
             this.setAT(accessToken)
         }
         catch(e) {
-            console.log("Exception fetching access token " + e)
+            console.error("Exception fetching access token " + e)
             this.setState({networkError: true})
         }
     }
@@ -127,7 +135,7 @@ export default class App extends React.Component {
             return response
         }
         catch(e) {
-            console.log("Exception fetching access token " + e)
+            console.error("Exception fetching access token " + e)
             this.setState({networkError: true})
             return false
         }
@@ -163,6 +171,7 @@ export default class App extends React.Component {
     setLoginCookie = (value) => {
         value = (value ? "true" : "false")
         document.cookie = `${LOGGED_IN_COOKIE}=${value}; SameSite=Strict; path=/`
+        this.setState({loggedInCookieSet: value})
     }
 
     render() {
@@ -170,15 +179,15 @@ export default class App extends React.Component {
             <div className="app">
                 <ErrorBoundary>
                     {
-                        (this.state.loggedIn && this.userIsLoggedIn()) ?
+                        (this.state.loggedIn && this.state.loggedInCookieSet) ?
                         (
                             this.state.networkError ?
-                            <div>
-                                <div>{NETWORK_ERROR}</div>
-                                <div>
-                                    <button onClick={this.refreshPage}>Refresh Page</button>
-                                </div>
-                            </div> :
+                            <article className={NETWORK_ERROR_CONTAINER}>
+                                <div className={ERROR_MESSAGE}>{NETWORK_ERROR}</div>
+                                <button className={BUTTON}
+                                        onClick={this.refreshPage}>Refresh Page
+                                </button>
+                            </article> :
                             <MainRouter logout={this.sessionReset}
                                         fetchOrDie={this.fetchOrDie}/>
                         ) :

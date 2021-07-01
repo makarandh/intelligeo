@@ -113,7 +113,7 @@ export class Login extends React.Component {
             }
         }
         catch(e) {
-            console.log(`An error with name: ${e.name} occurred submitting the login form ${e.message}`)
+            console.error(`An error with name: ${e.name} occurred submitting the login form ${e.message}`)
             this.setState({errorMessage: NETWORK_ERROR})
         }
     }
@@ -149,7 +149,7 @@ export class Login extends React.Component {
                                 onChange={this.handleOnChange}
                                 autoFocus={this.state.displayPassError && (!this.state.displayUserError)}
                                 placeholder={PASSWORD}/>
-                            <div className={ERROR_MESSAGE + " " + PASSWORD
+                            <div className={ERROR_MESSAGE + " " + PASSWORD + " "
                                             + (this.state.displayPassError
                                                ? ERROR_VISIBLE
                                                : ERROR_HIDDEN)}>Password cannot be blank
