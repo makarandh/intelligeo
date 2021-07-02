@@ -8,7 +8,7 @@ def get_db():
     """
         Creates MongoDB connection
         Note: The database we are connecting to is named store
-            If you want to change the name, please change it here.
+            If you want to change the filename, please change it here.
         :return: MongoDB database
     """
     client = MongoClient("mongodb://localhost", w=1, journal=True)

@@ -11,7 +11,7 @@ from utils.strings import (str_ID, strNAME, strCLUES,
                            strQUESTION, strANS, strCONTINENT,
                            strREGION, strID)
 
-logging.basicConfig(level=logging.DEBUG, format='[%(asctime)s] [%(levelname)s] [%(name)s] [%(lineno)s]: %(message)s')
+logging.basicConfig(level=logging.DEBUG, format='[%(asctime)s] [%(levelname)s] [%(filename)s] [%(lineno)s]: %(message)s')
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
@@ -56,7 +56,7 @@ class CountryModel:
         document:
             {
                 "_id": <ObjectID:MongoDBObjectID>
-                "name": <country name>
+                "filename": <country filename>
                 "clues": <list of clues>
                 "questions": <list of documents with a question and a answer>
                 "meta": <a document with the following info: continent, region>

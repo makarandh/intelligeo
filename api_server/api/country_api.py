@@ -9,7 +9,7 @@ from schemas.country_schema import CountrySchema, CountryRequestSchema
 from utils.strings import (strMESSAGE, strINVALID_DATA, strPAGE_NUM, strPAGE_LEN, strRESULT,
                            strINTERNAL_SERVER_ERROR, EP_TOTAL_COUNTRIES, strSUCCESS, str404, strID)
 
-logging.basicConfig(level=logging.DEBUG, format='[%(asctime)s] [%(levelname)s] [%(name)s] [%(lineno)s]: %(message)s')
+logging.basicConfig(level=logging.DEBUG, format='[%(asctime)s] [%(levelname)s] [%(filename)s] [%(lineno)s]: %(message)s')
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 

@@ -7,7 +7,7 @@ from database.user_model import UserModel
 from utils.strings import (strTIMESTAMP, strEXPIRE_SECONDS, strNAME, strCLUES, strQUESTION_ANS, strMETA)
 from utils.default_config import TTL_SECONDS, DELETED_ENTRY_TTL
 
-logging.basicConfig(level=logging.DEBUG, format='[%(asctime)s] [%(levelname)s] [%(name)s] [%(lineno)s]: %(message)s')
+logging.basicConfig(level=logging.DEBUG, format='[%(asctime)s] [%(levelname)s] [%(filename)s] [%(lineno)s]: %(message)s')
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 

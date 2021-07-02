@@ -8,11 +8,14 @@ from flask_cors import CORS
 
 from api.auth_api import Login, TokenRefresh, Logout
 from api.country_api import Countries, Country
-from utils.strings import strMESSAGE, strAUTH_ERROR, EP_TOTAL_COUNTRIES, EP_COUNTRIES, EP_COUNTRY
+from api.image_api import Image
+from api.testing import Testing
+from utils.strings import (strMESSAGE, strAUTH_ERROR, EP_TOTAL_COUNTRIES, EP_COUNTRIES, EP_COUNTRY, EP_COUNTRY_IMAGE,
+                           EP_COUNTRY_FLAG)
 from database.blacklist_db import BlacklistModel
 
 
-logging.basicConfig(level=logging.DEBUG, format='[%(asctime)s] [%(levelname)s] [%(name)s] [%(lineno)s]: %(message)s')
+logging.basicConfig(level=logging.DEBUG, format='[%(asctime)s] [%(levelname)s] [%(filename)s] [%(lineno)s]: %(message)s')
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
@@ -82,6 +85,7 @@ api.add_resource(TokenRefresh, "/refresh")
 api.add_resource(Logout, "/logout")
 api.add_resource(Countries, EP_COUNTRIES, EP_TOTAL_COUNTRIES)
 api.add_resource(Country, EP_COUNTRY)
+api.add_resource(Image, EP_COUNTRY_IMAGE, EP_COUNTRY_FLAG)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
