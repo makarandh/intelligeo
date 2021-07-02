@@ -1,26 +1,27 @@
 import logging
 import os
 
-from flask import request
+from flask import request, send_file
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from flask_restful import Resource
 from marshmallow import EXCLUDE
-
 from database.country_model import CountryModel
 from schemas.image_schema import ImageSchema, ImageFormSchema
-from utils.image_helper import get_extension, get_img_filename, save_img
+from utils.image_helper import get_extension, get_img_filename, save_img, sanitize_filename
 from utils.strings import (strMESSAGE, strSUCCESS, EP_COUNTRY_IMAGE, IMAGES_FOLDER, COUNTRIES_FOLDER, FLAGS_FOLDER,
-                           strINVALID_DATA, strIMAGE, strFILENAME_ERROR, strOPERATION_FAILED, strID)
+                           strINVALID_DATA, strIMAGE, strID, str404)
 
-logging.basicConfig(level=logging.DEBUG, format='[%(asctime)s] [%(levelname)s] [%(filename)s] [%(lineno)s]: %(message)s')
+logging.basicConfig(level=logging.DEBUG,
+                    format='[%(asctime)s] [%(levelname)s] [%(filename)s] [%(lineno)s]: %(message)s')
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
 
-class Image(Resource):
+class ImageAPI(Resource):
 
+    @staticmethod
     @jwt_required()
-    def post(self):
+    def post():
         user = get_jwt_identity()
         image_schema = ImageSchema(unknown=EXCLUDE)
         image_form_schema = ImageFormSchema(unknown=EXCLUDE)
@@ -42,50 +43,90 @@ class Image(Resource):
         id = image_form_schema.load(request.form)
         id = id[strID]
         image = data[strIMAGE]
+        logger.info("Filetype: {}".format(image.content_type))
 
-        if len(CountryModel.find_by_id(id)) == 0:
+        if len(CountryModel.find_by_id(int(id))) == 0:
             logger.error("Country not found {}".format(id))
-            return {strMESSAGE: "Country not found."}, 400
+            return {strMESSAGE: str404}, 400
 
         file_ext = get_extension(image)
         if not file_ext:
             logger.error("invalid file extension for file {}".format(get_img_filename(image)))
-            return {strMESSAGE: strFILENAME_ERROR}, 400
+            return {strMESSAGE: strINVALID_DATA}, 400
 
-        filename = "{}{}".format(id, file_ext)
         try:
-            if not save_img(image, folder=UPLOAD_FOLDER, filename=filename):
-                logger.error("Saving file failed for {}".format(filename))
-                return {strMESSAGE: strOPERATION_FAILED}, 400
+            fq_filename = save_img(image, folder=UPLOAD_FOLDER, base_filename=str(id))
+            logger.info("File saved {}".format(fq_filename))
             return {strMESSAGE: strSUCCESS}, 201
         except Exception as e:
             logger.error("Error saving image: {}".format(e))
-            return {strMESSAGE: strOPERATION_FAILED}, 400
+            return {strMESSAGE: strINVALID_DATA}, 400
 
 
-    # @jwt_required
-    # def get(self, filename: str):
-    #     user_id = get_jwt_identity()
-    #     folder = os.path.join(UPLOAD_FOLDER, "user_{}".format(user_id))
-    #     filename = sanitize_filename(filename).lower()
-    #
-    #     try:
-    #         path = get_path(filename, folder=folder)
-    #         return send_file(path)
-    #     except FileNotFoundError:
-    #         return {"error": "file not found"}, 404
-    #
-    # @jwt_required
-    # def delete(self, filename: str):
-    #     user_id = get_jwt_identity()
-    #     folder = os.path.join(UPLOAD_FOLDER, "user_{}".format(user_id))
-    #     filename = sanitize_filename(filename).lower()
-    #
-    #     try:
-    #         os.remove(get_path(filename, folder=folder))
-    #         return {"message": "file {} deleted".format(filename)}, 200
-    #     except FileNotFoundError:
-    #         return {"error": "file not found"}, 404
-    #     except Exception as e:
-    #         print("Error while deleting file {}/{}: {} ".format(folder, filename, e))
-    #         return {"error": "File could not be deleted"}, 400
+    @staticmethod
+    @jwt_required()
+    def get():
+        user = get_jwt_identity()
+        endpoint = request.path
+        if endpoint == EP_COUNTRY_IMAGE:
+            folder = os.path.join(IMAGES_FOLDER, COUNTRIES_FOLDER)
+        else:
+            folder = os.path.join(IMAGES_FOLDER, FLAGS_FOLDER)
+
+        args = request.args
+        if strID in args:
+            id = args[strID]
+        else:
+            logger.info("Missing data: {}, Client sent: {}".format(strID, args))
+            return {strMESSAGE: strINVALID_DATA}, 400
+
+        if len(CountryModel.find_by_id(int(id))) == 0:
+            logger.error("Country not found {}".format(id))
+            return {strMESSAGE: str404}, 400
+
+        filename = "{}.png".format(args[strID])
+        logger.info("User: {} Endpoint: {}, Filename: {}".format(user, endpoint, filename))
+        sanitized_filename = sanitize_filename(filename).lower()
+        fq_filename = os.path.join(folder, sanitized_filename)
+
+        try:
+            logger.info("Serving file {}".format(fq_filename))
+            return send_file(fq_filename)
+        except Exception as e:
+            logger.error("Error while serving file {}: {}".format(fq_filename, e))
+            return {strMESSAGE: str404}, 404
+
+
+    @staticmethod
+    @jwt_required()
+    def delete():
+        user = get_jwt_identity()
+        endpoint = request.path
+        if endpoint == EP_COUNTRY_IMAGE:
+            folder = os.path.join(IMAGES_FOLDER, COUNTRIES_FOLDER)
+        else:
+            folder = os.path.join(IMAGES_FOLDER, FLAGS_FOLDER)
+
+        args = request.args
+        if strID in args:
+            id = args[strID]
+        else:
+            logger.info("Missing data: {}, Client sent: {}".format(strID, args))
+            return {strMESSAGE: strINVALID_DATA}, 400
+
+        if len(CountryModel.find_by_id(int(id))) == 0:
+            logger.error("Country not found {}".format(id))
+            return {strMESSAGE: str404}, 400
+
+        filename = "{}.png".format(args[strID])
+        logger.info("User: {} Endpoint: {}, Filename: {}".format(user, endpoint, filename))
+        sanitized_filename = sanitize_filename(filename).lower()
+        fq_filename = os.path.join(folder, sanitized_filename)
+
+        try:
+            logger.info("Deleting file {}".format(fq_filename))
+            os.remove(fq_filename)
+            return {strMESSAGE: strSUCCESS}, 200
+        except Exception as e:
+            logger.error("Error while deleting file {}: {}".format(fq_filename, e))
+            return {strMESSAGE: str404}, 404

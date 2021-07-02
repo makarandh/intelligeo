@@ -1,6 +1,5 @@
 import datetime
 import os
-
 DEBUG = True
 PROPAGATE_EXCEPTIONS = True
 JWT_SECRET_KEY = os.environ["JWT_SECRET_KEY"]

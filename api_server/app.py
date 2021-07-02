@@ -6,16 +6,16 @@ from flask_jwt_extended import JWTManager
 from marshmallow import ValidationError
 from flask_cors import CORS
 
-from api.auth_api import Login, TokenRefresh, Logout
-from api.country_api import Countries, Country
-from api.image_api import Image
-from api.testing import Testing
+from api.auth_api import AuthAPI, TokenRefresh
+from api.country_api import CountriesAPI, CountryAPI
+from api.image_api import ImageAPI
 from utils.strings import (strMESSAGE, strAUTH_ERROR, EP_TOTAL_COUNTRIES, EP_COUNTRIES, EP_COUNTRY, EP_COUNTRY_IMAGE,
-                           EP_COUNTRY_FLAG)
+                           EP_COUNTRY_FLAG, str404)
 from database.blacklist_db import BlacklistModel
 
 
-logging.basicConfig(level=logging.DEBUG, format='[%(asctime)s] [%(levelname)s] [%(filename)s] [%(lineno)s]: %(message)s')
+logging.basicConfig(level=logging.DEBUG,
+                    format='[%(asctime)s] [%(levelname)s] [%(filename)s] [%(lineno)s]: %(message)s')
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
@@ -45,7 +45,7 @@ def handle_marshmallow_validation(e):
 @app.errorhandler(404)
 def resource_not_found(e):
     logger.error("404 error: {}, from client: {}".format(request, request.remote_addr))
-    return {strMESSAGE: "Endpoint not found"}, 404
+    return {strMESSAGE: str404}, 404
 
 
 @jwt.invalid_token_loader
@@ -80,12 +80,11 @@ def first_run_init():
     initialize_db()
 
 
-api.add_resource(Login, "/login")
+api.add_resource(AuthAPI, "/login", "/logout")
 api.add_resource(TokenRefresh, "/refresh")
-api.add_resource(Logout, "/logout")
-api.add_resource(Countries, EP_COUNTRIES, EP_TOTAL_COUNTRIES)
-api.add_resource(Country, EP_COUNTRY)
-api.add_resource(Image, EP_COUNTRY_IMAGE, EP_COUNTRY_FLAG)
+api.add_resource(CountriesAPI, EP_COUNTRIES, EP_TOTAL_COUNTRIES)
+api.add_resource(CountryAPI, EP_COUNTRY)
+api.add_resource(ImageAPI, EP_COUNTRY_IMAGE, EP_COUNTRY_FLAG)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)

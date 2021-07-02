@@ -12,21 +12,18 @@ from utils.strings import (strINTERNAL_SERVER_ERROR, strUSERNAME, strPASSWORD,
 import logging
 
 
-logging.basicConfig(level=logging.DEBUG, format='[%(asctime)s] [%(levelname)s] [%(filename)s] [%(lineno)s]: %(message)s')
+logging.basicConfig(level=logging.DEBUG,
+                    format='[%(asctime)s] [%(levelname)s] [%(filename)s] [%(lineno)s]: %(message)s')
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
 
-class Login(Resource):
-    """
-        API: Login
-        Endpoint: /login
-        HTTP Methods: POST
-    """
+class AuthAPI(Resource):
 
-    @classmethod
-    def post(cls):
+    @staticmethod
+    def post():
         """
+            Endpoint: /login
             Description: Logs in user
             Authentication token required: False
             Admin privilege required: False
@@ -77,48 +74,9 @@ class Login(Resource):
         return {strMESSAGE: "Invalid credentials"}, 401
 
 
-class TokenRefresh(Resource):
-    """
-        API: TokenRefresh
-        Endpoint: /refresh
-        HTTP Methods: GET
-    """
-
-    @classmethod
+    @staticmethod
     @jwt_required(refresh=True)
-    def get(cls):
-        """
-            Description: generates new access_token from refresh_token
-            Authentication token required: True
-            Admin privilege required: False
-            Expected JSON body: null
-            Required header: "refresh_token"
-
-            :returns:
-                {
-                    "access_token": <new access token:str>
-                }
-        """
-        current_user = get_jwt_identity()
-        jti = get_jwt()["jti"]
-        if BlacklistModel.find(jti):
-            logger.error("Refresh Token API called for user {}".format(current_user))
-            return {strMESSAGE: strAUTH_ERROR}, 401
-        logger.info("Refresh Token API called for user {}".format(current_user))
-        new_access_token = create_access_token(identity=current_user, fresh=False)
-        return {"access_token": new_access_token}, 200
-
-
-class Logout(Resource):
-    """
-        API: TokenRefresh
-        Endpoint: /logout
-        HTTP Methods: GET
-    """
-
-    @classmethod
-    @jwt_required(refresh=True)
-    def get(cls):
+    def get():
         """
             Description: logs out user by adding refresh token to blacklist
                 Note: By default refresh token lives for 30 days but jwt token lives for
@@ -141,3 +99,35 @@ class Logout(Resource):
             logger.error("Error trying to insert jti to blacklist: {}".format(e))
             return {strMESSAGE: strINTERNAL_SERVER_ERROR}, 500
         return {strMESSAGE: "Successfully logged out"}, 200
+
+
+class TokenRefresh(Resource):
+    """
+        API: TokenRefresh
+        Endpoint: /refresh
+        HTTP Methods: GET
+    """
+
+    @staticmethod
+    @jwt_required(refresh=True)
+    def get():
+        """
+            Description: generates new access_token from refresh_token
+            Authentication token required: True
+            Admin privilege required: False
+            Expected JSON body: null
+            Required header: "refresh_token"
+
+            :returns:
+                {
+                    "access_token": <new access token:str>
+                }
+        """
+        current_user = get_jwt_identity()
+        jti = get_jwt()["jti"]
+        if BlacklistModel.find(jti):
+            logger.error("Refresh Token API called for user {}".format(current_user))
+            return {strMESSAGE: strAUTH_ERROR}, 401
+        logger.info("Refresh Token API called for user {}".format(current_user))
+        new_access_token = create_access_token(identity=current_user, fresh=False)
+        return {"access_token": new_access_token}, 200

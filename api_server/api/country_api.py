@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
 
-class Country(Resource):
+class CountryAPI(Resource):
 
     @staticmethod
     @jwt_required()
@@ -39,8 +39,8 @@ class Country(Resource):
             result = CountryModel.insert(country_obj)
             if not result:
                 logger.error("Country already exists")
-                return {strMESSAGE: "Country already exists."}, 409
-            logger.info("Country add successful.")
+                return {strMESSAGE: "Country already exists"}, 409
+            logger.info("Country added successful.")
             return {strRESULT: result}, 201
         except Exception as e:
             logger.error(e)
@@ -98,7 +98,7 @@ class Country(Resource):
             result = CountryModel.update_one(country_obj)
             if not result:
                 logger.error("Country not found")
-                return {strMESSAGE: "Country not found."}, 409
+                return {strMESSAGE: str404}, 409
             logger.info("Country update successful.")
             return {strRESULT: strSUCCESS}, 200
         except Exception as e:
@@ -127,7 +127,7 @@ class Country(Resource):
             return {strMESSAGE: strINTERNAL_SERVER_ERROR}, 500
 
 
-class Countries(Resource):
+class CountriesAPI(Resource):
 
     @staticmethod
     @jwt_required()
@@ -162,7 +162,7 @@ class Countries(Resource):
         try:
             result = CountryModel.find(page_num=page_num, items_per_page=items_per_page)
             if len(result) == 0:
-                return {strMESSAGE: "Country not found"}, 404
+                return {strMESSAGE: str404}, 404
             return {strRESULT: result}, 200
         except Exception as e:
             logger.error(e)

@@ -56,7 +56,7 @@ class CountryModel:
         document:
             {
                 "_id": <ObjectID:MongoDBObjectID>
-                "filename": <country filename>
+                "basename": <country basename>
                 "clues": <list of clues>
                 "questions": <list of documents with a question and a answer>
                 "meta": <a document with the following info: continent, region>
@@ -73,7 +73,7 @@ class CountryModel:
         if id == None:
             self.id = random.randint(1, MAX_LIMIT)
             while self.find_by_id(self.id):
-                logger.error("Country with id {} already exist. Creating another random...".format(self.id))
+                logger.error("Countr with id {} already exist. Creating another random...".format(self.id))
                 self.id = random.randint(1, MAX_LIMIT)
         else:
             self.id = id
@@ -142,7 +142,6 @@ class CountryModel:
         try:
             collection = self.get_collection()
             search_param = {strID: self.id}
-            print("\nself.id: {}".format(self.id))
             result = collection.find_one(search_param, self.search_filter)
             if not result:
                 logger.info("Country with id {} does not exist in database: {}".format(self.id, result))
