@@ -17,8 +17,35 @@
 .card_container.edit_card {
     border-top-left-radius: 0;
 }
+
 .edit_card.subsection {
     margin-top: 3rem;
+}
+
+.edit_card.upload_image {
+    position: relative;
+    width: 73%;
+}
+
+.name h3, .upload_image h3 {
+    display: inline-block;
+}
+
+.name input, .upload_image input {
+    margin-left: 0.7rem;
+    width: 74%;
+}
+
+.edit_card.upload_image .error_message {
+    position: absolute;
+    top: unset;
+    right: unset;
+    left: 5rem;
+    bottom: -2rem;
+}
+
+.edit_card.upload_image input {
+
 }
 
 .edit_card.subheading ~ ul {
@@ -162,19 +189,14 @@ input:checked + .toggle_slider:before {
     line-height: 1.4rem;
 }
 
-.name h3 {
-    display: inline-block;
-}
-
-.name input {
-    margin-left: 0.7rem;
-    width: 74%;
-}
-
 .edit_card .error_message {
     bottom: unset;
     left: 13.2rem;
     top: -2.2rem;
+}
+
+.edit_card .error_message.long_error {
+    left: 8rem;
 }
 
 .back_arrow.outer_container {
@@ -197,3 +219,5 @@ input:checked + .toggle_slider:before {
 .back_arrow path {
     fill: white;
 }
+
+

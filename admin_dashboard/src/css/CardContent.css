@@ -1,7 +1,8 @@
 .card_container.card_content {
     position: relative;
     color: var(--text-blue);
-    max-width: 34rem;
+    max-width: 30rem;
+    min-height: 44rem;
 }
 
 .card_container.card_content:hover .hover_text {
@@ -32,4 +33,8 @@
     opacity: 0;
     right: 1rem;
     top: 1rem;
+}
+
+.card_content.subsection img {
+    width: 100%;
 }

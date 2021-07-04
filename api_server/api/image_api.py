@@ -33,6 +33,8 @@ class ImageAPI(Resource):
         else:
             UPLOAD_FOLDER = os.path.join(IMAGES_FOLDER, FLAGS_FOLDER)
 
+        print(request.files)
+        print(request.form)
         error_file = image_schema.validate(request.files)
         error_countryID = image_form_schema.validate(request.form)
         if error_file or error_countryID:

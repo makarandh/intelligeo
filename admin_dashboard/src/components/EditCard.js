@@ -1,10 +1,31 @@
 import React from "react"
 import "../css/EditCard.css"
 import {
-    BUTTON, BUTTON_CONTAINER,
-    CARD_CONTAINER, CLUES, EDIT_CARD, EP_COUNTRY, ERROR_VISIBLE, ERROR_HIDDEN, ERROR_MESSAGE,
-    HEADING, NAME, OUTER_CONTAINER, POST, SUBHEADING,
-    SUBSECTION, sleep, SUBMIT_MESSAGE, UPDATE, GET, PATH_HOME, PUT, DELETE, PATH_COUNTRY
+    BUTTON,
+    BUTTON_CONTAINER,
+    CARD_CONTAINER,
+    CLUES,
+    EDIT_CARD,
+    EP_COUNTRY,
+    ERROR_VISIBLE,
+    ERROR_HIDDEN,
+    ERROR_MESSAGE,
+    HEADING,
+    NAME,
+    OUTER_CONTAINER,
+    POST,
+    SUBHEADING,
+    SUBSECTION,
+    sleep,
+    SUBMIT_MESSAGE,
+    UPDATE,
+    GET,
+    PATH_HOME,
+    PUT,
+    DELETE,
+    UPLOAD_IMAGE,
+    FILENAME,
+    EP_COUNTRY_IMAGE, PATH_COUNTRY, LONG_ERROR
 } from "../helper/common"
 import BackArrow from "./BackArrow"
 import EditCardClues from "./EditCardClues"
@@ -28,7 +49,9 @@ export default class EditCard extends React.Component {
         latestAns: false,
         showNotification: false,
         submitting: false,
-        deleteModalVisible: false
+        deleteModalVisible: false,
+        imageError: false,
+        longError: false
     }
 
     componentDidMount() {
@@ -288,18 +311,29 @@ export default class EditCard extends React.Component {
             },
             latestClue: "",
             latestQuestion: "",
-            latestAns: false
+            latestAns: false,
+            imageError: false
         })
     }
 
-    handleSubmit = async(e) => {
-        e.preventDefault()
-        await this.addLatestItems()
-        this.setState({
-            submitting: true,
-            showNotification: true
-        })
-        document.getElementById(SUBMIT_MESSAGE).innerText = "Submitting card..."
+    submitImage = async(countryID) => {
+        const imageElement = document.getElementById(UPLOAD_IMAGE)
+        const image = imageElement.files[0]
+        if(!image || image.type.split("/")[0] !== "image") {
+            return false
+        }
+        let imageFormData = new FormData()
+        imageFormData.append("image", image)
+        imageFormData.append("id", countryID)
+        const imageResponse = await this.props.fetchOrDie(EP_COUNTRY_IMAGE, POST, imageFormData, true)
+        if(imageResponse.status === 200 || imageResponse.status === 201) {
+            imageElement.value = null
+            return true
+        }
+        return false
+    }
+
+    submitTextFields = async() => {
         const requestBody = {
             "name": this.state.name,
             "clues": this.state.clues,
@@ -308,38 +342,67 @@ export default class EditCard extends React.Component {
             "id": this.props.countryID
         }
         let method = POST
-        let operated = "added"
         if(this.props.operation === UPDATE) {
             method = PUT
-            operated = "updated"
         }
         const response = await this.props.fetchOrDie(EP_COUNTRY, method, requestBody)
+        const responseJson = await response.json()
+        if(response.status === 200 || response.status === 201) {
+            return responseJson.result
+        }
+        console.error(responseJson)
+        return false
+    }
+
+    handleSubmit = async(e) => {
+        e.preventDefault()
+        await this.addLatestItems()
+        this.setState({
+            submitting: true,
+            showNotification: true,
+            longError: false
+        })
+
+        document.getElementById(SUBMIT_MESSAGE).innerText = "Submitting card..."
+        const submitFormResponse = await this.submitTextFields()
+        if(!submitFormResponse) {
+            document.getElementById(SUBMIT_MESSAGE).innerText = "Error submitting data."
+            this.setState({
+                showNotification: true,
+                submitting: false
+            })
+            return
+        }
+
+        let countryID = this.props.countryID
+        if(!countryID) {
+            countryID = submitFormResponse
+        }
+        const submitImageSuccess = await this.submitImage(countryID)
         this.setState({
             submitting: false
         })
-        if(response.status === 201 || response.status === 200) {
-            document.getElementById(SUBMIT_MESSAGE).innerText = `Country ${operated} successfully.`
+
+        let operated = "added"
+        if(this.props.operation === UPDATE) {
+            operated = "updated"
+        }
+        let notification_message = `Country ${operated}.`
+        if(!submitImageSuccess) {
+            notification_message = `${notification_message}. But could not submit image.`
+            this.setState({
+                longError: true
+            })
+        }
+        document.getElementById(SUBMIT_MESSAGE).innerText = notification_message
+        this.setState({
+            showNotification: true
+        })
+
+        if(submitImageSuccess) {
             this.clearAllLocalStorage()
             this.clearState()
-            this.setState({
-                showNotification: true
-            })
-            if(this.props.operation === UPDATE) {
-                window.location.href = `${PATH_COUNTRY}/${this.props.countryID}`
-                return
-            }
-            const responseJson = await response.json()
-            const countryID = responseJson.result
             window.location.href = `${PATH_COUNTRY}/${countryID}`
-        }
-        else {
-            const jsonMessage = await response.json()
-            const message = jsonMessage.message
-            document.getElementById(SUBMIT_MESSAGE).innerText = message
-            console.error("Response error: ", message)
-            this.setState({
-                showNotification: true
-            })
         }
     }
 
@@ -417,6 +480,21 @@ export default class EditCard extends React.Component {
         window.location.href = PATH_HOME
     }
 
+    waitAndHideError = async(errorStateObject, sleepTime = 3000) => {
+        await sleep(sleepTime)
+        this.setState(errorStateObject)
+    }
+
+    handleImageChange = (e) => {
+        const image_to_upload = e.target.files[0]
+        const filetype = image_to_upload.type.split("/")[0]
+        if(filetype !== "image") {
+            this.setState({imageError: true})
+            e.target.value = null
+            this.waitAndHideError({imageError: false}, 5000)
+        }
+    }
+
     render() {
         return (
             <article className={OUTER_CONTAINER + " " + EDIT_CARD}>
@@ -435,6 +513,17 @@ export default class EditCard extends React.Component {
                         <input type="text"
                                onChange={this.handleNameChange}
                                value={this.state.name}/>
+                    </section>
+                    <section className={EDIT_CARD + " " + SUBSECTION + " " + UPLOAD_IMAGE}>
+                        <h3 className={SUBHEADING + " " + EDIT_CARD}>Image</h3>
+                        <input type="file"
+                               id={UPLOAD_IMAGE}
+                               onChange={this.handleImageChange}
+                               name={FILENAME}/>
+                        <div className={ERROR_MESSAGE + " " + (this.state.imageError
+                                                               ? ERROR_VISIBLE
+                                                               : ERROR_HIDDEN)}>Error: Please select an image file
+                        </div>
                     </section>
                     <EditCardClues setClue={this.setClue}
                                    getClue={this.getClue}
@@ -461,9 +550,11 @@ export default class EditCard extends React.Component {
                                         BUTTON_CONTAINER + " " +
                                         (this.props.operation === UPDATE ? UPDATE : "")}>
                         <div id={SUBMIT_MESSAGE}
-                             className={ERROR_MESSAGE + " " + ((this.state.showNotification || this.state.submitting)
-                                                               ? ERROR_VISIBLE
-                                                               : ERROR_HIDDEN)}/>
+                             className={ERROR_MESSAGE + " " +
+                                        ((this.state.showNotification || this.state.submitting)
+                                         ? ERROR_VISIBLE
+                                         : ERROR_HIDDEN) + " " +
+                                        (this.state.longError && LONG_ERROR)}/>
                         {
                             this.props.operation === UPDATE
                             && <button className={EDIT_CARD + " " + BUTTON + " undo"}

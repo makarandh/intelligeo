@@ -57,7 +57,8 @@ export default class Countries extends React.Component {
         return <React.Fragment>
             {this.state.cardsList.map((country) => {
                 return <div key={country.name}>
-                    <CardContent country={country}/>
+                    <CardContent country={country}
+                                 fetchOrDie={this.props.fetchOrDie}/>
                 </div>
             })}
         </React.Fragment>

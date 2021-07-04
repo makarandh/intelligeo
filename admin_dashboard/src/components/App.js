@@ -57,7 +57,7 @@ export default class App extends React.Component {
 
     setLoginState = (loggedIn) => {
         this.setState({
-            loggedIn,
+            loggedIn
         })
         this.setLoginCookie(loggedIn)
     }
@@ -73,20 +73,25 @@ export default class App extends React.Component {
         this.setLoginCookie(false)
     }
 
-    getHeaders = (token) => {
+    getHeaders = (token, formdata = false) => {
+        if(formdata) {
+            return {
+                "Authorization": `Bearer ${token}`
+            }
+        }
         return {
             "Content-Type": "application/json",
             "Authorization": `Bearer ${token}`
         }
     }
 
-    getRequest = (method, token, body = null) => {
-        if(body) {
+    getRequest = (method, token, body = null, formdata = false) => {
+        if((!formdata) && body) {
             body = JSON.stringify(body)
         }
         return {
             method,
-            headers: this.getHeaders(token),
+            headers: this.getHeaders(token, formdata),
             body
         }
     }
@@ -116,12 +121,12 @@ export default class App extends React.Component {
         }
     }
 
-    fetchOrDie = async(endpoint, method, body = null, secondTry = false) => {
+    fetchOrDie = async(endpoint, method, body = null, formdata = false, secondTry = false) => {
         if(!this.state.accessToken && !this.getAT()) {
             await this.getNewAT()
         }
         try {
-            const request = this.getRequest(method, this.state.accessToken, body)
+            const request = this.getRequest(method, this.state.accessToken, body, formdata)
             let response = await fetch(MAIN_URL + endpoint, request)
             console.log(response)
             if(response.status === 401) {
@@ -130,7 +135,7 @@ export default class App extends React.Component {
                     return false
                 }
                 await this.getNewAT()
-                return await this.fetchOrDie(endpoint, method, body, true)
+                return await this.fetchOrDie(endpoint, method, body, formdata, true)
             }
             return response
         }
@@ -147,25 +152,6 @@ export default class App extends React.Component {
 
     refreshPage = () => {
         window.location.reload(true)
-    }
-
-    userIsLoggedIn = () => {
-        let cookies = document.cookie.split("; ")
-        cookies = cookies.map((cookie) => {
-            const keyValArray = cookie.split("=")
-            return {
-                "key": keyValArray[0],
-                "val": keyValArray[1]
-            }
-        })
-
-        let loggedInCookie = cookies.filter((cookie) => {
-            if(cookie.key === LOGGED_IN_COOKIE) {
-                return cookie
-            }
-            return null
-        })
-        return loggedInCookie.length > 0 && loggedInCookie[0].val === "true"
     }
 
     setLoginCookie = (value) => {

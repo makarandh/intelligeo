@@ -6,7 +6,7 @@ export const BackArrow = (props) => {
         <div className={BACK_ARROW + " " + OUTER_CONTAINER + " " + BUTTON}
              onClick={props.handleGoBack}>
             <svg x="0" y="0"
-                 width={`${props.width}rem`} height={`${props.height}rem`}
+                 width={`${props.width*16}px`} height={`${props.height*16}px`}
                  viewBox="0 0 450 450"
                  preserveAspectRatio="xMidYMid meet">
                 <path className={BACK_ARROW + " " + SVG_PATH}

@@ -41,7 +41,8 @@ export default class Country extends React.Component {
                 <div className={SINGLE_CARDS_PAGE + " " + INNER_CONTAINER}>
                     {
                         this.state.dataFetched
-                        ? <CardContent country={this.state.country}/>
+                        ? <CardContent country={this.state.country}
+                                       fetchOrDie={this.props.fetchOrDie}/>
                         : <div>Loading...</div>
                     }
                 </div>
