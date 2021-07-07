@@ -11,16 +11,16 @@ logger.setLevel(logging.DEBUG)
 
 
 def send_error_mail(message):
-    MAIL_RECIPIENT = "belladatalabs@gmail.com"
-    MAIL_USERNAME = "info@ecommerceexperts.expert"
-    MAIL_PASSWORD = "Bella@123"
+    MAIL_RECIPIENT = "makarand.h@protonmail.com"
+    MAIL_USERNAME = ""
+    MAIL_PASSWORD = ""
     MAIL_SERVER = "mail.privateemail.com"
     MAIL_PORT = 465
 
     msg = MIMEText(message, "html", "utf-8")
-    msg["From"] = formataddr(("EcommerceExperts.Expert", MAIL_USERNAME))
+    msg["From"] = formataddr(("intellideep.site", MAIL_USERNAME))
     msg["To"] = MAIL_RECIPIENT
-    msg["Subject"] = "Message from Review App Monitor"
+    msg["Subject"] = "Message from Geo Game Monitor"
 
     print("Sending mail")
     context = ssl.create_default_context()
@@ -33,7 +33,7 @@ def send_error_mail(message):
 
 
 if __name__ == "__main__":
-    url = "https://rwen8zm5le.execute-api.eu-west-2.amazonaws.com/Test/features"
+    url = "https://localhost"
 
     body = {
         "clientid": "client1",

@@ -1,11 +1,9 @@
-db = db.getSiblingDB("geo")
+// use geo
 db.tempCollection.insertOne({"empty": "document"})
-db.tempCollection.drop()
 
-db = db.getSiblingDB("geo")
 db.createUser({
     user: "geo",
-    pwd: _getEnv("GEO_PASS"),
+    pwd: "geo",
     roles: [{
         role: "dbAdmin",
         db: "geo"

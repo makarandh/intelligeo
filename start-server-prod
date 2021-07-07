@@ -1,5 +1,31 @@
 #!/bin/bash
 
+
+
+if ! [[ -d nginx_server/build ]]
+then
+    echo "Frontend site not found. Building.... "
+    cd admin_dashboard
+
+    if ! [[ -d node_modules ]] 
+    then
+        echo "Node modules not installed. Installing..."
+        ncu -u 
+        npm install 
+    fi
+
+    npm run build 
+    if [[ ${?} -ne 0 ]]
+    then
+        echo "Error building frontend"
+        exit 1
+    else
+        echo "Frontend built. Moving site..."
+        mv build ../nginx_server/
+    fi
+    cd ..
+fi
+
 echo "Starting production server..."
 docker-compose --env-file docker.production.env up --build ${@}
 

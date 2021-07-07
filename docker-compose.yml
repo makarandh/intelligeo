@@ -10,7 +10,7 @@ services:
       GEO_PASS: ${GEO_PASS}
     volumes:
       - ./db/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
-      - ./db/mongo-db-store:/data/db
+      - ./files_and_data/database_files:/data/db
     networks:
       - default
     stdin_open: true
@@ -24,8 +24,8 @@ services:
       dockerfile: Dockerfile
       context: ./api_server
     volumes:
-      - ./api_server/flask-logs:/home/flaskuser/flaskapp/log
-      - ./api_server/static:/home/flaskuser/flaskapp/static
+      - ./logs/flask-logs:/home/flaskuser/flaskapp/log
+      - ./files_and_data/static:/home/flaskuser/flaskapp/static
     networks:
       - default
     stdin_open: true
@@ -36,22 +36,25 @@ services:
     ports:
       - 127.0.0.1:5000:5000
 
-#  nginx-server:
-#    restart: always
-#    build:
-#      context: ./nginx_server
-#      dockerfile: Dockerfile
-#    ports:
-#      - 80:80
-#      - 5050:5050
-#      - 443:443
-#    networks:
-#      - default
-#    stdin_open: true
-#    tty: true
-#    depends_on:
-#      - flask-app
-#
+  nginx-server:
+    restart: always
+    build:
+      context: ./nginx_server
+      dockerfile: Dockerfile
+    volumes:
+      - ./logs/nginx-logs:/var/log/nginx
+      - ./nginx_server/build:/docker_nginx/html
+      - ./nginx_server/ssl:/etc/nginx/ssl
+    ports:
+      - 80:80
+      - 443:443
+    networks:
+      - default
+    stdin_open: true
+    tty: true
+    depends_on:
+      - flask-app
+
 networks:
   default:
     driver: bridge
