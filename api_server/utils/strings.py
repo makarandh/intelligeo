@@ -48,3 +48,5 @@ FLAGS_FOLDER = "flags"
 MONGO_PASS = os.environ["MONGODB_PWD"]
 MONGO_USER = os.environ["MONGODB_USER"]
 MONGO_DB = os.environ["MONGODB_DB"]
+FLASK_USER = os.environ["FLASK_USERNAME"]
+FLASK_PASS = os.environ["FLASK_PASSWORD"]

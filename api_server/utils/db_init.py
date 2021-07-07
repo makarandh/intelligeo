@@ -4,7 +4,7 @@ from database.blacklist_db import BlacklistModel
 from database.country_model import QuestionAns, Meta, CountryModel
 from database.db_connect import get_db
 from database.user_model import UserModel
-from utils.strings import strTIMESTAMP, strEXPIRE_SECONDS
+from utils.strings import strTIMESTAMP, strEXPIRE_SECONDS, FLASK_PASS, FLASK_USER
 from utils.default_config import TTL_SECONDS, DELETED_ENTRY_TTL
 
 logging.basicConfig(level=logging.DEBUG, format='[%(asctime)s] [%(levelname)s] [%(filename)s] [%(lineno)s]: %(message)s')
@@ -79,12 +79,9 @@ def add_users():
         logger.info("Users already exist.")
         return
 
-    logger.info("Adding regular user...")
-    user = UserModel(username="user", plaintext_password="user123")
+    logger.info("Adding user...")
+    user = UserModel(username=FLASK_USER, plaintext_password=FLASK_PASS)
     user.insert()
-    logger.info("Adding an admin user...")
-    admin = UserModel(username="admin", plaintext_password="admin123", admin=True)
-    admin.insert()
 
 
 def add_blacklist_table():
