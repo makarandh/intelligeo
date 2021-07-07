@@ -1,0 +1,57 @@
+version: "3"
+
+services:
+  mongo-server:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASS}
+      GEO_PASS: ${GEO_PASS}
+    volumes:
+      - ./db/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+      - ./db/mongo-db-store:/data/db
+    networks:
+      - default
+    stdin_open: true
+    tty: true
+    ports:
+      - 127.0.0.1:27017:27017
+
+#  flask-server:
+#    restart: always
+#    build:
+#      dockerfile: Dockerfile
+#      context: ./backend
+#    volumes:
+#      - ./flask-logs:/home/flaskuser/flaskapp/log/
+#    networks:
+#      - default
+#    stdin_open: true
+#    tty: true
+#    depends_on:
+#      - mongo-server
+#
+#
+#  nginx-server:
+#    restart: always
+#    build:
+#      context: ./nginx_server
+#      dockerfile: Dockerfile
+#    ports:
+#      - 80:80
+#      - 5050:5050
+#      - 443:443
+#    networks:
+#      - default
+#    stdin_open: true
+#    tty: true
+#    depends_on:
+#      - flask-server
+#
+networks:
+  default:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.18.0.0/24

@@ -35,8 +35,6 @@ strQUESTION_ANS = "question_ans"
 strCLUES = "clues"
 strIMAGE = "image"
 
-strDB_NAME = "geo"
-
 EP_TOTAL_COUNTRIES = "/countries/total"
 EP_COUNTRIES = "/countries"
 EP_COUNTRY = "/country"
@@ -46,3 +44,7 @@ EP_COUNTRY_FLAG = "/country/flag"
 IMAGES_FOLDER = os.path.join("static", "images")
 COUNTRIES_FOLDER = "countries"
 FLAGS_FOLDER = "flags"
+
+MONGO_PASS = os.environ["MONGODB_PWD"]
+MONGO_USER = os.environ["MONGODB_USER"]
+MONGO_DB = os.environ["MONGODB_DB"]

@@ -1,4 +1,5 @@
 import logging
+import os
 
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from flask_restful import Resource
@@ -6,8 +7,10 @@ from flask import request
 from marshmallow import EXCLUDE
 from database.country_model import CountryModel
 from schemas.country_schema import CountrySchema, CountryRequestSchema
+from utils.image_helper import sanitize_filename
 from utils.strings import (strMESSAGE, strINVALID_DATA, strPAGE_NUM, strPAGE_LEN, strRESULT,
-                           strINTERNAL_SERVER_ERROR, EP_TOTAL_COUNTRIES, strSUCCESS, str404, strID)
+                           strINTERNAL_SERVER_ERROR, EP_TOTAL_COUNTRIES, strSUCCESS, str404, strID, IMAGES_FOLDER,
+                           COUNTRIES_FOLDER)
 
 logging.basicConfig(level=logging.DEBUG, format='[%(asctime)s] [%(levelname)s] [%(filename)s] [%(lineno)s]: %(message)s')
 logger = logging.getLogger(__name__)
@@ -119,12 +122,25 @@ class CountryAPI(Resource):
             id = args[strID]
             logger.info("Requested for country deletion with id {}".format(id))
             result = CountryModel.delete(id)
-            if result:
-                return {strRESULT: strSUCCESS}, 200
-            return {strMESSAGE: str404}, 404
+            if not result:
+                return {strMESSAGE: str404}, 404
         except Exception as e:
             logger.error(e)
             return {strMESSAGE: strINTERNAL_SERVER_ERROR}, 500
+
+        filename = "{}.png".format(id)
+        folder = os.path.join(IMAGES_FOLDER, COUNTRIES_FOLDER)
+        logger.info("Deleting file: {}".format(filename))
+        sanitized_filename = sanitize_filename(filename).lower()
+        fq_filename = os.path.join(folder, sanitized_filename)
+
+        try:
+            logger.info("Deleting file {}".format(fq_filename))
+            os.remove(fq_filename)
+        except Exception as e:
+            logger.error("Error while deleting file {}: {}".format(fq_filename, e))
+
+        return {strRESULT: strSUCCESS}, 200
 
 
 class CountriesAPI(Resource):

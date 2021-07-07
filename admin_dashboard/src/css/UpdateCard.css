@@ -35,3 +35,17 @@
 .button.undo.edit_card:active {
     background: radial-gradient(circle, rgba(255, 200, 175, 1), rgba(255, 165, 0, 0.86));
 }
+
+@media (max-width: 670px) {
+
+    .update .edit_card.button.submit {
+        order: -1;
+        margin-bottom: 1rem;
+        padding: 1rem 2rem;
+        width: 15rem;
+    }
+    .edit_card .button.danger.delete_card {
+        margin-top: 1rem;
+        margin-left: -1.7rem;
+    }
+}

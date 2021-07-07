@@ -4,28 +4,13 @@ import {
     CARD_CONTAINER,
     CARD_CONTENT,
     SUBSECTION,
-    SUBHEADING, HOVER_TEXT, BUTTON, PATH_UPDATE, EP_COUNTRY_IMAGE, GET
+    SUBHEADING, HOVER_TEXT, BUTTON, PATH_UPDATE,
 } from "../helper/common"
 import "../css/CardContent.css"
+import ImageThumbnail from "./ImageThumbnail"
 
 
 export default class CardContent extends React.Component {
-
-    state = {
-        imageURL: null
-    }
-
-    fetchImage = async() => {
-        const response = await this.props.fetchOrDie(`${EP_COUNTRY_IMAGE}?id=${this.props.country.id}`, GET)
-        if(response.status === 200) {
-            const imageBlob = await response.blob()
-            const imageURL = URL.createObjectURL(imageBlob)
-            console.log(imageURL)
-            this.setState({
-                imageURL
-            })
-        }
-    }
 
     renderClues = () => {
         return <React.Fragment>
@@ -57,10 +42,6 @@ export default class CardContent extends React.Component {
         window.location.href = `${PATH_UPDATE}/${this.props.country.id}`
     }
 
-    componentDidMount() {
-        this.fetchImage()
-    }
-
     render() {
         return (
             <article className={CARD_CONTAINER + " " + CARD_CONTENT}>
@@ -68,12 +49,8 @@ export default class CardContent extends React.Component {
                         onClick={this.handleEditCard}>Edit
                 </button>
                 <h2 className={CARD_CONTENT + " " + HEADING}>{this.props.country.name}</h2>
-                {
-                    this.state.imageURL &&
-                    <section className={CARD_CONTENT + " " + SUBSECTION}>
-                        <img src={this.state.imageURL} alt="country"/>
-                    </section>
-                }
+                <ImageThumbnail fetchOrDie={this.props.fetchOrDie}
+                                countryID={this.props.country.id}/>
                 <section className={CARD_CONTENT + " " + SUBSECTION}>
                     <h3 className={CARD_CONTENT + " " + SUBHEADING}>Clues</h3>
                     <ol>{this.renderClues()}</ol>

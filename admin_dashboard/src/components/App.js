@@ -9,7 +9,7 @@ import {
     LOGGED_IN_COOKIE,
     MAIN_URL,
     NETWORK_ERROR,
-    NETWORK_ERROR_CONTAINER
+    NETWORK_ERROR_CONTAINER, sleep
 } from "../helper/common"
 import {MainRouter} from "./MainRouter"
 
@@ -117,7 +117,9 @@ export default class App extends React.Component {
         }
         catch(e) {
             console.error("Exception fetching access token " + e)
-            this.setState({networkError: true})
+            this.setState({networkError: true}, () => {
+                this.autoRefresh()
+            })
         }
     }
 
@@ -141,7 +143,9 @@ export default class App extends React.Component {
         }
         catch(e) {
             console.error("Exception fetching access token " + e)
-            this.setState({networkError: true})
+            this.setState({networkError: true}, () => {
+                this.autoRefresh()
+            })
             return false
         }
     }
@@ -158,6 +162,13 @@ export default class App extends React.Component {
         value = (value ? "true" : "false")
         document.cookie = `${LOGGED_IN_COOKIE}=${value}; SameSite=Strict; path=/`
         this.setState({loggedInCookieSet: value})
+    }
+
+    autoRefresh = async() => {
+        if(this.state.networkError) {
+            await sleep(60)
+            this.refreshPage()
+        }
     }
 
     render() {

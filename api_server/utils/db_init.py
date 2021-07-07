@@ -82,8 +82,6 @@ def add_users():
     logger.info("Adding regular user...")
     user = UserModel(username="user", plaintext_password="user123")
     user.insert()
-    user = UserModel(username="client1", plaintext_password="client123")
-    user.insert()
     logger.info("Adding an admin user...")
     admin = UserModel(username="admin", plaintext_password="admin123", admin=True)
     admin.insert()

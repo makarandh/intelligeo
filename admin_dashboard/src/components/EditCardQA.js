@@ -6,7 +6,7 @@ import {
     INPUT_FIELD_CONTAINER,
     SLIDER_CONTAINER,
     SUBHEADING, SUBSECTION,
-    TOGGLE_SLIDER, TOOLTIP_CONTAINER, DANGER
+    TOGGLE_SLIDER, TOOLTIP_CONTAINER, DANGER, QUESTION_ANSWERS
 } from "../helper/common"
 
 
@@ -72,7 +72,7 @@ export default class EditCardQA extends React.Component {
             {this.props.getQAs().map((qAns, index) => {
                 return (
                     <li key={`qAns_${index}`}>
-                        <div className={INPUT_FIELD_CONTAINER}
+                        <div className={INPUT_FIELD_CONTAINER + " " + QUESTION_ANSWERS}
                              onClick={this.handleAnswerListClick}>
                             <input name={index}
                                    type="text"
@@ -166,7 +166,6 @@ export default class EditCardQA extends React.Component {
         e.preventDefault()
     }
 
-
     render() {
         return (
             <section className={EDIT_CARD + " " + SUBSECTION}>
@@ -176,7 +175,7 @@ export default class EditCardQA extends React.Component {
                     <li key={"latestQA"}>
                         <div key={"qaFieldContainer"}
                              onClick={this.handleLatestAns}
-                             className={INPUT_FIELD_CONTAINER}>
+                             className={INPUT_FIELD_CONTAINER + " " + QUESTION_ANSWERS}>
                             <input type="text"
                                    onChange={this.handleLatestQ}
                                    onKeyDown={this.handleQuestionKeypress}

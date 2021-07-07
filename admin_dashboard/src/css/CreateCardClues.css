@@ -1,3 +1,11 @@
 .input_field_container.clues {
     margin-right: 5rem;
 }
+
+@media (max-width: 570px) {
+
+    .input_field_container.clues {
+        margin-right: 1.5rem;
+    }
+}
+

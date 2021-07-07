@@ -1,2 +1,5 @@
 .env
 production.env
+*.production.env
+db/mongo-db-store/
+static/images/countries

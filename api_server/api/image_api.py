@@ -6,6 +6,7 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 from flask_restful import Resource
 from marshmallow import EXCLUDE
 from database.country_model import CountryModel
+from schemas.country_schema import CountryRequestSchema
 from schemas.image_schema import ImageSchema, ImageFormSchema
 from utils.image_helper import get_extension, get_img_filename, save_img, sanitize_filename
 from utils.strings import (strMESSAGE, strSUCCESS, EP_COUNTRY_IMAGE, IMAGES_FOLDER, COUNTRIES_FOLDER, FLAGS_FOLDER,
@@ -75,12 +76,13 @@ class ImageAPI(Resource):
         else:
             folder = os.path.join(IMAGES_FOLDER, FLAGS_FOLDER)
 
-        args = request.args
-        if strID in args:
-            id = args[strID]
-        else:
-            logger.info("Missing data: {}, Client sent: {}".format(strID, args))
+        schema = CountryRequestSchema(unknown=EXCLUDE)
+        error = schema.validate(request.args)
+        if error:
+            logger.error("Error parsing request body: {}".format(error))
             return {strMESSAGE: strINVALID_DATA}, 400
+        args = schema.load(request.args)
+        id = args[strID]
 
         if len(CountryModel.find_by_id(int(id))) == 0:
             logger.error("Country not found {}".format(id))
@@ -109,12 +111,13 @@ class ImageAPI(Resource):
         else:
             folder = os.path.join(IMAGES_FOLDER, FLAGS_FOLDER)
 
-        args = request.args
-        if strID in args:
-            id = args[strID]
-        else:
-            logger.info("Missing data: {}, Client sent: {}".format(strID, args))
+        schema = CountryRequestSchema(unknown=EXCLUDE)
+        error = schema.validate(request.args)
+        if error:
+            logger.error("Error parsing request body: {}".format(error))
             return {strMESSAGE: strINVALID_DATA}, 400
+        args = schema.load(request.args)
+        id = args[strID]
 
         if len(CountryModel.find_by_id(int(id))) == 0:
             logger.error("Country not found {}".format(id))

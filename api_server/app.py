@@ -6,13 +6,6 @@ from flask_jwt_extended import JWTManager
 from marshmallow import ValidationError
 from flask_cors import CORS
 
-from api.auth_api import AuthAPI, TokenRefresh
-from api.country_api import CountriesAPI, CountryAPI
-from api.image_api import ImageAPI
-from utils.strings import (strMESSAGE, strAUTH_ERROR, EP_TOTAL_COUNTRIES, EP_COUNTRIES, EP_COUNTRY, EP_COUNTRY_IMAGE,
-                           EP_COUNTRY_FLAG, str404)
-from database.blacklist_db import BlacklistModel
-
 
 logging.basicConfig(level=logging.DEBUG,
                     format='[%(asctime)s] [%(levelname)s] [%(filename)s] [%(lineno)s]: %(message)s')
@@ -28,6 +21,14 @@ if __name__ == "__main__":
 else:
     logger.info("Running with WSGI, loading production environment variables")
     load_dotenv("production.env", verbose=True)
+
+
+from utils.strings import (strMESSAGE, strAUTH_ERROR, EP_TOTAL_COUNTRIES, EP_COUNTRIES, EP_COUNTRY, EP_COUNTRY_IMAGE,
+                           EP_COUNTRY_FLAG, str404)
+from api.auth_api import AuthAPI, TokenRefresh
+from api.country_api import CountriesAPI, CountryAPI
+from api.image_api import ImageAPI
+from database.blacklist_db import BlacklistModel
 
 # Why two app.config? Refer to: https://flask.palletsprojects.com/en/0.12.x/config/#development-production
 app.config.from_object("utils.default_config")
@@ -69,7 +70,6 @@ def check_if_token_is_revoked(jwt_header, jwt_payload):
     token_in_blacklist = BlacklistModel.find(jti)
     if token_in_blacklist:
         logger.error("Blacklisted refresh_token used. jwt_header: {}, jwt_payload: {}".format(jwt_header, jwt_payload))
-
     return token_in_blacklist
 
 

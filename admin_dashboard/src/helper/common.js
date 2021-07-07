@@ -38,6 +38,7 @@ export const BUTTON_CONTAINER = "button_container"
 export const HEADING = "heading"
 export const YES = "yes"
 export const NO  = "no"
+export const UNDO = "undo"
 export const INDEX = "index"
 export const DISABLED = "disabled"
 export const HOVER_TEXT = "hover_text"
@@ -59,9 +60,13 @@ export const LOGOUT = "logout"
 export const INPUT_CONTAINER  = "input_container"
 export const PAGE_SUB_HEADING = "page_sub_heading"
 export const PAGE_HEADING_SECTION = "page_heading_section"
+export const CARD = "card"
+export const IMAGE = "image"
 export const CARD_CONTAINER = "card_container"
 export const CARD_CONTENT = "card_content"
 export const SUBSECTION = "subsection"
+export const META = "meta"
+export const COUNTRY_NAME = "Country name"
 export const CARDS_LIST_OUTER = "cards_list_outer"
 export const CARDS_LIST_CONTAINER = "cards_list_container"
 export const SINGLE_CARDS_PAGE = "single_card_page"
@@ -69,7 +74,10 @@ export const EDIT_CARD = "edit_card"
 export const ADD_FIELD = "add_field"
 export const DELETE_FIELD = "delete_field"
 export const DANGER = "danger"
+export const DELETE_CARD = "delete_card"
+export const DELETE_IMAGE = "delete_image"
 export const INPUT_FIELD_CONTAINER = "input_field_container"
+export const QUESTION_ANSWERS = "question_answers"
 export const TOGGLE_SLIDER = "toggle_slider"
 export const SLIDER_CONTAINER = "slider_container"
 export const CREATE = "create"
@@ -81,6 +89,7 @@ export const CLUES = "clues"
 export const NAME = "name"
 export const FILENAME = "filename"
 export const UPLOAD_IMAGE = "upload_image"
+export const UPLOAD_IMAGE_CONTAINER = "upload_image_container"
 export const LATEST_CLUE_ADD = "latest_clue_add"
 export const MODAL_MESSAGE = "modal_message"
 export const MODAL_HEADING = "modal_heading"
@@ -95,14 +104,16 @@ export const PATH_HOME = "/home"
 export const PATH_CREATE = "/create"
 export const PATH_UPDATE = "/update"
 export const NETWORK_ERROR_CONTAINER = "network_error_container"
-
+export const IMAGE_THUMBNAIL = "image_thumbnail"
 export const ANS = "ans"
 export const SUBMIT_MESSAGE = "submit_message"
+export const SUBMIT = "submit"
+
 
 export const get_url = (url, ...args) => {
     return url + "?" + args.reduce((arg1, arg2) => arg1 + "&" + arg2)
 }
 
-export const sleep = async(ms) => {
-    return new Promise(resolve => setTimeout(resolve, ms))
+export const sleep = async(seconds) => {
+    return new Promise(resolve => setTimeout(resolve, (1000 * seconds)))
 }

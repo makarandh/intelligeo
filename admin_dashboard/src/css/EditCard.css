@@ -22,30 +22,52 @@
     margin-top: 3rem;
 }
 
-.edit_card.upload_image {
-    position: relative;
-    width: 73%;
+.name input {
+    margin-left: 0.7rem;
+    width: 74%;
 }
 
 .name h3, .upload_image h3 {
     display: inline-block;
 }
 
-.name input, .upload_image input {
-    margin-left: 0.7rem;
-    width: 74%;
+.name.subsection {
+    margin-bottom: 2rem;
+}
+
+.edit_card.upload_image {
+    position: relative;
 }
 
 .edit_card.upload_image .error_message {
     position: absolute;
     top: unset;
     right: unset;
-    left: 5rem;
+    left: 0;
     bottom: -2rem;
 }
 
-.edit_card.upload_image input {
+.edit_card .card_content.subsection.image_thumbnail {
+    margin-top: 1.7rem;
+    text-align: center;
+}
 
+.edit_card .card_content.subsection.image_thumbnail img {
+    width: 70%;
+}
+
+.edit_card .button.danger.delete_card, .edit_card .button.danger.delete_image {
+    display: inline-block;
+    width: unset;
+    font-size: 1rem;
+    padding: 0.6rem 0.9rem;
+    margin-left: 1rem;
+}
+
+.edit_card.upload_image {
+    width: 100%;
+    margin-top: 1rem;
+    margin-left: 5rem;
 }
 
 .edit_card.subheading ~ ul {
@@ -220,4 +242,134 @@ input:checked + .toggle_slider:before {
     fill: white;
 }
 
+@media (max-width: 850px) {
+    .back_arrow.outer_container {
+        border-bottom-left-radius: 0;
+        left: 2rem;
+        top: -0.02rem;
+        box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.1);
+    }
 
+    .card_container.edit_card {
+        border-top-left-radius: 0.5rem;
+    }
+}
+
+@media (max-width: 810px) {
+    .edit_card .card_content.subsection.image_thumbnail img {
+        width: 90%;
+    }
+}
+
+@media (max-width: 670px) {
+    .edit_card .button.danger.delete_image {
+        display: block;
+        margin: 1rem 2rem;
+    }
+
+    .button_container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .edit_card.subsection ol li {
+        margin-left: 1.3rem;
+    }
+}
+
+@media (max-width: 570px) {
+
+    .edit_card.card_container {
+        padding: 1.5rem;
+    }
+
+    .edit_card.subsection.upload_image {
+        align-items: center;
+        text-align: center;
+        margin-left: 0;
+    }
+
+    .edit_card.button.danger.delete_image {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .input_field_container.clues {
+        margin-right: 0;
+    }
+
+    .input_field_container.question_answers {
+        margin-bottom: 3rem;
+        position: relative;
+    }
+
+    .input_field_container.question_answers .slider_container {
+        position: absolute;
+        top: 2.8rem;
+        left: -0.5rem;
+    }
+
+    .edit_card [tooltip]:after {
+        left: unset;
+        right: 0;
+        top: 0;
+        z-index: 1;
+    }
+
+    .input_field_container {
+        margin-right: 1.6rem;
+    }
+
+    .edit_card.subsection.meta {
+        margin-top: 5rem;
+    }
+
+    .edit_card.subsection h3 {
+        text-align: center;
+        font-size: 2rem;
+    }
+
+    .edit_card.subsection.name h3 {
+        display: none;
+    }
+
+    .edit_card.subsection.name {
+        margin: 0 2rem 0 0.5rem;
+    }
+
+    .edit_card.subsection.name input {
+        width: 100%;
+    }
+
+    .edit_card.subsection.button_container {
+        margin-bottom: 2rem;
+    }
+}
+
+@media (max-width: 440px) {
+    .edit_card.subsection.meta {
+        margin-right: 1.8rem;
+        margin-left: 1.8rem;
+    }
+
+    .edit_card.subsection.meta h3 {
+        margin-bottom: 2rem;
+    }
+
+    .edit_card.sub_subheading_container label {
+        display: block;
+        text-align: center;
+        align-items: center;
+        align-content: center;
+        justify-content: center;
+        justify-self: center;
+        justify-items: center;
+        margin: 1rem auto 0.5rem auto;
+    }
+
+    .edit_card.sub_subheading_container input {
+        width: 100%;
+    }
+}

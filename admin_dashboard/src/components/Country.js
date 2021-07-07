@@ -18,12 +18,15 @@ export default class Country extends React.Component {
         const index = path.lastIndexOf("/") + 1
         const countryID = parseInt(path.substring(index))
         const response = await this.props.fetchOrDie(`${EP_COUNTRY}?id=${countryID}`, GET)
-
         if(response.status === 404) {
             window.location.href = PATH_HOME
             return
         }
-        const jsonData = (await response.json()).result
+        if(response.status !== 200) {
+            return
+        }
+        let jsonData = await response.json()
+        jsonData = jsonData.result
         this.setState({
             country: jsonData,
             dataFetched: true

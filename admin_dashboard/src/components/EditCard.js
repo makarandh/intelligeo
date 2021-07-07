@@ -1,36 +1,21 @@
 import React from "react"
 import "../css/EditCard.css"
 import {
-    BUTTON,
-    BUTTON_CONTAINER,
-    CARD_CONTAINER,
-    CLUES,
-    EDIT_CARD,
-    EP_COUNTRY,
-    ERROR_VISIBLE,
-    ERROR_HIDDEN,
-    ERROR_MESSAGE,
-    HEADING,
-    NAME,
-    OUTER_CONTAINER,
-    POST,
-    SUBHEADING,
-    SUBSECTION,
+    BUTTON, BUTTON_CONTAINER, CARD_CONTAINER,
+    CLUES, EDIT_CARD, EP_COUNTRY, ERROR_VISIBLE,
+    ERROR_HIDDEN, ERROR_MESSAGE, HEADING, NAME,
+    OUTER_CONTAINER, POST, SUBHEADING, SUBSECTION,
     sleep,
-    SUBMIT_MESSAGE,
-    UPDATE,
-    GET,
-    PATH_HOME,
-    PUT,
-    DELETE,
-    UPLOAD_IMAGE,
-    FILENAME,
-    EP_COUNTRY_IMAGE, PATH_COUNTRY, LONG_ERROR
+    SUBMIT_MESSAGE, UPDATE, GET, PATH_HOME, PUT,
+    DELETE, UPLOAD_IMAGE, FILENAME, EP_COUNTRY_IMAGE,
+    PATH_COUNTRY, LONG_ERROR, UPLOAD_IMAGE_CONTAINER,
+    DANGER, SUBMIT, UNDO, DELETE_CARD, DELETE_IMAGE, CARD, IMAGE, COUNTRY_NAME
 } from "../helper/common"
 import BackArrow from "./BackArrow"
 import EditCardClues from "./EditCardClues"
 import EditCardMeta from "./EditCardMeta"
 import EditCardQA from "./EditCardQA"
+import ImageThumbnail from "./ImageThumbnail"
 import YesNoModal from "./YesNoModal"
 
 
@@ -51,8 +36,20 @@ export default class EditCard extends React.Component {
         submitting: false,
         deleteModalVisible: false,
         imageError: false,
-        longError: false
+        longError: false,
+        modalHeading: null,
+        modalMessage: null,
+        deleteContent: null,
+        thumbnailEmpty: true,
+        imageErrorMessage: null
     }
+
+    deleteCardModalHeading = "Delete Card"
+    deleteCardModalMessage = "Are you sure you want to delete this country?"
+    deleteImageModalHeading = "Delete Image"
+    deleteImageModalMessage = "Are you sure you want to delete the image for this country?"
+    imageErrorType = "Error: Please select an image file."
+    imageErrorDelete = "Error deleting image."
 
     componentDidMount() {
         if(this.props.operation === UPDATE) {
@@ -320,7 +317,7 @@ export default class EditCard extends React.Component {
         const imageElement = document.getElementById(UPLOAD_IMAGE)
         const image = imageElement.files[0]
         if(!image || image.type.split("/")[0] !== "image") {
-            return false
+            return true // We don't need to submit image, so there is no error
         }
         let imageFormData = new FormData()
         imageFormData.append("image", image)
@@ -414,10 +411,16 @@ export default class EditCard extends React.Component {
             window.location.href = PATH_HOME
             return
         }
+        if(response.status !== 200 && response.status !== 201) {
+            console.error(`Error loading data`)
+            console.error(response)
+            return
+        }
         if(this.loadFromLocalStorage("id") !== this.props.countryID) {
             this.clearAllLocalStorage()
         }
-        const jsonData = (await response.json()).result
+        let jsonData = await response.json()
+        jsonData = jsonData.result
         this.loadAllFromLocalStorage(jsonData.name, jsonData.clues, jsonData.question_ans, jsonData.meta)
         this.saveToLocalStorage("id", this.props.countryID)
     }
@@ -432,8 +435,7 @@ export default class EditCard extends React.Component {
         this.handleUpdateDataLoading()
     }
 
-    handleDelete = async(e) => {
-        e.preventDefault()
+    handleDeleteCard = async() => {
         const response = await this.props.fetchOrDie(`${EP_COUNTRY}?id=${this.props.countryID}`, DELETE)
         if(response.status === 200) {
             this.clearState()
@@ -442,7 +444,7 @@ export default class EditCard extends React.Component {
                 showNotification: true
             })
             document.getElementById(SUBMIT_MESSAGE).innerText = `Country deleted successfully.`
-            await sleep(1000)
+            await sleep(1)
             window.location.href = PATH_HOME
         }
         else {
@@ -456,22 +458,74 @@ export default class EditCard extends React.Component {
         }
     }
 
+    handleDeleteImage = async() => {
+        const response = await this.props.fetchOrDie(`${EP_COUNTRY_IMAGE}?id=${this.props.countryID}`, DELETE)
+        if(response.status === 200) {
+            this.setState({
+                thumbnailEmpty: true
+            })
+        }
+        else {
+            const jsonMessage = await response.json()
+            const message = jsonMessage.message
+            console.error("Response error: ", message)
+            this.setState({
+                imageError: true,
+                imageErrorMessage: this.imageErrorDelete
+            })
+            this.waitAndHideError({imageError: false}, 5000)
+        }
+    }
+
+    handleDelete = async(e) => {
+        e.preventDefault()
+        if(this.state.deleteContent === CARD) {
+            await this.handleDeleteCard()
+        }
+        if(this.state.deleteContent === IMAGE) {
+            await this.handleDeleteImage()
+        }
+        this.setState({deleteContent: null})
+    }
+
     handleDeleteYes = (e) => {
         e.preventDefault()
         e.stopPropagation()
-        this.setState({deleteModalVisible: false})
+        this.setState({
+            deleteModalVisible: false
+        })
         this.handleDelete(e)
     }
 
     handleDeleteNo = (e) => {
         e.preventDefault()
         e.stopPropagation()
-        this.setState({deleteModalVisible: false})
+        this.setState({
+            deleteModalVisible: false,
+            deleteContent: null
+        })
     }
 
     showConfirmDeleteModal = (e) => {
         e.preventDefault()
-        this.setState({deleteModalVisible: true})
+        console.log(e.target.name)
+        if(e.target.name === DELETE_CARD + BUTTON) {
+            this.setState({
+                deleteModalVisible: true,
+                modalHeading: this.deleteCardModalHeading,
+                modalMessage: this.deleteCardModalMessage,
+                deleteContent: CARD
+            })
+            return
+        }
+        if(e.target.name === DELETE_IMAGE + BUTTON) {
+            this.setState({
+                deleteModalVisible: true,
+                modalHeading: this.deleteImageModalHeading,
+                modalMessage: this.deleteImageModalMessage,
+                deleteContent: IMAGE
+            })
+        }
     }
 
     goHome = (e) => {
@@ -480,7 +534,7 @@ export default class EditCard extends React.Component {
         window.location.href = PATH_HOME
     }
 
-    waitAndHideError = async(errorStateObject, sleepTime = 3000) => {
+    waitAndHideError = async(errorStateObject, sleepTime = 3) => {
         await sleep(sleepTime)
         this.setState(errorStateObject)
     }
@@ -489,10 +543,19 @@ export default class EditCard extends React.Component {
         const image_to_upload = e.target.files[0]
         const filetype = image_to_upload.type.split("/")[0]
         if(filetype !== "image") {
-            this.setState({imageError: true})
+            this.setState({
+                imageError: true,
+                imageErrorMessage: this.imageErrorType
+            })
             e.target.value = null
             this.waitAndHideError({imageError: false}, 5000)
         }
+    }
+
+    setThumbnailEmpty = (state) => {
+        this.setState({
+            thumbnailEmpty: state
+        })
     }
 
     render() {
@@ -504,25 +567,37 @@ export default class EditCard extends React.Component {
                 <YesNoModal handleYes={this.handleDeleteYes}
                             handleNo={this.handleDeleteNo}
                             visible={this.state.deleteModalVisible}
-                            heading={"Delete Card"}
-                            message={"Are you sure you want to delete this country?"}/>
+                            heading={this.state.modalHeading}
+                            message={this.state.modalMessage}/>
                 <form className={CARD_CONTAINER + " " + EDIT_CARD}>
                     <h2 className={HEADING + " " + EDIT_CARD}>{this.props.heading}</h2>
                     <section className={EDIT_CARD + " " + SUBSECTION + " " + NAME}>
                         <h3 className={EDIT_CARD + " " + SUBHEADING + " " + NAME}>Name</h3>
                         <input type="text"
+                               placeholder={COUNTRY_NAME}
                                onChange={this.handleNameChange}
                                value={this.state.name}/>
                     </section>
+                    {this.props.countryID
+                     && <ImageThumbnail fetchOrDie={this.props.fetchOrDie}
+                                        thumbnailEmpty={this.state.thumbnailEmpty}
+                                        setThumbnailEmpty={this.setThumbnailEmpty}
+                                        countryID={this.props.countryID}/>}
                     <section className={EDIT_CARD + " " + SUBSECTION + " " + UPLOAD_IMAGE}>
-                        <h3 className={SUBHEADING + " " + EDIT_CARD}>Image</h3>
-                        <input type="file"
-                               id={UPLOAD_IMAGE}
-                               onChange={this.handleImageChange}
-                               name={FILENAME}/>
+                        <div className={EDIT_CARD + " " + UPLOAD_IMAGE_CONTAINER}>
+                            <input type="file"
+                                   id={UPLOAD_IMAGE}
+                                   onChange={this.handleImageChange}
+                                   name={FILENAME}/>
+                            {(!this.state.thumbnailEmpty) &&
+                             <button className={EDIT_CARD + " " + BUTTON + " " + DANGER + " " + DELETE_IMAGE}
+                                     name={DELETE_IMAGE + BUTTON}
+                                     onClick={this.showConfirmDeleteModal}>Delete Image
+                             </button>}
+                        </div>
                         <div className={ERROR_MESSAGE + " " + (this.state.imageError
                                                                ? ERROR_VISIBLE
-                                                               : ERROR_HIDDEN)}>Error: Please select an image file
+                                                               : ERROR_HIDDEN)}>{this.state.imageErrorMessage}
                         </div>
                     </section>
                     <EditCardClues setClue={this.setClue}
@@ -557,17 +632,18 @@ export default class EditCard extends React.Component {
                                         (this.state.longError && LONG_ERROR)}/>
                         {
                             this.props.operation === UPDATE
-                            && <button className={EDIT_CARD + " " + BUTTON + " undo"}
+                            && <button className={EDIT_CARD + " " + BUTTON + " " + UNDO}
                                        onClick={this.handleReset}>Undo Changes
                             </button>
                         }
-                        <button className={EDIT_CARD + " " + BUTTON + " submit"}
+                        <button className={EDIT_CARD + " " + BUTTON + " " + SUBMIT}
                                 disabled={this.state.submitting || this.state.name === ""}
                                 onClick={this.handleSubmit}>{this.props.buttonTitle}
                         </button>
                         {
                             this.props.operation === UPDATE
-                            && <button className={EDIT_CARD + " " + BUTTON + " delete"}
+                            && <button className={EDIT_CARD + " " + BUTTON + " " + DANGER + " " + DELETE_CARD}
+                                       name={DELETE_CARD + BUTTON}
                                        onClick={this.showConfirmDeleteModal}>Delete Country
                             </button>
                         }
