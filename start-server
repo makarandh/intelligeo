@@ -1,5 +1,0 @@
-#!/bin/bash
-
-echo "Starting development server..."
-docker-compose --env-file docker.development.env up ${@}
-

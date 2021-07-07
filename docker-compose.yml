@@ -15,24 +15,27 @@ services:
       - default
     stdin_open: true
     tty: true
-    ports:
-      - 127.0.0.1:27017:27017
+  #    ports:
+  #      - 127.0.0.1:27017:27017
 
-#  flask-server:
-#    restart: always
-#    build:
-#      dockerfile: Dockerfile
-#      context: ./backend
-#    volumes:
-#      - ./flask-logs:/home/flaskuser/flaskapp/log/
-#    networks:
-#      - default
-#    stdin_open: true
-#    tty: true
-#    depends_on:
-#      - mongo-server
-#
-#
+  flask-app:
+    restart: always
+    build:
+      dockerfile: Dockerfile
+      context: ./api_server
+    volumes:
+      - ./api_server/flask-logs:/home/flaskuser/flaskapp/log
+      - ./api_server/static:/home/flaskuser/flaskapp/static
+    networks:
+      - default
+    stdin_open: true
+    tty: true
+
+    depends_on:
+      - mongo-server
+    ports:
+      - 127.0.0.1:5000:5000
+
 #  nginx-server:
 #    restart: always
 #    build:
@@ -47,7 +50,7 @@ services:
 #    stdin_open: true
 #    tty: true
 #    depends_on:
-#      - flask-server
+#      - flask-app
 #
 networks:
   default:

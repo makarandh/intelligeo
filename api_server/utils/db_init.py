@@ -4,7 +4,7 @@ from database.blacklist_db import BlacklistModel
 from database.country_model import QuestionAns, Meta, CountryModel
 from database.db_connect import get_db
 from database.user_model import UserModel
-from utils.strings import (strTIMESTAMP, strEXPIRE_SECONDS, strNAME, strCLUES, strQUESTION_ANS, strMETA)
+from utils.strings import strTIMESTAMP, strEXPIRE_SECONDS
 from utils.default_config import TTL_SECONDS, DELETED_ENTRY_TTL
 
 logging.basicConfig(level=logging.DEBUG, format='[%(asctime)s] [%(levelname)s] [%(filename)s] [%(lineno)s]: %(message)s')

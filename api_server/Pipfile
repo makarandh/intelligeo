@@ -15,6 +15,7 @@ gunicorn = "*"
 pymongo = "*"
 pillow = "*"
 cairosvg = "*"
+supervisor = "*"
 
 [dev-packages]
 
