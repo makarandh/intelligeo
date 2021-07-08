@@ -1,4 +1,4 @@
-export const MAIN_URL = "http://127.0.0.1:5000"
+export const MAIN_URL = "https://localhost:5000"
 export const intITEMS_PER_PAGE = 300
 
 export const USERNAME = "username"

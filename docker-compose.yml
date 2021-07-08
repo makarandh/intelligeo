@@ -15,8 +15,6 @@ services:
       - default
     stdin_open: true
     tty: true
-  #    ports:
-  #      - 127.0.0.1:27017:27017
 
   flask-app:
     restart: always
@@ -33,8 +31,6 @@ services:
 
     depends_on:
       - mongo-server
-    ports:
-      - 127.0.0.1:5000:5000
 
   nginx-server:
     restart: always
@@ -44,15 +40,18 @@ services:
     volumes:
       - ./logs/nginx-logs:/var/log/nginx
       - ./nginx_server/build:/docker_nginx/html
-      - ./nginx_server/ssl:/etc/nginx/ssl
+      - ./nginx_server/ssl/dhparam:/etc/nginx/ssl/dhparam
+      - /etc/letsencrypt:/etc/letsencrypt
     ports:
       - 80:80
       - 443:443
+      - 0.0.0.0:5000:5000
     networks:
       - default
     stdin_open: true
     tty: true
     depends_on:
+      - mongo-server
       - flask-app
 
 networks:
