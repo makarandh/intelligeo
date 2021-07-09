@@ -1,7 +1,7 @@
 import datetime
 import logging
 from database.db_connect import get_db
-from utils.strings import strUSERNAME, str_ID, strPASSWORD, strADMIN, strDATE_TIME
+from utils.global_vars import strUSERNAME, str_ID, strPASSWORD, strADMIN, strDATE_TIME
 from auth.security import hash_password, verify_password
 
 logging.basicConfig(level=logging.DEBUG, format='[%(asctime)s] [%(levelname)s] [%(filename)s] [%(lineno)s]: %(message)s')

@@ -7,8 +7,8 @@ from marshmallow import EXCLUDE
 from database.blacklist_db import BlacklistModel
 from database.user_model import UserModel
 from schemas.user_schema import UserSchema
-from utils.strings import (strINTERNAL_SERVER_ERROR, strUSERNAME, strPASSWORD,
-                           strACCESS_TOKEN, strREFRESH_TOKEN, strMESSAGE, strINVALID_DATA, strAUTH_ERROR)
+from utils.global_vars import (strINTERNAL_SERVER_ERROR, strUSERNAME, strPASSWORD,
+                               strACCESS_TOKEN, strREFRESH_TOKEN, strMESSAGE, strINVALID_DATA, strAUTH_ERROR)
 import logging
 
 

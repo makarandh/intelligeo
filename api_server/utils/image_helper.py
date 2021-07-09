@@ -6,7 +6,7 @@ from pathlib import Path
 from werkzeug.utils import secure_filename
 from PIL import Image
 
-from utils.strings import IMAGE_EXT
+from utils.global_vars import IMAGE_EXT, MAX_IMAGE_HEIGHT
 
 IMAGES = tuple("jpg jpe jpeg png gif svg bmp webp".split())
 
@@ -25,18 +25,25 @@ def save_img(image: FileStorage, folder: str, base_filename: str) -> str:
     filename = "{}.{}".format(base_filename, IMAGE_EXT)
     Path(folder).mkdir(exist_ok=True, parents=True)
     fq_filename = os.path.join(folder, filename)
+    fq_png_filename = None
 
     if get_extension(image) == "svg":
         png_filename = "{}.png".format(base_filename)
         fq_png_filename = os.path.join(folder, png_filename)
         cairosvg.svg2png(file_obj=image, write_to=fq_png_filename)
-        with Image.open(fq_png_filename) as pil_image:
-            pil_image.save(fq_filename)
+        image = fq_png_filename
+
+    with Image.open(image) as pil_image:
+        width, height = pil_image.size
+        if height > MAX_IMAGE_HEIGHT:
+            new_width = int((MAX_IMAGE_HEIGHT / height) * width)
+            pil_image = pil_image.resize((new_width, MAX_IMAGE_HEIGHT))
+
+        pil_image.save(fq_filename)
+
+    if fq_png_filename:
         os.remove(fq_png_filename)
 
-    else:
-        with Image.open(image) as pil_image:
-            pil_image.save(fq_filename)
     return fq_filename
 
 

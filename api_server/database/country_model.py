@@ -1,3 +1,4 @@
+import datetime
 import json
 import logging
 import re
@@ -6,12 +7,14 @@ import random
 from pymongo import WriteConcern
 from database.db_connect import get_db
 
-from utils.strings import (str_ID, strNAME, strCLUES,
-                           strQUESTION_ANS, strMETA,
-                           strQUESTION, strANS, strCONTINENT,
-                           strREGION, strID)
+from utils.global_vars import (str_ID, strNAME, strCLUES,
+                               strQUESTION_ANS, strMETA,
+                               strQUESTION, strANS, strCONTINENT,
+                               strREGION, strID, strADDED_BY, strLAST_MODIFIED_BY,
+                               strCREATED_AT, strLAST_MODIFIED_AT)
 
-logging.basicConfig(level=logging.DEBUG, format='[%(asctime)s] [%(levelname)s] [%(filename)s] [%(lineno)s]: %(message)s')
+logging.basicConfig(level=logging.DEBUG,
+                    format='[%(asctime)s] [%(levelname)s] [%(filename)s] [%(lineno)s]: %(message)s')
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
@@ -65,18 +68,23 @@ class CountryModel:
 
     search_filter = {str_ID: 0}
 
-    def __init__(self, name: str, clues: list, questions: list, meta: dict, id: int = None):
+    def __init__(self, name: str, clues: list, questions: list,
+                 meta: dict, added_by: str, last_modified_by,
+                 id: int = None, created_at=None, last_modified_at=None):
         self.name = name
         self.clues = clues
         self.questions = questions
         self.meta = meta
-        if id == None:
+        self.added_by = added_by
+        self.created_at = created_at
+        self.last_modified_by = last_modified_by
+        self.last_modified_at = last_modified_at
+        self.id = id
+        if self.id == None:
             self.id = random.randint(1, MAX_LIMIT)
             while self.find_by_id(self.id):
-                logger.error("Countr with id {} already exist. Creating another random...".format(self.id))
+                logger.error("Country with id {} already exist. Creating another random...".format(self.id))
                 self.id = random.randint(1, MAX_LIMIT)
-        else:
-            self.id = id
 
 
     def __repr__(self) -> str:
@@ -89,16 +97,22 @@ class CountryModel:
             strCLUES: self.clues,
             strQUESTION_ANS: self.questions,
             strMETA: self.meta,
+            strADDED_BY: self.added_by,
+            strCREATED_AT: self.created_at,
+            strLAST_MODIFIED_BY: self.last_modified_by,
+            strLAST_MODIFIED_AT: self.last_modified_at,
             strID: self.id
         }
+
 
     @classmethod
     def from_dict(cls, source_dict):
         if strID in source_dict:
             return cls(source_dict[strNAME], source_dict[strCLUES], source_dict[strQUESTION_ANS],
-                       source_dict[strMETA], source_dict[strID])
+                       source_dict[strMETA], source_dict[strADDED_BY], source_dict[strLAST_MODIFIED_BY],
+                       source_dict[strID])
         return cls(source_dict[strNAME], source_dict[strCLUES], source_dict[strQUESTION_ANS],
-                   source_dict[strMETA])
+                   source_dict[strMETA], source_dict[strADDED_BY], source_dict[strLAST_MODIFIED_BY])
 
 
     @classmethod
@@ -118,6 +132,11 @@ class CountryModel:
         """
         try:
             collection = self.get_collection()
+            self.created_at = (datetime.datetime.utcnow()
+                               .replace(tzinfo=datetime.timezone.utc)
+                               .isoformat())
+            self.last_modified_by = self.added_by
+            self.last_modified_at = self.created_at
             result = collection.find_one({
                 strNAME: re.compile(re.escape(self.name), re.IGNORECASE)
             }, self.search_filter)
@@ -147,6 +166,11 @@ class CountryModel:
                 logger.info("Country with id {} does not exist in database: {}".format(self.id, result))
                 return False
             else:
+                self.created_at = result[strCREATED_AT]
+                self.added_by = result[strADDED_BY]
+                self.last_modified_at = (datetime.datetime.utcnow()
+                                         .replace(tzinfo=datetime.timezone.utc)
+                                         .isoformat())
                 result = collection.replace_one(search_param, self.to_dict())
                 logger.info("Country update result matched_count:{}, modified_count: {}".format(result.matched_count,
                                                                                                 result.modified_count))

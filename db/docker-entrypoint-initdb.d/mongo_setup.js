@@ -13,3 +13,6 @@ db.createUser({
         db: "geo"
     }]
 })
+
+db = db.getSiblingDB("geo")
+db.tempCollection.insertOne({"empty": "document"})

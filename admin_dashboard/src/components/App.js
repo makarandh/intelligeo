@@ -73,8 +73,8 @@ export default class App extends React.Component {
         this.setLoginCookie(false)
     }
 
-    getHeaders = (token, formdata = false) => {
-        if(formdata) {
+    getHeaders = (token, formdata = false, method) => {
+        if(method === GET || formdata) {
             return {
                 "Authorization": `Bearer ${token}`
             }
@@ -91,7 +91,7 @@ export default class App extends React.Component {
         }
         return {
             method,
-            headers: this.getHeaders(token, formdata),
+            headers: this.getHeaders(token, formdata, method),
             body
         }
     }

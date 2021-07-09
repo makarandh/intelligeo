@@ -23,12 +23,16 @@ strDATE_TIME = "date_time"
 strRESULT = "result"
 strPAGE_NUM = "page_num"
 strPAGE_LEN = "items_per_page"
+strCREATED_AT = "created_at"
+strLAST_MODIFIED_AT = "last_modified_at"
+strLAST_MODIFIED_BY = "last_modified_by"
 
 strCOUNTRY = "country"
 strCONTINENT = "continent"
 strREGION = "region"
 strNAME = "name"
 strMETA = "meta"
+strADDED_BY = "added_by"
 strQUESTION = "question"
 strANS = "ans"
 strQUESTION_ANS = "question_ans"
@@ -46,9 +50,12 @@ COUNTRIES_FOLDER = "countries"
 FLAGS_FOLDER = "flags"
 
 IMAGE_EXT = "webp"
+MAX_IMAGE_HEIGHT = 1080
 
 MONGO_PASS = os.environ["MONGODB_PWD"]
 MONGO_USER = os.environ["MONGODB_USER"]
 MONGO_DB = os.environ["MONGODB_DB"]
-FLASK_USER = os.environ["FLASK_USERNAME"]
-FLASK_PASS = os.environ["FLASK_PASSWORD"]
+FLASK_USER1 = os.environ["FLASK_USERNAME1"]
+FLASK_PASS1 = os.environ["FLASK_PASSWORD1"]
+FLASK_USER2 = os.environ["FLASK_USERNAME2"]
+FLASK_PASS2 = os.environ["FLASK_PASSWORD2"]

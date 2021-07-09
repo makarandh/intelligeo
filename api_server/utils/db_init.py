@@ -1,13 +1,15 @@
+import datetime
 import logging
 
 from database.blacklist_db import BlacklistModel
 from database.country_model import QuestionAns, Meta, CountryModel
 from database.db_connect import get_db
 from database.user_model import UserModel
-from utils.strings import strTIMESTAMP, strEXPIRE_SECONDS, FLASK_PASS, FLASK_USER
+from utils.global_vars import strTIMESTAMP, strEXPIRE_SECONDS, FLASK_PASS1, FLASK_USER1, FLASK_PASS2, FLASK_USER2
 from utils.default_config import TTL_SECONDS, DELETED_ENTRY_TTL
 
-logging.basicConfig(level=logging.DEBUG, format='[%(asctime)s] [%(levelname)s] [%(filename)s] [%(lineno)s]: %(message)s')
+logging.basicConfig(level=logging.DEBUG,
+                    format='[%(asctime)s] [%(levelname)s] [%(filename)s] [%(lineno)s]: %(message)s')
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
@@ -18,6 +20,7 @@ def initialize_db():
     add_blacklist_table()
     add_deleted_table()
 
+
 def populate_countries():
     db = get_db()
     country = db.country.find_one()
@@ -25,6 +28,9 @@ def populate_countries():
     if country and len(list(country)) > 0:
         logger.info("Country already populated.")
         return
+
+    user = "flask"
+    time = datetime.datetime.utcnow().replace(tzinfo=datetime.timezone.utc).isoformat()
 
     logger.info("Populating countries...")
     objectsToInsert = [
@@ -48,7 +54,9 @@ def populate_countries():
                                  "that "
                                  "harbor the majority of Earth's species and high numbers of endemic species.]",
                                  True).to_dict()
-                     ], Meta("Asia", "South East Asia").to_dict()).to_dict(),
+                     ], Meta("Asia", "South East Asia").to_dict(), added_by=user, last_modified_by=user,
+                     created_at=time,
+                     last_modified_at=time).to_dict(),
         CountryModel("Spain", [
             "It's a country in southern Europe.",
             "It's a large country compared to other countries in Europe.",
@@ -65,7 +73,8 @@ def populate_countries():
                          QuestionAns("Is Mont Blanc in this country?", False).to_dict(),
                          QuestionAns("Did pizza originate in this country?", False).to_dict()
                      ],
-                     Meta("Europe", "Southern Europe").to_dict()).to_dict()
+                     Meta("Europe", "Southern Europe").to_dict(), added_by=user, last_modified_by=user, created_at=time,
+                     last_modified_at=time).to_dict()
 
     ]
     db.country.insert_many(objectsToInsert)
@@ -79,9 +88,9 @@ def add_users():
         logger.info("Users already exist.")
         return
 
-    logger.info("Adding user...")
-    user = UserModel(username=FLASK_USER, plaintext_password=FLASK_PASS)
-    user.insert()
+    logger.info("Adding users...")
+    UserModel(username=FLASK_USER1, plaintext_password=FLASK_PASS1).insert()
+    UserModel(username=FLASK_USER2, plaintext_password=FLASK_PASS2).insert()
 
 
 def add_blacklist_table():

@@ -12,3 +12,4 @@ nginx_server/ssl/
 nginx_server/build/
 static
 static/images
+delete_me

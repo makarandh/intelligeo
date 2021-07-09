@@ -23,8 +23,8 @@ else:
     load_dotenv("production.env", verbose=True)
 
 
-from utils.strings import (strMESSAGE, strAUTH_ERROR, EP_TOTAL_COUNTRIES, EP_COUNTRIES, EP_COUNTRY, EP_COUNTRY_IMAGE,
-                           EP_COUNTRY_FLAG, str404)
+from utils.global_vars import (strMESSAGE, strAUTH_ERROR, EP_TOTAL_COUNTRIES, EP_COUNTRIES, EP_COUNTRY, EP_COUNTRY_IMAGE,
+                               EP_COUNTRY_FLAG, str404)
 from api.auth_api import AuthAPI, TokenRefresh
 from api.country_api import CountriesAPI, CountryAPI
 from api.image_api import ImageAPI

@@ -7,10 +7,10 @@ from flask import request
 from marshmallow import EXCLUDE
 from database.country_model import CountryModel
 from schemas.country_schema import CountrySchema, CountryRequestSchema
-from utils.image_helper import sanitize_filename, get_fq_filename
-from utils.strings import (strMESSAGE, strINVALID_DATA, strPAGE_NUM, strPAGE_LEN, strRESULT,
-                           strINTERNAL_SERVER_ERROR, EP_TOTAL_COUNTRIES, strSUCCESS, str404, strID, IMAGES_FOLDER,
-                           COUNTRIES_FOLDER, IMAGE_EXT)
+from utils.image_helper import get_fq_filename
+from utils.global_vars import (strMESSAGE, strINVALID_DATA, strPAGE_NUM, strPAGE_LEN, strRESULT,
+                               strINTERNAL_SERVER_ERROR, EP_TOTAL_COUNTRIES, strSUCCESS, str404, strID,
+                               IMAGES_FOLDER, COUNTRIES_FOLDER, strADDED_BY, strLAST_MODIFIED_BY)
 
 logging.basicConfig(level=logging.DEBUG, format='[%(asctime)s] [%(levelname)s] [%(filename)s] [%(lineno)s]: %(message)s')
 logger = logging.getLogger(__name__)
@@ -22,6 +22,7 @@ class CountryAPI(Resource):
     @staticmethod
     @jwt_required()
     def post():
+        user = get_jwt_identity()
         json_data = request.get_json()
         logger.info(json_data)
         if not json_data:
@@ -34,9 +35,10 @@ class CountryAPI(Resource):
             return {strMESSAGE: strINVALID_DATA}, 400
 
         country_dict = schema.load(json_data)
+        country_dict[strADDED_BY] = user
+        country_dict[strLAST_MODIFIED_BY] = user
         country_obj = CountryModel.from_dict(country_dict)
-        client_id = get_jwt_identity()
-        logger.info("client {} is attempting to add country {}".format(client_id, country_obj))
+        logger.info("user {} is attempting to add country {}".format(user, country_obj))
 
         try:
             result = CountryModel.insert(country_obj)
@@ -77,6 +79,7 @@ class CountryAPI(Resource):
     @staticmethod
     @jwt_required()
     def put():
+        user = get_jwt_identity()
         json_data = request.get_json()
         if not json_data:
             return {strMESSAGE: strINVALID_DATA}, 400
@@ -91,11 +94,11 @@ class CountryAPI(Resource):
         if strID not in country_dict:
             logger.error("id not found in request body: {}".format(country_dict))
             return {strMESSAGE: strINVALID_DATA}, 400
-        logger.info("Country id {}".format(country_dict[strID]))
 
+        country_dict[strADDED_BY] = None
+        country_dict[strLAST_MODIFIED_BY] = user
         country_obj = CountryModel.from_dict(country_dict)
-        client_id = get_jwt_identity()
-        logger.info("client {} is attempting to update country {}".format(client_id, country_obj))
+        logger.info("client {} is attempting to update country {}".format(user, country_obj))
 
         try:
             result = CountryModel.update_one(country_obj)
@@ -131,17 +134,13 @@ class CountryAPI(Resource):
         folder = os.path.join(IMAGES_FOLDER, COUNTRIES_FOLDER)
         fq_filename = get_fq_filename(id, folder)
 
-        if not fq_filename:
-            logger.error("File not found for country id {}".format(id))
-            return {strMESSAGE: str404}, 404
-
         try:
-            logger.info("Deleting file {}".format(fq_filename))
-            os.remove(fq_filename)
+            if os.path.isfile(fq_filename):
+                logger.info("Deleting file {}".format(fq_filename))
+                os.remove(fq_filename)
         except Exception as e:
             logger.error("Error while deleting file {}: {}".format(fq_filename, e))
             return {strRESULT: strINTERNAL_SERVER_ERROR}, 500
-
         return {strRESULT: strSUCCESS}, 200
 
 

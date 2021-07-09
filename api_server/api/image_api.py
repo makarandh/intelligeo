@@ -12,13 +12,13 @@ from utils.image_helper import (get_extension,
                                 get_img_filename,
                                 save_img,
                                 get_fq_filename)
-from utils.strings import (strMESSAGE, strSUCCESS,
-                           EP_COUNTRY_IMAGE,
-                           IMAGES_FOLDER,
-                           COUNTRIES_FOLDER,
-                           FLAGS_FOLDER,
-                           strINVALID_DATA,
-                           strIMAGE, strID, str404)
+from utils.global_vars import (strMESSAGE, strSUCCESS,
+                               EP_COUNTRY_IMAGE,
+                               IMAGES_FOLDER,
+                               COUNTRIES_FOLDER,
+                               FLAGS_FOLDER,
+                               strINVALID_DATA,
+                               strIMAGE, strID, str404)
 
 logging.basicConfig(level=logging.DEBUG,
                     format='[%(asctime)s] [%(levelname)s] [%(filename)s] [%(lineno)s]: %(message)s')

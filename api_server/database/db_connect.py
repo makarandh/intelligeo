@@ -2,7 +2,7 @@ import platform
 
 from pymongo import MongoClient
 from pymongo import WriteConcern
-from utils.strings import MONGO_DB, MONGO_USER, MONGO_PASS
+from utils.global_vars import MONGO_DB, MONGO_USER, MONGO_PASS
 
 
 def get_db():
