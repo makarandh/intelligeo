@@ -2,7 +2,7 @@ FROM python:3.8
 RUN pip3 install pipenv
 RUN useradd -d /home/flaskuser flaskuser; mkdir -p /home/flaskuser/flaskapp/log;
 RUN touch /home/flaskuser/flaskapp/log/flaskapi.err.log; touch /home/flaskuser/flaskapp/log/flaskapi.out.log
-RUN apt update; apt -y upgrade; apt install supervisor -y
+RUN apt update && apt -y upgrade && apt -y autoremove && apt install supervisor libwebp-dev -y
 WORKDIR /home/flaskuser/flaskapp
 
 COPY ["./Pipfile", "/home/flaskuser/flaskapp/"]

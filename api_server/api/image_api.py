@@ -8,9 +8,17 @@ from marshmallow import EXCLUDE
 from database.country_model import CountryModel
 from schemas.country_schema import CountryRequestSchema
 from schemas.image_schema import ImageSchema, ImageFormSchema
-from utils.image_helper import get_extension, get_img_filename, save_img, sanitize_filename
-from utils.strings import (strMESSAGE, strSUCCESS, EP_COUNTRY_IMAGE, IMAGES_FOLDER, COUNTRIES_FOLDER, FLAGS_FOLDER,
-                           strINVALID_DATA, strIMAGE, strID, str404)
+from utils.image_helper import (get_extension,
+                                get_img_filename,
+                                save_img,
+                                get_fq_filename)
+from utils.strings import (strMESSAGE, strSUCCESS,
+                           EP_COUNTRY_IMAGE,
+                           IMAGES_FOLDER,
+                           COUNTRIES_FOLDER,
+                           FLAGS_FOLDER,
+                           strINVALID_DATA,
+                           strIMAGE, strID, str404)
 
 logging.basicConfig(level=logging.DEBUG,
                     format='[%(asctime)s] [%(levelname)s] [%(filename)s] [%(lineno)s]: %(message)s')
@@ -76,6 +84,7 @@ class ImageAPI(Resource):
         else:
             folder = os.path.join(IMAGES_FOLDER, FLAGS_FOLDER)
 
+        logger.info("User: {} Endpoint: {}".format(user, endpoint))
         schema = CountryRequestSchema(unknown=EXCLUDE)
         error = schema.validate(request.args)
         if error:
@@ -86,12 +95,12 @@ class ImageAPI(Resource):
 
         if len(CountryModel.find_by_id(int(id))) == 0:
             logger.error("Country not found {}".format(id))
-            return {strMESSAGE: str404}, 400
+            return {strMESSAGE: str404}, 404
 
-        filename = "{}.png".format(args[strID])
-        logger.info("User: {} Endpoint: {}, Filename: {}".format(user, endpoint, filename))
-        sanitized_filename = sanitize_filename(filename).lower()
-        fq_filename = os.path.join(folder, sanitized_filename)
+        fq_filename = get_fq_filename(id, folder)
+        if not fq_filename:
+            logger.error("File not found for country id {}".format(id))
+            return {strMESSAGE: str404}, 404
 
         try:
             logger.info("Serving file {}".format(fq_filename))
@@ -111,6 +120,7 @@ class ImageAPI(Resource):
         else:
             folder = os.path.join(IMAGES_FOLDER, FLAGS_FOLDER)
 
+        logger.info("User: {} Endpoint: {}".format(user, endpoint))
         schema = CountryRequestSchema(unknown=EXCLUDE)
         error = schema.validate(request.args)
         if error:
@@ -123,10 +133,10 @@ class ImageAPI(Resource):
             logger.error("Country not found {}".format(id))
             return {strMESSAGE: str404}, 400
 
-        filename = "{}.png".format(args[strID])
-        logger.info("User: {} Endpoint: {}, Filename: {}".format(user, endpoint, filename))
-        sanitized_filename = sanitize_filename(filename).lower()
-        fq_filename = os.path.join(folder, sanitized_filename)
+        fq_filename = get_fq_filename(id, folder)
+        if not fq_filename:
+            logger.error("File not found for country id {}".format(id))
+            return {strMESSAGE: str404}, 404
 
         try:
             logger.info("Deleting file {}".format(fq_filename))

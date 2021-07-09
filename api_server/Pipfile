@@ -13,9 +13,9 @@ flask-marshmallow = "*"
 flask-cors = "*"
 gunicorn = "*"
 pymongo = "*"
-pillow = "*"
 cairosvg = "*"
 supervisor = "*"
+pillow = "*"
 
 [dev-packages]
 

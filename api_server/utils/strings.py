@@ -45,6 +45,8 @@ IMAGES_FOLDER = os.path.join("static", "images")
 COUNTRIES_FOLDER = "countries"
 FLAGS_FOLDER = "flags"
 
+IMAGE_EXT = "webp"
+
 MONGO_PASS = os.environ["MONGODB_PWD"]
 MONGO_USER = os.environ["MONGODB_USER"]
 MONGO_DB = os.environ["MONGODB_DB"]

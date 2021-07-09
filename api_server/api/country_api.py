@@ -7,10 +7,10 @@ from flask import request
 from marshmallow import EXCLUDE
 from database.country_model import CountryModel
 from schemas.country_schema import CountrySchema, CountryRequestSchema
-from utils.image_helper import sanitize_filename
+from utils.image_helper import sanitize_filename, get_fq_filename
 from utils.strings import (strMESSAGE, strINVALID_DATA, strPAGE_NUM, strPAGE_LEN, strRESULT,
                            strINTERNAL_SERVER_ERROR, EP_TOTAL_COUNTRIES, strSUCCESS, str404, strID, IMAGES_FOLDER,
-                           COUNTRIES_FOLDER)
+                           COUNTRIES_FOLDER, IMAGE_EXT)
 
 logging.basicConfig(level=logging.DEBUG, format='[%(asctime)s] [%(levelname)s] [%(filename)s] [%(lineno)s]: %(message)s')
 logger = logging.getLogger(__name__)
@@ -128,17 +128,19 @@ class CountryAPI(Resource):
             logger.error(e)
             return {strMESSAGE: strINTERNAL_SERVER_ERROR}, 500
 
-        filename = "{}.png".format(id)
         folder = os.path.join(IMAGES_FOLDER, COUNTRIES_FOLDER)
-        logger.info("Deleting file: {}".format(filename))
-        sanitized_filename = sanitize_filename(filename).lower()
-        fq_filename = os.path.join(folder, sanitized_filename)
+        fq_filename = get_fq_filename(id, folder)
+
+        if not fq_filename:
+            logger.error("File not found for country id {}".format(id))
+            return {strMESSAGE: str404}, 404
 
         try:
             logger.info("Deleting file {}".format(fq_filename))
             os.remove(fq_filename)
         except Exception as e:
             logger.error("Error while deleting file {}: {}".format(fq_filename, e))
+            return {strRESULT: strINTERNAL_SERVER_ERROR}, 500
 
         return {strRESULT: strSUCCESS}, 200
 

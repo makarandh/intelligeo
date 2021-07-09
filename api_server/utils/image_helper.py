@@ -6,6 +6,8 @@ from pathlib import Path
 from werkzeug.utils import secure_filename
 from PIL import Image
 
+from utils.strings import IMAGE_EXT
+
 IMAGES = tuple("jpg jpe jpeg png gif svg bmp webp".split())
 
 
@@ -20,14 +22,21 @@ def extension_is_valid(filename):
 def save_img(image: FileStorage, folder: str, base_filename: str) -> str:
     """Takes Filestorage and saves it to a folder"""
     base_filename = sanitize_filename(base_filename).lower()
-    filename = "{}.png".format(base_filename)
+    filename = "{}.{}".format(base_filename, IMAGE_EXT)
     Path(folder).mkdir(exist_ok=True, parents=True)
     fq_filename = os.path.join(folder, filename)
+
     if get_extension(image) == "svg":
-        cairosvg.svg2png(file_obj=image, write_to=fq_filename)
+        png_filename = "{}.png".format(base_filename)
+        fq_png_filename = os.path.join(folder, png_filename)
+        cairosvg.svg2png(file_obj=image, write_to=fq_png_filename)
+        with Image.open(fq_png_filename) as pil_image:
+            pil_image.save(fq_filename)
+        os.remove(fq_png_filename)
+
     else:
-        pil_image = Image.open(image)
-        pil_image.save(fq_filename)
+        with Image.open(image) as pil_image:
+            pil_image.save(fq_filename)
     return fq_filename
 
 
@@ -60,3 +69,10 @@ def get_extension(file: Union[str, FileStorage]) -> str or bool:
     if extension_is_valid(filename):
         return os.path.splitext(filename)[1].split(".")[1]
     return False
+
+
+def get_fq_filename(country_id, folder):
+    filename = "{}.{}".format(country_id, IMAGE_EXT)
+    sanitized_filename = sanitize_filename(filename).lower()
+    fq_filename = os.path.join(folder, sanitized_filename)
+    return fq_filename
