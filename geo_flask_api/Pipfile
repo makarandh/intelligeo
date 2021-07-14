@@ -16,6 +16,7 @@ pymongo = "*"
 cairosvg = "*"
 supervisor = "*"
 pillow = "*"
+bcrypt = "*"
 
 [dev-packages]
 

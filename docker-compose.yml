@@ -20,7 +20,7 @@ services:
     restart: always
     build:
       dockerfile: Dockerfile
-      context: ./api_server
+      context: ./geo_flask_api
     volumes:
       - ./logs/flask-logs:/home/flaskuser/flaskapp/log
       - ./files_and_data/static:/home/flaskuser/flaskapp/static

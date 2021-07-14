@@ -1,4 +1,4 @@
-// use geo
+db = db.getSiblingDB("geo")
 db.tempCollection.insertOne({"empty": "document"})
 
 db.createUser({

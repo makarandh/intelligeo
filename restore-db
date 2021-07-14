@@ -25,8 +25,8 @@ cleanup() {
 DIRNAME="db-restore"
 FILENAME="$(basename ${1})"
 FILE_URI="${1}"
-S3_BUCKET="s3://mongo-backup-reviews"
-DB_NAME="review"
+S3_BUCKET="s3://mongo-backup-geo"
+DB_NAME="geo"
 
 cd ~
 if [[ -a ${DIRNAME} ]]

@@ -25,7 +25,7 @@ def populate_countries():
     db = get_db()
     country = db.country.find_one()
 
-    if country and len(list(country)) > 0:
+    if country and len(dict(country)) > 0:
         logger.info("Country already populated.")
         return
 
@@ -84,7 +84,7 @@ def add_users():
     db = get_db()
     user = db.user.find_one()
 
-    if user and len(list(user)) > 0:
+    if user and len(dict(user)) > 0:
         logger.info("Users already exist.")
         return
 

@@ -1,0 +1,41 @@
+#!/bin/bash
+
+echo "Initializing..."
+
+BACKUP_DIR="/home/ubuntu/projects/GeoGame/files_and_data" 
+BACKUP_LOGS_DIR="/home/ubuntu/projects/GeoGame/logs" 
+DIRNAME="/home/ubuntu/geo-backup"
+FILENAME="${DIRNAME}-$(date +%Y-%m-%d-%H-%M-%S).tar.gz"
+S3_BUCKET="s3://geo-backup-intellideep.digital"
+BUCKET_NAME="geo-backup-intellideep.digital"
+
+if [[ -e ${DIRNAME} ]]
+then
+    sudo rm -rf ${DIRNAME}
+fi
+mkdir ${DIRNAME}
+
+echo -e "Copying ${BACKUP_DIR} to ${DIRNAME}..."
+sudo cp -r ${BACKUP_DIR} ${DIRNAME}
+
+echo -e "Copying ${BACKUP_LOGS_DIR} to ${DIRNAME}..."
+sudo cp -r ${BACKUP_LOGS_DIR} ${DIRNAME}
+
+echo "Changing ownership of files to back backed up..."
+sudo chown -Rc ubuntu:ubuntu ${DIRNAME}
+
+echo -e "Creating tarball ${PWD}/${FILENAME}..."
+tar czf ${FILENAME} ${DIRNAME}
+
+echo -e "Uploading to bucket: ${S3_BUCKET}..."
+aws s3 mv ${FILENAME} ${S3_BUCKET}
+
+if [[ ${?} -eq 0 ]]
+then 
+    echo -e "Upload completed successfully."
+    aws s3api list-objects --bucket ${BUCKET_NAME} --query "Contents[].Key"
+    rm -rf ${DIRNAME}
+    exit 0
+else 
+    echo -e "There was problem uploading to S3 bucket." 
+fi
