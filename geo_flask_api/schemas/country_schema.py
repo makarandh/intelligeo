@@ -10,6 +10,10 @@ class MetaSchema(Schema):
     continent = fields.String(required=False)
     region = fields.String(required=False)
 
+class ImageInfoSchema(Schema):
+    photographer = fields.String(required=True)
+    url = fields.String(required=True)
+
 
 class CountrySchema(Schema):
     id = fields.Integer(required=False)
@@ -17,6 +21,7 @@ class CountrySchema(Schema):
     clues = fields.List(fields.String(required=True))
     question_ans = fields.List(fields.Nested(QuestionAnsSchema, required=True))
     meta = fields.Nested(MetaSchema, required=True)
+    image_info = fields.Nested(ImageInfoSchema, required=False)
 
 
 class CountryRequestSchema(Schema):

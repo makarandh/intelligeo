@@ -17,6 +17,7 @@ cairosvg = "*"
 supervisor = "*"
 pillow = "*"
 bcrypt = "*"
+olefile = "*"
 
 [dev-packages]
 

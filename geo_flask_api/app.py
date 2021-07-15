@@ -23,8 +23,8 @@ else:
     load_dotenv("production.env", verbose=True)
 
 
-from utils.global_vars import (strMESSAGE, strAUTH_ERROR, EP_TOTAL_COUNTRIES, EP_COUNTRIES, EP_COUNTRY, EP_COUNTRY_IMAGE,
-                               EP_COUNTRY_FLAG, str404)
+from utils.global_vars import (MESSAGE, AUTH_ERROR, EP_TOTAL_COUNTRIES, EP_COUNTRIES, EP_COUNTRY, EP_COUNTRY_IMAGE,
+                               EP_COUNTRY_FLAG, RESOURCE_NOT_FOUND)
 from api.auth_api import AuthAPI, TokenRefresh
 from api.country_api import CountriesAPI, CountryAPI
 from api.image_api import ImageAPI
@@ -46,14 +46,14 @@ def handle_marshmallow_validation(e):
 @app.errorhandler(404)
 def resource_not_found(e):
     logger.error("404 error: {}, from client: {}".format(request, request.remote_addr))
-    return {strMESSAGE: str404}, 404
+    return {MESSAGE: RESOURCE_NOT_FOUND}, 404
 
 
 @jwt.invalid_token_loader
 @jwt.unauthorized_loader
 def handle_token_error(e):
     logger.error("Token error: {}; Request: {} Client: {}".format(e, request, request.remote_addr))
-    return {strMESSAGE: strAUTH_ERROR}, 401
+    return {MESSAGE: AUTH_ERROR}, 401
 
 
 @jwt.expired_token_loader
@@ -61,7 +61,7 @@ def handle_token_error(e):
 def handle_expired_token_error(header, payload):
     logger.error("Token error. header: {}; payload:{}; Request: {} Client: {}"
                  .format(header, payload, request, request.remote_addr))
-    return {strMESSAGE: strAUTH_ERROR}, 401
+    return {MESSAGE: AUTH_ERROR}, 401
 
 
 @jwt.token_in_blocklist_loader

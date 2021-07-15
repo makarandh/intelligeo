@@ -12,13 +12,13 @@ from utils.image_helper import (get_extension,
                                 get_img_filename,
                                 save_img,
                                 get_fq_filename)
-from utils.global_vars import (strMESSAGE, strSUCCESS,
+from utils.global_vars import (MESSAGE, SUCCESS,
                                EP_COUNTRY_IMAGE,
                                IMAGES_FOLDER,
                                COUNTRIES_FOLDER,
                                FLAGS_FOLDER,
-                               strINVALID_DATA,
-                               strIMAGE, strID, str404)
+                               INVALID_DATA,
+                               IMAGE, ID, RESOURCE_NOT_FOUND)
 
 logging.basicConfig(level=logging.DEBUG,
                     format='[%(asctime)s] [%(levelname)s] [%(filename)s] [%(lineno)s]: %(message)s')
@@ -48,30 +48,32 @@ class ImageAPI(Resource):
         error_countryID = image_form_schema.validate(request.form)
         if error_file or error_countryID:
             logger.error("Error parsing request data: {} {}".format(error_file, error_countryID))
-            return {strMESSAGE: strINVALID_DATA}, 400
+            return {MESSAGE: INVALID_DATA}, 400
 
         data = image_schema.load(request.files)
         id = image_form_schema.load(request.form)
-        id = id[strID]
-        image = data[strIMAGE]
+        id = id[ID]
+        image = data[IMAGE]
         logger.info("Filetype: {}".format(image.content_type))
 
         if len(CountryModel.find_by_id(int(id))) == 0:
             logger.error("Country not found {}".format(id))
-            return {strMESSAGE: str404}, 400
+            return {MESSAGE: RESOURCE_NOT_FOUND}, 400
 
         file_ext = get_extension(image)
         if not file_ext:
             logger.error("invalid file extension for file {}".format(get_img_filename(image)))
-            return {strMESSAGE: strINVALID_DATA}, 400
+            return {MESSAGE: INVALID_DATA}, 400
 
         try:
             fq_filename = save_img(image, folder=UPLOAD_FOLDER, base_filename=str(id))
             logger.info("File saved {}".format(fq_filename))
-            return {strMESSAGE: strSUCCESS}, 201
+            CountryModel.set_photo_uploaded(id, True)
+            logger.info("Set image_uploaded as true for {}".format(id))
+            return {MESSAGE: SUCCESS}, 201
         except Exception as e:
             logger.error("Error saving image: {}".format(e))
-            return {strMESSAGE: strINVALID_DATA}, 400
+            return {MESSAGE: INVALID_DATA}, 400
 
 
     @staticmethod
@@ -89,25 +91,25 @@ class ImageAPI(Resource):
         error = schema.validate(request.args)
         if error:
             logger.error("Error parsing request body: {}".format(error))
-            return {strMESSAGE: strINVALID_DATA}, 400
+            return {MESSAGE: INVALID_DATA}, 400
         args = schema.load(request.args)
-        id = args[strID]
+        id = args[ID]
 
         if len(CountryModel.find_by_id(int(id))) == 0:
             logger.error("Country not found {}".format(id))
-            return {strMESSAGE: str404}, 404
+            return {MESSAGE: RESOURCE_NOT_FOUND}, 404
 
         fq_filename = get_fq_filename(id, folder)
         if not fq_filename:
             logger.error("File not found for country id {}".format(id))
-            return {strMESSAGE: str404}, 404
+            return {MESSAGE: RESOURCE_NOT_FOUND}, 404
 
         try:
             logger.info("Serving file {}".format(fq_filename))
             return send_file(fq_filename)
         except Exception as e:
             logger.error("Error while serving file {}: {}".format(fq_filename, e))
-            return {strMESSAGE: str404}, 404
+            return {MESSAGE: RESOURCE_NOT_FOUND}, 404
 
 
     @staticmethod
@@ -125,23 +127,24 @@ class ImageAPI(Resource):
         error = schema.validate(request.args)
         if error:
             logger.error("Error parsing request body: {}".format(error))
-            return {strMESSAGE: strINVALID_DATA}, 400
+            return {MESSAGE: INVALID_DATA}, 400
         args = schema.load(request.args)
-        id = args[strID]
+        id = args[ID]
 
         if len(CountryModel.find_by_id(int(id))) == 0:
             logger.error("Country not found {}".format(id))
-            return {strMESSAGE: str404}, 400
+            return {MESSAGE: RESOURCE_NOT_FOUND}, 400
 
         fq_filename = get_fq_filename(id, folder)
         if not fq_filename:
             logger.error("File not found for country id {}".format(id))
-            return {strMESSAGE: str404}, 404
+            return {MESSAGE: RESOURCE_NOT_FOUND}, 404
 
         try:
             logger.info("Deleting file {}".format(fq_filename))
             os.remove(fq_filename)
-            return {strMESSAGE: strSUCCESS}, 200
+            CountryModel.set_photo_uploaded(id, False)
+            return {MESSAGE: SUCCESS}, 200
         except Exception as e:
             logger.error("Error while deleting file {}: {}".format(fq_filename, e))
-            return {strMESSAGE: str404}, 404
+            return {MESSAGE: RESOURCE_NOT_FOUND}, 404

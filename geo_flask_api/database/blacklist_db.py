@@ -3,7 +3,7 @@ import logging
 
 from typing import List
 from database.db_connect import get_db
-from utils.global_vars import strDATE_TIME, strJTI
+from utils.global_vars import DATE_TIME, JTI
 
 
 logging.basicConfig(level=logging.DEBUG, format='[%(asctime)s] [%(levelname)s] [%(filename)s] [%(lineno)s]: %(message)s')
@@ -33,8 +33,8 @@ class BlacklistModel():
 
     def to_dict(self) -> dict:
         return {
-            strJTI: self.jti,
-            strDATE_TIME: self.timestamp
+            JTI: self.jti,
+            DATE_TIME: self.timestamp
         }
 
 
@@ -57,7 +57,7 @@ class BlacklistModel():
         """
         try:
             collection = cls.get_collection()
-            result = collection.find_one({strJTI: jti})
+            result = collection.find_one({JTI: jti})
             if result:
                 return True
             return False
@@ -95,7 +95,7 @@ class BlacklistModel():
             result = collection.find({})
             if result != None:
                 result = list(result)
-                result = [jti[strJTI] for jti in result]
+                result = [jti[JTI] for jti in result]
             else:
                 result = []
             return result

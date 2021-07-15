@@ -375,6 +375,7 @@ export default class EditCard extends React.Component {
         if(!countryID) {
             countryID = submitFormResponse
         }
+        document.getElementById(SUBMIT_MESSAGE).innerText = "Uploading image..."
         const submitImageSuccess = await this.submitImage(countryID)
         this.setState({
             submitting: false
@@ -386,7 +387,7 @@ export default class EditCard extends React.Component {
         }
         let notification_message = `Country ${operated}.`
         if(!submitImageSuccess) {
-            notification_message = `${notification_message}. But could not submit image.`
+            notification_message = `${notification_message}. But could not upload image.`
             this.setState({
                 longError: true
             })

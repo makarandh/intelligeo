@@ -5,7 +5,7 @@ from database.blacklist_db import BlacklistModel
 from database.country_model import QuestionAns, Meta, CountryModel
 from database.db_connect import get_db
 from database.user_model import UserModel
-from utils.global_vars import strTIMESTAMP, strEXPIRE_SECONDS, FLASK_PASS1, FLASK_USER1, FLASK_PASS2, FLASK_USER2
+from utils.global_vars import TIMESTAMP, EXPIRE_SECONDS, FLASK_PASS1, FLASK_USER1, FLASK_PASS2, FLASK_USER2
 from utils.default_config import TTL_SECONDS, DELETED_ENTRY_TTL
 
 logging.basicConfig(level=logging.DEBUG,
@@ -99,9 +99,9 @@ def add_blacklist_table():
     index_exists = False
     drop_index = False
     for index in indices:
-        if strTIMESTAMP in dict(index["key"]).keys():
-            if strEXPIRE_SECONDS in dict(index):
-                if dict(index)[strEXPIRE_SECONDS] == TTL_SECONDS:
+        if TIMESTAMP in dict(index["key"]).keys():
+            if EXPIRE_SECONDS in dict(index):
+                if dict(index)[EXPIRE_SECONDS] == TTL_SECONDS:
                     index_exists = True
                     break
                 else:
@@ -111,10 +111,10 @@ def add_blacklist_table():
 
     if drop_index:
         logger.warning("Blacklist Index incorrect. Dropping...")
-        blacklist_collection.drop_index([(strTIMESTAMP, 1)])
+        blacklist_collection.drop_index([(TIMESTAMP, 1)])
         index_exists = False
     if not index_exists:
-        blacklist_collection.create_index([(strTIMESTAMP, 1)], expireAfterSeconds=TTL_SECONDS)
+        blacklist_collection.create_index([(TIMESTAMP, 1)], expireAfterSeconds=TTL_SECONDS)
         logger.debug("Blacklist index created with TTL: {} seconds".format(TTL_SECONDS))
 
 
@@ -124,9 +124,9 @@ def add_deleted_table():
     index_exists = False
     drop_index = False
     for index in indices:
-        if strTIMESTAMP in dict(index["key"]).keys():
-            if strEXPIRE_SECONDS in dict(index):
-                if dict(index)[strEXPIRE_SECONDS] == DELETED_ENTRY_TTL:
+        if TIMESTAMP in dict(index["key"]).keys():
+            if EXPIRE_SECONDS in dict(index):
+                if dict(index)[EXPIRE_SECONDS] == DELETED_ENTRY_TTL:
                     index_exists = True
                     break
                 else:
@@ -136,8 +136,8 @@ def add_deleted_table():
 
     if drop_index:
         logger.warning("Deleted collection index incorrect. Dropping...")
-        deleted_collection.drop_index([(strTIMESTAMP, 1)])
+        deleted_collection.drop_index([(TIMESTAMP, 1)])
         index_exists = False
     if not index_exists:
-        deleted_collection.create_index([(strTIMESTAMP, 1)], expireAfterSeconds=DELETED_ENTRY_TTL)
+        deleted_collection.create_index([(TIMESTAMP, 1)], expireAfterSeconds=DELETED_ENTRY_TTL)
         logger.debug("Deleted collection index created with TTL: {} seconds".format(DELETED_ENTRY_TTL))

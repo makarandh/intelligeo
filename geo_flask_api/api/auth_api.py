@@ -7,8 +7,8 @@ from marshmallow import EXCLUDE
 from database.blacklist_db import BlacklistModel
 from database.user_model import UserModel
 from schemas.user_schema import UserSchema
-from utils.global_vars import (strINTERNAL_SERVER_ERROR, strUSERNAME, strPASSWORD,
-                               strACCESS_TOKEN, strREFRESH_TOKEN, strMESSAGE, strINVALID_DATA, strAUTH_ERROR)
+from utils.global_vars import (INTERNAL_SERVER_ERROR, USERNAME, PASSWORD,
+                               ACCESS_TOKEN, REFRESH_TOKEN, MESSAGE, INVALID_DATA, AUTH_ERROR)
 import logging
 
 
@@ -45,17 +45,17 @@ class AuthAPI(Resource):
         """
         json_data = request.get_json()
         if not json_data:
-            return {strMESSAGE: strINVALID_DATA}, 400
+            return {MESSAGE: INVALID_DATA}, 400
 
         try:
             schema = UserSchema(unknown=EXCLUDE)
             schema.load(json_data)
         except Exception as e:
             logger.error("Error parsing request body: {}".format(e))
-            return {strMESSAGE: strINVALID_DATA}, 400
+            return {MESSAGE: INVALID_DATA}, 400
 
-        username = json_data[strUSERNAME]
-        password = json_data[strPASSWORD]
+        username = json_data[USERNAME]
+        password = json_data[PASSWORD]
         logger.info("/login api called for user: {}".format(username))
 
         try:
@@ -63,15 +63,15 @@ class AuthAPI(Resource):
             status = user.authenticate()
         except Exception as e:
             logger.error("Error logging in user {}: {}".format(username, e))
-            return {strMESSAGE: strINTERNAL_SERVER_ERROR}, 500
+            return {MESSAGE: INTERNAL_SERVER_ERROR}, 500
 
         if status:
             access_token = create_access_token(identity=username, fresh=True)
             refresh_token = create_refresh_token(identity=username)
             logger.info("Sending access_token and refresh_token for user: {}...".format(username))
-            return {strACCESS_TOKEN: access_token, strREFRESH_TOKEN: refresh_token}, 200
+            return {ACCESS_TOKEN: access_token, REFRESH_TOKEN: refresh_token}, 200
         logger.info("Authentication failed for user: {}".format(username))
-        return {strMESSAGE: "Invalid credentials"}, 401
+        return {MESSAGE: "Invalid credentials"}, 401
 
 
     @staticmethod
@@ -97,8 +97,8 @@ class AuthAPI(Resource):
             BlacklistModel(jti).insert()
         except Exception as e:
             logger.error("Error trying to insert jti to blacklist: {}".format(e))
-            return {strMESSAGE: strINTERNAL_SERVER_ERROR}, 500
-        return {strMESSAGE: "Successfully logged out"}, 200
+            return {MESSAGE: INTERNAL_SERVER_ERROR}, 500
+        return {MESSAGE: "Successfully logged out"}, 200
 
 
 class TokenRefresh(Resource):
@@ -127,7 +127,7 @@ class TokenRefresh(Resource):
         jti = get_jwt()["jti"]
         if BlacklistModel.find(jti):
             logger.error("Refresh Token API called for user {}".format(current_user))
-            return {strMESSAGE: strAUTH_ERROR}, 401
+            return {MESSAGE: AUTH_ERROR}, 401
         logger.info("Refresh Token API called for user {}".format(current_user))
         new_access_token = create_access_token(identity=current_user, fresh=False)
         return {"access_token": new_access_token}, 200

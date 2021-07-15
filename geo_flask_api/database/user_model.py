@@ -1,7 +1,7 @@
 import datetime
 import logging
 from database.db_connect import get_db
-from utils.global_vars import strUSERNAME, str_ID, strPASSWORD, strADMIN, strDATE_TIME
+from utils.global_vars import USERNAME, _ID, PASSWORD, ADMIN, DATE_TIME
 from auth.security import hash_password, verify_password
 
 logging.basicConfig(level=logging.DEBUG, format='[%(asctime)s] [%(levelname)s] [%(filename)s] [%(lineno)s]: %(message)s')
@@ -31,11 +31,11 @@ class UserModel():
 
     def to_dict(self) -> dict:
         return {
-            str_ID: self.username,
-            strUSERNAME: self.username,
-            strADMIN: self.admin,
-            strPASSWORD: hash_password(self.plaintext_password),
-            strDATE_TIME: self.timestamp
+            _ID: self.username,
+            USERNAME: self.username,
+            ADMIN: self.admin,
+            PASSWORD: hash_password(self.plaintext_password),
+            DATE_TIME: self.timestamp
         }
 
 
@@ -56,7 +56,7 @@ class UserModel():
         """
         try:
             collection = cls.get_collection()
-            result = collection.find_one({strUSERNAME: username})
+            result = collection.find_one({USERNAME: username})
             return result
         except Exception as e:
             raise Exception(e)
@@ -97,9 +97,9 @@ class UserModel():
             if not user:
                 logger.info("User does not exist: {}".format(self.username))
                 return False
-            logger.info("User found: {}".format(user[strUSERNAME]))
+            logger.info("User found: {}".format(user[USERNAME]))
 
-            if not verify_password(hashed_password=user[strPASSWORD], plaintext_password=self.plaintext_password):
+            if not verify_password(hashed_password=user[PASSWORD], plaintext_password=self.plaintext_password):
                 logger.info("Password verification failed for user: {}".format(self.username))
                 return False
             logger.info("Password verification successful for user: {}".format(self.username))
