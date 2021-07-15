@@ -4,10 +4,10 @@ import {
     CARD_CONTAINER,
     CARD_CONTENT,
     SUBSECTION,
-    SUBHEADING, HOVER_TEXT, BUTTON, PATH_UPDATE,
+    SUBHEADING, HOVER_TEXT, BUTTON, PATH_UPDATE, PHOTO_CREDIT_CONTAINER, NO_PHOTO_CREDIT
 } from "../helper/common"
 import "../css/CardContent.css"
-import ImageThumbnail from "./ImageThumbnail"
+import ImageDisplay from "./ImageDisplay"
 
 
 export default class CardContent extends React.Component {
@@ -49,8 +49,28 @@ export default class CardContent extends React.Component {
                         onClick={this.handleEditCard}>Edit
                 </button>
                 <h2 className={CARD_CONTENT + " " + HEADING}>{this.props.country.name}</h2>
-                <ImageThumbnail fetchOrDie={this.props.fetchOrDie}
-                                countryID={this.props.country.id}/>
+                {
+                    this.props.country.image_info && this.props.country.image_info.image_uploaded &&
+                    <section>
+                        <ImageDisplay fetchOrDie={this.props.fetchOrDie}
+                                      countryID={this.props.country.id}
+                                      image_uploaded={this.props.country.image_info.image_uploaded}/>
+                        {
+                            (this.props.country.image_info.photographer && this.props.country.image_info.url)
+                            ? <div className={CARD_CONTENT + " " + PHOTO_CREDIT_CONTAINER}>
+                                <span>Photo by </span>
+                                <a href={this.props.country.image_info.url}
+                                   rel={"noreferrer"}
+                                   target={"_blank"}>
+                                    {this.props.country.image_info.photographer}
+                                </a>
+                            </div>
+                            : <div className={CARD_CONTENT + " " + NO_PHOTO_CREDIT}>
+                                Please provide photo credit and link to original image.
+                            </div>
+                        }
+                    </section>
+                }
                 <section className={CARD_CONTENT + " " + SUBSECTION}>
                     <h3 className={CARD_CONTENT + " " + SUBHEADING}>Clues</h3>
                     <ol>{this.renderClues()}</ol>
@@ -66,5 +86,5 @@ export default class CardContent extends React.Component {
             </article>
         )
     }
-}
 
+}

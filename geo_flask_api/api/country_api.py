@@ -99,6 +99,8 @@ class CountryAPI(Resource):
 
         country_dict[ADDED_BY] = None
         country_dict[LAST_MODIFIED_BY] = user
+        if IMAGE_INFO not in country_dict:
+            country_dict[IMAGE_INFO] = ImageInfo().to_dict()
         country_obj = CountryModel.from_dict(country_dict)
         if IMAGE_INFO not in country_dict:
             country_dict[IMAGE_INFO] = ImageInfo().to_dict()

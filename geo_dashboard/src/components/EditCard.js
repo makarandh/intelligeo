@@ -7,15 +7,15 @@ import {
     OUTER_CONTAINER, POST, SUBHEADING, SUBSECTION,
     sleep,
     SUBMIT_MESSAGE, UPDATE, GET, PATH_HOME, PUT,
-    DELETE, UPLOAD_IMAGE, FILENAME, EP_COUNTRY_IMAGE,
-    PATH_COUNTRY, LONG_ERROR, UPLOAD_IMAGE_CONTAINER,
-    DANGER, SUBMIT, UNDO, DELETE_CARD, DELETE_IMAGE, CARD, IMAGE, COUNTRY_NAME
+    DELETE, UPLOAD_IMAGE, EP_COUNTRY_IMAGE,
+    PATH_COUNTRY, LONG_ERROR, DANGER, SUBMIT, UNDO,
+    DELETE_CARD, DELETE_IMAGE, CARD, IMAGE, COUNTRY_NAME, QUESTION_ANS, META, IMAGE_INFO
 } from "../helper/common"
 import BackArrow from "./BackArrow"
 import EditCardClues from "./EditCardClues"
 import EditCardMeta from "./EditCardMeta"
 import EditCardQA from "./EditCardQA"
-import ImageThumbnail from "./ImageThumbnail"
+import EditCardImage from "./EditCardImage"
 import YesNoModal from "./YesNoModal"
 
 
@@ -28,6 +28,11 @@ export default class EditCard extends React.Component {
         meta: {
             continent: "",
             region: ""
+        },
+        imageInfo: {
+            url: "",
+            photographer: "",
+            image_uploaded: false
         },
         latestClue: "",
         latestQuestion: "",
@@ -105,7 +110,7 @@ export default class EditCard extends React.Component {
     }
 
     setQAs = (questionAns) => {
-        this.saveToLocalStorage("questionAns", questionAns)
+        this.saveToLocalStorage(QUESTION_ANS, questionAns)
         this.setState({questionAns})
     }
 
@@ -118,7 +123,7 @@ export default class EditCard extends React.Component {
         this.setState((prevState) => {
             const questionAns = [...prevState.questionAns.slice(0, index), QA,
                                  ...prevState.questionAns.slice(index + 1)]
-            this.saveToLocalStorage("questionAns", questionAns)
+            this.saveToLocalStorage(QUESTION_ANS, questionAns)
             return {questionAns}
         })
     }
@@ -145,8 +150,44 @@ export default class EditCard extends React.Component {
         index = parseInt(index)
         this.setState((prevState) => {
             const questionAns = [...prevState.questionAns.slice(0, index), ...prevState.questionAns.slice(index + 1)]
-            this.saveToLocalStorage("questionAns", questionAns)
+            this.saveToLocalStorage(QUESTION_ANS, questionAns)
             return {questionAns}
+        })
+    }
+
+    setPhotographer = (photographer) => {
+        this.setState((prevState) => {
+            const imageInfo = {
+                url: prevState.imageInfo.url,
+                image_uploaded: prevState.imageInfo.image_uploaded,
+                photographer
+            }
+            this.saveToLocalStorage(IMAGE_INFO, imageInfo)
+            return {imageInfo}
+        })
+    }
+
+    setImageURL = (url) => {
+        this.setState((prevState) => {
+            const imageInfo = {
+                url,
+                image_uploaded: prevState.imageInfo.image_uploaded,
+                photographer: prevState.imageInfo.photographer
+            }
+            this.saveToLocalStorage(IMAGE_INFO, imageInfo)
+            return {imageInfo}
+        })
+    }
+
+    setImageUploaded = (image_uploaded) => {
+        this.setState((prevState) => {
+            const imageInfo = {
+                url: prevState.imageInfo.url,
+                image_uploaded,
+                photographer: prevState.imageInfo.photographer
+            }
+            this.saveToLocalStorage(IMAGE_INFO, imageInfo)
+            return {imageInfo}
         })
     }
 
@@ -168,7 +209,7 @@ export default class EditCard extends React.Component {
                 region: prevState.meta.region,
                 continent
             }
-            this.saveToLocalStorage("meta", meta)
+            this.saveToLocalStorage(META, meta)
             return {meta}
         })
     }
@@ -179,9 +220,69 @@ export default class EditCard extends React.Component {
                 region,
                 continent: prevState.meta.continent
             }
-            this.saveToLocalStorage("meta", meta)
+            this.saveToLocalStorage(META, meta)
             return {meta}
         })
+    }
+
+    loadAllFromLocalStorage = (name = "",
+                               clues = [],
+                               questionAns = [],
+                               meta = {
+                                   "continent": "",
+                                   "region": ""
+                               },
+                               imageInfo = {
+                                   "photographer": "",
+                                   "url": "",
+                                   image_uploaded: false
+                               },
+                               latestQuestion = "",
+                               latestClue = "",
+                               latestAns = false) => {
+
+        let lname = this.loadFromLocalStorage(NAME)
+        if(lname === null) {
+            lname = name
+        }
+        let lclues = this.loadFromLocalStorage(CLUES)
+        if(lclues === null) {
+            lclues = clues
+        }
+        let lquestionAns = this.loadFromLocalStorage(QUESTION_ANS)
+        if(lquestionAns === null) {
+            lquestionAns = questionAns
+        }
+        let lmeta = this.loadFromLocalStorage(META)
+        if(lmeta === null) {
+            lmeta = meta
+        }
+        let llatestQuestion = this.loadFromLocalStorage("latestQuestion")
+        if(llatestQuestion === null) {
+            llatestQuestion = latestQuestion
+        }
+        let llatestClue = this.loadFromLocalStorage("latestClue")
+        if(llatestClue === null) {
+            llatestClue = latestClue
+        }
+        let llatestAns = this.loadFromLocalStorage("latestAns")
+        if(llatestAns === null) {
+            llatestAns = latestAns
+        }
+        let limageInfo = this.loadFromLocalStorage(IMAGE_INFO)
+        if(limageInfo === null) {
+            limageInfo = imageInfo
+        }
+        this.setState({
+                          name: lname,
+                          clues: lclues,
+                          questionAns: lquestionAns,
+                          meta: lmeta,
+                          latestClue: llatestClue,
+                          latestQuestion: llatestQuestion,
+                          latestAns: llatestAns,
+                          imageInfo: limageInfo
+                      })
     }
 
     addLatestItems = async() => {
@@ -204,7 +305,7 @@ export default class EditCard extends React.Component {
                     "ans": prevState.latestAns
                 }
                 const questionAns = [...prevState.questionAns, latestQA]
-                this.saveToLocalStorage("questionAns", questionAns)
+                this.saveToLocalStorage(QUESTION_ANS, questionAns)
                 this.saveToLocalStorage("latestQuestion", "")
                 this.saveToLocalStorage("latestAns", false)
                 return {
@@ -220,52 +321,6 @@ export default class EditCard extends React.Component {
         const name = e.target.value
         this.saveToLocalStorage(NAME, name)
         this.setState({name})
-    }
-
-    loadAllFromLocalStorage = (name = "",
-                               clues = [],
-                               questionAns = [],
-                               meta = {"continent": "", "region": ""},
-                               latestQuestion = "",
-                               latestClue = "",
-                               latestAns = false) => {
-        let lname = this.loadFromLocalStorage(NAME)
-        if(lname === null) {
-            lname = name
-        }
-        let lclues = this.loadFromLocalStorage(CLUES)
-        if(lclues === null) {
-            lclues = clues
-        }
-        let lquestionAns = this.loadFromLocalStorage("questionAns")
-        if(lquestionAns === null) {
-            lquestionAns = questionAns
-        }
-        let lmeta = this.loadFromLocalStorage("meta")
-        if(lmeta === null) {
-            lmeta = meta
-        }
-        let llatestQuestion = this.loadFromLocalStorage("latestQuestion")
-        if(llatestQuestion === null) {
-            llatestQuestion = latestQuestion
-        }
-        let llatestClue = this.loadFromLocalStorage("latestClue")
-        if(llatestClue === null) {
-            llatestClue = latestClue
-        }
-        let llatestAns = this.loadFromLocalStorage("latestAns")
-        if(llatestAns === null) {
-            llatestAns = latestAns
-        }
-        this.setState({
-            name: lname,
-            clues: lclues,
-            questionAns: lquestionAns,
-            meta: lmeta,
-            latestClue: llatestClue,
-            latestQuestion: llatestQuestion,
-            latestAns: llatestAns
-        })
     }
 
     loadFromLocalStorage = (name) => {
@@ -290,8 +345,9 @@ export default class EditCard extends React.Component {
     clearAllLocalStorage = () => {
         this.clearLocalStorage(NAME)
         this.clearLocalStorage(CLUES)
-        this.clearLocalStorage("questionAns")
-        this.clearLocalStorage("meta")
+        this.clearLocalStorage(QUESTION_ANS)
+        this.clearLocalStorage(META)
+        this.clearLocalStorage(IMAGE_INFO)
         this.clearLocalStorage("latestQuestion")
         this.clearLocalStorage("latestClue")
         this.clearLocalStorage("latestAns")
@@ -299,18 +355,18 @@ export default class EditCard extends React.Component {
 
     clearState = async() => {
         await this.setState({
-            name: "",
-            clues: [],
-            questionAns: [],
-            meta: {
-                continent: "",
-                region: ""
-            },
-            latestClue: "",
-            latestQuestion: "",
-            latestAns: false,
-            imageError: false
-        })
+                                name: "",
+                                clues: [],
+                                questionAns: [],
+                                meta: {
+                                    continent: "",
+                                    region: ""
+                                },
+                                latestClue: "",
+                                latestQuestion: "",
+                                latestAns: false,
+                                imageError: false
+                            })
     }
 
     submitImage = async(countryID) => {
@@ -331,12 +387,17 @@ export default class EditCard extends React.Component {
     }
 
     submitTextFields = async() => {
+        const imageInfo = {
+            "url": this.state.imageInfo.url,
+            "photographer": this.state.imageInfo.photographer
+        }
         const requestBody = {
             "name": this.state.name,
             "clues": this.state.clues,
             "question_ans": this.state.questionAns,
             "meta": this.state.meta,
-            "id": this.props.countryID
+            "id": this.props.countryID,
+            "image_info": imageInfo
         }
         let method = POST
         if(this.props.operation === UPDATE) {
@@ -355,19 +416,19 @@ export default class EditCard extends React.Component {
         e.preventDefault()
         await this.addLatestItems()
         this.setState({
-            submitting: true,
-            showNotification: true,
-            longError: false
-        })
+                          submitting: true,
+                          showNotification: true,
+                          longError: false
+                      })
 
         document.getElementById(SUBMIT_MESSAGE).innerText = "Submitting card..."
         const submitFormResponse = await this.submitTextFields()
         if(!submitFormResponse) {
             document.getElementById(SUBMIT_MESSAGE).innerText = "Error submitting data."
             this.setState({
-                showNotification: true,
-                submitting: false
-            })
+                              showNotification: true,
+                              submitting: false
+                          })
             return
         }
 
@@ -378,8 +439,8 @@ export default class EditCard extends React.Component {
         document.getElementById(SUBMIT_MESSAGE).innerText = "Uploading image..."
         const submitImageSuccess = await this.submitImage(countryID)
         this.setState({
-            submitting: false
-        })
+                          submitting: false
+                      })
 
         let operated = "added"
         if(this.props.operation === UPDATE) {
@@ -389,13 +450,13 @@ export default class EditCard extends React.Component {
         if(!submitImageSuccess) {
             notification_message = `${notification_message}. But could not upload image.`
             this.setState({
-                longError: true
-            })
+                              longError: true
+                          })
         }
         document.getElementById(SUBMIT_MESSAGE).innerText = notification_message
         this.setState({
-            showNotification: true
-        })
+                          showNotification: true
+                      })
 
         if(submitImageSuccess) {
             this.clearAllLocalStorage()
@@ -422,16 +483,20 @@ export default class EditCard extends React.Component {
         }
         let jsonData = await response.json()
         jsonData = jsonData.result
-        this.loadAllFromLocalStorage(jsonData.name, jsonData.clues, jsonData.question_ans, jsonData.meta)
+        this.loadAllFromLocalStorage(jsonData.name,
+                                     jsonData.clues,
+                                     jsonData.question_ans,
+                                     jsonData.meta,
+                                     jsonData.image_info)
         this.saveToLocalStorage("id", this.props.countryID)
     }
 
     handleReset = (e) => {
         e.preventDefault()
         this.setState({
-            showNotification: false,
-            submitting: false
-        })
+                          showNotification: false,
+                          submitting: false
+                      })
         this.clearAllLocalStorage()
         this.handleUpdateDataLoading()
     }
@@ -442,8 +507,8 @@ export default class EditCard extends React.Component {
             this.clearState()
             this.clearAllLocalStorage()
             this.setState({
-                showNotification: true
-            })
+                              showNotification: true
+                          })
             document.getElementById(SUBMIT_MESSAGE).innerText = `Country deleted successfully.`
             await sleep(1)
             window.location.href = PATH_HOME
@@ -454,26 +519,25 @@ export default class EditCard extends React.Component {
             document.getElementById(SUBMIT_MESSAGE).innerText = message
             console.error("Response error: ", message)
             this.setState({
-                showNotification: true
-            })
+                              showNotification: true
+                          })
         }
     }
 
     handleDeleteImage = async() => {
         const response = await this.props.fetchOrDie(`${EP_COUNTRY_IMAGE}?id=${this.props.countryID}`, DELETE)
         if(response.status === 200) {
-            this.setState({
-                thumbnailEmpty: true
-            })
+            this.setState({thumbnailEmpty: true})
+            this.setImageUploaded(false)
         }
         else {
             const jsonMessage = await response.json()
             const message = jsonMessage.message
             console.error("Response error: ", message)
             this.setState({
-                imageError: true,
-                imageErrorMessage: this.imageErrorDelete
-            })
+                              imageError: true,
+                              imageErrorMessage: this.imageErrorDelete
+                          })
             this.waitAndHideError({imageError: false}, 5000)
         }
     }
@@ -493,8 +557,8 @@ export default class EditCard extends React.Component {
         e.preventDefault()
         e.stopPropagation()
         this.setState({
-            deleteModalVisible: false
-        })
+                          deleteModalVisible: false
+                      })
         this.handleDelete(e)
     }
 
@@ -502,9 +566,9 @@ export default class EditCard extends React.Component {
         e.preventDefault()
         e.stopPropagation()
         this.setState({
-            deleteModalVisible: false,
-            deleteContent: null
-        })
+                          deleteModalVisible: false,
+                          deleteContent: null
+                      })
     }
 
     showConfirmDeleteModal = (e) => {
@@ -512,20 +576,20 @@ export default class EditCard extends React.Component {
         console.log(e.target.name)
         if(e.target.name === DELETE_CARD + BUTTON) {
             this.setState({
-                deleteModalVisible: true,
-                modalHeading: this.deleteCardModalHeading,
-                modalMessage: this.deleteCardModalMessage,
-                deleteContent: CARD
-            })
+                              deleteModalVisible: true,
+                              modalHeading: this.deleteCardModalHeading,
+                              modalMessage: this.deleteCardModalMessage,
+                              deleteContent: CARD
+                          })
             return
         }
         if(e.target.name === DELETE_IMAGE + BUTTON) {
             this.setState({
-                deleteModalVisible: true,
-                modalHeading: this.deleteImageModalHeading,
-                modalMessage: this.deleteImageModalMessage,
-                deleteContent: IMAGE
-            })
+                              deleteModalVisible: true,
+                              modalHeading: this.deleteImageModalHeading,
+                              modalMessage: this.deleteImageModalMessage,
+                              deleteContent: IMAGE
+                          })
         }
     }
 
@@ -535,8 +599,10 @@ export default class EditCard extends React.Component {
         window.location.href = PATH_HOME
     }
 
-    waitAndHideError = async(errorStateObject, sleepTime = 3) => {
-        await sleep(sleepTime)
+    waitAndHideError = async(errorStateObject, sleepSeconds = 3) => {
+        console.log("will wait then hide error")
+        await sleep(sleepSeconds)
+        console.log("timeout")
         this.setState(errorStateObject)
     }
 
@@ -545,18 +611,21 @@ export default class EditCard extends React.Component {
         const filetype = image_to_upload.type.split("/")[0]
         if(filetype !== "image") {
             this.setState({
-                imageError: true,
-                imageErrorMessage: this.imageErrorType
-            })
+                              imageError: true,
+                              imageErrorMessage: this.imageErrorType
+                          })
             e.target.value = null
-            this.waitAndHideError({imageError: false}, 5000)
+            this.waitAndHideError({imageError: false}, 5)
+        }
+        else {
+            this.setState({imageError: false})
         }
     }
 
     setThumbnailEmpty = (state) => {
         this.setState({
-            thumbnailEmpty: state
-        })
+                          thumbnailEmpty: state
+                      })
     }
 
     render() {
@@ -579,28 +648,22 @@ export default class EditCard extends React.Component {
                                onChange={this.handleNameChange}
                                value={this.state.name}/>
                     </section>
-                    {this.props.countryID
-                     && <ImageThumbnail fetchOrDie={this.props.fetchOrDie}
-                                        thumbnailEmpty={this.state.thumbnailEmpty}
-                                        setThumbnailEmpty={this.setThumbnailEmpty}
-                                        countryID={this.props.countryID}/>}
-                    <section className={EDIT_CARD + " " + SUBSECTION + " " + UPLOAD_IMAGE}>
-                        <div className={EDIT_CARD + " " + UPLOAD_IMAGE_CONTAINER}>
-                            <input type="file"
-                                   id={UPLOAD_IMAGE}
-                                   onChange={this.handleImageChange}
-                                   name={FILENAME}/>
-                            {(!this.state.thumbnailEmpty) &&
-                             <button className={EDIT_CARD + " " + BUTTON + " " + DANGER + " " + DELETE_IMAGE}
-                                     name={DELETE_IMAGE + BUTTON}
-                                     onClick={this.showConfirmDeleteModal}>Delete Image
-                             </button>}
-                        </div>
-                        <div className={ERROR_MESSAGE + " " + (this.state.imageError
-                                                               ? ERROR_VISIBLE
-                                                               : ERROR_HIDDEN)}>{this.state.imageErrorMessage}
-                        </div>
-                    </section>
+
+                    <EditCardImage fetchOrDie={this.props.fetchOrDie}
+                                   handleURLChange={this.handleURLChange}
+                                   imageErrorMessage={this.state.imageErrorMessage}
+                                   imageError={this.state.imageError}
+                                   handleImageChange={this.handleImageChange}
+                                   showConfirmDeleteModal={this.showConfirmDeleteModal}
+                                   setPhotographer={this.setPhotographer}
+                                   photographer={this.state.imageInfo.photographer}
+                                   setImageURL={this.setImageURL}
+                                   url={this.state.imageInfo.url}
+                                   setImageUploaded={this.setImageUploaded}
+                                   image_uploaded={this.state.imageInfo.image_uploaded}
+                                   thumbnailEmpty={this.state.thumbnailEmpty}
+                                   setThumbnailEmpty={this.setThumbnailEmpty}
+                                   countryID={this.props.countryID}/>
                     <EditCardClues setClue={this.setClue}
                                    getClue={this.getClue}
                                    setClues={this.setClues}

@@ -1,3 +1,3 @@
-# Geo Game
+# IntelliGeo
 
 A cool geography game

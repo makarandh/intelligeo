@@ -95,7 +95,15 @@ export const LATEST_CLUE_ADD = "latest_clue_add"
 export const MODAL_MESSAGE = "modal_message"
 export const MODAL_HEADING = "modal_heading"
 export const BACK_ARROW = "back_arrow"
+export const LOADING = "loading"
 export const SVG_PATH = "svg_path"
+export const SVG_G = "svg_g"
+export const QUESTION_ANS = "questionAns"
+export const PHOTO_CREDIT_CONTAINER = "photo_credit_container"
+export const PHOTO_CREDIT = "photo_credit"
+export const NO_PHOTO_CREDIT = "no_photo_credit"
+export const IMAGE_INFO = "imageInfo"
+
 export const EP_COUNTRY = "/country"
 export const EP_COUNTRY_IMAGE = "/country/image"
 export const PATH_COUNTRY = "/country"
@@ -116,5 +124,5 @@ export const get_url = (url, ...args) => {
 }
 
 export const sleep = async(seconds) => {
-    return new Promise(resolve => setTimeout(resolve, (1000 * seconds)))
+    return new Promise(resolve => setTimeout(resolve, 1000*seconds))
 }

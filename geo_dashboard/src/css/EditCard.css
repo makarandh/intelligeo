@@ -9,6 +9,27 @@
     padding: 2rem 5rem 3rem 3rem;
 }
 
+.back_arrow.outer_container {
+    position: absolute;
+    padding: 0.7rem;
+    padding-bottom: 0.3rem;
+    border-radius: 0.4rem;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    left: -0.9rem;
+    top: -0.02rem;
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.back_arrow svg {
+    width: 1.4rem;
+    height: 1.4rem;
+}
+
+.back_arrow path {
+    fill: white;
+}
+
 .edit_card.heading {
     font-size: 2.5rem;
     margin-bottom: 3rem;
@@ -37,6 +58,20 @@
 
 .edit_card.upload_image {
     position: relative;
+}
+
+.edit_card.upload_image label span {
+    display: inline-block;
+    width: 7rem;
+    margin-right: 0.5rem;
+}
+
+.edit_card.upload_image input {
+    width: 55%;
+}
+
+.edit_card.photo_credit {
+    margin-top: 0.5rem;
 }
 
 .edit_card.upload_image .error_message {
@@ -221,33 +256,25 @@ input:checked + .toggle_slider:before {
     left: 8rem;
 }
 
-.back_arrow.outer_container {
-    position: absolute;
-    padding: 0.7rem;
-    padding-bottom: 0.3rem;
-    border-radius: 0.4rem;
-    border-bottom-right-radius: 0;
-    border-top-right-radius: 0;
-    left: -0.9rem;
-    top: -0.02rem;
-    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
-}
-
-.back_arrow svg {
-    width: 1.4rem;
-    height: 1.4rem;
-}
-
-.back_arrow path {
-    fill: white;
-}
-
 @media (max-width: 850px) {
+    .edit_card.subsection.upload_image {
+        margin-left: 2rem;
+    }
+
+    .edit_card.upload_image input {
+        width: 62%;
+    }
+
     .back_arrow.outer_container {
         border-bottom-left-radius: 0;
         left: 2rem;
         top: -0.02rem;
         box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    .edit_card .button.danger.delete_image {
+        display: block;
+        margin: 1rem auto 1rem auto;
     }
 
     .card_container.edit_card {
@@ -256,15 +283,30 @@ input:checked + .toggle_slider:before {
 }
 
 @media (max-width: 810px) {
+    .edit_card.upload_image input {
+        width: 59%;
+    }
+
     .edit_card .card_content.subsection.image_thumbnail img {
         width: 90%;
     }
 }
 
 @media (max-width: 670px) {
-    .edit_card .button.danger.delete_image {
+
+    .edit_card.subsection.upload_image {
+        margin-left: 2rem;
+        margin-top: 3rem;
+    }
+
+    .edit_card.upload_image label span {
         display: block;
-        margin: 1rem 2rem;
+        margin-bottom: 0.4rem;
+        margin-top: 0.6rem;
+    }
+
+    .edit_card.upload_image input {
+        width: 83%;
     }
 
     .button_container {
@@ -280,6 +322,16 @@ input:checked + .toggle_slider:before {
 }
 
 @media (max-width: 570px) {
+    .edit_card.upload_image label span {
+        display: block;
+        margin: 0.6rem 0 0.4rem 1.8rem;
+        width: unset;
+        text-align: left;
+    }
+
+    .edit_card.upload_image input {
+        width: 88%;
+    }
 
     .edit_card.card_container {
         padding: 1.5rem;
@@ -349,6 +401,10 @@ input:checked + .toggle_slider:before {
 }
 
 @media (max-width: 440px) {
+    .edit_card.upload_image label span {
+        margin-left: 1.2rem;
+    }
+
     .edit_card.subsection.meta {
         margin-right: 1.8rem;
         margin-left: 1.8rem;

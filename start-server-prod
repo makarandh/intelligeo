@@ -1,11 +1,11 @@
 #!/bin/bash
 
+NGINX_FOLDER="geo_nginx"
 
-
-if ! [[ -d nginx_server/build ]]
+if ! [[ -d ${NGINX_FOLDER}/build ]]
 then
     echo "Frontend site not found. Building.... "
-    cd admin_dashboard
+    cd geo_dashboard
 
     if ! [[ -d node_modules ]] 
     then
@@ -21,7 +21,7 @@ then
         exit 1
     else
         echo "Frontend built. Moving site..."
-        mv build ../nginx_server/
+        mv build ../${NGINX_FOLDER}/
     fi
     cd ..
 fi

@@ -16,6 +16,15 @@
     font-size: 2.5rem;
 }
 
+.card_content.no_photo_credit {
+    color: #b30214;
+}
+
+.card_content.photo_credit_container a {
+    font-style: italic;
+    text-decoration: underline;
+}
+
 .card_subheading {
     margin-bottom: 0.5rem;
     font-weight: normal;
@@ -41,6 +50,22 @@
 
 .card_content.subsection img {
     width: 100%;
+}
+
+.card_content.subsection.loading {
+    height: 9rem;
+    width: 16rem;
+    background-color: rgba(1, 1, 1, 0.06);
+    margin: 1rem auto;
+}
+
+.card_content.subsection.loading svg {
+    margin-top: 2rem;
+}
+
+.card_content.subsection svg {
+    width: 100%;
+    margin: 1rem auto;
 }
 
 @media (max-width: 2245px) {

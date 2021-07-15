@@ -193,7 +193,7 @@ class CountryModel:
             raise Exception(e)
 
 
-    def update_one(self) -> int or bool:
+    def update_one(self, set_photo_upload=False) -> int or bool:
         """
             Description: Inserts a new country to db
             :return: MongoDBID of listing:str
@@ -207,6 +207,11 @@ class CountryModel:
                 logger.info("Country with id {} does not exist in database: {}".format(self.id, result))
                 return False
             else:
+                if (not set_photo_upload
+                        and IMAGE_INFO in result
+                        and IMAGE_INFO in result
+                        and IMAGE_UPLOADED in result[IMAGE_INFO]):
+                    self.image_info[IMAGE_UPLOADED] = result[IMAGE_INFO][IMAGE_UPLOADED]
                 self.created_at = result[CREATED_AT]
                 self.added_by = result[ADDED_BY]
                 self.last_modified_at = (datetime.datetime.utcnow()
@@ -226,7 +231,7 @@ class CountryModel:
         country_dict = cls.find_by_id(id)
         country = cls.from_dict(country_dict)
         country.image_info[IMAGE_UPLOADED] = photo_upload_status
-        return country.update_one()
+        return country.update_one(set_photo_upload=True)
 
 
     @classmethod
