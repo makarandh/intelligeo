@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/admin_dashboard.iml" filepath="$PROJECT_DIR$/.idea/admin_dashboard.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../geo_dashboard/.idea/geo_dashboard.iml" filepath="$PROJECT_DIR$/../geo_dashboard/.idea/geo_dashboard.iml" />
     </modules>
   </component>
 </project>
