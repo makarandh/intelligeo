@@ -66,7 +66,7 @@ export default class CardContent extends React.Component {
                                 </a>
                             </div>
                             : <div className={CARD_CONTENT + " " + NO_PHOTO_CREDIT}>
-                                Please provide photo credit and link to original image.
+                                Please provide photo credit and link.
                             </div>
                         }
                     </section>

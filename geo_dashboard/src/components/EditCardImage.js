@@ -57,7 +57,7 @@ export default class EditCardImage extends React.Component {
                         </label>
                     </div>
                     <div className={EDIT_CARD + " " + PHOTO_CREDIT}>
-                        <label><span>Image URL</span>
+                        <label><span>Link</span>
                             <input type="text"
                                    onChange={this.handleURLChange}
                                    value={this.props.url}/>
