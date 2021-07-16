@@ -44,7 +44,9 @@ class AuthAPI(Resource):
                     }
         """
         json_data = request.get_json()
+        logger.info("url: {}; from: {}; data: {}".format(request.url, request.remote_addr, json_data))
         if not json_data:
+            logger.error("No json data found")
             return {MESSAGE: INVALID_DATA}, 400
 
         try:
@@ -123,11 +125,12 @@ class TokenRefresh(Resource):
                     "access_token": <new access token:str>
                 }
         """
-        current_user = get_jwt_identity()
+        user = get_jwt_identity()
+        logger.info("url: {}; from: {}; by: {}".format(request.url, request.remote_addr, user))
         jti = get_jwt()["jti"]
         if BlacklistModel.find(jti):
-            logger.error("Refresh Token API called for user {}".format(current_user))
+            logger.error("Refresh Token API called for user {}".format(user))
             return {MESSAGE: AUTH_ERROR}, 401
-        logger.info("Refresh Token API called for user {}".format(current_user))
-        new_access_token = create_access_token(identity=current_user, fresh=False)
+        logger.info("Refresh Token API called for user {}".format(user))
+        new_access_token = create_access_token(identity=user, fresh=False)
         return {"access_token": new_access_token}, 200

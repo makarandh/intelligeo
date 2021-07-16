@@ -11,7 +11,8 @@ from utils.global_vars import (_ID, NAME, CLUES, PHOTOGRAPHER,
                                QUESTION_ANS, META, URL,
                                QUESTION, ANS, CONTINENT,
                                REGION, ID, ADDED_BY, LAST_MODIFIED_BY,
-                               CREATED_AT, LAST_MODIFIED_AT, IMAGE_INFO, IMAGE_UPLOADED)
+                               CREATED_AT, LAST_MODIFIED_AT, IMAGE_INFO, IMAGE_UPLOADED, PUBLISHED_AT, PUBLISHED_BY,
+                               UNPUBLISHED_AT, UNPUBLISHED_BY)
 
 logging.basicConfig(level=logging.DEBUG,
                     format='[%(asctime)s] [%(levelname)s] [%(filename)s] [%(lineno)s]: %(message)s')
@@ -88,7 +89,9 @@ class CountryModel:
 
     def __init__(self, name: str, clues: list, questions: list,
                  meta: dict, added_by: str, last_modified_by,
-                 id: int = None, created_at=None, last_modified_at=None, image_info=None):
+                 id: int = None, created_at=None, last_modified_at=None,
+                 image_info=None, unpublished_by=None, unpublished_at=None,
+                 published_by=None, published_at=None):
 
         if not meta:
             meta = Meta().to_dict()
@@ -114,6 +117,10 @@ class CountryModel:
         self.last_modified_at = last_modified_at
         self.image_info = image_info
         self.id = id
+        self.unpublished_by = unpublished_by
+        self.unpublished_at = unpublished_at
+        self.published_by = published_by
+        self.published_at = published_at
 
 
     def __repr__(self) -> str:
@@ -121,7 +128,7 @@ class CountryModel:
 
 
     def to_dict(self) -> dict:
-        return {
+        country_dict = {
             NAME: self.name,
             CLUES: self.clues,
             QUESTION_ANS: self.questions,
@@ -133,27 +140,37 @@ class CountryModel:
             ID: self.id,
             IMAGE_INFO: self.image_info
         }
+        if hasattr(self, PUBLISHED_AT):
+            country_dict[PUBLISHED_AT] = self.published_at
+        if hasattr(self, PUBLISHED_BY):
+            country_dict[PUBLISHED_BY] = self.published_by
+        if hasattr(self, UNPUBLISHED_AT):
+            country_dict[UNPUBLISHED_AT] = self.unpublished_at
+        if hasattr(self, UNPUBLISHED_BY):
+            country_dict[UNPUBLISHED_BY] = self.unpublished_by
+        return country_dict
 
 
     @classmethod
     def from_dict(cls, source_dict):
+        country = cls(name=source_dict[NAME],
+                      clues=source_dict[CLUES],
+                      questions=source_dict[QUESTION_ANS],
+                      meta=source_dict[META],
+                      added_by=source_dict[ADDED_BY],
+                      last_modified_by=source_dict[LAST_MODIFIED_BY],
+                      image_info=source_dict[IMAGE_INFO])
         if ID in source_dict:
-            return cls(name=source_dict[NAME],
-                       clues=source_dict[CLUES],
-                       questions=source_dict[QUESTION_ANS],
-                       meta=source_dict[META],
-                       added_by=source_dict[ADDED_BY],
-                       last_modified_by=source_dict[LAST_MODIFIED_BY],
-                       id=source_dict[ID],
-                       image_info=source_dict[IMAGE_INFO])
-
-        return cls(name=source_dict[NAME],
-                   clues=source_dict[CLUES],
-                   questions=source_dict[QUESTION_ANS],
-                   meta=source_dict[META],
-                   added_by=source_dict[ADDED_BY],
-                   last_modified_by=source_dict[LAST_MODIFIED_BY],
-                   image_info=source_dict[IMAGE_INFO])
+            country.id = source_dict[ID]
+        if PUBLISHED_AT in source_dict:
+            country.published_at = source_dict[PUBLISHED_AT]
+        if PUBLISHED_BY in source_dict:
+            country.published_by = source_dict[PUBLISHED_BY]
+        if UNPUBLISHED_AT in source_dict:
+            country.unpublished_at = source_dict[UNPUBLISHED_AT]
+        if UNPUBLISHED_BY in source_dict:
+            country.unpublished_by = source_dict[UNPUBLISHED_BY]
+        return country
 
 
     @classmethod
@@ -179,10 +196,10 @@ class CountryModel:
             self.last_modified_by = self.added_by
             self.last_modified_at = self.created_at
             result = collection.find_one({
-                NAME: re.compile(re.escape(self.name), re.IGNORECASE)
+                ID: re.compile(re.escape(str(self.id)), re.IGNORECASE)
             }, self.search_filter)
             if result:
-                logger.info("Country {} already exists in database: {}".format(self.name, result))
+                logger.error("Country {} already exists in database: {}".format(self.name, result))
                 return False
             else:
                 result = collection.insert_one(self.to_dict())
@@ -250,7 +267,7 @@ class CountryModel:
     def find_by_id(cls, id) -> dict:
         try:
             collection = cls.get_collection()
-            result = collection.find_one({"id": id}, cls.search_filter)
+            result = collection.find_one({ID: id}, cls.search_filter)
             if result:
                 logger.info("Country with id {} found {}".format(id, result))
                 return dict(result)

@@ -11,7 +11,7 @@ import "../css/CardsList.css"
 import CardContent from "./CardContent"
 import {PageHeading} from "./PageHeading"
 
-export default class Countries extends React.Component {
+export default class PublishedList extends React.Component {
 
     state = {
         page_num: 1,
@@ -80,4 +80,3 @@ export default class Countries extends React.Component {
         )
     }
 }
-

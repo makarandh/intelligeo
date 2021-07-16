@@ -32,6 +32,10 @@ class ImageAPI(Resource):
     @jwt_required()
     def post():
         user = get_jwt_identity()
+        file_data = request.files
+        form_data = request.form
+        logger.info("url: {}; from: {}; by: {}; data: {}, {}".format(request.url, request.remote_addr, user,
+                                                                     form_data, file_data))
         image_schema = ImageSchema(unknown=EXCLUDE)
         image_form_schema = ImageFormSchema(unknown=EXCLUDE)
         endpoint = request.path
@@ -42,16 +46,14 @@ class ImageAPI(Resource):
         else:
             UPLOAD_FOLDER = os.path.join(IMAGES_FOLDER, FLAGS_FOLDER)
 
-        print(request.files)
-        print(request.form)
-        error_file = image_schema.validate(request.files)
-        error_countryID = image_form_schema.validate(request.form)
+        error_file = image_schema.validate(file_data)
+        error_countryID = image_form_schema.validate(form_data)
         if error_file or error_countryID:
             logger.error("Error parsing request data: {} {}".format(error_file, error_countryID))
             return {MESSAGE: INVALID_DATA}, 400
 
-        data = image_schema.load(request.files)
-        id = image_form_schema.load(request.form)
+        data = image_schema.load(file_data)
+        id = image_form_schema.load(form_data)
         id = id[ID]
         image = data[IMAGE]
         logger.info("Filetype: {}".format(image.content_type))
@@ -80,6 +82,7 @@ class ImageAPI(Resource):
     @jwt_required()
     def get():
         user = get_jwt_identity()
+        logger.info("url: {}; from: {}; by: {};".format(request.url, request.remote_addr, user))
         endpoint = request.path
         if endpoint == EP_COUNTRY_IMAGE:
             folder = os.path.join(IMAGES_FOLDER, COUNTRIES_FOLDER)
@@ -116,6 +119,7 @@ class ImageAPI(Resource):
     @jwt_required()
     def delete():
         user = get_jwt_identity()
+        logger.info("url: {}; from: {}; by: {}; ".format(request.url, request.remote_addr, user))
         endpoint = request.path
         if endpoint == EP_COUNTRY_IMAGE:
             folder = os.path.join(IMAGES_FOLDER, COUNTRIES_FOLDER)

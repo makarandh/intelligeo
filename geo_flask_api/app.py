@@ -4,7 +4,7 @@ from flask import Flask, jsonify, request
 from flask_restful import Api
 from flask_jwt_extended import JWTManager
 from marshmallow import ValidationError
-# from flask_cors import CORS
+from flask_cors import CORS
 
 
 logging.basicConfig(level=logging.DEBUG,
@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
 app = Flask(__name__)
-# cors = CORS(app, resources={r"*": {"origins": "*"}})
+cors = CORS(app, resources={r"*": {"origins": "*"}})
 
 if __name__ == "__main__":
     logger.warning("Running directly without WSGI, loading development environment variables")
@@ -22,12 +22,12 @@ else:
     logger.info("Running with WSGI, loading production environment variables")
     load_dotenv("production.env", verbose=True)
 
-
 from utils.global_vars import (MESSAGE, AUTH_ERROR, EP_TOTAL_COUNTRIES, EP_COUNTRIES, EP_COUNTRY, EP_COUNTRY_IMAGE,
-                               EP_COUNTRY_FLAG, RESOURCE_NOT_FOUND)
+                               EP_COUNTRY_FLAG, RESOURCE_NOT_FOUND, EP_PUBLISH, EP_PUBLISHED)
 from api.auth_api import AuthAPI, TokenRefresh
 from api.country_api import CountriesAPI, CountryAPI
 from api.image_api import ImageAPI
+from api.publish_api import PublishAPI
 from database.blacklist_db import BlacklistModel
 
 # Why two app.config? Refer to: https://flask.palletsprojects.com/en/0.12.x/config/#development-production
@@ -45,7 +45,7 @@ def handle_marshmallow_validation(e):
 
 @app.errorhandler(404)
 def resource_not_found(e):
-    logger.error("404 error: {}, from client: {}".format(request, request.remote_addr))
+    logger.error("404 error: url: {}, from: {}, full request: {}".format(request.url, request.remote_addr, request))
     return {MESSAGE: RESOURCE_NOT_FOUND}, 404
 
 
@@ -84,6 +84,7 @@ api.add_resource(AuthAPI, "/login", "/logout")
 api.add_resource(TokenRefresh, "/refresh")
 api.add_resource(CountriesAPI, EP_COUNTRIES, EP_TOTAL_COUNTRIES)
 api.add_resource(CountryAPI, EP_COUNTRY)
+api.add_resource(PublishAPI, EP_PUBLISH, EP_PUBLISHED)
 api.add_resource(ImageAPI, EP_COUNTRY_IMAGE, EP_COUNTRY_FLAG)
 
 if __name__ == "__main__":

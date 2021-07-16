@@ -6,13 +6,14 @@ from flask_restful import Resource
 from flask import request
 from marshmallow import EXCLUDE
 from database.country_model import CountryModel, ImageInfo
-from schemas.country_schema import CountrySchema, CountryRequestSchema
+from schemas.country_schema import CountrySchema, CountryRequestSchema, CountriesSchema
 from utils.image_helper import get_fq_filename
-from utils.global_vars import (MESSAGE, INVALID_DATA, PAGE_NUM, PAGE_LEN, RESULT,
+from utils.global_vars import (MESSAGE, INVALID_DATA, PAGE_NUM, ITEMS_PER_PAGE, RESULT,
                                INTERNAL_SERVER_ERROR, EP_TOTAL_COUNTRIES, SUCCESS, RESOURCE_NOT_FOUND, ID,
                                IMAGES_FOLDER, COUNTRIES_FOLDER, ADDED_BY, LAST_MODIFIED_BY, IMAGE_INFO)
 
-logging.basicConfig(level=logging.DEBUG, format='[%(asctime)s] [%(levelname)s] [%(filename)s] [%(lineno)s]: %(message)s')
+logging.basicConfig(level=logging.DEBUG,
+                    format='[%(asctime)s] [%(levelname)s] [%(filename)s] [%(lineno)s]: %(message)s')
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
@@ -24,7 +25,7 @@ class CountryAPI(Resource):
     def post():
         user = get_jwt_identity()
         json_data = request.get_json()
-        logger.info(json_data)
+        logger.info("url: {}; from: {}; by: {}; data: {}".format(request.url, request.remote_addr, user, json_data))
         if not json_data:
             return {MESSAGE: INVALID_DATA}, 400
 
@@ -59,7 +60,7 @@ class CountryAPI(Resource):
         """
             Description: returns total number of listings available
         """
-
+        logger.info("url: {}; from: {};".format(request.url, request.remote_addr))
         try:
             schema = CountryRequestSchema(unknown=EXCLUDE)
             error = schema.validate(request.args)
@@ -83,6 +84,7 @@ class CountryAPI(Resource):
     def put():
         user = get_jwt_identity()
         json_data = request.get_json()
+        logger.info("url: {}; from: {}; by: {}; data: {}".format(request.url, request.remote_addr, user, json_data))
         if not json_data:
             return {MESSAGE: INVALID_DATA}, 400
 
@@ -121,6 +123,8 @@ class CountryAPI(Resource):
     @staticmethod
     @jwt_required()
     def delete():
+        user = get_jwt_identity()
+        logger.info("url: {}; from: {}; by: {}; ".format(request.url, request.remote_addr, user))
         try:
             schema = CountryRequestSchema(unknown=EXCLUDE)
             error = schema.validate(request.args)
@@ -155,33 +159,22 @@ class CountriesAPI(Resource):
     @staticmethod
     @jwt_required()
     def get():
+        user = get_jwt_identity()
         endpoint = request.path
-        logger.info("Endpoint: {}".format(endpoint))
+        args = request.args
+        logger.info("url: {}; from: {}; by: {}; args: {}".format(request.url, request.remote_addr, user, args))
         if endpoint == EP_TOTAL_COUNTRIES:
             total_countries = CountryModel.count_total()
             logger.info("Sending result total_countries: {}".format(total_countries))
             return {RESULT: total_countries}, 200
-        args = request.args
-        try:
-            if PAGE_NUM in args:
-                page_num = int(args[PAGE_NUM])
-            else:
-                logger.info("Missing data: {}, Client sent: {}".format(PAGE_NUM, args))
-                return {MESSAGE: INVALID_DATA}, 400
-            if PAGE_LEN in args:
-                items_per_page = int(args[PAGE_LEN])
-            else:
-                logger.info("Missing data: {}, Client sent: {}".format(PAGE_LEN, args))
-                return {MESSAGE: INVALID_DATA}, 400
-
-            logger.info("page_num: {}, items_per_page: {}".format(page_num, items_per_page))
-            if page_num < 1 or items_per_page < 1:
-                logger.info("Invalid data: page_num: {}, items_per_page: {}".format(page_num, items_per_page))
-                return {MESSAGE: INVALID_DATA}, 400
-        except Exception as e:
-            logger.error("Error parsing arguments: {}. Client sent: {}".format(e, args))
+        schema = CountriesSchema()
+        error = schema.validate(request.args)
+        if error:
+            logger.error("Error parsing arguments: {}".format(error))
             return {MESSAGE: INVALID_DATA}, 400
-
+        args = dict(schema.load(args))
+        page_num = args[PAGE_NUM]
+        items_per_page = args[ITEMS_PER_PAGE]
         try:
             result = CountryModel.find(page_num=page_num, items_per_page=items_per_page)
             if len(result) == 0:
