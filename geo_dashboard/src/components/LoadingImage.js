@@ -1,7 +1,7 @@
 import React from "react"
 import {LOADING, OUTER_CONTAINER, SVG_G} from "../helper/common"
 
-export const Loading = (props) => {
+export const LoadingImage = (props) => {
     return (
         <div className={LOADING + " " + OUTER_CONTAINER}
              >
@@ -34,4 +34,4 @@ export const Loading = (props) => {
     )
 }
 
-export default Loading
+export default LoadingImage

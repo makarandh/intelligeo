@@ -1,0 +1,24 @@
+#!/bin/bash
+
+
+DIR="/mnt/data2/s3-intellideep"
+BUCKET="s3://geo-backup-intellideep.digital"
+
+cd ${DIR}
+ret=${?}
+if [[ ${ret} -ne 0 ]]
+then
+    echo "Error: Could not change to ${DIR}. Exiting." >&2
+    exit 
+fi
+
+echo "Syncing...."
+/usr/local/bin/aws s3 sync ${BUCKET} .
+ret=${?}
+if [[ ${ret} -ne 0 ]]
+then
+    echo "Error: Could not sync ${BUCKET} to ${DIR}. Exiting." >&2
+    exit 
+fi
+echo "Bucket ${BUCKET} sycned to ${DIR} successfully."
+

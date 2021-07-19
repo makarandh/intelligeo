@@ -271,8 +271,15 @@ export default class EditCard extends React.Component {
         }
         let limageInfo = this.loadFromLocalStorage(IMAGE_INFO)
         if(limageInfo === null) {
+            if(imageInfo.photographer === null) {
+                imageInfo.photographer = ""
+            }
+            if(imageInfo.url === null) {
+                imageInfo.url = ""
+            }
             limageInfo = imageInfo
         }
+
         this.setState({
                           name: lname,
                           clues: lclues,
@@ -404,11 +411,10 @@ export default class EditCard extends React.Component {
             method = PUT
         }
         const response = await this.props.fetchOrDie(EP_COUNTRY, method, requestBody)
-        const responseJson = await response.json()
         if(response.status === 200 || response.status === 201) {
+            const responseJson = await response.json()
             return responseJson.result
         }
-        console.error(responseJson)
         return false
     }
 
@@ -573,7 +579,6 @@ export default class EditCard extends React.Component {
 
     showConfirmDeleteModal = (e) => {
         e.preventDefault()
-        console.log(e.target.name)
         if(e.target.name === DELETE_CARD + BUTTON) {
             this.setState({
                               deleteModalVisible: true,
@@ -600,9 +605,7 @@ export default class EditCard extends React.Component {
     }
 
     waitAndHideError = async(errorStateObject, sleepSeconds = 3) => {
-        console.log("will wait then hide error")
         await sleep(sleepSeconds)
-        console.log("timeout")
         this.setState(errorStateObject)
     }
 

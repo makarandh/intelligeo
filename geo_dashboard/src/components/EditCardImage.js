@@ -12,12 +12,18 @@ import ImageDisplay from "./ImageDisplay"
 export default class EditCardImage extends React.Component {
 
     handlePhotographerChange = (e) => {
-        const photographer = e.target.value
+        let photographer = e.target.value
+        if(photographer === null) {
+            photographer = ""
+        }
         this.props.setPhotographer(photographer)
     }
 
     handleURLChange = (e) => {
-        const url = e.target.value
+        let url = e.target.value
+        if(url === null) {
+            url = ""
+        }
         this.props.setImageURL(url)
     }
 

@@ -1,5 +1,5 @@
-export const MAIN_URL = "https://intellideep.digital:5000"
-// export const MAIN_URL = "https://localhost:5000"
+// export const MAIN_URL = "https://intellideep.digital:5000"
+export const MAIN_URL = "http://localhost:3000"
 export const intITEMS_PER_PAGE = 300
 
 export const USERNAME = "username"
@@ -29,6 +29,7 @@ export const CREATE_CARD_HEADING = "Add A New Country"
 export const UPDATE_CARD_HEADING = "Edit Country"
 
 export const TOP_BAR = "top_bar"
+export const TOP_BAR_CONTAINER = "top_bar_container"
 export const TOP_BAR_LEFT = "top_bar_left"
 export const TOP_BAR_RIGHT = "top_bar_right"
 export const NAV_LINKS = "nav_links"
@@ -45,6 +46,7 @@ export const DISABLED = "disabled"
 export const HOVER_TEXT = "hover_text"
 export const TOOLTIP = "tooltip"
 export const TOOLTIP_CONTAINER = "tooltip_container"
+
 
 export const PAGE_NUM = "page_num"
 export const ITEMS_PER_PAGE = "items_per_page"
@@ -96,6 +98,7 @@ export const MODAL_MESSAGE = "modal_message"
 export const MODAL_HEADING = "modal_heading"
 export const BACK_ARROW = "back_arrow"
 export const LOADING = "loading"
+export const LOADING_TEXT = "loading_text"
 export const SVG_PATH = "svg_path"
 export const SVG_G = "svg_g"
 export const QUESTION_ANS = "questionAns"

@@ -1,3 +1,26 @@
+.loading_text.outer_container {
+    width: 100%;
+    text-align: center;
+    margin-top: 8rem;
+    color: var(--text-blue);
+    font-size: 3rem;
+    background-color: var(--white-blue);
+}
+
+.loading_text.outer_container .loading_text {
+    margin-left: 1.5rem;
+}
+
+.loading_text.outer_container svg {
+}
+
+.top_bar_container {
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    top: 0;
+}
+
 .top_bar {
     display: flex;
     flex-direction: row;

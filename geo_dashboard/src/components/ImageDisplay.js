@@ -7,7 +7,7 @@ import {
     GET, LOADING
 } from "../helper/common"
 import "../css/CreateCardClues.css"
-import Loading from "./Loading"
+import LoadingImage from "./LoadingImage"
 
 export default class ImageDisplay extends React.Component {
     state = {
@@ -33,11 +33,7 @@ export default class ImageDisplay extends React.Component {
 
     componentDidMount() {
         if(this.props.image_uploaded) {
-            console.log("Fetching image....")
             this.fetchImage()
-        }
-        else {
-            console.log("Not gonna fetch image")
         }
     }
 
@@ -50,8 +46,8 @@ export default class ImageDisplay extends React.Component {
                       ? <img src={this.state.imageBlobURL} alt="country"/>
                       :
                       <div className={CARD_CONTENT + " " + SUBSECTION + " " + LOADING}>
-                          <Loading width={4}
-                                   height={4}/>
+                          <LoadingImage width={4}
+                                        height={4}/>
                       </div>
                      }
                  </section>

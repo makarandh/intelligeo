@@ -130,7 +130,6 @@ export default class App extends React.Component {
         try {
             const request = this.getRequest(method, this.state.accessToken, body, formdata)
             let response = await fetch(MAIN_URL + endpoint, request)
-            console.log(response)
             if(response.status === 401) {
                 if(secondTry) {
                     this.sessionReset()
