@@ -1,0 +1,44 @@
+.home.outer_container {
+    max-width: 40rem;
+    margin: 4rem auto 2rem auto;
+    padding: 0 1rem;
+}
+
+.home.inner_container {
+    margin-top: 2rem;
+}
+
+.home ol {
+    list-style: none;
+}
+
+.home.inner_container li a {
+    display: block;
+    margin-top: 0.7rem;
+    font-size: 2.4rem;
+    border: var(--medium-blue) 0.1rem solid;
+    padding: 1rem;
+    border-radius: 0.4rem;
+    transition: all ease-in-out 0.2s;
+}
+
+.home.inner_container li a:hover,
+.home.inner_container li:hover a,
+.home.inner_container li:hover a:hover {
+    transition: all ease-in-out 0.2s;
+    background-color: var(--light-blue);
+}
+
+.home.inner_container li a:hover .home.description,
+.home.inner_container li:hover a .home.description,
+.home.inner_container li:hover a:hover .home.description {
+    transition: all ease-in-out 0.2s;
+    color: var(--text-blue);
+}
+
+.home.description {
+    color: var(--main-blue-trans);
+    display: block;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}

@@ -1,12 +1,12 @@
 import React from "react"
 import {
-    GET, SINGLE_CARDS_PAGE, EP_COUNTRY, PATH_HOME, OUTER_CONTAINER, INNER_CONTAINER, DRAFT
+    GET, SINGLE_CARDS_PAGE, PATH_HOME, OUTER_CONTAINER, INNER_CONTAINER, PUBLISHED, EP_PUBLISHED
 } from "../helper/common"
 import CardContent from "./CardContent"
 import "../css/Country.css"
 import {PageHeading} from "./PageHeading"
 
-export default class Country extends React.Component {
+export default class PublishedCard extends React.Component {
 
     state = {
         country: {},
@@ -17,7 +17,7 @@ export default class Country extends React.Component {
         const path = window.location.pathname
         const index = path.lastIndexOf("/") + 1
         const countryID = parseInt(path.substring(index))
-        const response = await this.props.fetchOrDie(`${EP_COUNTRY}?id=${countryID}`, GET)
+        const response = await this.props.fetchOrDie(`${EP_PUBLISHED}/${countryID}`, GET)
         if(response.status === 404) {
             window.location.href = PATH_HOME
             return
@@ -40,11 +40,12 @@ export default class Country extends React.Component {
     render() {
         return (
             <section className={SINGLE_CARDS_PAGE + " " + OUTER_CONTAINER}>
-                <PageHeading mainHeading={`${DRAFT}: ${this.state.country.name}`}/>
+                <PageHeading mainHeading={`${PUBLISHED}: ${this.state.country.name}`}/>
                 <div className={SINGLE_CARDS_PAGE + " " + INNER_CONTAINER}>
                     {
                         this.state.dataFetched
                         ? <CardContent country={this.state.country}
+                                       published={true}
                                        fetchOrDie={this.props.fetchOrDie}/>
                         : <div>Loading...</div>
                     }

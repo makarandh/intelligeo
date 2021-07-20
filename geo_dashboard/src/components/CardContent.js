@@ -4,13 +4,34 @@ import {
     CARD_CONTAINER,
     CARD_CONTENT,
     SUBSECTION,
-    SUBHEADING, HOVER_TEXT, BUTTON, PATH_UPDATE, PHOTO_CREDIT_CONTAINER, NO_PHOTO_CREDIT
+    SUBHEADING,
+    HOVER_TEXT,
+    BUTTON,
+    PATH_UPDATE,
+    PHOTO_CREDIT_CONTAINER,
+    NO_PHOTO_CREDIT,
+    BUTTON_CONTAINER,
+    EP_PUBLISH,
+    POST,
+    ERROR_MESSAGE,
+    ERROR_VISIBLE,
+    ERROR_HIDDEN,
+    PUBLISH_MESSAGE,
+    MOVED_TO_PUBLISHED,
+    MOVED_TO_DRAFTS,
+    TIMESTAMP_CONTAINER,
+    TIMESTAMP,
 } from "../helper/common"
 import "../css/CardContent.css"
 import ImageDisplay from "./ImageDisplay"
 
 
 export default class CardContent extends React.Component {
+
+    state = {
+        submitting: false,
+        showNotification: false
+    }
 
     renderClues = () => {
         return <React.Fragment>
@@ -42,12 +63,54 @@ export default class CardContent extends React.Component {
         window.location.href = `${PATH_UPDATE}/${this.props.country.id}`
     }
 
+    handlePubEvent = async(e) => {
+        e.preventDefault()
+        this.setState({
+                          submitting: true,
+                          showNotification: true
+                      })
+        let publish = true
+        let message = MOVED_TO_PUBLISHED
+        if(this.props.published) {
+            publish = false
+            message = MOVED_TO_DRAFTS
+        }
+        const body = {
+            "id": this.props.country.id,
+            "publish": publish
+        }
+        document.getElementById(PUBLISH_MESSAGE + this.props.country.id).innerText = message
+        this.setState({showNotification: true})
+        const response = await this.props.fetchOrDie(EP_PUBLISH, POST, body)
+        if(response && response.status === 200) {
+            window.location.reload()
+        }
+    }
+
+    getReadableDate = (isoDate) => {
+        const date = new Date(isoDate)
+        const dateTimeFormat = new Intl.DateTimeFormat("en", {
+            hour: "numeric",
+            minute: "numeric",
+            second: "numeric",
+            hour12: true,
+            year: "numeric",
+            month: "long",
+            day: "numeric"
+        })
+        return dateTimeFormat.format(date)
+    }
+
     render() {
         return (
             <article className={CARD_CONTAINER + " " + CARD_CONTENT}>
-                <button className={HOVER_TEXT + " " + BUTTON}
+                {
+                    (!this.props.published) &&
+                    <button
+                        className={HOVER_TEXT + " " + BUTTON}
                         onClick={this.handleEditCard}>Edit
-                </button>
+                    </button>
+                }
                 <h2 className={CARD_CONTENT + " " + HEADING}>{this.props.country.name}</h2>
                 {
                     this.props.country.image_info && this.props.country.image_info.image_uploaded &&
@@ -83,8 +146,36 @@ export default class CardContent extends React.Component {
                     <h3 className={CARD_CONTENT + " " + SUBHEADING}>Extra Info</h3>
                     <ul>{this.renderMeta()}</ul>
                 </section>
+                <section className={CARD_CONTENT + " " + SUBSECTION + " " + BUTTON_CONTAINER}>
+                    <div id={PUBLISH_MESSAGE + this.props.country.id}
+                         className={PUBLISH_MESSAGE + " " + ERROR_MESSAGE + " " +
+                                    ((this.state.showNotification || this.state.submitting)
+                                     ? ERROR_VISIBLE
+                                     : ERROR_HIDDEN)}/>
+                    <button className={CARD_CONTENT + " " + BUTTON}
+                            onClick={this.handlePubEvent}>
+                        {this.props.published
+                         ? <span>Move To Drafts</span>
+                         : <span>Publish Card</span>}
+                    </button>
+                </section>
+                <section className={CARD_CONTENT + " " + SUBSECTION + " " + TIMESTAMP_CONTAINER}>
+                    <div className={CARD_CONTENT + " " + TIMESTAMP}>Added
+                        by {this.props.country.added_by} on {this.getReadableDate(
+                            this.props.country.created_at)}</div>
+                    {
+                        this.props.published
+                        ? <div className={CARD_CONTENT + " " + TIMESTAMP}>Published
+                            by {this.props.country.published_by} on {this.getReadableDate(
+                                this.props.country.published_at)}
+                        </div>
+                        : <div className={CARD_CONTENT + " " + TIMESTAMP}>Last modified
+                            by {this.props.country.last_modified_by} on {this.getReadableDate(
+                                this.props.country.last_modified_at)}
+                        </div>
+                    }
+                </section>
             </article>
         )
     }
-
 }

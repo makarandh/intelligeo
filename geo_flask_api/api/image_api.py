@@ -6,6 +6,7 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 from flask_restful import Resource
 from marshmallow import EXCLUDE
 from database.country_model import CountryModel
+from database.publish_card_db import Publisher
 from schemas.country_schema import CountryRequestSchema
 from schemas.image_schema import ImageSchema, ImageFormSchema
 from utils.image_helper import (get_extension,
@@ -98,7 +99,7 @@ class ImageAPI(Resource):
         args = schema.load(request.args)
         id = args[ID]
 
-        if len(CountryModel.find_by_id(int(id))) == 0:
+        if len(CountryModel.find_by_id(int(id))) == 0 and len(Publisher.find_by_id((int(id)))) == 0:
             logger.error("Country not found {}".format(id))
             return {MESSAGE: RESOURCE_NOT_FOUND}, 404
 

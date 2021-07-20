@@ -2,7 +2,7 @@ import React from "react"
 import {
     AUTH_ERROR, CARD_CONTAINER,
     ERROR_HIDDEN, ERROR_HIGHLIGHT, ERROR_MESSAGE,
-    ERROR_VISIBLE, INPUT_CONTAINER,
+    ERROR_VISIBLE, GEO, INPUT_CONTAINER, INTELLI, INTELLIGEO_LOGO,
     LOGIN, LOGIN_PAGE,
     MAIN_URL,
     NETWORK_ERROR, OUTER_CONTAINER,
@@ -98,6 +98,7 @@ export class Login extends React.Component {
                 case 200:
                     this.props.setRT(result.json.refresh_token)
                     this.props.setAT(result.json.access_token)
+                    this.props.setUsername(this.state.username)
                     this.setState({errorMessage: null})
                     this.props.setLoginState(true)
                     break
@@ -121,7 +122,10 @@ export class Login extends React.Component {
     render() {
         return (
             <div className={OUTER_CONTAINER + " " + LOGIN_PAGE}>
-                <h1>Geo Game Admin Dashboard</h1>
+                <div className={INTELLIGEO_LOGO}>
+                    <span className={INTELLI}>Intelli</span><span className={GEO}>Geo</span>
+                    <span>Admin Dashboard</span>
+                </div>
                 <article className={LOGIN_PAGE + " " + CARD_CONTAINER}>
                     <form id={LOGIN_PAGE}>
                         <div className={LOGIN_PAGE + " " + SUBHEADING}>Log in</div>

@@ -5,13 +5,13 @@ import {
     intITEMS_PER_PAGE,
     EP_COUNTRIES,
     EP_COUNTRIES_TOTAL, CARDS_LIST_CONTAINER, CARDS_LIST_OUTER,
-    ITEMS_PER_PAGE, PAGE_NUM
+    ITEMS_PER_PAGE, PAGE_NUM, DRAFT_LIST_HEADING
 } from "../helper/common"
 import "../css/CardsList.css"
 import CardContent from "./CardContent"
 import {PageHeading} from "./PageHeading"
 
-export default class PublishedList extends React.Component {
+export default class Drafts extends React.Component {
 
     state = {
         page_num: 1,
@@ -71,8 +71,8 @@ export default class PublishedList extends React.Component {
     render() {
         return (
             <article className={CARDS_LIST_OUTER}>
-                <PageHeading mainHeading={"Countries"}
-                             subHeading={"You have " + this.state.totalCards + " cards."}/>
+                <PageHeading mainHeading={DRAFT_LIST_HEADING}
+                             subHeading={"Cards not yet published. (Total: " + this.state.totalCards + ")"}/>
                 <section className={CARDS_LIST_CONTAINER}>
                     {this.state.totalCards > 0 && this.createCardsListComponent()}
                 </section>
@@ -80,3 +80,4 @@ export default class PublishedList extends React.Component {
         )
     }
 }
+

@@ -1,17 +1,18 @@
 import React from "react"
 import "../css/EditCard.css"
 import {
+    sleep,
     BUTTON, BUTTON_CONTAINER, CARD_CONTAINER,
     CLUES, EDIT_CARD, EP_COUNTRY, ERROR_VISIBLE,
     ERROR_HIDDEN, ERROR_MESSAGE, HEADING, NAME,
     OUTER_CONTAINER, POST, SUBHEADING, SUBSECTION,
-    sleep,
     SUBMIT_MESSAGE, UPDATE, GET, PATH_HOME, PUT,
     DELETE, UPLOAD_IMAGE, EP_COUNTRY_IMAGE,
     PATH_COUNTRY, LONG_ERROR, DANGER, SUBMIT, UNDO,
-    DELETE_CARD, DELETE_IMAGE, CARD, IMAGE, COUNTRY_NAME, QUESTION_ANS, META, IMAGE_INFO
+    DELETE_CARD, DELETE_IMAGE, CARD, IMAGE,
+    COUNTRY_NAME, QUESTION_ANS, META, IMAGE_INFO
 } from "../helper/common"
-import BackArrow from "./BackArrow"
+import BackArrow from "./Icons/BackArrow"
 import EditCardClues from "./EditCardClues"
 import EditCardMeta from "./EditCardMeta"
 import EditCardQA from "./EditCardQA"
@@ -324,11 +325,13 @@ export default class EditCard extends React.Component {
         }
     }
 
+
     handleNameChange = (e) => {
         const name = e.target.value
         this.saveToLocalStorage(NAME, name)
         this.setState({name})
     }
+
 
     loadFromLocalStorage = (name) => {
         name = `${this.props.operation}.${name}`
@@ -339,15 +342,18 @@ export default class EditCard extends React.Component {
         return JSON.parse(value)
     }
 
+
     saveToLocalStorage = (name, item) => {
         name = `${this.props.operation}.${name}`
         localStorage.setItem(name, JSON.stringify(item))
     }
 
+
     clearLocalStorage = (name) => {
         name = `${this.props.operation}.${name}`
         localStorage.removeItem(name)
     }
+
 
     clearAllLocalStorage = () => {
         this.clearLocalStorage(NAME)
@@ -359,6 +365,7 @@ export default class EditCard extends React.Component {
         this.clearLocalStorage("latestClue")
         this.clearLocalStorage("latestAns")
     }
+
 
     clearState = async() => {
         await this.setState({
@@ -376,6 +383,7 @@ export default class EditCard extends React.Component {
                             })
     }
 
+
     submitImage = async(countryID) => {
         const imageElement = document.getElementById(UPLOAD_IMAGE)
         const image = imageElement.files[0]
@@ -392,6 +400,7 @@ export default class EditCard extends React.Component {
         }
         return false
     }
+
 
     submitTextFields = async() => {
         const imageInfo = {
@@ -417,6 +426,7 @@ export default class EditCard extends React.Component {
         }
         return false
     }
+
 
     handleSubmit = async(e) => {
         e.preventDefault()
@@ -470,6 +480,7 @@ export default class EditCard extends React.Component {
             window.location.href = `${PATH_COUNTRY}/${countryID}`
         }
     }
+
 
     handleUpdateDataLoading = async() => {
         const response = await this.props.fetchOrDie(`${EP_COUNTRY}?id=${this.props.countryID}`, GET)

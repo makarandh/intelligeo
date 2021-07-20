@@ -1,28 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;500;600&display=swap');
 @import "utility_classes.css";
 
 :root {
-    --main-blue: rgb(40, 95, 172);
-    --night-blue: rgb(5, 23, 47);
-    --medium-blue: rgb(65, 127, 209);
-    --light-blue: rgb(138, 204, 255);
-    --white-blue: rgb(248, 253, 255);
+    --main-blue: rgb(68, 39, 173);
+    --main-blue-trans: rgba(68, 39, 173, 0.8);
+    --night-blue: rgb(11, 5, 47);
+    --medium-blue: rgb(65, 72, 209);
+    --medium-blue-trans: rgba(65, 72, 209, 0.8);
+    --light-blue: rgb(182, 180, 255);
+    --white-blue: rgb(255, 255, 255);
+
+    --text-gray: rgb(150, 150, 150);
 
     --border-gray: rgba(105, 131, 141, 0.65);
     --transparent-cover: rgba(0, 0, 0, 0.5);
 
-    --sub-heading-blue: rgb(9, 75, 120);
-    --main-heading-blue: rgb(4, 72, 122);
-    --text-blue: rgb(1, 22, 82);
-    --button-blue: rgb(65, 127, 209);
-    --button-blue-hover: rgb(95, 153, 245);
+    --sub-heading-blue: rgb(53, 37, 110);
+    --main-heading-blue: rgb(39, 12, 132);
+    --text-blue: rgb(37, 15, 73);
+    --button-blue: rgb(89, 65, 209);
+    --button-blue-hover: rgb(97, 95, 245);
 
     --text-red: rgb(147, 5, 5);
     --main-red: rgb(182, 3, 37);
     --light-red: rgb(231, 41, 77);
     --tooltip-orange: rgba(255, 226, 35, 0.93);
+    --brand-orange: rgb(205, 87, 2);
+    --brand-orange-light: rgb(233, 120, 27);
+    --brand-orange-white: rgb(245, 181, 122);
 
-    --main-purple: rgb(59, 19, 151);
-    --light-purple: rgb(99, 49, 199);
+    --main-purple: rgb(29, 101, 190);
+    --light-purple: rgb(54, 138, 222);
 }
 
 * {
@@ -94,5 +102,29 @@ h1, h2, h3, h4 {
 .network_error_container .button {
     margin: 4rem auto 0 auto;
     border-radius: 2rem;
-    box-shadow: 0 0 1px 1px rgba(50, 50, 50, 0.1);
+    box-shadow: 0 0 1px 1px rgba(50, 50, 50, 0.14);
+}
+
+
+.intelligeo_logo {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+.intelligeo_logo .intelli {
+    color: #500389;
+    padding: 0 0.1rem 0.1rem 0.1rem;
+}
+
+.intelligeo_logo .geo {
+    background-color: #DE6A01;
+    color: white;
+    padding: 0 0.9rem 0.1rem 0.9rem;
+    border-radius: 3rem;
+}
+
+.app_content {
+    min-height: 89vh;
 }

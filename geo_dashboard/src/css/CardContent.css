@@ -4,6 +4,7 @@
     width: 30rem;
     min-height: 44rem;
 }
+
 .single_card_page .card_container.card_content {
     width: 40rem;
 }
@@ -68,6 +69,56 @@
     margin: 1rem auto;
 }
 
+.card_content.subsection.button_container {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    height: 6rem;
+    justify-content: center;
+}
+
+.card_content.button {
+    position: absolute;
+    bottom: 2.5rem;
+    color: white;
+    padding: 1rem 2rem;
+    background-color: var(--brand-orange);
+    border-radius: 2rem;
+    box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.14);
+}
+
+.card_content.button:hover {
+    color: white;
+    background-color: var(--brand-orange-light);
+}
+
+.card_content.button:active {
+    background: radial-gradient(circle, var(--brand-orange-white), var(--brand-orange-light));
+}
+
+.card_content.button span {
+    color: white;
+}
+
+.card_content.subsection.timestamp_container {
+    position: absolute;
+    bottom: 0.4rem;
+    right: 0.6rem;
+    font-size: 0.65rem;
+    text-align: right;
+}
+
+.card_content.timestamp {
+    color: var(--medium-blue-trans);
+    font-style: italic;
+}
+
+.publish_message {
+    position: absolute;
+    bottom: 6.7rem;
+    left: 10rem;
+}
+
 @media (max-width: 2245px) {
     .cards_list_container .card_container.card_content {
         width: 38rem;
@@ -81,12 +132,14 @@
 }
 
 @media (max-width: 1702px) {
+
     .cards_list_container .card_container.card_content {
         width: 40rem;
     }
 }
 
 @media (max-width: 1602px) {
+
     .cards_list_container .card_container.card_content {
         width: 30rem;
     }

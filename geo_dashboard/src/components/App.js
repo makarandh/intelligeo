@@ -1,15 +1,17 @@
 import React from "react"
 import "../css/App.css"
 import ErrorBoundary from "./ErrorBoundary"
+import Footer from "./Footer"
 import {Login} from "./Login"
 import {
+    APP_CONTENT,
     BUTTON,
     ERROR_MESSAGE,
     GET,
     LOGGED_IN_COOKIE,
     MAIN_URL,
     NETWORK_ERROR,
-    NETWORK_ERROR_CONTAINER, sleep
+    NETWORK_ERROR_CONTAINER, sleep, USERNAME
 } from "../helper/common"
 import {MainRouter} from "./MainRouter"
 
@@ -21,7 +23,8 @@ export default class App extends React.Component {
         accessToken: null,
         refreshToken: null,
         networkError: false,
-        loggedInCookieSet: false
+        loggedInCookieSet: false,
+        username: ""
     }
 
     getRT = () => {
@@ -57,19 +60,41 @@ export default class App extends React.Component {
 
     setLoginState = (loggedIn) => {
         this.setState({
-            loggedIn
-        })
+                          loggedIn
+                      })
         this.setLoginCookie(loggedIn)
+    }
+
+    setUsername = (username) => {
+        localStorage.setItem(USERNAME, username)
+        this.setState({username})
+    }
+
+    getUsername = async() => {
+        let username = this.state.username
+        if(!username) {
+            username = localStorage.getItem(USERNAME)
+        }
+        if(!username) {
+            let response = await this.fetchOrDie("/username", GET)
+            if(!response || response.status !== 200) {
+                return false
+            }
+            response = await response.json()
+            username = await response.result
+        }
+        return username
     }
 
     sessionReset = () => {
         this.setState({
-            refreshToken: null,
-            accessToken: null,
-            loggedIn: false
-        })
+                          refreshToken: null,
+                          accessToken: null,
+                          loggedIn: false
+                      })
         localStorage.removeItem("rt")
         localStorage.removeItem("at")
+        localStorage.removeItem(USERNAME)
         this.setLoginCookie(false)
     }
 
@@ -130,6 +155,7 @@ export default class App extends React.Component {
         try {
             const request = this.getRequest(method, this.state.accessToken, body, formdata)
             let response = await fetch(MAIN_URL + endpoint, request)
+            console.log(response)
             if(response.status === 401) {
                 if(secondTry) {
                     this.sessionReset()
@@ -173,25 +199,31 @@ export default class App extends React.Component {
     render() {
         return (
             <div className="app">
-                <ErrorBoundary>
-                    {
-                        (this.state.loggedIn && this.state.loggedInCookieSet) ?
-                        (
-                            this.state.networkError ?
-                            <article className={NETWORK_ERROR_CONTAINER}>
-                                <div className={ERROR_MESSAGE}>{NETWORK_ERROR}</div>
-                                <button className={BUTTON}
-                                        onClick={this.refreshPage}>Refresh Page
-                                </button>
-                            </article> :
-                            <MainRouter logout={this.sessionReset}
-                                        fetchOrDie={this.fetchOrDie}/>
-                        ) :
-                        <Login setRT={this.setRT}
-                               setAT={this.setAT}
-                               setLoginState={this.setLoginState}/>
-                    }
-                </ErrorBoundary>
+
+                <div className={APP_CONTENT}>
+                    <ErrorBoundary>
+                        {
+                            (this.state.loggedIn && this.state.loggedInCookieSet) ?
+                            (
+                                this.state.networkError ?
+                                <article className={NETWORK_ERROR_CONTAINER}>
+                                    <div className={ERROR_MESSAGE}>{NETWORK_ERROR}</div>
+                                    <button className={BUTTON}
+                                            onClick={this.refreshPage}>Refresh Page
+                                    </button>
+                                </article> :
+                                <MainRouter getUsername={this.getUsername}
+                                            logout={this.sessionReset}
+                                            fetchOrDie={this.fetchOrDie}/>
+                            ) :
+                            <Login setRT={this.setRT}
+                                   setAT={this.setAT}
+                                   setUsername={this.setUsername}
+                                   setLoginState={this.setLoginState}/>
+                        }
+                    </ErrorBoundary>
+                </div>
+                <Footer/>
             </div>
         )
     }

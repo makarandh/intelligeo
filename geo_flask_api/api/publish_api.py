@@ -5,11 +5,11 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 from flask_restful import Resource
 from marshmallow import EXCLUDE
 
-from database.country_model import CountryModel
 from database.publish_card_db import Publisher
 from schemas.country_schema import PublishSchema, CountriesSchema
 from utils.global_vars import (MESSAGE, INVALID_DATA, ID, PUBLISH, RESULT, SUCCESS, FAILED, RESOURCE_NOT_FOUND,
-                               EP_PUBLISH, PAGE_NUM, ITEMS_PER_PAGE, INTERNAL_SERVER_ERROR, EP_PUBLISHED)
+                               EP_PUBLISH, PAGE_NUM, ITEMS_PER_PAGE, INTERNAL_SERVER_ERROR, EP_PUBLISHED,
+                               EP_TOTAL_PUBLISHED, PUBLISHED)
 
 logging.basicConfig(level=logging.DEBUG,
                     format='[%(asctime)s] [%(levelname)s] [%(filename)s] [%(lineno)s]: %(message)s')
@@ -45,21 +45,12 @@ class PublishAPI(Resource):
 
         try:
             if publish:
-                country_dict = CountryModel.find_by_id(id)
+                result = Publisher.publish_card(id, user)
             else:
-                country_dict = Publisher.find_by_id(id)
+                result = Publisher.unpublish_card(id, user)
 
-            if not country_dict:
-                logger.error("Country: {} to be (un)published does not exist".format(id))
-                return {MESSAGE: RESOURCE_NOT_FOUND}, 404
-
-            country = CountryModel.from_dict(country_dict)
-            if publish:
-                result = Publisher.publish_card(country, user)
-            else:
-                result = Publisher.unpublish_card(country, user)
             if result:
-                logger.info("Country (un)published successful. {}".format(country_dict))
+                logger.info("Country (un)published successful. {}".format(id))
                 return {RESULT: SUCCESS}, 200
             return {RESULT: FAILED}, 400
         except Exception as e:
@@ -67,21 +58,43 @@ class PublishAPI(Resource):
             return {MESSAGE: FAILED}, 400
 
 
-    @staticmethod
     @jwt_required()
-    def get():
+    def get(self, id: int = None):
         user = get_jwt_identity()
         endpoint = request.path
-        args = request.args
-        logger.info("url: {}; from: {}; by: {}; args: {}".format(request.url, request.remote_addr, user, args))
-        if endpoint != EP_PUBLISHED:
+        self.args = request.args
+        logger.info("url: {}; from: {}; by: {}; args: {}".format(request.url, request.remote_addr, user, self.args))
+        endpoint_arr = endpoint.split("/")
+        if endpoint == EP_PUBLISHED:
+            return self.get_published_cards()
+        if endpoint == EP_TOTAL_PUBLISHED:
+            return self.get_total_published()
+        if endpoint_arr[1] == PUBLISHED and isinstance(id, int):
+            return self.get_published_card(id)
+
+        return {MESSAGE: RESOURCE_NOT_FOUND}, 404
+
+
+    def get_published_card(self, id):
+        result = Publisher.find_by_id(id)
+        if len(result) == 0:
             return {MESSAGE: RESOURCE_NOT_FOUND}, 404
+        return {RESULT: result}, 200
+
+
+    def get_total_published(self):
+        total_published = Publisher.count_total()
+        logger.info("Sending result total published countries: {}".format(total_published))
+        return {RESULT: total_published}, 200
+
+
+    def get_published_cards(self):
         schema = CountriesSchema()
-        error = schema.validate(request.args)
+        error = schema.validate(self.args)
         if error:
             logger.error("Error parsing arguments: {}".format(error))
             return {MESSAGE: INVALID_DATA}, 400
-        args = schema.load(args)
+        args = schema.load(self.args)
         page_num = args[PAGE_NUM]
         items_per_page = args[ITEMS_PER_PAGE]
         try:

@@ -1,5 +1,5 @@
 import React from "react"
-import {LOADING_TEXT, OUTER_CONTAINER} from "../helper/common"
+import {LOADING_TEXT, OUTER_CONTAINER} from "../../helper/common"
 
 export const LoadingText = (props) => {
     return (

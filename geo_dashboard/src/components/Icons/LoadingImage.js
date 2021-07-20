@@ -1,5 +1,5 @@
 import React from "react"
-import {LOADING, OUTER_CONTAINER, SVG_G} from "../helper/common"
+import {LOADING, OUTER_CONTAINER, SVG_G} from "../../helper/common"
 
 export const LoadingImage = (props) => {
     return (

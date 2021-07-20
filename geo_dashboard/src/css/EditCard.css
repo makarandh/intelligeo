@@ -18,7 +18,7 @@
     border-top-right-radius: 0;
     left: -0.9rem;
     top: -0.02rem;
-    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.14);
 }
 
 .back_arrow svg {
@@ -137,7 +137,7 @@
     color: white;
     width: 50%;
     border-radius: 2rem;
-    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.14);
 }
 
 .edit_card li {
@@ -197,12 +197,12 @@
     bottom: 0;
     transition: 0.2s;
     border-radius: 2rem;
-    background-color: var(--main-purple);
+    background-color: var(--main-blue);
     box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
 }
 
 .toggle_slider:hover, .toggle_slider:active {
-    background-color: var(--light-purple);
+    background-color: var(--light-blue);
 }
 
 .toggle_slider span {
@@ -230,11 +230,11 @@
 }
 
 input:checked + .toggle_slider {
-    background-color: var(--button-blue);
+    background-color: var(--brand-orange);
 }
 
 input:checked + .toggle_slider:hover {
-    background-color: var(--button-blue-hover);
+    background-color: var(--brand-orange-light);
 }
 
 input:checked + .toggle_slider:before {

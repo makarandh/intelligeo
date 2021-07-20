@@ -7,7 +7,7 @@ import {
     GET, LOADING
 } from "../helper/common"
 import "../css/CreateCardClues.css"
-import LoadingImage from "./LoadingImage"
+import LoadingImage from "./Icons/LoadingImage"
 
 export default class ImageDisplay extends React.Component {
     state = {

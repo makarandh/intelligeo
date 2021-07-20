@@ -23,8 +23,9 @@ else:
     load_dotenv("production.env", verbose=True)
 
 from utils.global_vars import (MESSAGE, AUTH_ERROR, EP_TOTAL_COUNTRIES, EP_COUNTRIES, EP_COUNTRY, EP_COUNTRY_IMAGE,
-                               EP_COUNTRY_FLAG, RESOURCE_NOT_FOUND, EP_PUBLISH, EP_PUBLISHED)
-from api.auth_api import AuthAPI, TokenRefresh
+                               EP_COUNTRY_FLAG, RESOURCE_NOT_FOUND, EP_PUBLISH, EP_PUBLISHED, EP_LOGIN, EP_REFRESH,
+                               EP_LOGOUT, EP_USERNAME, EP_TOTAL_PUBLISHED, EP_PUBLISHED_ID)
+from api.auth_api import AuthAPI
 from api.country_api import CountriesAPI, CountryAPI
 from api.image_api import ImageAPI
 from api.publish_api import PublishAPI
@@ -80,11 +81,10 @@ def first_run_init():
     initialize_db()
 
 
-api.add_resource(AuthAPI, "/login", "/logout")
-api.add_resource(TokenRefresh, "/refresh")
+api.add_resource(AuthAPI, EP_LOGIN, EP_LOGOUT, EP_USERNAME, EP_REFRESH)
 api.add_resource(CountriesAPI, EP_COUNTRIES, EP_TOTAL_COUNTRIES)
 api.add_resource(CountryAPI, EP_COUNTRY)
-api.add_resource(PublishAPI, EP_PUBLISH, EP_PUBLISHED)
+api.add_resource(PublishAPI, EP_PUBLISH, EP_PUBLISHED, EP_TOTAL_PUBLISHED, EP_PUBLISHED_ID)
 api.add_resource(ImageAPI, EP_COUNTRY_IMAGE, EP_COUNTRY_FLAG)
 
 if __name__ == "__main__":

@@ -10,7 +10,7 @@ from schemas.country_schema import CountrySchema, CountryRequestSchema, Countrie
 from utils.image_helper import get_fq_filename
 from utils.global_vars import (MESSAGE, INVALID_DATA, PAGE_NUM, ITEMS_PER_PAGE, RESULT,
                                INTERNAL_SERVER_ERROR, EP_TOTAL_COUNTRIES, SUCCESS, RESOURCE_NOT_FOUND, ID,
-                               IMAGES_FOLDER, COUNTRIES_FOLDER, ADDED_BY, LAST_MODIFIED_BY, IMAGE_INFO)
+                               IMAGES_FOLDER, COUNTRIES_FOLDER, ADDED_BY, LAST_MODIFIED_BY, IMAGE_INFO, EP_COUNTRIES)
 
 logging.basicConfig(level=logging.DEBUG,
                     format='[%(asctime)s] [%(levelname)s] [%(filename)s] [%(lineno)s]: %(message)s')
@@ -156,23 +156,27 @@ class CountryAPI(Resource):
 
 class CountriesAPI(Resource):
 
-    @staticmethod
     @jwt_required()
-    def get():
+    def get(self):
         user = get_jwt_identity()
         endpoint = request.path
-        args = request.args
-        logger.info("url: {}; from: {}; by: {}; args: {}".format(request.url, request.remote_addr, user, args))
+        self.args = request.args
+        logger.info("url: {}; from: {}; by: {}; args: {}".format(request.url, request.remote_addr, user, self.args))
+
         if endpoint == EP_TOTAL_COUNTRIES:
-            total_countries = CountryModel.count_total()
-            logger.info("Sending result total_countries: {}".format(total_countries))
-            return {RESULT: total_countries}, 200
+            return self.get_total_countries()
+        if endpoint == EP_COUNTRIES:
+            return self.get_countries()
+        return {MESSAGE: RESOURCE_NOT_FOUND}, 404
+
+
+    def get_countries(self):
         schema = CountriesSchema()
-        error = schema.validate(request.args)
+        error = schema.validate(self.args)
         if error:
             logger.error("Error parsing arguments: {}".format(error))
             return {MESSAGE: INVALID_DATA}, 400
-        args = dict(schema.load(args))
+        args = dict(schema.load(self.args))
         page_num = args[PAGE_NUM]
         items_per_page = args[ITEMS_PER_PAGE]
         try:
@@ -183,3 +187,9 @@ class CountriesAPI(Resource):
         except Exception as e:
             logger.error(e)
             return {MESSAGE: INTERNAL_SERVER_ERROR}, 500
+
+
+    def get_total_countries(self):
+        total_countries = CountryModel.count_total()
+        logger.info("Sending result total_countries: {}".format(total_countries))
+        return {RESULT: total_countries}, 200

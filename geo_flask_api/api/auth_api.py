@@ -1,14 +1,22 @@
 from flask import request
 from flask_restful import Resource
-from flask_jwt_extended import (create_access_token, get_jwt_identity, create_refresh_token,
+from flask_jwt_extended import (create_access_token,
+                                get_jwt_identity,
+                                create_refresh_token,
                                 get_jwt, jwt_required)
 from marshmallow import EXCLUDE
 
 from database.blacklist_db import BlacklistModel
 from database.user_model import UserModel
 from schemas.user_schema import UserSchema
-from utils.global_vars import (INTERNAL_SERVER_ERROR, USERNAME, PASSWORD,
-                               ACCESS_TOKEN, REFRESH_TOKEN, MESSAGE, INVALID_DATA, AUTH_ERROR)
+from utils.global_vars import (INTERNAL_SERVER_ERROR,
+                               USERNAME,
+                               PASSWORD,
+                               ACCESS_TOKEN,
+                               REFRESH_TOKEN,
+                               MESSAGE,
+                               INVALID_DATA,
+                               AUTH_ERROR, RESOURCE_NOT_FOUND, EP_LOGIN, EP_LOGOUT, EP_REFRESH, RESULT, EP_USERNAME)
 import logging
 
 
@@ -45,6 +53,9 @@ class AuthAPI(Resource):
         """
         json_data = request.get_json()
         logger.info("url: {}; from: {}; data: {}".format(request.url, request.remote_addr, json_data))
+        if request.path != EP_LOGIN:
+            logger.error("No POST method for {}".format(request.path))
+            return {MESSAGE: RESOURCE_NOT_FOUND}, 404
         if not json_data:
             logger.error("No json data found")
             return {MESSAGE: INVALID_DATA}, 400
@@ -76,61 +87,35 @@ class AuthAPI(Resource):
         return {MESSAGE: "Invalid credentials"}, 401
 
 
-    @staticmethod
     @jwt_required(refresh=True)
-    def get():
-        """
-            Description: logs out user by adding refresh token to blacklist
-                Note: By default refresh token lives for 30 days but jwt token lives for
-                15 minutes only. Hence it's safe enough to revoke only the refresh_token
-            Authentication token required: True
-            Admin privilege required: False
-            Expected body: null
-            Expected Authorization Header: refresh_token
-            :returns:
-                {
-                    "message": "message of logout status"
-                }
-        """
-        jti = get_jwt()["jti"]
-        current_user = get_jwt_identity()
-        logger.info("Logout called for user {}".format(current_user))
+    def get(self):
+        self.username = get_jwt_identity()
+        logger.info("url: {}; from: {}; by: {}".format(request.url, request.remote_addr, self.username))
+        endpoint = request.path
+        self.jti = get_jwt()["jti"]
+
+        if endpoint == EP_LOGOUT:
+            return self.log_user_out()
+        if endpoint == EP_REFRESH:
+            return self.get_refresh_token()
+        if endpoint == EP_USERNAME:
+            return {RESULT: self.username}, 200
+        return {MESSAGE: RESOURCE_NOT_FOUND}, 404
+
+
+    def log_user_out(self):
         try:
-            BlacklistModel(jti).insert()
+            BlacklistModel(self.jti).insert()
         except Exception as e:
             logger.error("Error trying to insert jti to blacklist: {}".format(e))
             return {MESSAGE: INTERNAL_SERVER_ERROR}, 500
         return {MESSAGE: "Successfully logged out"}, 200
 
 
-class TokenRefresh(Resource):
-    """
-        API: TokenRefresh
-        Endpoint: /refresh
-        HTTP Methods: GET
-    """
-
-    @staticmethod
-    @jwt_required(refresh=True)
-    def get():
-        """
-            Description: generates new access_token from refresh_token
-            Authentication token required: True
-            Admin privilege required: False
-            Expected JSON body: null
-            Required header: "refresh_token"
-
-            :returns:
-                {
-                    "access_token": <new access token:str>
-                }
-        """
-        user = get_jwt_identity()
-        logger.info("url: {}; from: {}; by: {}".format(request.url, request.remote_addr, user))
-        jti = get_jwt()["jti"]
-        if BlacklistModel.find(jti):
-            logger.error("Refresh Token API called for user {}".format(user))
+    def get_refresh_token(self):
+        if BlacklistModel.find(self.jti):
+            logger.error("Refresh Token API called for user {}".format(self.username))
             return {MESSAGE: AUTH_ERROR}, 401
-        logger.info("Refresh Token API called for user {}".format(user))
-        new_access_token = create_access_token(identity=user, fresh=False)
+        logger.info("Refresh Token API called for user {}".format(self.username))
+        new_access_token = create_access_token(identity=self.username, fresh=False)
         return {"access_token": new_access_token}, 200

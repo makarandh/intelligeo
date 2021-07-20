@@ -1,5 +1,5 @@
 import React from "react"
-import {BACK_ARROW, BUTTON, OUTER_CONTAINER, SVG_PATH} from "../helper/common"
+import {BACK_ARROW, BUTTON, OUTER_CONTAINER, SVG_PATH} from "../../helper/common"
 
 export const BackArrow = (props) => {
     return (

@@ -1,11 +1,10 @@
 import datetime
 import logging
-import re
 
 from pymongo import WriteConcern
 from database.country_model import CountryModel
 from database.db_connect import get_db
-from utils.global_vars import ID
+from utils.global_vars import ID, PUBLISHED_AT, PUBLISHED_BY, UNPUBLISHED_AT, UNPUBLISHED_BY
 
 logging.basicConfig(level=logging.DEBUG,
                     format='[%(asctime)s] [%(levelname)s] [%(filename)s] [%(lineno)s]: %(message)s')
@@ -29,7 +28,7 @@ class Publisher:
     def find_by_id(cls, id) -> dict:
         try:
             collection = cls.get_collection()
-            result = collection.find_one({ID: id})
+            result = collection.find_one({ID: id}, CountryModel.search_filter)
             if result:
                 logger.info("Published country with id {} found {}".format(id, result))
                 return dict(result)
@@ -42,65 +41,65 @@ class Publisher:
 
 
     @classmethod
-    def publish_card(cls, card: CountryModel, user) -> bool:
+    def publish_card(cls, card_id: int, user) -> bool:
         try:
-            logger.info("Requested db operation: publish country: {}".format(card.__repr__()))
+            logger.info("Requested db operation: publish country: {}".format(card_id))
             collection = cls.get_collection()
             country_collection = CountryModel.get_collection()
-            card.published_at = (datetime.datetime.utcnow()
-                                 .replace(tzinfo=datetime.timezone.utc)
-                                 .isoformat())
-            card.published_by = user
-            result = collection.find_one({
-                ID: re.compile(re.escape(str(card.id)), re.IGNORECASE)
-            })
-            if result:
-                logger.error("Country {} already exists in published collection: {}".format(card.name, result))
+            country_dict = cls.find_by_id(card_id)
+            if country_dict:
+                logger.error("Country {} already exists in published collection: {}".format(card_id, country_dict))
                 return False
-            else:
-                logger.info("Adding to published collection: {}".format(card.__repr__()))
-                result = collection.insert_one(card.to_dict())
-                if not result:
-                    logger.error("Could not add card to publish collection {}".format(card.__repr__()))
-                    return False
-                logger.info("Card added to published collection:{} {}".format(result.inserted_id, card.__repr__()))
-                result = country_collection.delete_one({ID: card.id})
-                if not result:
-                    logger.error("Could not delete card from draft collection {}".format(card.__repr__()))
-                    return False
-                return True
+
+            country_dict = CountryModel.find_by_id(card_id)
+            country_dict[PUBLISHED_AT] = (datetime.datetime.utcnow()
+                                          .replace(tzinfo=datetime.timezone.utc)
+                                          .isoformat())
+            country_dict[PUBLISHED_BY] = user
+            logger.info("Adding to published collection: {}".format(country_dict))
+            result = collection.insert_one(country_dict)
+            if not result:
+                logger.error("Could not add card to publish collection {}".format(country_dict))
+                return False
+            logger.info("Card added to published collection:{} {}".format(result.inserted_id, country_dict))
+            result = country_collection.delete_one({ID: card_id})
+            if not result:
+                logger.error("Could not delete card from draft collection {}".format(country_dict))
+                return False
+            return True
         except Exception as e:
             logger.error("Error moving card to published collection: {}".format(e))
             raise Exception(e)
 
 
     @classmethod
-    def unpublish_card(cls, card: CountryModel, user) -> bool:
-        logger.info("Requested db operation: unpublish country: {}".format(card.__repr__()))
+    def unpublish_card(cls, card_id: int, user) -> bool:
+        logger.info("Requested db operation: unpublish country: {}".format(card_id))
         try:
             collection = cls.get_collection()
             country_collection = CountryModel.get_collection()
-            card.unpublished_at = (datetime.datetime.utcnow()
-                                   .replace(tzinfo=datetime.timezone.utc)
-                                   .isoformat())
-            card.unpublished_by = user
-            result = CountryModel.find_by_id(card.id)
-            if result:
+            country_dict = CountryModel.find_by_id(card_id)
+            if country_dict:
                 logger.error("Country {} already exists in drafts collection. Please delete it first: {}".format(
-                        card.name, result))
+                        card_id, country_dict))
                 return False
-            else:
-                logger.info("Moving to draft: {}".format(card.__repr__()))
-                result = country_collection.insert_one(card.to_dict())
-                if not result:
-                    logger.error("Could not move card from publish to draft: {}".format(card.__repr__()))
-                    return False
-                logger.info("Card moved from published to draft:{} {}".format(result.inserted_id, card.__repr__()))
-                result = collection.delete_one({ID: card.id})
-                if not result:
-                    logger.error("Could not delete card from published collection {}".format(card.__repr__()))
-                    return False
-                return True
+
+            country_dict = cls.find_by_id(card_id)
+            country_dict[UNPUBLISHED_AT] = (datetime.datetime.utcnow()
+                                            .replace(tzinfo=datetime.timezone.utc)
+                                            .isoformat())
+            country_dict[UNPUBLISHED_BY] = user
+            logger.info("Moving to draft: {}".format(country_dict))
+            result = country_collection.insert_one(country_dict)
+            if not result:
+                logger.error("Could not move card from publish to draft: {}".format(country_dict))
+                return False
+            logger.info("Card moved from published to draft:{} {}".format(result.inserted_id, country_dict))
+            result = collection.delete_one({ID: card_id})
+            if not result:
+                logger.error("Could not delete card from published collection {}".format(country_dict))
+                return False
+            return True
         except Exception as e:
             logger.error("Error moving card from published to drafts: {}".format(e))
             raise Exception(e)
@@ -118,4 +117,16 @@ class Publisher:
             return result
         except Exception as e:
             logger.error("Error retrieving published country: {}".format(e))
+            raise Exception(e)
+
+
+    @classmethod
+    def count_total(cls) -> int:
+        try:
+            collection = cls.get_collection()
+            result = collection.find().count()
+            logger.info("total no. of published countries in database: {}".format(result))
+            return result
+        except Exception as e:
+            logger.error("Exception occurred getting total published countries: {}".format(e))
             raise Exception(e)
