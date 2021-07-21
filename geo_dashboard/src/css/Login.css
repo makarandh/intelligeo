@@ -43,6 +43,10 @@
     color: white;
 }
 
+.login_page .intelligeo_logo .geo {
+    margin-right: 0.5rem;
+}
+
 @media (max-width: 770px) {
     .login_page.outer_container {
         margin: 2rem auto 0 auto;

@@ -10,7 +10,7 @@ services:
       GEO_PASS: ${GEO_PASS}
     volumes:
       - ./db/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
-      - ./files_and_data/database_files:/data/db
+      - /site_data/files_and_data/database_files:/data/db
     networks:
       - default
     stdin_open: true
@@ -22,8 +22,8 @@ services:
       dockerfile: Dockerfile
       context: ./geo_flask_api
     volumes:
-      - ./logs/flask-logs:/home/flaskuser/flaskapp/log
-      - ./files_and_data/static:/home/flaskuser/flaskapp/static
+      - /site_data/logs/flask-logs:/home/flaskuser/flaskapp/log
+      - /site_data/files_and_data/static:/home/flaskuser/flaskapp/static
     networks:
       - default
     stdin_open: true
@@ -38,7 +38,7 @@ services:
       context: ./geo_nginx
       dockerfile: Dockerfile
     volumes:
-      - ./logs/nginx-logs:/var/log/nginx
+      - /site_data/logs/nginx-logs:/var/log/nginx
       - ./geo_nginx/build:/docker_nginx/html
       - ./geo_nginx/ssl/dhparam:/etc/nginx/ssl/dhparam
       - /etc/letsencrypt:/etc/letsencrypt

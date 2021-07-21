@@ -2,6 +2,11 @@
 
 NGINX_FOLDER="geo_nginx"
 
+if [[ ${2} == "-f" ]]
+then
+    rm -rf ${NGINX_FOLDER}/build 
+fi
+
 if ! [[ -d ${NGINX_FOLDER}/build ]]
 then
     echo "Frontend site not found. Building.... "
@@ -27,5 +32,5 @@ then
 fi
 
 echo "Starting production server..."
-docker-compose --env-file docker.production.env up --build ${@}
+docker-compose --env-file docker.production.env up --build ${1}
 

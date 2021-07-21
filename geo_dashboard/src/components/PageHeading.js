@@ -8,7 +8,7 @@ export const PageHeading = (props) => {
             {props.mainHeading
              ? <h1 className={HEADING}>{props.mainHeading}</h1>
              : <div className={INTELLIGEO_LOGO}>
-                 <span className={INTELLI}>Intelli</span><span className={GEO}>Geo</span> <span>Admin Dashboard</span>
+                 <span className={INTELLI}>Intelli</span><span className={GEO}>Geo</span> <span> Admin Dashboard</span>
              </div>
             }
             {props.subHeading && <h4 className={PAGE_SUB_HEADING}>{props.subHeading}</h4>}

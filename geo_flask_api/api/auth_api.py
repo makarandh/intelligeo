@@ -52,7 +52,7 @@ class AuthAPI(Resource):
                     }
         """
         json_data = request.get_json()
-        logger.info("url: {}; from: {}; data: {}".format(request.url, request.remote_addr, json_data))
+        logger.info("url: {}; from: {}; ".format(request.url, request.remote_addr))
         if request.path != EP_LOGIN:
             logger.error("No POST method for {}".format(request.path))
             return {MESSAGE: RESOURCE_NOT_FOUND}, 404

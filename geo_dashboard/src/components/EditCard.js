@@ -527,7 +527,6 @@ export default class EditCard extends React.Component {
                               showNotification: true
                           })
             document.getElementById(SUBMIT_MESSAGE).innerText = `Country deleted successfully.`
-            await sleep(1)
             window.location.href = PATH_HOME
         }
         else {
