@@ -21,7 +21,7 @@ import {
     EP_PUBLISHED,
     SHOW_MENU,
     HIDE_MENU_TRANSLATE,
-    SHOW_MENU_TRANSLATE, ROTATE_LEFT, ROTATE_RIGHT
+    SHOW_MENU_TRANSLATE, ROTATE_LEFT, ROTATE_RIGHT, PAGE_CONTENT, BLURIFY
 } from "../helper/common"
 import LoadingText from "./Icons/LoadingText"
 import MenuArrow from "./Icons/MenuArrow"
@@ -46,15 +46,21 @@ export class MainRouter extends React.Component {
         this.setState((prevState) => ({menuVisible: !prevState.menuVisible}))
     }
 
+    hideMenu = () => {
+        this.setState({menuVisible: false})
+    }
+
     render() {
         return (
             <Router>
                 <section>
-                    <div className={TOP_BAR_CONTAINER}>
+                    <div className={TOP_BAR_CONTAINER + " " + (this.state.menuVisible
+                                                               ? "z_index_2"
+                                                               : "z_index_0")}>
                         <header className={TOP_BAR + " " + (this.state.menuVisible
                                                             ? SHOW_MENU_TRANSLATE
                                                             : HIDE_MENU_TRANSLATE)}>
-                            <nav>
+                            <nav  onClick={this.hideMenu}>
                                 <ul className={NAV_LINKS + " " + TOP_BAR_LEFT}>
                                     <li className={NAV_ITEM}>
                                         <NavLink className={NAV_LINK}
@@ -93,47 +99,51 @@ export class MainRouter extends React.Component {
                                        height={1}/>
                         </div>
                     </div>
-                    <Switch>
-                        <Route path={PATH_CREATE}>
-                            <Suspense fallback={<LoadingText width={16} height={2}/>}>
-                                <CreateCard fetchOrDie={this.props.fetchOrDie}/>
-                            </Suspense>
-                        </Route>
-                        <Route path={`${PATH_UPDATE}/:id`}>
-                            <Suspense fallback={<LoadingText width={16} height={2}/>}>
-                                <UpdateCard fetchOrDie={this.props.fetchOrDie}/>
-                            </Suspense>
-                        </Route>
-                        <Route path={`${PATH_COUNTRY}/:id`}>
-                            <Suspense fallback={<LoadingText width={16} height={2}/>}>
-                                <Country fetchOrDie={this.props.fetchOrDie}/>
-                            </Suspense>
-                        </Route>
-                        <Route path={`${EP_PUBLISHED}/:id`}>
-                            <Suspense fallback={<LoadingText width={16} height={2}/>}>
-                                <PublishedCard fetchOrDie={this.props.fetchOrDie}/>
-                            </Suspense>
-                        </Route>
-                        <Route path={PATH_DRAFTS}>
-                            <Suspense fallback={<LoadingText width={16} height={2}/>}>
-                                <Drafts fetchOrDie={this.props.fetchOrDie}/>
-                            </Suspense>
-                        </Route>
-                        <Route path={EP_PUBLISHED}>
-                            <Suspense fallback={<LoadingText width={16} height={2}/>}>
-                                <Published fetchOrDie={this.props.fetchOrDie}/>
-                            </Suspense>
-                        </Route>
-                        <Route path={PATH_HOME}>
-                            <Suspense fallback={<LoadingText width={16} height={2}/>}>
-                                <Home getUsername={this.props.getUsername}
-                                      fetchOrDie={this.props.fetchOrDie}/>
-                            </Suspense>
-                        </Route>
-                        <Route path={"/"}>
-                            <Redirect to={PATH_HOME}/>
-                        </Route>
-                    </Switch>
+                    <div className={this.state.menuVisible && "inactivate"} onClick={this.hideMenu}/>
+                    <section className={PAGE_CONTENT + " "
+                                        + (this.state.menuVisible && BLURIFY + " fixed_content")}>
+                        <Switch>
+                            <Route path={PATH_CREATE}>
+                                <Suspense fallback={<LoadingText width={16} height={2}/>}>
+                                    <CreateCard fetchOrDie={this.props.fetchOrDie}/>
+                                </Suspense>
+                            </Route>
+                            <Route path={`${PATH_UPDATE}/:id`}>
+                                <Suspense fallback={<LoadingText width={16} height={2}/>}>
+                                    <UpdateCard fetchOrDie={this.props.fetchOrDie}/>
+                                </Suspense>
+                            </Route>
+                            <Route path={`${PATH_COUNTRY}/:id`}>
+                                <Suspense fallback={<LoadingText width={16} height={2}/>}>
+                                    <Country fetchOrDie={this.props.fetchOrDie}/>
+                                </Suspense>
+                            </Route>
+                            <Route path={`${EP_PUBLISHED}/:id`}>
+                                <Suspense fallback={<LoadingText width={16} height={2}/>}>
+                                    <PublishedCard fetchOrDie={this.props.fetchOrDie}/>
+                                </Suspense>
+                            </Route>
+                            <Route path={PATH_DRAFTS}>
+                                <Suspense fallback={<LoadingText width={16} height={2}/>}>
+                                    <Drafts fetchOrDie={this.props.fetchOrDie}/>
+                                </Suspense>
+                            </Route>
+                            <Route path={EP_PUBLISHED}>
+                                <Suspense fallback={<LoadingText width={16} height={2}/>}>
+                                    <Published fetchOrDie={this.props.fetchOrDie}/>
+                                </Suspense>
+                            </Route>
+                            <Route path={PATH_HOME}>
+                                <Suspense fallback={<LoadingText width={16} height={2}/>}>
+                                    <Home getUsername={this.props.getUsername}
+                                          fetchOrDie={this.props.fetchOrDie}/>
+                                </Suspense>
+                            </Route>
+                            <Route path={"/"}>
+                                <Redirect to={PATH_HOME}/>
+                            </Route>
+                        </Switch>
+                    </section>
                 </section>
             </Router>
         )

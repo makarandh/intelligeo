@@ -27,6 +27,11 @@
     width: 100%;
 }
 
+.login_page .intelligeo_logo {
+    margin-top: 3rem;
+    margin-bottom: 6rem;
+}
+
 .button.login {
     margin-top: 2.5rem;
     margin-bottom: 0;
