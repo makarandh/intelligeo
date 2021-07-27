@@ -3,3 +3,7 @@
     justify-content: center;
     margin:1rem auto;
 }
+
+.single_card_page .loading_text .loading_text {
+    font-size: 2rem;
+}

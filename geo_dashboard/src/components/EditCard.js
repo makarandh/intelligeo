@@ -483,6 +483,9 @@ export default class EditCard extends React.Component {
 
 
     handleUpdateDataLoading = async() => {
+        if(!this.props.countryID) {
+            window.location.href = PATH_HOME
+        }
         const response = await this.props.fetchOrDie(`${EP_COUNTRY}?id=${this.props.countryID}`, GET)
 
         if(response.status === 404) {
@@ -641,6 +644,15 @@ export default class EditCard extends React.Component {
                       })
     }
 
+    handleKeypress = (e) => {
+        if(e) {
+            e.stopPropagation()
+        }
+        if(e.key === "Enter") {
+            e.preventDefault()
+        }
+    }
+
     render() {
         return (
             <article className={OUTER_CONTAINER + " " + EDIT_CARD}>
@@ -658,6 +670,9 @@ export default class EditCard extends React.Component {
                         <h3 className={EDIT_CARD + " " + SUBHEADING + " " + NAME}>Name</h3>
                         <input type="text"
                                placeholder={COUNTRY_NAME}
+                               onKeyDown={this.handleKeypress}
+                               onKeyPress={this.handleKeypress}
+                               onKeyUp={this.handleKeypress}
                                onChange={this.handleNameChange}
                                value={this.state.name}/>
                     </section>

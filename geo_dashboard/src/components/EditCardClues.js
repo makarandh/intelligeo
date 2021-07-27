@@ -25,6 +25,13 @@ export default class EditCardClues extends React.Component {
         this.props.deleteClue(index)
     }
 
+    handleEnterKeypress = (e) => {
+        e && e.stopPropagation()
+        if(e.key === "Enter") {
+            e.preventDefault()
+        }
+    }
+
     renderClues = () => {
         return <React.Fragment>
             {this.props.getClues().map((clue, index) => {
@@ -32,6 +39,9 @@ export default class EditCardClues extends React.Component {
                     <li key={`clue_${index}`}>
                         <div className={INPUT_FIELD_CONTAINER + " " + CLUES}>
                             <input name={index}
+                                   onKeyPress={this.handleEnterKeypress}
+                                   onKeyDown={this.handleEnterKeypress}
+                                   onKeyUp={this.handleEnterKeypress}
                                    type="text"
                                    value={clue}
                                    onChange={this.handleCluesListChange}/>
@@ -57,7 +67,10 @@ export default class EditCardClues extends React.Component {
     }
 
     handleAddClue = (e) => {
-        e && e.preventDefault()
+        if(e) {
+            e.stopPropagation()
+            e.preventDefault()
+        }
         if(this.props.getLatestClue().trim() === "") {
             return
         }
@@ -66,9 +79,12 @@ export default class EditCardClues extends React.Component {
         this.props.setLatestClue("")
     }
 
-    handleClueKeypress = (e) => {
-        e && e.stopPropagation()
+    handleKeypress = (e) => {
+        if(e) {
+            e.stopPropagation()
+        }
         if(e.key === "Enter") {
+            e.preventDefault()
             this.handleAddClue(null)
         }
     }
@@ -84,7 +100,9 @@ export default class EditCardClues extends React.Component {
                              className={INPUT_FIELD_CONTAINER + " " + CLUES}>
                             <input key={"clueLatestInput"}
                                    type="text"
-                                   onKeyDown={this.handleClueKeypress}
+                                   onKeyDown={this.handleKeypress}
+                                   onKeyPress={this.handleKeypress}
+                                   onKeyUp={this.handleKeypress}
                                    value={this.props.getLatestClue()}
                                    onChange={this.handleLatestClue}/>
                             <div key={"clueTooltipContainer"}

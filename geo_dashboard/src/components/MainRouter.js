@@ -38,11 +38,11 @@ const PublishedCard = React.lazy(() => import("./PublishedCard"))
 export class MainRouter extends React.Component {
 
     state = {
-        menuVisible: false
+        menuVisible: false,
+        windowWidth: 0
     }
 
     toggleMenu = (e) => {
-        console.log(`Menu visible: ${!this.state.menuVisible}`)
         this.setState((prevState) => ({menuVisible: !prevState.menuVisible}))
     }
 
@@ -50,17 +50,32 @@ export class MainRouter extends React.Component {
         this.setState({menuVisible: false})
     }
 
+    updateWidth = () => {
+        const windowWidth = window.innerWidth
+        this.setState({windowWidth})
+    }
+
+    componentDidMount() {
+        this.updateWidth()
+        window.addEventListener("resize", this.updateWidth)
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener("resize", this.updateWidth)
+    }
+
     render() {
         return (
             <Router>
                 <section>
-                    <div className={TOP_BAR_CONTAINER + " " + (this.state.menuVisible
-                                                               ? "z_index_2"
-                                                               : "z_index_0")}>
+                    <div className={TOP_BAR_CONTAINER + " "
+                                    + (this.state.windowWidth < 570
+                                       ? (this.state.menuVisible ? "z_index_2" : "z_index_0")
+                                       : "z_index_2")}>
                         <header className={TOP_BAR + " " + (this.state.menuVisible
                                                             ? SHOW_MENU_TRANSLATE
                                                             : HIDE_MENU_TRANSLATE)}>
-                            <nav  onClick={this.hideMenu}>
+                            <nav onClick={this.hideMenu}>
                                 <ul className={NAV_LINKS + " " + TOP_BAR_LEFT}>
                                     <li className={NAV_ITEM}>
                                         <NavLink className={NAV_LINK}
@@ -90,18 +105,18 @@ export class MainRouter extends React.Component {
                                 </button>
                             </div>
                         </header>
-                        <div className={SHOW_MENU + " "
-                                        + (this.state.menuVisible
-                                           ? ROTATE_LEFT
-                                           : ROTATE_RIGHT)}>
-                            <MenuArrow handleGoBack={this.toggleMenu}
-                                       width={1}
-                                       height={1}/>
-                        </div>
                     </div>
-                    <div className={this.state.menuVisible && "inactivate"} onClick={this.hideMenu}/>
+                    <div className={SHOW_MENU + " "
+                                    + (this.state.menuVisible
+                                       ? ROTATE_LEFT
+                                       : ROTATE_RIGHT)}>
+                        <MenuArrow handleGoBack={this.toggleMenu}
+                                   width={1}
+                                   height={1}/>
+                    </div>
+                    <div className={this.state.menuVisible ? "inactivate" : ""} onClick={this.hideMenu}/>
                     <section className={PAGE_CONTENT + " "
-                                        + (this.state.menuVisible && BLURIFY + " fixed_content")}>
+                                        + (this.state.menuVisible ? BLURIFY : " ")}>
                         <Switch>
                             <Route path={PATH_CREATE}>
                                 <Suspense fallback={<LoadingText width={16} height={2}/>}>

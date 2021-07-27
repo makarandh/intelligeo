@@ -6,7 +6,8 @@ export const LoadingText = (props) => {
         <div className={LOADING_TEXT + " " + OUTER_CONTAINER}>
             <div className={LOADING_TEXT}>Loading ...</div>
             <svg x="0" y="0"
-                 width={`${props.width*16}px`} height={`${props.height*16}px`}
+                 width={(props.width ? `${props.width*16}px` : "100px")}
+                 height={(props.height ? `${props.height*16}px` : "30px")}
                  viewBox="0 1 257 30"
                  preserveAspectRatio="xMidYMid meet">
                 <g transform="translate(-44,0)">

@@ -27,6 +27,15 @@ export default class EditCardMeta extends React.Component {
         e.preventDefault()
     }
 
+    handleKeypress = (e) => {
+        if(e) {
+            e.stopPropagation()
+        }
+        if(e.key === "Enter") {
+            e.preventDefault()
+        }
+    }
+
     render() {
         return (
             <section className={EDIT_CARD + " " + SUBSECTION + " " + META}>
@@ -36,6 +45,9 @@ export default class EditCardMeta extends React.Component {
                         <div className={EDIT_CARD + " " + SUB_SUBHEADING_CONTAINER}>
                             <label className={EDIT_CARD + " " + SUB_SUBHEADING}>Continent </label>
                             <input type="text"
+                                   onKeyDown={this.handleKeypress}
+                                   onKeyPress={this.handleKeypress}
+                                   onKeyUp={this.handleKeypress}
                                    onChange={this.handleContinentChange}
                                    value={this.props.getContinent()}/>
                         </div>
@@ -44,6 +56,9 @@ export default class EditCardMeta extends React.Component {
                         <div className={EDIT_CARD + " " + SUB_SUBHEADING_CONTAINER}>
                             <label className={EDIT_CARD + " " + SUB_SUBHEADING}>Region </label>
                             <input type="text"
+                                   onKeyDown={this.handleKeypress}
+                                   onKeyPress={this.handleKeypress}
+                                   onKeyUp={this.handleKeypress}
                                    onChange={this.handleRegionChange}
                                    value={this.props.getRegion()}/>
                         </div>

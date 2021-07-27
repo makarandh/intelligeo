@@ -4,6 +4,7 @@ import {
 } from "../helper/common"
 import CardContent from "./CardContent"
 import "../css/Country.css"
+import LoadingText from "./Icons/LoadingText"
 import {PageHeading} from "./PageHeading"
 
 export default class Country extends React.Component {
@@ -17,6 +18,9 @@ export default class Country extends React.Component {
         const path = window.location.pathname
         const index = path.lastIndexOf("/") + 1
         const countryID = parseInt(path.substring(index))
+        if(!countryID) {
+            window.location.href = PATH_HOME
+        }
         const response = await this.props.fetchOrDie(`${EP_COUNTRY}?id=${countryID}`, GET)
         if(response.status === 404) {
             window.location.href = PATH_HOME
@@ -46,7 +50,7 @@ export default class Country extends React.Component {
                         this.state.dataFetched
                         ? <CardContent country={this.state.country}
                                        fetchOrDie={this.props.fetchOrDie}/>
-                        : <div>Loading...</div>
+                        : <LoadingText width={9} height={2}/>
                     }
                 </div>
             </section>

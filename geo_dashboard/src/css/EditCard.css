@@ -365,9 +365,14 @@ input:checked + .toggle_slider:before {
 
     .edit_card [tooltip]:after {
         left: unset;
-        right: 0;
+        right: -5rem;
+        width: 3rem;
         top: 0;
         z-index: 1;
+    }
+
+    .edit_card [tooltip]:hover:after {
+        cursor: pointer;
     }
 
     .input_field_container {

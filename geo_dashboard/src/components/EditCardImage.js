@@ -27,6 +27,15 @@ export default class EditCardImage extends React.Component {
         this.props.setImageURL(url)
     }
 
+    handleKeypress = (e) => {
+        if(e) {
+            e.stopPropagation()
+        }
+        if(e.key === "Enter") {
+            e.preventDefault()
+        }
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -58,6 +67,9 @@ export default class EditCardImage extends React.Component {
                     <div className={EDIT_CARD + " " + PHOTO_CREDIT}>
                         <label><span>Photographer</span>
                             <input type="text"
+                                   onKeyDown={this.handleKeypress}
+                                   onKeyPress={this.handleKeypress}
+                                   onKeyUp={this.handleKeypress}
                                    onChange={this.handlePhotographerChange}
                                    value={this.props.photographer}/>
                         </label>
@@ -65,6 +77,9 @@ export default class EditCardImage extends React.Component {
                     <div className={EDIT_CARD + " " + PHOTO_CREDIT}>
                         <label><span>Link</span>
                             <input type="text"
+                                   onKeyDown={this.handleKeypress}
+                                   onKeyPress={this.handleKeypress}
+                                   onKeyUp={this.handleKeypress}
                                    onChange={this.handleURLChange}
                                    value={this.props.url}/>
                         </label>

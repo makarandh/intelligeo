@@ -67,6 +67,13 @@ export default class EditCardQA extends React.Component {
         this.props.deleteQA(index)
     }
 
+    handleEnterKeypress = (e) => {
+        e && e.stopPropagation()
+        if(e.key === "Enter") {
+            e.preventDefault()
+        }
+    }
+
     renderQAns = () => {
         return <React.Fragment>
             {this.props.getQAs().map((qAns, index) => {
@@ -75,6 +82,9 @@ export default class EditCardQA extends React.Component {
                         <div className={INPUT_FIELD_CONTAINER + " " + QUESTION_ANSWERS}
                              onClick={this.handleAnswerListClick}>
                             <input name={index}
+                                   onKeyPress={this.handleEnterKeypress}
+                                   onKeyDown={this.handleEnterKeypress}
+                                   onKeyUp={this.handleEnterKeypress}
                                    type="text"
                                    onChange={this.handleQuestionListChange}
                                    value={qAns.question}/>
@@ -155,9 +165,10 @@ export default class EditCardQA extends React.Component {
         this.props.setLatestA(false)
     }
 
-    handleQuestionKeypress = (e) => {
+    handleKeypress = (e) => {
         e && e.stopPropagation()
         if(e.key === "Enter") {
+            e.preventDefault()
             this.handleAddQA(null)
         }
     }
@@ -178,7 +189,9 @@ export default class EditCardQA extends React.Component {
                              className={INPUT_FIELD_CONTAINER + " " + QUESTION_ANSWERS}>
                             <input type="text"
                                    onChange={this.handleLatestQ}
-                                   onKeyDown={this.handleQuestionKeypress}
+                                   onKeyPress={this.handleKeypress}
+                                   onKeyDown={this.handleKeypress}
+                                   onKeyUp={this.handleKeypress}
                                    value={this.props.getLatestQ()}/>
                             <div className={SLIDER_CONTAINER}>
                                 <input type="checkbox"
