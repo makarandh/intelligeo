@@ -40,6 +40,7 @@ services:
     volumes:
       - /site_data/logs/nginx-logs:/var/log/nginx
       - ./geo_nginx/build:/docker_nginx/html
+      - /site_data/files_and_data/static:/docker_nginx/static
       - ./geo_nginx/ssl/dhparam:/etc/nginx/ssl/dhparam
       - /etc/letsencrypt:/etc/letsencrypt
     ports:
