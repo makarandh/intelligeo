@@ -20,7 +20,7 @@ services:
     restart: always
     build:
       dockerfile: Dockerfile
-      context: ./geo_flask_api
+      context: ./flask_api_geo
     volumes:
       - /site_data/logs/flask-logs:/home/flaskuser/flaskapp/log
       - /site_data/files_and_data/static:/home/flaskuser/flaskapp/static
@@ -28,25 +28,23 @@ services:
       - default
     stdin_open: true
     tty: true
-
     depends_on:
       - mongo-server
 
   nginx-server:
     restart: always
     build:
-      context: ./geo_nginx
+      context: ./nginx_geo
       dockerfile: Dockerfile
     volumes:
       - /site_data/logs/nginx-logs:/var/log/nginx
-      - ./geo_nginx/build:/docker_nginx/html
+      - ./nginx_geo/sites:/docker_nginx/sites
       - /site_data/files_and_data/static:/docker_nginx/static
-      - ./geo_nginx/ssl/dhparam:/etc/nginx/ssl/dhparam
+      - ./nginx_geo/ssl/dhparam:/etc/nginx/ssl/dhparam
       - /etc/letsencrypt:/etc/letsencrypt
     ports:
       - 80:80
       - 443:443
-      - 0.0.0.0:5000:5000
     networks:
       - default
     stdin_open: true

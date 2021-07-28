@@ -1,16 +1,18 @@
 #!/bin/bash
 
-NGINX_FOLDER="geo_nginx"
+NGINX_FOLDER="nginx_geo/site"
+SITE_FOLDER="admin.geo.intellideep.digital"
+CODE_FOLDER="dashboard_geo"
 
 if [[ ${2} == "-f" ]]
 then
-    rm -rf ${NGINX_FOLDER}/build 
+    rm -rf ${NGINX_FOLDER}/${SITE_FOLDER}
 fi
 
-if ! [[ -d ${NGINX_FOLDER}/build ]]
+if ! [[ -d ${NGINX_FOLDER}/${SITE_FOLDER} ]]
 then
     echo "Frontend site not found. Building.... "
-    cd geo_dashboard
+    cd ${CODE_FOLDER}
 
     if ! [[ -d node_modules ]] 
     then
@@ -18,19 +20,17 @@ then
         ncu -u 
         npm install 
     fi
-
-    npm run build 
+    npm run build
     if [[ ${?} -ne 0 ]]
     then
         echo "Error building frontend"
         exit 1
     else
         echo "Frontend built. Moving site..."
-        mv build ../${NGINX_FOLDER}/
+        mv build ../${NGINX_FOLDER}/${SITE_FOLDER}
     fi
     cd ..
 fi
 
 echo "Starting production server..."
 docker-compose --env-file docker.production.env up --build ${1}
-

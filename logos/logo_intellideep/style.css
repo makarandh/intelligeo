@@ -1,0 +1,84 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;500;600&display=swap");
+
+:root {
+    --main-color1: #500389;
+    --main-color2: #DE6A01;
+    --font-size: 4rem;
+    --font-weight: 500;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.main-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.intellideep-logo {
+    margin-bottom: 5rem;
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+    font-size: var(--font-size);
+    font-weight: var(--font-weight);
+}
+
+.intellideep-logo .intelli {
+    color: var(--main-color1);
+    padding: 0.2rem 0.2rem 0.2rem 0.5rem;
+    border-bottom-left-radius: 0.2rem;
+    border-top-left-radius: 0.2rem;
+    border-right: none;
+}
+
+.intellideep-logo .deep {
+    background-color: var(--main-color2);
+    color: white;
+    border: 0.1rem solid var(--main-color2);
+    padding: 0.2rem 1rem 0.2rem 0.2rem;
+    border-bottom-right-radius: var(--font-size);
+    border-top-right-radius: var(--font-size);
+    border-top-left-radius: 0.2rem;
+    border-bottom-left-radius: 0.2rem;
+}
+
+.intellideep-icon {
+    position: relative;
+    margin-bottom: 5rem;
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+    font-size: var(--font-size);
+    font-weight: var(--font-weight);
+}
+
+.intellideep-icon .intelli {
+    position: absolute;
+    left: -1.7rem;
+    top: -2.5rem;
+    color: var(--main-color1);
+    font-size: 8rem;
+    font-weight: 400;
+}
+
+.intellideep-icon .deep {
+    background-color: var(--main-color2);
+    border: 0.2rem solid var(--main-color2);
+    color: white;
+    padding: 0.2rem 0.6rem 0.2rem 0.2rem;
+    border-bottom-right-radius: var(--font-size);
+    border-top-right-radius: var(--font-size);
+    border-top-left-radius: 0.2rem;
+    border-bottom-left-radius: 0.2rem;
+}

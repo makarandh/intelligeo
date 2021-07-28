@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 DIR="/mnt/data2/s3-intellideep"
 BUCKET="s3://geo-backup-intellideep.digital"
 
@@ -21,4 +20,3 @@ then
     exit 
 fi
 echo "Bucket ${BUCKET} sycned to ${DIR} successfully."
-

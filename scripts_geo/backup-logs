@@ -2,9 +2,12 @@
 
 echo "Initializing..."
 
-BACKUP_DIR="/home/ubuntu/projects/IntelliGeo/files_and_data" 
-BACKUP_LOGS_DIR="/home/ubuntu/projects/IntelliGeo/logs" 
-DIRNAME="/home/ubuntu/geo-backup"
+BACKUP_LOGS_DIR="/site_data/logs" 
+FLASK_ERR_LOG="${BACKUP_LOGS_DIR}/flask-logs/flaskapi.err.log"
+FLASK_OUT_LOG="${BACKUP_LOGS_DIR}/flask-logs/flaskapi.out.log"
+NGINX_ERR_LOG="${BACKUP_LOGS_DIR}/nginx-logs/error.log"
+NGINX_ACC_LOG="${BACKUP_LOGS_DIR}/nginx-logs/access.log"
+DIRNAME="/home/ubuntu/geo-logs"
 FILENAME="${DIRNAME}-$(date +%Y-%m-%d-%H-%M-%S).tar.gz"
 S3_BUCKET="s3://geo-backup-intellideep.digital"
 BUCKET_NAME="geo-backup-intellideep.digital"
@@ -15,11 +18,8 @@ then
 fi
 mkdir ${DIRNAME}
 
-echo -e "Copying ${BACKUP_DIR} to ${DIRNAME}..."
-sudo cp -r ${BACKUP_DIR} ${DIRNAME}
-
 echo -e "Copying ${BACKUP_LOGS_DIR} to ${DIRNAME}..."
-sudo cp -r ${BACKUP_LOGS_DIR} ${DIRNAME}
+sudo cp -r ${BACKUP_LOGS_DIR} ${DIRNAME}/
 
 echo "Changing ownership of files to back backed up..."
 sudo chown -R ubuntu:ubuntu ${DIRNAME}
@@ -29,13 +29,15 @@ tar czf ${FILENAME} ${DIRNAME}
 
 echo -e "Uploading to bucket: ${S3_BUCKET}..."
 /usr/local/bin/aws s3 mv ${FILENAME} ${S3_BUCKET}
-
 if [[ ${?} -eq 0 ]]
 then 
     echo -e "Upload completed successfully."
-    /usr/local/bin/aws s3api list-objects --bucket ${BUCKET_NAME} --query "Contents[].{Key: Key, Size: Size}"
-    rm -rf ${DIRNAME}
+    echo "Removing old logs..."
+    
+    sudo rm -rf ${DIRNAME}
     exit 0
 else 
     echo -e "There was problem uploading to S3 bucket." 
 fi
+
+
