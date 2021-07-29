@@ -15,3 +15,4 @@ static/images
 delete_me
 hello.py
 hello.js
+nginx_geo/sites/admin.geo.intellideep.digital

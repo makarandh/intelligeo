@@ -4,9 +4,10 @@ NGINX_FOLDER="nginx_geo/sites"
 SITE_FOLDER="admin.geo.intellideep.digital"
 CODE_FOLDER="dashboard_geo"
 
-if [[ ${2} == "-f" ]]
+if [[ ${1} == "-f" ]]
 then
     rm -rf ${NGINX_FOLDER}/${SITE_FOLDER}
+    shift
 fi
 
 if ! [[ -d ${NGINX_FOLDER}/${SITE_FOLDER} ]]
@@ -14,11 +15,11 @@ then
     echo "Frontend site not found. Building.... "
     cd ${CODE_FOLDER}
 
-    if ! [[ -d node_modules ]] 
+    if ! [[ -d node_modules ]]
     then
         echo "Node modules not installed. Installing..."
-        ncu -u 
-        npm install 
+        ncu -u
+        npm install
     fi
     npm run build
     if [[ ${?} -ne 0 ]]
@@ -33,4 +34,4 @@ then
 fi
 
 echo "Starting production server..."
-docker-compose --env-file docker.production.env up --build ${1}
+docker-compose --env-file docker.production.env up ${@}
