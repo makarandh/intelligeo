@@ -5,7 +5,7 @@ from database.blacklist_db import BlacklistModel
 from database.country_model import QuestionAns, Meta, CountryModel
 from database.db_connect import get_db
 from database.user_model import UserModel
-from utils.global_vars import TIMESTAMP, EXPIRE_SECONDS, FLASK_PASS1, FLASK_USER1, FLASK_PASS2, FLASK_USER2
+from utils.global_vars import TIMESTAMP, EXPIRE_SECONDS, FLASK_PASS1, FLASK_USER1, FLASK_PASS2, FLASK_USER2, ID
 from utils.default_config import TTL_SECONDS, DELETED_ENTRY_TTL
 
 logging.basicConfig(level=logging.DEBUG,
@@ -15,10 +15,30 @@ logger.setLevel(logging.DEBUG)
 
 
 def initialize_db():
+    clean_up()
     populate_countries()
     add_users()
     add_blacklist_table()
     add_deleted_table()
+
+
+def clean_up():
+    logger.info("Cleaning up db....")
+    db = get_db()
+
+    null_countries = list(db.country.find({ID: None}))
+    if len(null_countries) > 0:
+        logger.error("There are draft cards will null IDs {}".format(null_countries))
+        result = db.country.delete_many({ID: None})
+        count = result.deleted_count
+        logger.info("Deleted {} draft countries with null ID".format(count))
+
+    null_countries = list(db.published.find({ID: None}))
+    if len(null_countries) > 0:
+        logger.error("There are published cards will null IDs {}".format(null_countries))
+        result = db.published.delete_many({ID: None})
+        count = result.deleted_count
+        logger.info("Deleted {} published countries with null ID".format(count))
 
 
 def populate_countries():
@@ -26,7 +46,6 @@ def populate_countries():
     country = db.country.find_one()
 
     if country and len(dict(country)) > 0:
-        logger.info("Country already populated.")
         return
 
     user = "flask"

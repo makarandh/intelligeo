@@ -2,7 +2,7 @@ import React from "react"
 import {
     AUTH_ERROR, CARD_CONTAINER,
     ERROR_HIDDEN, ERROR_HIGHLIGHT, ERROR_MESSAGE,
-    ERROR_VISIBLE, GEO, INPUT_CONTAINER, INTELLI, INTELLIGEO_LOGO,
+    ERROR_VISIBLE, GEO, HEADING2, INPUT_CONTAINER, INTELLI, INTELLIGEO_LOGO,
     LOGIN, LOGIN_PAGE,
     MAIN_URL,
     NETWORK_ERROR, OUTER_CONTAINER,
@@ -124,7 +124,7 @@ export class Login extends React.Component {
             <div className={OUTER_CONTAINER + " " + LOGIN_PAGE}>
                 <div className={INTELLIGEO_LOGO}>
                     <span className={INTELLI}>Intelli</span><span className={GEO}>Geo</span>
-                    <span>Admin Dashboard</span>
+                    <div className={HEADING2}>Admin Dashboard</div>
                 </div>
                 <article className={LOGIN_PAGE + " " + CARD_CONTAINER}>
                     <form id={LOGIN_PAGE}>

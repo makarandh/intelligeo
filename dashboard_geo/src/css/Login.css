@@ -1,6 +1,6 @@
 .login_page.outer_container {
     text-align: center;
-    margin-top: 15vh;
+    margin-top: 8rem;
 }
 
 .login_page.outer_container h1 {
@@ -28,7 +28,7 @@
 }
 
 .login_page .intelligeo_logo {
-    margin-top: 3rem;
+    margin-top: 0;
     margin-bottom: 6rem;
 }
 
@@ -52,10 +52,13 @@
     margin-right: 0.6rem;
 }
 
+.login_page .intelligeo_logo .heading2 {
+    margin: 2rem auto;
+}
 
 @media (max-width: 770px) {
     .login_page.outer_container {
-        margin: 2rem auto 0 auto;
+        margin: 5rem auto 0 auto;
         max-width: 30rem;
         padding: 1rem;
     }
@@ -64,6 +67,7 @@
 @media (max-width: 470px) {
     .login_page.outer_container {
         padding: 1rem;
+        margin-top: 2rem;
     }
     .login_page.card_container {
         margin-top: 2rem;

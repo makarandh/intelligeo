@@ -52,6 +52,9 @@ class Publisher:
                 return False
 
             country_dict = CountryModel.find_by_id(card_id)
+            if not country_dict:
+                logger.error("Country to publish not found card_id: {}".format(card_id))
+                return False
             country_dict[PUBLISHED_AT] = (datetime.datetime.utcnow()
                                           .replace(tzinfo=datetime.timezone.utc)
                                           .isoformat())
@@ -85,6 +88,9 @@ class Publisher:
                 return False
 
             country_dict = cls.find_by_id(card_id)
+            if not country_dict:
+                logger.error("Country to publish not found card_id: {}".format(card_id))
+                return False
             country_dict[UNPUBLISHED_AT] = (datetime.datetime.utcnow()
                                             .replace(tzinfo=datetime.timezone.utc)
                                             .isoformat())
