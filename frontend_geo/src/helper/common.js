@@ -1,0 +1,8 @@
+export const CARD = "card"
+export const SUBSECTION = "subsection"
+export const CARD_HERO_IMAGE = "card_hero_image"
+export const CARD_TITLE = "card_title"
+export const CARD_CLUES = "card_clues"
+export const CARD_CHOICES = "card_choices"
+export const CARD_Q_ANS = "card_q_ans"
+export const HERO_IMAGE_CONTAINER = "hero_image_container"
