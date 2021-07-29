@@ -1,6 +1,6 @@
 #!/bin/bash
 
-NGINX_FOLDER="nginx_geo/site"
+NGINX_FOLDER="nginx_geo/sites"
 SITE_FOLDER="admin.geo.intellideep.digital"
 CODE_FOLDER="dashboard_geo"
 

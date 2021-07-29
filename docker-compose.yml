@@ -22,8 +22,8 @@ services:
       dockerfile: Dockerfile
       context: ./flask_api_geo
     volumes:
-      - /site_data/logs/flask-logs:/home/flaskuser/flaskapp/log
-      - /site_data/files_and_data/static:/home/flaskuser/flaskapp/static
+      - /site_data/logs/flask-logs:/flaskapp/log
+      - /site_data/files_and_data/static:flaskapp/static
     networks:
       - default
     stdin_open: true
