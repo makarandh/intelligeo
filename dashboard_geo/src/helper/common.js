@@ -136,7 +136,7 @@ export const PHOTO_CREDIT = "photo_credit"
 export const NO_PHOTO_CREDIT = "no_photo_credit"
 export const IMAGE_INFO = "imageInfo"
 
-export const PATH_COUNTRY = "/country"
+// Endpoints
 export const EP_COUNTRY = "/country"
 export const EP_COUNTRY_IMAGE = "/country/image"
 export const EP_COUNTRIES = "/countries"
@@ -144,6 +144,9 @@ export const EP_COUNTRIES_TOTAL = "/countries/total"
 export const EP_PUBLISHED = "/published"
 export const EP_PUBLISH = "/publish"
 export const EP_PUBLISHED_TOTAL = "/published/total"
+
+// Paths
+export const PATH_COUNTRY = "/country"
 export const PATH_HOME = "/home"
 export const PATH_DRAFTS = "/drafts"
 export const PATH_CREATE = "/create"

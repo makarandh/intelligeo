@@ -38,7 +38,8 @@ class RandomAPI(Resource):
             if exclude and exclude_country:
                 countries.remove(exclude_country)
             if count > len(countries):
-                logger.error("Requested more countries: {} than in db: {}".format(countries, len(countries)))
+                logger.error("Requested number of countries: {}; total countries in db: {}".format(count,
+                                                                                                   len(countries)))
                 count = len(countries)
 
             random_countries = random.sample(countries, count)
@@ -49,7 +50,7 @@ class RandomAPI(Resource):
                     NAME: country[NAME]
                 })
 
-            logger.info("Sending response of random countries: {}".format(random_countries))
+            logger.info("Sending response of random countries: {}".format(result))
             return {
                        COUNT: count,
                        RESULT: result

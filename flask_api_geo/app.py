@@ -1,4 +1,6 @@
 import logging
+import os
+
 from dotenv import load_dotenv
 from flask import Flask, jsonify, request
 from flask_restful import Api
@@ -13,7 +15,7 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
 app = Flask(__name__)
-# cors = CORS(app, resources={r"*": {"origins": "*"}})
+cors = CORS(app, resources={r"*": {"origins": "*"}})
 
 if __name__ == "__main__":
     logger.warning("Running directly without WSGI, loading development environment variables")
@@ -90,4 +92,8 @@ api.add_resource(ImageAPI, EP_COUNTRY_IMAGE, EP_COUNTRY_FLAG)
 api.add_resource(RandomAPI, EP_RANDOM_LIST)
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=3000)
+    if os.environ["DOCKER"] == "false":
+        app.run(host="127.0.0.1", port=3000)
+    else:
+        app.run(host="0.0.0.0", port=3000)
+

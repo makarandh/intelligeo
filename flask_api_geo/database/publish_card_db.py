@@ -4,7 +4,7 @@ import logging
 from pymongo import WriteConcern
 from database.country_model import CountryModel
 from database.db_connect import get_db
-from utils.global_vars import ID, PUBLISHED_AT, PUBLISHED_BY, UNPUBLISHED_AT, UNPUBLISHED_BY
+from utils.global_vars import ID, PUBLISHED_AT, PUBLISHED_BY, UNPUBLISHED_AT, UNPUBLISHED_BY, NAME
 
 logging.basicConfig(level=logging.DEBUG,
                     format='[%(asctime)s] [%(levelname)s] [%(filename)s] [%(lineno)s]: %(message)s')
@@ -30,7 +30,7 @@ class Publisher:
             collection = cls.get_collection()
             result = collection.find_one({ID: id}, CountryModel.search_filter)
             if result:
-                logger.info("Published country with id {} found {}".format(id, result))
+                logger.info("Published country with id {} found {}".format(id, result[NAME]))
                 return dict(result)
             else:
                 logger.info("Country with id {} is not published".format(id))
@@ -119,7 +119,7 @@ class Publisher:
                           .find({}, CountryModel.search_filter)
                           .skip((page_num - 1) * items_per_page)
                           .limit(items_per_page))
-            logger.info("find country in published collection result: {}".format(result))
+            logger.info("countries in published collection result: {}".format(len(result)))
             return result
         except Exception as e:
             logger.error("Error retrieving published country: {}".format(e))

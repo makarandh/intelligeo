@@ -5,7 +5,7 @@ export default class CardHero extends React.Component {
     render() {
         return (
             <div className={HERO_IMAGE_CONTAINER}>
-                <img src="" alt="hero image"/>
+                <img src="" alt="hero"/>
             </div>
         )
     }

@@ -302,7 +302,7 @@ class CountryModel:
                           .find({}, cls.search_filter)
                           .skip((page_num - 1) * items_per_page)
                           .limit(items_per_page))
-            logger.info("find country result: {}".format(result))
+            logger.info("find country result count: {}".format(len(result)))
             return result
         except Exception as e:
             logger.error("Error retrieving country: {}".format(e))
