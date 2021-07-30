@@ -24,11 +24,12 @@ else:
 
 from utils.global_vars import (MESSAGE, AUTH_ERROR, EP_TOTAL_COUNTRIES, EP_COUNTRIES, EP_COUNTRY, EP_COUNTRY_IMAGE,
                                EP_COUNTRY_FLAG, RESOURCE_NOT_FOUND, EP_PUBLISH, EP_PUBLISHED, EP_LOGIN, EP_REFRESH,
-                               EP_LOGOUT, EP_USERNAME, EP_TOTAL_PUBLISHED, EP_PUBLISHED_ID)
+                               EP_LOGOUT, EP_USERNAME, EP_TOTAL_PUBLISHED, EP_PUBLISHED_ID, EP_RANDOM_LIST)
 from api.auth_api import AuthAPI
 from api.country_api import CountriesAPI, CountryAPI
 from api.image_api import ImageAPI
 from api.publish_api import PublishAPI
+from api.random_api import RandomAPI
 from database.blacklist_db import BlacklistModel
 
 # Why two app.config? Refer to: https://flask.palletsprojects.com/en/0.12.x/config/#development-production
@@ -86,6 +87,7 @@ api.add_resource(CountriesAPI, EP_COUNTRIES, EP_TOTAL_COUNTRIES)
 api.add_resource(CountryAPI, EP_COUNTRY)
 api.add_resource(PublishAPI, EP_PUBLISH, EP_PUBLISHED, EP_TOTAL_PUBLISHED, EP_PUBLISHED_ID)
 api.add_resource(ImageAPI, EP_COUNTRY_IMAGE, EP_COUNTRY_FLAG)
+api.add_resource(RandomAPI, EP_RANDOM_LIST)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=3000)

@@ -112,7 +112,7 @@ class Publisher:
 
 
     @classmethod
-    def find(cls, page_num, items_per_page) -> list:
+    def find(cls, page_num=1, items_per_page=200) -> list:
         try:
             collection = cls.get_collection()
             result = list(collection
