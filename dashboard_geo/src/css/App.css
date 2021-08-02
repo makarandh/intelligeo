@@ -107,7 +107,7 @@ h1, h2, h3, h4 {
 .network_error_container .button {
     margin: 4rem auto 0 auto;
     border-radius: 2rem;
-    box-shadow: 0 0 1px 1px rgba(50, 50, 50, 0.14);
+    box-shadow: 0 0 2px 1px rgba(50, 50, 50, 0.15);
 }
 
 

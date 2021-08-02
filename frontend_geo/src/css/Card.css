@@ -1,0 +1,43 @@
+.card_container {
+    max-width: 70rem;
+    margin: 4rem auto 1rem auto;
+    box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.2);
+    background: white;
+    padding-top: 1rem;
+    border-radius: 1rem;
+}
+
+.card_hero_image.subsection {
+
+}
+
+.card_container .card_hero_image .hero_image_container {
+    text-align: center;
+    position: relative;
+    margin: 2rem;
+}
+
+.card_container .card_hero_image .hero_image_container .hero_world_map{
+    width: 90%;
+}
+
+.card_container .card_hero_image .hero_image_container .hero_person2 {
+    width: 18%;
+    position: absolute;
+    top: 31%;
+    right: 4%;
+}
+
+.card_container .card_hero_image .hero_image_container .hero_person1 {
+    width: 18%;
+    position: absolute;
+    top: 25%;
+    left: 40%;
+}
+
+.card_container .card_hero_image .hero_image_container .hero_person3 {
+    position: absolute;
+    width: 18%;
+    bottom: 30%;
+    left: 22%;
+}

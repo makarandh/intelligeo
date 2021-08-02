@@ -47,8 +47,11 @@ body {
   sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: var(--white-blue);
-  min-height: 85vh;
+  background-image: url("../static/images/background.svg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
 }
 
 code {
@@ -126,4 +129,8 @@ h1, h2, h3, h4 {
 
 .app_content {
   min-height: 89vh;
+}
+
+.main {
+  margin: 0 1rem;
 }

@@ -1,4 +1,4 @@
 #!/bin/bash
 export DOCKER="false"
+export DEBUG=1
 pipenv run python app.py
-

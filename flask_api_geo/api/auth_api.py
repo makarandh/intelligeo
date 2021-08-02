@@ -1,3 +1,4 @@
+import flask
 from flask import request
 from flask_restful import Resource
 from flask_jwt_extended import (create_access_token,
@@ -6,6 +7,7 @@ from flask_jwt_extended import (create_access_token,
                                 get_jwt, jwt_required)
 from marshmallow import EXCLUDE
 
+from api.api_util import test_referer_origin
 from database.blacklist_db import BlacklistModel
 from database.user_model import UserModel
 from schemas.user_schema import UserSchema
@@ -52,7 +54,12 @@ class AuthAPI(Resource):
                     }
         """
         json_data = request.get_json()
+        logger.info(request.environ)
         logger.info("url: {}; from: {}; ".format(request.url, request.remote_addr))
+        if not test_referer_origin(request.environ):
+            logger.error("Origin, referer test failed")
+            return {MESSAGE: AUTH_ERROR}, 401
+
         if request.path != EP_LOGIN:
             logger.error("No POST method for {}".format(request.path))
             return {MESSAGE: RESOURCE_NOT_FOUND}, 404

@@ -18,7 +18,7 @@
     border-top-right-radius: 0;
     left: -0.9rem;
     top: -0.02rem;
-    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.14);
+    box-shadow: 1px 1px 3px 2px rgba(0, 0, 0, 0.18);
 }
 
 .back_arrow svg {
@@ -137,7 +137,7 @@
     color: white;
     width: 50%;
     border-radius: 2rem;
-    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.14);
+    box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
 .edit_card li {
@@ -198,7 +198,7 @@
     transition: 0.2s;
     border-radius: 2rem;
     background-color: var(--main-blue);
-    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.16);
 }
 
 .toggle_slider:hover, .toggle_slider:active {
@@ -269,7 +269,7 @@ input:checked + .toggle_slider:before {
         border-bottom-left-radius: 0;
         left: 2rem;
         top: -0.02rem;
-        box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.1);
+        box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.17);
     }
 
     .edit_card .button.danger.delete_image {

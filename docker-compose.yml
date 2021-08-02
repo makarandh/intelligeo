@@ -17,6 +17,8 @@ services:
     tty: true
 
   flask-app:
+#    environment:
+#      - DEBUG=1
     restart: always
     build:
       dockerfile: Dockerfile

@@ -2,17 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="50d455e3-e778-4610-ba64-b3fb4f576f51" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Checklist.md" beforeDir="false" afterPath="$PROJECT_DIR$/../Checklist.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../dashboard_geo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../dashboard_geo/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dashboard_geo/src/css/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/../dashboard_geo/src/css/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dashboard_geo/src/css/CardContent.css" beforeDir="false" afterPath="$PROJECT_DIR$/../dashboard_geo/src/css/CardContent.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dashboard_geo/src/css/EditCard.css" beforeDir="false" afterPath="$PROJECT_DIR$/../dashboard_geo/src/css/EditCard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dashboard_geo/src/css/MainRouter.css" beforeDir="false" afterPath="$PROJECT_DIR$/../dashboard_geo/src/css/MainRouter.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dashboard_geo/src/css/Modal.css" beforeDir="false" afterPath="$PROJECT_DIR$/../dashboard_geo/src/css/Modal.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dashboard_geo/src/css/utility_classes.css" beforeDir="false" afterPath="$PROJECT_DIR$/../dashboard_geo/src/css/utility_classes.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../dashboard_geo/src/helper/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/../dashboard_geo/src/helper/common.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../docker-compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/random_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/random_api.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/auth_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/auth_api.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/country_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/database/country_model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/publish_card_db.py" beforeDir="false" afterPath="$PROJECT_DIR$/database/publish_card_db.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flask-start" beforeDir="false" afterPath="$PROJECT_DIR$/flask-start" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/global_vars.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/global_vars.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend_geo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend_geo/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend_geo/src/components/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/src/components/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend_geo/src/components/Card.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/src/components/Card.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend_geo/src/components/CardHero.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/src/components/CardHero.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend_geo/src/css/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/src/css/App.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend_geo/src/helper/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/src/helper/common.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -20,20 +29,30 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectId" id="1w25w2XGh7Azau6e0YLoTmRZtrT" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../monitoring_geo" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunManager">
@@ -43,6 +62,8 @@
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DOCKER" value="false" />
+        <env name="DEBUG" value="1" />
       </envs>
       <option name="SDK_HOME" value="$USER_HOME$/.local/share/virtualenvs/flask_api_geo-wvuxs0bt/bin/python" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -72,14 +93,18 @@
       <option name="presentableId" value="Default" />
       <updated>1627644079045</updated>
       <workItem from="1627644086059" duration="5764000" />
-      <workItem from="1627654532680" duration="715000" />
+      <workItem from="1627654532680" duration="1315000" />
+      <workItem from="1627723748230" duration="9432000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/flask_api_geo$flask_api_geo.coverage" NAME="flask_api_geo Coverage Results" MODIFIED="1627648130712" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/flask_api_geo$flask_api_geo.coverage" NAME="flask_api_geo Coverage Results" MODIFIED="1627736282114" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

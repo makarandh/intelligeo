@@ -154,7 +154,7 @@
         width: 4rem;
         visibility: visible;
         padding: 0.5rem 0.5rem 0.2rem 0.6rem;
-        box-shadow: 0 0 1px 1px rgba(50, 50, 50, 0.44);
+        box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.44);
     }
 
     .show_menu {

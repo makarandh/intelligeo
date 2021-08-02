@@ -3,18 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="d79f164b-1590-4277-9669-7d0c0dc65016" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/CardContent.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/CardContent.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/EditCard.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/EditCard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/MainRouter.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/MainRouter.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/Modal.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/Modal.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/utility_classes.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/utility_classes.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/helper/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/helper/common.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../flask_api_geo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_api_geo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../flask_api_geo/api/random_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_api_geo/api/random_api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../flask_api_geo/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_api_geo/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../flask_api_geo/database/country_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_api_geo/database/country_model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../flask_api_geo/database/publish_card_db.py" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_api_geo/database/publish_card_db.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../flask_api_geo/flask-start" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_api_geo/flask-start" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend_geo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend_geo/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend_geo/src/components/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/src/components/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend_geo/src/components/CardHero.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/src/components/CardHero.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend_geo/src/helper/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/src/helper/common.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +55,7 @@
       <workItem from="1627582065693" duration="747000" />
       <workItem from="1627653789064" duration="404000" />
       <workItem from="1627656029566" duration="324000" />
+      <workItem from="1627657018485" duration="999000" />
     </task>
     <servers />
   </component>

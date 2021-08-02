@@ -2,16 +2,12 @@
 production.env
 *.production.env
 db/mongo-db-store/
-files_and_data/static/images/countries
-files_and_data
 logs
 build
 ssl
 *.pem
 nginx_server/ssl/
 nginx_server/build/
-static
-static/images
 delete_me
 hello.py
 hello.js
