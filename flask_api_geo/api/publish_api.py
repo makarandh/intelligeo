@@ -59,27 +59,19 @@ class PublishAPI(Resource):
 
 
     @jwt_required()
-    def get(self, id: int = None):
+    def get(self):
         user = get_jwt_identity()
         endpoint = request.path
         self.args = request.args
         logger.info("url: {}; from: {}; by: {}; args: {}".format(request.url, request.remote_addr, user, self.args))
-        endpoint_arr = endpoint.split("/")
         if endpoint == EP_PUBLISHED:
             return self.get_published_cards()
         if endpoint == EP_TOTAL_PUBLISHED:
             return self.get_total_published()
-        if endpoint_arr[1] == PUBLISHED and isinstance(id, int):
-            return self.get_published_card(id)
 
         return {MESSAGE: RESOURCE_NOT_FOUND}, 404
 
 
-    def get_published_card(self, id):
-        result = Publisher.find_by_id(id)
-        if len(result) == 0:
-            return {MESSAGE: RESOURCE_NOT_FOUND}, 404
-        return {RESULT: result}, 200
 
 
     def get_total_published(self):
@@ -105,3 +97,23 @@ class PublishAPI(Resource):
         except Exception as e:
             logger.error(e)
             return {MESSAGE: INTERNAL_SERVER_ERROR}, 500
+
+
+class PublishedCountryAPI(Resource):
+
+    def get(self, id: int = None):
+        endpoint = request.path
+        self.args = request.args
+        logger.info("url: {}; from: {}; args: {}".format(request.url, request.remote_addr, self.args))
+        endpoint_arr = endpoint.split("/")
+        if endpoint_arr[1] == PUBLISHED and isinstance(id, int):
+            return self.get_published_card(id)
+        return {MESSAGE: RESOURCE_NOT_FOUND}, 404
+
+
+    def get_published_card(self, id):
+        result = Publisher.find_by_id(id)
+        if len(result) == 0:
+            return {MESSAGE: RESOURCE_NOT_FOUND}, 404
+        return {RESULT: result}, 200
+

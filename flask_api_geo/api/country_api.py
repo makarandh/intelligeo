@@ -56,10 +56,8 @@ class CountryAPI(Resource):
 
 
     @staticmethod
+    @jwt_required()
     def get():
-        """
-            Description: returns total number of listings available
-        """
         logger.info("url: {}; from: {};".format(request.url, request.remote_addr))
         try:
             schema = CountryRequestSchema(unknown=EXCLUDE)
@@ -170,6 +168,7 @@ class CountriesAPI(Resource):
         return {MESSAGE: RESOURCE_NOT_FOUND}, 404
 
 
+    @jwt_required()
     def get_countries(self):
         schema = CountriesSchema()
         error = schema.validate(self.args)
@@ -189,6 +188,7 @@ class CountriesAPI(Resource):
             return {MESSAGE: INTERNAL_SERVER_ERROR}, 500
 
 
+    @jwt_required()
     def get_total_countries(self):
         total_countries = CountryModel.count_total()
         logger.info("Sending result total_countries: {}".format(total_countries))

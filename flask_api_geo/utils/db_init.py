@@ -1,11 +1,13 @@
 import datetime
 import logging
+import os
 
 from database.blacklist_db import BlacklistModel
 from database.country_model import QuestionAns, Meta, CountryModel
 from database.db_connect import get_db
 from database.user_model import UserModel
-from utils.global_vars import TIMESTAMP, EXPIRE_SECONDS, FLASK_PASS1, FLASK_USER1, FLASK_PASS2, FLASK_USER2, ID
+from utils.global_vars import (TIMESTAMP, EXPIRE_SECONDS, FLASK_PASS1, FLASK_USER1, FLASK_PASS2, FLASK_USER2, ID,
+                               USERNAME)
 from utils.default_config import TTL_SECONDS, DELETED_ENTRY_TTL
 
 logging.basicConfig(level=logging.DEBUG,
@@ -101,15 +103,20 @@ def populate_countries():
 
 def add_users():
     db = get_db()
-    user = db.user.find_one()
 
+    user = db.user.find_one({USERNAME: FLASK_USER1})
     if user and len(dict(user)) > 0:
-        logger.info("Users already exist.")
-        return
+        logger.info("User {} already exist.".format(FLASK_USER1))
+    else:
+        logger.info("Adding users {}...".format(FLASK_USER1))
+        UserModel(username=FLASK_USER1, plaintext_password=FLASK_PASS1).insert()
 
-    logger.info("Adding users...")
-    UserModel(username=FLASK_USER1, plaintext_password=FLASK_PASS1).insert()
-    UserModel(username=FLASK_USER2, plaintext_password=FLASK_PASS2).insert()
+    user = db.user.find_one({USERNAME: FLASK_USER2})
+    if user and len(dict(user)) > 0:
+        logger.info("User {} already exist.".format(FLASK_USER2))
+    else:
+        logger.info("Adding users {}...".format(FLASK_USER2))
+        UserModel(username=FLASK_USER2, plaintext_password=FLASK_PASS2).insert()
 
 
 def add_blacklist_table():

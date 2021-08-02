@@ -168,9 +168,7 @@ export default class App extends React.Component {
         }
         catch(e) {
             console.error("Exception fetching access token " + e)
-            this.setState({networkError: true}, () => {
-                this.autoRefresh()
-            })
+            this.setState({networkError: true}, this.autoRefresh)
             return false
         }
     }

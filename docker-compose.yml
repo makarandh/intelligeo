@@ -15,10 +15,10 @@ services:
       - default
     stdin_open: true
     tty: true
+    ports:
+      - 127.0.0.1:27017:27017
 
   flask-app:
-#    environment:
-#      - DEBUG=1
     restart: always
     build:
       dockerfile: Dockerfile
@@ -47,7 +47,7 @@ services:
     ports:
       - 80:80
       - 443:443
-#      - 127.0.0.1:5000:5000
+      - 127.0.0.1:5000:5000
     networks:
       - default
     stdin_open: true

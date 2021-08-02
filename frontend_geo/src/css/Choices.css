@@ -1,0 +1,26 @@
+.choices.container {
+    margin: 5rem 2rem 0 2rem;
+}
+
+.choice_buttons_container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, auto));
+    row-gap: 2rem;
+    column-gap: 3rem;
+}
+
+.button.choices {
+    background-color: var(--button-color-alt);
+    color: var(--text-blue-dark);
+    border-radius: 2rem;
+    padding: 1.5rem;
+    box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.button.choices:hover {
+    background-color: var(--button-color-alt-light);
+}
+
+.button.choices:active {
+    background: radial-gradient(circle, var(--button-color-alt-white), var(--button-color-alt-light));
+}

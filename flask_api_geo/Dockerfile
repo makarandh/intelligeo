@@ -9,6 +9,6 @@ COPY ["./Pipfile", "/flaskapp/"]
 COPY [".", "/flaskapp"]
 COPY ["./flaskapp.conf", "/etc/supervisor/conf.d/"]
 
-RUN export PIPENV_VENV_IN_PROJECT=1; export LC_ALL=C.UTF-8; export LANG=C.UTF-8; pipenv install
+RUN export PIPENV_VENV_IN_PROJECT=1; export LC_ALL=C.UTF-8; export LANG=C.UTF-8;  pipenv install
 RUN chmod +x ./start_services.sh
 CMD ["/bin/bash", "-c", "./start_services.sh"]

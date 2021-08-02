@@ -8,5 +8,6 @@
    1. Change fetch URL
 4. docker-compose:
    1. Comment out port opening in nginx for - 127.0.0.1:5000:5000
-   2. Comment out flask-app environment variable DEBUG=1 
-5. Use -f option to start server (this will delete old frontend)
+5. env:
+   1. Comment out DEBUG=1 in flask production.evn
+6. Use -f option to start server (this will delete old frontend)

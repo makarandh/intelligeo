@@ -30,7 +30,7 @@ from utils.global_vars import (MESSAGE, AUTH_ERROR, EP_TOTAL_COUNTRIES, EP_COUNT
 from api.auth_api import AuthAPI
 from api.country_api import CountriesAPI, CountryAPI
 from api.image_api import ImageAPI
-from api.publish_api import PublishAPI
+from api.publish_api import PublishAPI, PublishedCountryAPI
 from api.random_api import RandomAPI
 from database.blacklist_db import BlacklistModel
 
@@ -87,7 +87,8 @@ def first_run_init():
 api.add_resource(AuthAPI, EP_LOGIN, EP_LOGOUT, EP_USERNAME, EP_REFRESH)
 api.add_resource(CountriesAPI, EP_COUNTRIES, EP_TOTAL_COUNTRIES)
 api.add_resource(CountryAPI, EP_COUNTRY)
-api.add_resource(PublishAPI, EP_PUBLISH, EP_PUBLISHED, EP_TOTAL_PUBLISHED, EP_PUBLISHED_ID)
+api.add_resource(PublishAPI, EP_PUBLISH, EP_PUBLISHED, EP_TOTAL_PUBLISHED)
+api.add_resource(PublishedCountryAPI, EP_PUBLISHED_ID)
 api.add_resource(ImageAPI, EP_COUNTRY_IMAGE, EP_COUNTRY_FLAG)
 api.add_resource(RandomAPI, EP_RANDOM_LIST)
 

@@ -1,136 +1,187 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;500;600&display=swap');
+@import "utility_classes.css";
 
 :root {
-  --main-blue: rgb(68, 39, 173);
-  --main-blue-trans: rgba(68, 39, 173, 0.8);
-  --night-blue: rgb(11, 5, 47);
-  --medium-blue: rgb(65, 72, 209);
-  --medium-blue-trans: rgba(65, 72, 209, 0.8);
-  --light-blue: rgb(182, 180, 255);
-  --white-blue: rgb(255, 255, 255);
+    --main-blue: rgb(68, 39, 173);
+    --main-blue-trans: rgba(68, 39, 173, 0.8);
+    --night-blue: rgb(11, 5, 47);
+    --medium-blue: rgb(65, 72, 209);
+    --medium-blue-trans: rgba(65, 72, 209, 0.8);
+    --light-blue: rgb(182, 180, 255);
+    --white-blue: rgb(255, 255, 255);
 
-  --text-gray: rgb(150, 150, 150);
+    --text-gray: rgb(150, 150, 150);
 
-  --border-gray: rgba(105, 131, 141, 0.65);
-  --transparent-cover: rgba(0, 0, 0, 0.5);
+    --border-gray: rgba(105, 131, 141, 0.65);
+    --transparent-cover: rgba(0, 0, 0, 0.5);
 
-  --sub-heading-blue: rgb(53, 37, 110);
-  --main-heading-blue: rgb(39, 12, 132);
-  --text-blue: rgb(37, 15, 73);
-  --button-blue: rgb(89, 65, 209);
-  --button-blue-hover: rgb(97, 95, 245);
+    --sub-heading-blue: rgb(53, 37, 110);
+    --main-heading-blue: rgba(72, 5, 140, 1);
+    --text-blue: rgb(66, 20, 100);
+    --text-blue-dark: rgb(26, 5, 42);
+    --text-header: #3b0276;
+    --button-blue: rgb(89, 65, 209);
+    --button-blue-hover: rgb(97, 95, 245);
 
-  --text-red: rgb(147, 5, 5);
-  --main-red: rgb(182, 3, 37);
-  --light-red: rgb(231, 41, 77);
-  --tooltip-orange: rgba(255, 226, 35, 0.93);
-  --brand-orange: rgb(205, 87, 2);
-  --brand-orange-light: rgb(233, 120, 27);
-  --brand-orange-white: rgb(245, 181, 122);
-
-  --main-purple: rgb(29, 101, 190);
-  --light-purple: rgb(54, 138, 222);
+    --text-red: rgb(147, 5, 5);
+    --main-red: rgb(182, 3, 37);
+    --light-red: rgb(231, 41, 77);
+    --tooltip-orange: rgba(255, 226, 35, 0.93);
+    --brand-orange: rgb(205, 87, 2);
+    --brand-orange-light: rgb(233, 120, 27);
+    --brand-orange-white: rgb(245, 181, 122);
+    --button-color-alt: rgba(250, 196, 35, 1);
+;
+    --button-color-alt-light: rgb(255, 217, 101);
+    --button-color-alt-white: rgb(255, 241, 200);
+    --main-purple: rgb(29, 101, 190);
+    --light-purple: rgb(54, 138, 222);
 }
 
 * {
-  font-family: Lucida Sans, Arial, Helvetica, sans-serif;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  border: none;
-  color: var(--text-blue);
+    font-family: Roboto, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: none;
+    color: var(--text-blue);
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-  "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-  sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-image: url("../static/images/background.svg");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center;
-  background-size: cover;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-image: url("../static/images/background.svg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-  monospace;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
 }
 
-ul {
-  list-style: none;
+ol, ul {
+    list-style: none;
 }
 
 a, a:link, a:hover, a:visited {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 input {
-  padding: 0.6rem;
-  background-color: var(--white-blue);
-  border: rgb(215, 224, 230) solid 2px;
-  border-radius: 0.3rem;
+    padding: 0.6rem;
+    background-color: var(--white-blue);
+    border: rgb(215, 224, 230) solid 2px;
+    border-radius: 0.3rem;
 }
 
 input:focus {
-  transition: all 0.25s ease-in-out;
-  border: rgb(45, 100, 180) solid 2px;
-  outline: none;
+    transition: all 0.25s ease-in-out;
+    border: rgb(45, 100, 180) solid 2px;
+    outline: none;
 }
 
 h1, h2, h3, h4 {
-  font-weight: unset;
-  color: var(--text-blue);
+    font-weight: unset;
+    color: var(--text-blue);
 }
 
 .network_error_container {
-  display: flex;
-  max-width: 40rem;
-  margin: 4rem auto;
-  flex-direction: column;
-  align-items: center;
+    display: flex;
+    max-width: 40rem;
+    margin: 4rem auto;
+    flex-direction: column;
+    align-items: center;
 }
 
 .network_error_container .error_message {
-  opacity: 1;
-  position: unset;
-  color: var(--text-blue);
-  font-size: 1.5rem;
-  line-height: 2rem;
+    opacity: 1;
+    position: unset;
+    color: var(--text-blue);
+    font-size: 1.5rem;
+    line-height: 2rem;
 }
 
 .network_error_container .button {
-  margin: 4rem auto 0 auto;
-  border-radius: 2rem;
-  box-shadow: 0 0 1px 1px rgba(50, 50, 50, 0.14);
+    margin: 4rem auto 0 auto;
+    border-radius: 2rem;
+    box-shadow: 0 0 1px 1px rgba(50, 50, 50, 0.14);
 }
 
-
 .intelligeo_logo {
-  text-align: center;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 2rem;
-  font-weight: 500;
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+    font-size: 2rem;
+    font-weight: 500;
 }
 
 .intelligeo_logo .intelli {
-  color: #500389;
-  padding: 0 0.1rem 0.1rem 0.1rem;
+    color: #500389;
+    padding: 0 0.1rem 0.1rem 0.1rem;
 }
 
 .intelligeo_logo .geo {
-  background-color: #DE6A01;
-  color: white;
-  padding: 0 0.9rem 0.1rem 0.9rem;
-  border-radius: 3rem;
+    background-color: #DE6A01;
+    color: white;
+    padding: 0 0.9rem 0.1rem 0.9rem;
+    border-radius: 3rem;
 }
 
 .app_content {
-  min-height: 89vh;
+    min-height: 89vh;
 }
 
 .main {
-  margin: 0 1rem;
+    margin: 0 1rem;
+}
+
+.network_error_container {
+    display: flex;
+    max-width: 40rem;
+    margin: 0 auto;
+    flex-direction: column;
+    align-items: center;
+    background: white;
+    padding: 3rem;
+    border-radius: 1rem;
+    box-shadow: 2px 2px 4px 2px rgba(50, 50, 50, 0.35);
+    transition: all ease-in-out 0.2s 0.5s;
+    transform: translateY(10rem);
+}
+
+.network_error_container .error_message {
+    opacity: 1;
+    position: unset;
+    color: var(--text-blue);
+    font-size: 1.5rem;
+    line-height: 2rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 1px 1px rgba(50, 50, 50, 0.15);
+}
+
+.network_error_container .button {
+    margin: 4rem auto 0 auto;
+    border-radius: 2rem;
+    box-shadow: 1px 1px 3px 2px rgba(50, 50, 50, 0.2);
+}
+
+.loading_screen_container {
+    margin: 10rem auto;
+    width: 35rem;
+    padding: 6rem 2rem;
+    text-align: center;
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 2px 2px 5px 2px rgba(50, 50, 50, 0.15);
+    font-size: 2rem;
+}
+
+.loading_screen_container span {
+    display: inline-block;
+    margin-bottom: 1rem;
 }
