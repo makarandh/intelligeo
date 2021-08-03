@@ -17,7 +17,7 @@
     position: relative;
 }
 
-.card_container .card_hero_image .hero_image_container .hero_world_map{
+.card_container .card_hero_image .hero_image_container .hero_world_map {
     width: 100%;
 }
 
@@ -55,9 +55,61 @@
 }
 
 .subsection {
-    margin-top: 2rem;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+.card_choices.subsection {
+    margin-top: 5rem;
+}
+
+.q_ans.subsection {
+    margin-top: 4rem;
 }
 
 .card_hero_image.subsection {
     margin-top: 1rem;
 }
+
+.view_hints_container.show_me {
+    text-align: center;
+}
+
+.view_hints_outer_container.subsection {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.correct_wrong_icon img {
+    display: block;
+    width: 4rem;
+    align-items: center;
+    text-align: center;
+    align-content: center;
+    align-self: center;
+}
+
+.correct_wrong_icon span {
+    display: block;
+    font-family: "Montserrat", sans-serif;
+    align-items: center;
+    text-align: center;
+    align-content: center;
+    align-self: center;
+    margin-left: 1rem;
+    font-size: 2.6rem;
+    font-weight: 600;
+}
+
+.correct_icon_container, .wrong_icon_container {
+    display: flex;
+}
+
+.correct_icon_container span {
+    color: var(--main-green);
+}
+
+.wrong_icon_container span {
+    color: var(--main-red2);
+}
+

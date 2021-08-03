@@ -9,7 +9,7 @@
       <change beforePath="$PROJECT_DIR$/src/css/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/App.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/css/Card.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/Card.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/css/Choices.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/Choices.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/css/Clues.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/Clues.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/QAns.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/QAns.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/css/utility_classes.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/utility_classes.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/helper/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/helper/common.js" afterDir="false" />
     </list>
@@ -84,7 +84,7 @@
       <workItem from="1627644581824" duration="35000" />
       <workItem from="1627650756789" duration="13685000" />
       <workItem from="1627890329739" duration="28880000" />
-      <workItem from="1627975325008" duration="20511000" />
+      <workItem from="1627975325008" duration="34665000" />
     </task>
     <servers />
   </component>

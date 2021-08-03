@@ -3,20 +3,20 @@
     margin: 3rem 3rem 0 3rem;
 }
 
-.view_hints_container {
-    text-align: center;
-}
-
 .q_ans.subheading {
     text-align: left;
     color: var(--text-alternate);
     font-weight: 500;
 }
 
-.view_clues.button {
+.view_hints.button {
     margin-top: 1rem;
     text-transform: uppercase;
     padding: 1.2rem 2rem;
+}
+
+.view_hints_container {
+    position: relative;
 }
 
 .qa_inner_container {
@@ -32,12 +32,24 @@
 
 .q_ans_item .question {
     padding-top: 1.2rem;
+    padding-right: 1rem;
 }
 
 .q_ans.button.button_secondary {
     transition: all 0.2s ease-in-out;
     min-width: 12rem;
     border-radius: 2rem;
+    box-shadow: 1px 1px 1px 1px rgba(1, 1, 1, 0.1);
+}
+
+.q_ans.button.button_secondary.button_disabled {
+    box-shadow: none;
+    opacity: 0.4;
+}
+
+.q_ans.button.button_secondary.button_disabled.ans_no,
+.q_ans.button.button_secondary.button_disabled.ans_yes {
+    opacity: 1;
 }
 
 .q_ans.button.button_secondary.ans_yes,

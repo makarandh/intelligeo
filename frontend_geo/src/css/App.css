@@ -23,6 +23,8 @@
 
     --text-red: rgb(147, 5, 5);
     --main-red: rgb(182, 3, 37);
+    --main-red2: rgb(185, 35, 2);
+
     --light-red: rgb(231, 41, 77);
     --tooltip-orange: rgba(255, 226, 35, 0.93);
     --brand-orange: rgb(205, 87, 2);
@@ -35,7 +37,8 @@
     --light-purple: rgb(54, 138, 222);
 
     --yes-background: rgba(216, 226, 252, 0.53);
-    --no-background: rgba(253, 226, 217, 0.66);;
+    --no-background: rgba(253, 226, 217, 0.66);
+    --main-green: rgba(0, 157, 44, 1);
 }
 
 html {

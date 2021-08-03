@@ -1,12 +1,21 @@
 import React from "react"
-import {BUTTON, CHOICE_BUTTONS_CONTAINER, CHOICE_COUNT, CHOICES, CONTAINER} from "../helper/common"
+import {
+    BUTTON,
+    BUTTON_DISABLED,
+    CHOICE_BUTTONS_CONTAINER,
+    CHOICE_COUNT,
+    CHOICES,
+    CONTAINER,
+    CORRECT_ANS, WRONG_ANS
+} from "../helper/common"
 import "../css/Choices.css"
 
 export default class Choices extends React.Component {
 
     state = {
         randomized: false,
-        countries: []
+        countries: [],
+        clickedAns: ""
     }
 
     fetchChoices = async() => {
@@ -28,13 +37,32 @@ export default class Choices extends React.Component {
         }
     }
 
-    processAns = (ans, e) => {
-        console.log(e.target)
-        if(ans === this.props.countryName) {
-            console.log("Correct ans")
+    processAns = (ans) => {
+        if(this.props.ansClicked) {
             return
         }
-        console.log("Wrong ans")
+        this.props.setAnsClicked()
+        this.setState({clickedAns: ans}, () => {
+        })
+    }
+
+    getClassNames = (element) => {
+        let classList = ""
+        if(!this.props.ansClicked) {
+            return classList
+        }
+        classList += " " + BUTTON_DISABLED
+        if(this.props.countryName === element) {
+            console.log(this.state.clickedAns)
+            console.log(element)
+            classList += " " + CORRECT_ANS
+            return classList
+        }
+        if(this.state.clickedAns !== element) {
+            return classList
+        }
+        classList += " " + WRONG_ANS
+        return classList
     }
 
     renderChoices = () => {
@@ -44,10 +72,12 @@ export default class Choices extends React.Component {
         return (
             <div className={CHOICE_BUTTONS_CONTAINER}>{
                 this.state.countries.map(element => {
-                    return <button className={BUTTON + " " + CHOICES}
+                    return <button className={BUTTON + " " + CHOICES
+                                              + " " + this.getClassNames(element)}
                                    key={element}
-                                   onClick={(e) => {
-                                       this.processAns(element, e)
+                                   id={element}
+                                   onClick={() => {
+                                       this.processAns(element)
                                    }}>
                         {element}
                     </button>
@@ -57,6 +87,7 @@ export default class Choices extends React.Component {
     }
 
     componentDidMount() {
+        console.log(this.props.countryName)
         this.fetchChoices()
     }
 

@@ -3,25 +3,23 @@ import {
     ANS_NO,
     ANS_YES,
     ANSWER,
-    BUTTON, BUTTON_SECONDARY, FREE_ANS,
+    BUTTON, BUTTON_DISABLED, BUTTON_SECONDARY, FREE_ANS,
     HIDE_ME,
     Q_A_CONTAINER,
     Q_ANS, Q_ANS_ITEM, QA_INNER_CONTAINER, QA_OUTER_CONTAINER, QUESTION,
-    SHOW_ME, sleep,
-    SLIDE_IN, SUBHEADING, VIEW_ANSWER,
-    VIEW_HINTS,
-    VIEW_HINTS_CONTAINER
+    SHOW_ME,
+    SLIDE_IN, SUBHEADING, VIEW_ANSWER
 } from "../helper/common"
 import "../css/QAns.css"
 
 export default class QAns extends React.Component {
 
     state = {
-        visible: false,
+        qAnsVisible: false,
         randomized: false,
         qAns: [],
         freeAns: FREE_ANS,
-        ansViewed: [],
+        ansViewed: []
     }
 
     randomizeQAns = () => {
@@ -47,7 +45,7 @@ export default class QAns extends React.Component {
     }
 
     setAnsViewed = (index) => {
-        if(this.state.ansViewed[index]) {
+        if(this.state.ansViewed[index] || this.props.ansClicked) {
             return
         }
         this.setState((prevState) => {
@@ -75,26 +73,20 @@ export default class QAns extends React.Component {
                                               ? (element.ans
                                                  ? ANS_YES
                                                  : ANS_NO)
-                                              : " ")}
+                                              : " ")
+                                           + (this.props.ansClicked ? " " + BUTTON_DISABLED : "")}
                                 onClick={() => this.setAnsViewed(index)}>
                             <span className={VIEW_ANSWER + " " +
                                              (this.state.ansViewed[index] ? HIDE_ME : SHOW_ME)}>
                                 View answer</span>
                             <span className={ANSWER + " " +
                                              (this.state.ansViewed[index] ? SHOW_ME : HIDE_ME)}>
-                                {element.ans? "Yes" : "No"}</span>
+                                {element.ans ? "Yes" : "No"}</span>
                         </button>
                     </li>)
                 })
             }</ul>
         )
-    }
-
-    setVisible = async () => {
-        this.setState({visible: true}, async() => {
-            await sleep(0.1)
-            window.scroll(0, 800)
-        })
     }
 
     componentDidMount() {
@@ -105,19 +97,17 @@ export default class QAns extends React.Component {
         return (
             <article id={"QuestionAns"} className={QA_OUTER_CONTAINER}>
                 {(this.state.randomized
-                  ? <div className={Q_A_CONTAINER + " " + (this.state.visible ? SLIDE_IN : HIDE_ME)}>
-                      {this.state.freeAns > 0
-                       ? < h3 className={Q_ANS + " " + SUBHEADING}>You can view {this.state.freeAns} answers for free</h3>
-                        : <h3 className={Q_ANS + " " + SUBHEADING}>Additional answers costs 10 points each</h3>
-                      }
+                  ? <div className={Q_A_CONTAINER + " " + (this.props.qAnsVisible ? SLIDE_IN : HIDE_ME)}>
+                      {(this.props.ansClicked
+                        ? <h3 className={Q_ANS + " " + SUBHEADING}>Hints you viewed before answering</h3>
+                        : (this.state.freeAns > 0
+                           ? < h3 className={Q_ANS + " " + SUBHEADING}>You can view {this.state.freeAns} hints for
+                                      free</h3>
+                           : <h3 className={Q_ANS + " " + SUBHEADING}>Additional hints costs 10 points each</h3>)
+                      )}
                       {this.renderQAns()}
                   </div>
                   : <div>Initializing QAns...</div>)}
-                <div className={VIEW_HINTS_CONTAINER + " " + (this.state.visible ? HIDE_ME : SHOW_ME)}>
-                    <button className={BUTTON + " " + VIEW_HINTS}
-                            onClick={this.setVisible}>View more hints
-                    </button>
-                </div>
             </article>
         )
     }

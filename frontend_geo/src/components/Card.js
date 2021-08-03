@@ -7,7 +7,16 @@ import {
     Q_ANS,
     CARD_TITLE,
     SUBSECTION,
-    CARD_HEADING, HEADING, LOADING_SCREEN_CONTAINER, CARD
+    CARD_HEADING,
+    HEADING,
+    LOADING_SCREEN_CONTAINER,
+    CARD,
+    VIEW_HINTS_CONTAINER,
+    HIDE_ME,
+    SHOW_ME,
+    BUTTON,
+    VIEW_HINTS,
+    VIEW_HINTS_OUTER_CONTAINER, CORRECT_WRONG_ICON, CORRECT_ICON_CONTAINER, WRONG_ICON_CONTAINER
 } from "../helper/common"
 import CardHero from "./CardHero"
 import Choices from "./Choices"
@@ -19,7 +28,9 @@ import QAns from "./QAns"
 export default class Card extends React.Component {
 
     state = {
-        country: null
+        country: null,
+        qAnsVisible: false,
+        ansClicked: false
     }
 
     fetchCountrySetState = async(countryID) => {
@@ -49,6 +60,16 @@ export default class Card extends React.Component {
         return this.state.country.question_ans
     }
 
+    setQAnsVisible = async() => {
+        this.setState({qAnsVisible: true}, async() => {
+            window.scroll(0, 1200)
+        })
+    }
+
+    setAnsClicked = () => {
+        this.setState({ansClicked: true})
+    }
+
     componentDidMount() {
         const countryIDName = this.props.getCountryIDName()
         const countryID = countryIDName.id
@@ -70,13 +91,33 @@ export default class Card extends React.Component {
                         <section className={CARD_CLUES + " " + SUBSECTION}>
                             <Clues getClues={this.getClues}/>
                         </section>
-                        <section className={Q_ANS + " " + SUBSECTION}>
-                            <QAns getQAns={this.getQAns} />
+                        <section className={VIEW_HINTS_OUTER_CONTAINER + " " + SUBSECTION}>
+                            <div className={VIEW_HINTS_CONTAINER + " " +
+                                            ((this.state.qAnsVisible || this.state.ansClicked) ? HIDE_ME : SHOW_ME)}>
+                                <button className={BUTTON + " " + VIEW_HINTS}
+                                        onClick={this.setQAnsVisible}>View more hints
+                                </button>
+                            </div>
+                        </section>
+                        <section className={CORRECT_WRONG_ICON + " " + SUBSECTION}>
+                            <div className={CORRECT_ICON_CONTAINER}>
+                                <img src="/static/images/tick_mark.svg" alt="tick mark"/> <span>Correct</span>
+                            </div>
+                            <div className={WRONG_ICON_CONTAINER}>
+                                <img src="/static/images/cross_mark.svg" alt="tick mark"/> <span>Wrong</span>
+                            </div>
                         </section>
                         <section className={CARD_CHOICES + " " + SUBSECTION}>
                             <Choices countryID={this.state.country.id}
                                      countryName={this.state.country.name}
+                                     ansClicked={this.state.ansClicked}
+                                     setAnsClicked={this.setAnsClicked}
                                      fetchCountryList={this.props.fetchCountryList}/>
+                        </section>
+                        <section className={Q_ANS + " " + SUBSECTION}>
+                            <QAns getQAns={this.getQAns}
+                                  ansClicked={this.state.ansClicked}
+                                  qAnsVisible={this.state.qAnsVisible}/>
                         </section>
                     </div>
                     : <div className={CARD + " " + LOADING_SCREEN_CONTAINER}>
