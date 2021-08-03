@@ -2,3 +2,8 @@
     margin: 3rem auto 0 auto;
     max-width: 36rem;
 }
+
+.clues ul li {
+    line-height: 2.5rem;
+    list-style: disc;
+}

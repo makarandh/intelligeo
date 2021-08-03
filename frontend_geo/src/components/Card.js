@@ -14,6 +14,7 @@ import Choices from "./Choices"
 import Clues from "./Clues"
 import Loading from "./Loading"
 import "../css/Card.css"
+import QAns from "./QAns"
 
 export default class Card extends React.Component {
 
@@ -41,6 +42,13 @@ export default class Card extends React.Component {
         return this.state.country.clues
     }
 
+    getQAns = () => {
+        if(!this.state.country || !this.state.country.question_ans) {
+            return false
+        }
+        return this.state.country.question_ans
+    }
+
     componentDidMount() {
         const countryIDName = this.props.getCountryIDName()
         const countryID = countryIDName.id
@@ -62,13 +70,13 @@ export default class Card extends React.Component {
                         <section className={CARD_CLUES + " " + SUBSECTION}>
                             <Clues getClues={this.getClues}/>
                         </section>
+                        <section className={Q_ANS + " " + SUBSECTION}>
+                            <QAns getQAns={this.getQAns} />
+                        </section>
                         <section className={CARD_CHOICES + " " + SUBSECTION}>
                             <Choices countryID={this.state.country.id}
                                      countryName={this.state.country.name}
                                      fetchCountryList={this.props.fetchCountryList}/>
-                        </section>
-                        <section className={Q_ANS + " " + SUBSECTION}>
-                            <div>Questions answers placeholder</div>
                         </section>
                     </div>
                     : <div className={CARD + " " + LOADING_SCREEN_CONTAINER}>

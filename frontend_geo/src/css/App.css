@@ -7,13 +7,11 @@
     --medium-blue: rgb(65, 72, 209);
     --medium-blue-trans: rgba(65, 72, 209, 0.8);
     --light-blue: rgb(182, 180, 255);
-    --white-blue: rgb(255, 255, 255);
-
+    --white-blue: rgb(255, 250, 250);
+    --bluish-white: rgb(250, 250, 255);
     --text-gray: rgb(150, 150, 150);
-
     --border-gray: rgba(105, 131, 141, 0.65);
     --transparent-cover: rgba(0, 0, 0, 0.5);
-
     --sub-heading-blue: rgb(53, 37, 110);
     --main-heading-blue: rgba(72, 5, 140, 1);
     --text-blue: rgb(66, 20, 100);
@@ -21,6 +19,7 @@
     --text-header: #3b0276;
     --button-blue: rgb(89, 65, 209);
     --button-blue-hover: rgb(97, 95, 245);
+    --text-alternate: rgba(245, 117, 0, 1);
 
     --text-red: rgb(147, 5, 5);
     --main-red: rgb(182, 3, 37);
@@ -30,11 +29,17 @@
     --brand-orange-light: rgb(233, 120, 27);
     --brand-orange-white: rgb(245, 181, 122);
     --button-color-alt: rgba(250, 196, 35, 1);
-;
     --button-color-alt-light: rgb(255, 217, 101);
     --button-color-alt-white: rgb(255, 241, 200);
     --main-purple: rgb(29, 101, 190);
     --light-purple: rgb(54, 138, 222);
+
+    --yes-background: rgba(216, 226, 252, 0.53);
+    --no-background: rgba(253, 226, 217, 0.66);;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 * {
@@ -64,7 +69,7 @@ code {
     monospace;
 }
 
-ol, ul {
+ol, ul, ul li, ol li {
     list-style: none;
 }
 

@@ -2,26 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fd201f16-eab3-4f38-8d89-ca86d9038e3d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../Checklist.md" beforeDir="false" afterPath="$PROJECT_DIR$/../Checklist.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dashboard_geo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../dashboard_geo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dashboard_geo/src/components/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../dashboard_geo/src/components/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../flask_api_geo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_api_geo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../flask_api_geo/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_api_geo/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../flask_api_geo/api/api_util.py" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_api_geo/api/api_util.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../flask_api_geo/api/country_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_api_geo/api/country_api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../flask_api_geo/api/publish_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_api_geo/api/publish_api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../flask_api_geo/api/random_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_api_geo/api/random_api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../flask_api_geo/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_api_geo/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/static/images/hero-image-world.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Card.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Card.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Choices.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Choices.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/QAns.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/QAns.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/css/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/App.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/css/Card.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/Card.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/Choices.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/Choices.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/Clues.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/Clues.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/utility_classes.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/utility_classes.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/helper/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/helper/common.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../nginx_geo/nginx.conf" beforeDir="false" afterPath="$PROJECT_DIR$/../nginx_geo/nginx.conf" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,9 +34,12 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/components/Choices.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/css/App.css" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/components/Card.js" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/helper/common.js" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/components/App.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/css/utility_classes.css" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/css/Choices.css" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="1w0BbGICFgQGN3zyeVQ0M6Eq9Ni" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -65,7 +58,7 @@
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.CSS" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -91,6 +84,7 @@
       <workItem from="1627644581824" duration="35000" />
       <workItem from="1627650756789" duration="13685000" />
       <workItem from="1627890329739" duration="28880000" />
+      <workItem from="1627975325008" duration="20511000" />
     </task>
     <servers />
   </component>
@@ -107,5 +101,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

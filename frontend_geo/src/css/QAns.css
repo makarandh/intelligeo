@@ -1,0 +1,93 @@
+.qa_outer_container {
+    text-align: center;
+    margin: 3rem 3rem 0 3rem;
+}
+
+.view_hints_container {
+    text-align: center;
+}
+
+.q_ans.subheading {
+    text-align: left;
+    color: var(--text-alternate);
+    font-weight: 500;
+}
+
+.view_clues.button {
+    margin-top: 1rem;
+    text-transform: uppercase;
+    padding: 1.2rem 2rem;
+}
+
+.qa_inner_container {
+    margin-top: 3rem;
+    text-align: left;
+}
+
+.q_ans_item {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.q_ans_item .question {
+    padding-top: 1.2rem;
+}
+
+.q_ans.button.button_secondary {
+    transition: all 0.2s ease-in-out;
+    min-width: 12rem;
+    border-radius: 2rem;
+}
+
+.q_ans.button.button_secondary.ans_yes,
+.q_ans.button.button_secondary.ans_no {
+    transition: all 0.2s ease-in-out;
+    box-shadow: unset;
+}
+
+.q_ans.button.button_secondary.ans_yes,
+.q_ans.button.button_secondary.ans_yes:active,
+.q_ans.button.button_secondary.ans_yes:focus {
+    background: var(--yes-background);
+    border: 2px solid var(--yes-background);
+}
+
+.q_ans.button.button_secondary.ans_yes .answer,
+.q_ans.button.button_secondary.ans_yes:active .answer,
+.q_ans.button.button_secondary.ans_yes:focus .answer {
+    color: rgba(0, 99, 247, 0.8);
+    font-weight: 600;
+}
+
+.q_ans.button.button_secondary.ans_no,
+.q_ans.button.button_secondary.ans_no:active,
+.q_ans.button.button_secondary.ans_no:focus {
+    transition: all 0.2s ease-in-out;
+    background: var(--no-background);
+    border: 2px solid var(--no-background);
+}
+
+.q_ans.button.button_secondary.ans_no .answer,
+.q_ans.button.button_secondary.ans_no:focus .answer,
+.q_ans.button.button_secondary.ans_no:active .answer {
+    color: rgba(247, 98, 51, 0.8);
+    font-weight: 600;
+}
+
+.q_ans.button.button_secondary.ans_yes:hover,
+.q_ans.button.button_secondary.ans_no:hover {
+    cursor: unset;
+}
+
+.q_ans.button.button_secondary.ans_no:active,
+.q_ans.button.button_secondary.ans_no:focus {
+    background: var(--no-background);
+    border: 2px solid var(--no-background);
+}
+
+.q_ans.button.button_secondary.ans_yes:active,
+.q_ans.button.button_secondary.ans_yes:focus {
+    cursor: unset;
+}
+

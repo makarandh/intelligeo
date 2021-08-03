@@ -7,6 +7,7 @@
     transition-duration: 0.3s;
     transition-timing-function: ease-in-out;
     border-radius: 0.2rem;
+    box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
 .button:hover {
@@ -29,6 +30,20 @@
     cursor: unset;
 }
 
+.button.button_secondary {
+    background-color: var(--bluish-white);
+    border: 2px solid var(--button-blue);
+    box-shadow: unset;
+}
+
+.button.button_secondary:hover {
+    background-color: var(--light-blue);
+}
+
+.button.button_secondary:active {
+    background: radial-gradient(circle, var(--bluish-white), var(--light-blue));
+}
+
 .card_container {
     background-color: white;
     box-shadow: 1px 1px 3px 2px rgba(0, 0, 0, 0.18);
@@ -41,16 +56,16 @@
     font-family: Montserrat, Arial, sans-serif;
     text-transform: uppercase;
     color: var(--main-heading-blue);
-    font-size: 3rem;
+    font-size: 4rem;
     font-weight: 500;
     text-align: center;
 }
 
 .subheading {
+    font-family: Montserrat, Arial, sans-serif;
     color: var(--sub-heading-blue);
     font-weight: normal;
-    font-size: 1.6rem;
-    margin-top: 0.2rem;
+    font-size: 2rem;
 }
 
 .subsection {
@@ -160,3 +175,35 @@
     background: radial-gradient(circle, var(--light-red), var(--main-red));
 }
 
+.hide_me {
+    opacity: 0;
+    height: 0;
+    visibility: hidden;
+    display: none;
+}
+
+.show_me {
+    opacity: 100;
+    visibility: visible;
+    display: unset;
+}
+
+.slide_in {
+    animation: slideIn 0.5s forwards cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        visibility: hidden;
+        height: 0;
+        transform: translateY(-1rem);
+    }
+    100% {
+        opacity: 1;
+        visibility: visible;
+        display: unset;
+        height: 100%;
+        transform: translateY(1rem);
+    }
+}

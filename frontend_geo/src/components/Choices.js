@@ -10,16 +10,31 @@ export default class Choices extends React.Component {
     }
 
     fetchChoices = async() => {
-        const response = await this.props.fetchCountryList(CHOICE_COUNT, this.props.countryID)
+        const response = await this.props.fetchCountryList(CHOICE_COUNT - 1, this.props.countryID)
         if(response && response.status === 200) {
             const countryIDNames = response.json.result
-            const countries = countryIDNames.map(element => element.name)
+            let countries = countryIDNames.map(element => element.name)
+            countries.push(this.props.countryName)
+            console.log(countries)
+            for(let i = countries.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [countries[i], countries[j]] = [countries[j], countries[i]]
+            }
             this.setState({countries, randomized: true})
         }
         else {
             console.error(response)
             return false
         }
+    }
+
+    processAns = (ans, e) => {
+        console.log(e.target)
+        if(ans === this.props.countryName) {
+            console.log("Correct ans")
+            return
+        }
+        console.log("Wrong ans")
     }
 
     renderChoices = () => {
@@ -30,7 +45,12 @@ export default class Choices extends React.Component {
             <div className={CHOICE_BUTTONS_CONTAINER}>{
                 this.state.countries.map(element => {
                     return <button className={BUTTON + " " + CHOICES}
-                                   key={element}> {element}</button>
+                                   key={element}
+                                   onClick={(e) => {
+                                       this.processAns(element, e)
+                                   }}>
+                        {element}
+                    </button>
                 })
             }</div>
         )
