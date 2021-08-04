@@ -10,7 +10,7 @@ export const POST = "POST"
 export const EP_RAND_LIST = "/random-list"
 export const EP_COUNTRY = "/published"
 
-export const GAME_LENGTH = 10
+export const GAME_LENGTH = 5
 export const CHOICE_COUNT = 9
 export const FREE_ANS = 6
 
@@ -66,6 +66,8 @@ export const ANS_YES = "ans_yes"
 export const ANS_NO = "ans_no"
 export const CORRECT_ANS = "correct_ans"
 export const WRONG_ANS = "wrong_ans"
+export const BUTTON_NEXT = "button_next"
+export const ENDGAME = "endgame"
 
 export const NETWORK_ERROR_CONTAINER = "network_error_container"
 export const ERROR_MESSAGE = "error_message"

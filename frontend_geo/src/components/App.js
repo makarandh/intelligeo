@@ -12,6 +12,7 @@ import {
     SECTION, sleep
 } from "../helper/common"
 import Card from "./Card"
+import EndGame from "./EndGame"
 import Loading from "./Loading"
 
 
@@ -19,25 +20,20 @@ export default class App extends React.Component {
 
     state = {
         countryList: [],
-        index: 0,
+        index: -1,
         networkError: false
     }
 
-    setNextCard = () => {
-        this.setState((prevState) => {
-            const index = prevState.index + 1
-            if(index >= this.state.countryList.length) {
-                console.log("Reached the end of the game.")
-                return {index: -1}
-            }
+    goToNextCard = async() => {
+        await this.setState((prevState) => {
             return {index: prevState.index + 1}
         })
+
     }
 
-    getCountryIDName = () => {
-        if(this.state.index === -1 || this.state.index >= this.state.countryList.length) {
-            console.log("End of game. Setting country id = -1")
-            return -1
+    getCountryIDName = async() => {
+        if(this.state.index >= this.state.countryList.length) {
+            return {}
         }
         return (this.state.countryList[this.state.index])
     }
@@ -94,7 +90,11 @@ export default class App extends React.Component {
     fetchCountries = async() => {
         const response = await this.fetchCardsList(GAME_LENGTH)
         if(response && response.status === 200) {
-            this.setState({countryList: response.json.result})
+            this.setState({countryList: response.json.result}, () => {
+                console.log(this.state.countryList.map((element) => {
+                    return element.name
+                }))
+            })
         }
     }
 
@@ -149,10 +149,13 @@ export default class App extends React.Component {
                  </article> :
                  ((this.state.countryList.length > 0)
                   ? <section className={SECTION + " " + CARD}>
-                      <Card getCountryIDName={this.getCountryIDName}
-                            fetchCountry={this.fetchCountry}
-                            fetchCountryList={this.fetchCardsList}
-                            setNextCard={this.setNextCard}/>
+                      {this.state.index < this.state.countryList.length
+                       ? < Card getCountryIDName={this.getCountryIDName}
+                                fetchCountry={this.fetchCountry}
+                                fetchCountryList={this.fetchCardsList}
+                                goToNextCard={this.goToNextCard}/>
+                       : <EndGame />
+                      }
                   </section>
                   : <div className={LOADING_SCREEN_CONTAINER}>
                       <span>Loading</span>

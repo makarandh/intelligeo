@@ -16,7 +16,7 @@ import {
     SHOW_ME,
     BUTTON,
     VIEW_HINTS,
-    VIEW_HINTS_OUTER_CONTAINER, CORRECT_WRONG_ICON
+    VIEW_HINTS_OUTER_CONTAINER, CORRECT_WRONG_ICON, BUTTON_NEXT,
 } from "../helper/common"
 import CardHero from "./CardHero"
 import Choices from "./Choices"
@@ -36,7 +36,6 @@ export default class Card extends React.Component {
     }
 
     setClickedAns = (clickedAns) => {
-        console.log("ClickedAns " + clickedAns)
         this.setState({clickedAns})
     }
 
@@ -86,15 +85,33 @@ export default class Card extends React.Component {
         return (this.state.country.name === this.state.clickedAns)
     }
 
-    componentDidMount() {
-        const countryIDName = this.props.getCountryIDName()
+    goToNextCard = async () => {
+        await this.props.goToNextCard()
+        const countryIDName = await this.props.getCountryIDName()
+        if(!countryIDName.id) {
+            return
+        }
+        await this.setState({
+                          country: null,
+                          qAnsVisible: false,
+                          ansClicked: false,
+                          clickedAns: ""
+                      })
         const countryID = countryIDName.id
-        this.fetchCountrySetState(countryID)
+        await this.fetchCountrySetState(countryID)
+    }
+
+    componentDidMount() {
+        this.goToNextCard()
     }
 
     render() {
         return (
             <article className={CARD_CONTAINER}>
+                <button className={BUTTON
+                                   + " " + BUTTON_NEXT
+                                   + " " + (this.state.ansClicked ? SHOW_ME : HIDE_ME)}
+                        onClick={this.goToNextCard}>Next &#8811;</button>
                 <section className={CARD_HERO_IMAGE + " " + SUBSECTION}>
                     <CardHero ansClicked={this.state.ansClicked}
                               country={this.state.country}/>
