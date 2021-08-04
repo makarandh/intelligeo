@@ -1,3 +1,7 @@
 .card_container.endgame {
     padding: 5rem 3rem;
 }
+
+.endgame .button {
+    margin-top: 1rem;
+}

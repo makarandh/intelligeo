@@ -5,21 +5,22 @@
 }
 
 .card_container .card_hero_image .hero_image_container .hero_world_map {
-    width: 100%;
+    width: 90%;
+    margin-top: 1.5rem;
 }
 
 .card_container .card_hero_image .hero_image_container .hero_person2 {
     width: 20%;
     position: absolute;
     top: 41%;
-    right: -3%;
+    right: 2%;
 }
 
 .card_container .card_hero_image .hero_image_container .hero_person1 {
     width: 20%;
     position: absolute;
-    top: 29%;
-    left: 38%;
+    top: 27%;
+    left: 40%;
 }
 
 .card_container .card_hero_image .hero_image_container .hero_person3 {
@@ -43,7 +44,7 @@
     font-weight: 300;
     position: absolute;
     right: 1rem;
-    bottom: 4rem;
+    bottom: 4.5rem;
     transform: rotate(-20deg);
     background: rgba(254, 249, 222, 1);
     padding: 1.2rem 2rem 0.2rem 2rem;
@@ -51,3 +52,16 @@
     box-shadow: 2px 2px 5px 3px rgba(0, 0, 0, 0.3);
     color: var(--main-green)
 }
+
+.photo_credit_container a {
+    font-style: italic;
+    text-decoration: underline;
+}
+
+.photo_credit_container {
+    font-size: 1rem;
+    position: absolute;
+    right: 0.5rem;
+    bottom: 1.5rem;
+}
+

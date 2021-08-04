@@ -6,7 +6,7 @@ import {
     HERO_PERSON1,
     HERO_PERSON2,
     HERO_PERSON3,
-    HERO_WORLD_MAP, HIDE_ME, IMAGE_URL, SHOW_ME, WORLD_MAP_CONTAINER
+    HERO_WORLD_MAP, HIDE_ME, IMAGE_URL, PHOTO_CREDIT_CONTAINER, SHOW_ME, WORLD_MAP_CONTAINER
 } from "../helper/common"
 import "../css/Cardhero.css"
 
@@ -26,6 +26,20 @@ export default class CardHero extends React.Component {
         return this.props.country.name
     }
 
+    getImageInfoURL = () => {
+        if(!this.props.country || !this.props.country.image_info || !this.props.country.image_info.url) {
+            return ""
+        }
+        return this.props.country.image_info.url
+    }
+
+    getPhotographer = () => {
+        if(!this.props.country || !this.props.country.image_info || !this.props.country.image_info.photographer) {
+            return ""
+        }
+        return this.props.country.image_info.photographer
+    }
+
     render() {
         return (
             <div className={HERO_IMAGE_CONTAINER}>
@@ -37,6 +51,14 @@ export default class CardHero extends React.Component {
                 </div>
                 <div className={ANS_IMAGE_CONTAINER + " " + (this.props.ansClicked ? SHOW_ME : HIDE_ME)}>
                     <img src={this.getImageURL()} alt="Answer"/>
+                    <div className={PHOTO_CREDIT_CONTAINER}>
+                        <span>Photo by </span>
+                        <a href={this.getImageInfoURL()}
+                           rel={"noreferrer"}
+                           target={"_blank"}>
+                            {this.getPhotographer()}
+                        </a>
+                    </div>
                     <div className={ANS_BELOW_IMAGE}>{this.getCountryName()}</div>
                 </div>
             </div>

@@ -68,6 +68,7 @@ export const CORRECT_ANS = "correct_ans"
 export const WRONG_ANS = "wrong_ans"
 export const BUTTON_NEXT = "button_next"
 export const ENDGAME = "endgame"
+export const PHOTO_CREDIT_CONTAINER = "photo_credit_container"
 
 export const NETWORK_ERROR_CONTAINER = "network_error_container"
 export const ERROR_MESSAGE = "error_message"

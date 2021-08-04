@@ -28,7 +28,15 @@ export default class App extends React.Component {
         await this.setState((prevState) => {
             return {index: prevState.index + 1}
         })
+    }
 
+    resetGame = async() => {
+        this.setState({
+                          countryList: [],
+                          index: -1,
+                          networkError: false
+                      })
+        this.fetchCountries()
     }
 
     getCountryIDName = async() => {
@@ -154,7 +162,7 @@ export default class App extends React.Component {
                                 fetchCountry={this.fetchCountry}
                                 fetchCountryList={this.fetchCardsList}
                                 goToNextCard={this.goToNextCard}/>
-                       : <EndGame />
+                       : <EndGame resetGame={this.resetGame}/>
                       }
                   </section>
                   : <div className={LOADING_SCREEN_CONTAINER}>
