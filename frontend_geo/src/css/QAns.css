@@ -1,6 +1,6 @@
 .qa_outer_container {
     text-align: center;
-    margin: 3rem 3rem 0 3rem;
+    margin: 1rem 5rem 7rem 5rem;
 }
 
 .q_ans.subheading {
@@ -22,6 +22,7 @@
 .qa_inner_container {
     margin-top: 3rem;
     text-align: left;
+    padding-bottom: 7rem;
 }
 
 .q_ans_item {

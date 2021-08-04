@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400&display=swap');
+.card_container .card_hero_image .hero_image_container {
+    text-align: center;
+    position: relative;
+}
+
+.card_container .card_hero_image .hero_image_container .hero_world_map {
+    width: 100%;
+}
+
+.card_container .card_hero_image .hero_image_container .hero_person2 {
+    width: 20%;
+    position: absolute;
+    top: 41%;
+    right: -3%;
+}
+
+.card_container .card_hero_image .hero_image_container .hero_person1 {
+    width: 20%;
+    position: absolute;
+    top: 29%;
+    left: 38%;
+}
+
+.card_container .card_hero_image .hero_image_container .hero_person3 {
+    position: absolute;
+    width: 18%;
+    bottom: 10%;
+    left: 21%;
+}
+
+.ans_image_container img {
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    width: 100%;
+    margin-bottom: 3rem;
+}
+
+.ans_below_image {
+    font-family: 'Kalam', cursive;
+    text-transform: uppercase;
+    font-size: 6rem;
+    font-weight: 300;
+    position: absolute;
+    right: 2rem;
+    bottom: 4rem;
+    transform: rotate(-20deg);
+    background: rgba(254, 249, 222, 1);
+    padding: 1.2rem 2rem 0.2rem 2rem;
+    line-height: 5rem;
+    box-shadow: 2px 2px 5px 3px rgba(0, 0, 0, 0.3);
+    color: var(--main-green)
+}

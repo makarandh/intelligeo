@@ -9,37 +9,6 @@
     background: white;
     border-radius: 1rem;
     font-size: 1.4rem;
-    padding: 1.5rem 4rem 5rem 4rem;
-}
-
-.card_container .card_hero_image .hero_image_container {
-    text-align: center;
-    position: relative;
-}
-
-.card_container .card_hero_image .hero_image_container .hero_world_map {
-    width: 100%;
-}
-
-.card_container .card_hero_image .hero_image_container .hero_person2 {
-    width: 20%;
-    position: absolute;
-    top: 41%;
-    right: -3%;
-}
-
-.card_container .card_hero_image .hero_image_container .hero_person1 {
-    width: 20%;
-    position: absolute;
-    top: 29%;
-    left: 38%;
-}
-
-.card_container .card_hero_image .hero_image_container .hero_person3 {
-    position: absolute;
-    width: 18%;
-    bottom: 10%;
-    left: 21%;
 }
 
 .card_heading {
@@ -60,11 +29,12 @@
 }
 
 .card_choices.subsection {
-    margin-top: 5rem;
+    margin-top: 6rem;
+    margin-bottom: 1rem;
 }
 
 .q_ans.subsection {
-    margin-top: 4rem;
+    margin-top: 0;
 }
 
 .card_hero_image.subsection {
@@ -79,37 +49,3 @@
     text-align: center;
     margin-top: 1rem;
 }
-
-.correct_wrong_icon img {
-    display: block;
-    width: 4rem;
-    align-items: center;
-    text-align: center;
-    align-content: center;
-    align-self: center;
-}
-
-.correct_wrong_icon span {
-    display: block;
-    font-family: "Montserrat", sans-serif;
-    align-items: center;
-    text-align: center;
-    align-content: center;
-    align-self: center;
-    margin-left: 1rem;
-    font-size: 2.6rem;
-    font-weight: 600;
-}
-
-.correct_icon_container, .wrong_icon_container {
-    display: flex;
-}
-
-.correct_icon_container span {
-    color: var(--main-green);
-}
-
-.wrong_icon_container span {
-    color: var(--main-red2);
-}
-

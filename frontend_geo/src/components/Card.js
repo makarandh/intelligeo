@@ -16,7 +16,7 @@ import {
     SHOW_ME,
     BUTTON,
     VIEW_HINTS,
-    VIEW_HINTS_OUTER_CONTAINER, CORRECT_WRONG_ICON, CORRECT_ICON_CONTAINER, WRONG_ICON_CONTAINER
+    VIEW_HINTS_OUTER_CONTAINER, CORRECT_WRONG_ICON
 } from "../helper/common"
 import CardHero from "./CardHero"
 import Choices from "./Choices"
@@ -24,13 +24,20 @@ import Clues from "./Clues"
 import Loading from "./Loading"
 import "../css/Card.css"
 import QAns from "./QAns"
+import ResultIcons from "./ResultIcons"
 
 export default class Card extends React.Component {
 
     state = {
         country: null,
         qAnsVisible: false,
-        ansClicked: false
+        ansClicked: false,
+        clickedAns: ""
+    }
+
+    setClickedAns = (clickedAns) => {
+        console.log("ClickedAns " + clickedAns)
+        this.setState({clickedAns})
     }
 
     fetchCountrySetState = async(countryID) => {
@@ -62,12 +69,21 @@ export default class Card extends React.Component {
 
     setQAnsVisible = async() => {
         this.setState({qAnsVisible: true}, async() => {
-            window.scroll(0, 1200)
+            window.scroll(0, 1100)
         })
     }
 
     setAnsClicked = () => {
-        this.setState({ansClicked: true})
+        this.setState({ansClicked: true}, () => {
+            window.scroll(0, 100)
+        })
+    }
+
+    ansIsCorrect = () => {
+        if(!this.state.country) {
+            return false
+        }
+        return (this.state.country.name === this.state.clickedAns)
     }
 
     componentDidMount() {
@@ -80,7 +96,8 @@ export default class Card extends React.Component {
         return (
             <article className={CARD_CONTAINER}>
                 <section className={CARD_HERO_IMAGE + " " + SUBSECTION}>
-                    <CardHero/>
+                    <CardHero ansClicked={this.state.ansClicked}
+                              country={this.state.country}/>
                 </section>
                 <section className={CARD_TITLE + " " + SUBSECTION}>
                     <div className={CARD_HEADING + " " + HEADING}>Guess The Country</div>
@@ -99,19 +116,18 @@ export default class Card extends React.Component {
                                 </button>
                             </div>
                         </section>
-                        <section className={CORRECT_WRONG_ICON + " " + SUBSECTION}>
-                            <div className={CORRECT_ICON_CONTAINER}>
-                                <img src="/static/images/tick_mark.svg" alt="tick mark"/> <span>Correct</span>
-                            </div>
-                            <div className={WRONG_ICON_CONTAINER}>
-                                <img src="/static/images/cross_mark.svg" alt="tick mark"/> <span>Wrong</span>
-                            </div>
+                        <section className={CORRECT_WRONG_ICON + " " + SUBSECTION + " " +
+                                            ((this.state.ansClicked) ? SHOW_ME : HIDE_ME)}>
+                            <ResultIcons ansIsCorrect={this.ansIsCorrect}
+                                         ansClicked={this.state.ansClicked}/>
                         </section>
                         <section className={CARD_CHOICES + " " + SUBSECTION}>
                             <Choices countryID={this.state.country.id}
                                      countryName={this.state.country.name}
-                                     ansClicked={this.state.ansClicked}
                                      setAnsClicked={this.setAnsClicked}
+                                     ansClicked={this.state.ansClicked}
+                                     clickedAns={this.state.clickedAns}
+                                     setClickedAns={this.setClickedAns}
                                      fetchCountryList={this.props.fetchCountryList}/>
                         </section>
                         <section className={Q_ANS + " " + SUBSECTION}>

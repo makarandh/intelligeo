@@ -2,11 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fd201f16-eab3-4f38-8d89-ca86d9038e3d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../dashboard_geo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../dashboard_geo/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Card.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Card.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CardHero.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CardHero.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Choices.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Choices.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/QAns.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/QAns.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/css/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/App.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/css/Card.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/Card.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/css/Choices.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/Choices.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/css/QAns.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/QAns.css" afterDir="false" />
@@ -33,6 +34,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/components/QAns.js" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/components/Choices.js" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/css/App.css" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/components/Card.js" root0="FORCE_HIGHLIGHTING" />
@@ -53,7 +55,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../HTML,CSS,YAML,MD/html_css_brad" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -85,6 +87,7 @@
       <workItem from="1627650756789" duration="13685000" />
       <workItem from="1627890329739" duration="28880000" />
       <workItem from="1627975325008" duration="34665000" />
+      <workItem from="1628060254729" duration="16198000" />
     </task>
     <servers />
   </component>

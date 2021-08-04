@@ -15,7 +15,6 @@ export default class Choices extends React.Component {
     state = {
         randomized: false,
         countries: [],
-        clickedAns: ""
     }
 
     fetchChoices = async() => {
@@ -24,7 +23,6 @@ export default class Choices extends React.Component {
             const countryIDNames = response.json.result
             let countries = countryIDNames.map(element => element.name)
             countries.push(this.props.countryName)
-            console.log(countries)
             for(let i = countries.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
                 [countries[i], countries[j]] = [countries[j], countries[i]]
@@ -42,8 +40,7 @@ export default class Choices extends React.Component {
             return
         }
         this.props.setAnsClicked()
-        this.setState({clickedAns: ans}, () => {
-        })
+        this.props.setClickedAns(ans)
     }
 
     getClassNames = (element) => {
@@ -53,12 +50,10 @@ export default class Choices extends React.Component {
         }
         classList += " " + BUTTON_DISABLED
         if(this.props.countryName === element) {
-            console.log(this.state.clickedAns)
-            console.log(element)
             classList += " " + CORRECT_ANS
             return classList
         }
-        if(this.state.clickedAns !== element) {
+        if(this.props.clickedAns !== element) {
             return classList
         }
         classList += " " + WRONG_ANS
