@@ -27,7 +27,7 @@ export default class Choices extends React.Component {
                 const j = Math.floor(Math.random() * (i + 1));
                 [countries[i], countries[j]] = [countries[j], countries[i]]
             }
-            this.setState({countries, randomized: true})
+            await this.setState({countries, randomized: true})
         }
         else {
             console.error(response)
@@ -35,12 +35,13 @@ export default class Choices extends React.Component {
         }
     }
 
-    processAns = (ans) => {
+    processAns = async (ans) => {
         if(this.props.ansClicked) {
             return
         }
-        this.props.setAnsClicked()
-        this.props.setClickedAns(ans)
+        await this.props.setAnsClicked()
+        await this.props.setClickedAns(ans)
+        await this.props.updateScoreAndCount()
     }
 
     getClassNames = (element) => {

@@ -2,22 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="50d455e3-e778-4610-ba64-b3fb4f576f51" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../dashboard_geo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../dashboard_geo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dashboard_geo/src/components/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../dashboard_geo/src/components/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/api_util.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/api_util.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/country_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/country_api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/publish_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/publish_api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/random_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/random_api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/db_init.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/db_init.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/global_vars.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/global_vars.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend_geo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend_geo/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend_geo/public/static/images/hero-image-world.svg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend_geo/src/components/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/src/components/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend_geo/src/components/Card.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/src/components/Card.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend_geo/src/css/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/src/css/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend_geo/src/components/Choices.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/src/components/Choices.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend_geo/src/components/EndGame.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/src/components/EndGame.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend_geo/src/components/QAns.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/src/components/QAns.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend_geo/src/css/Card.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/src/css/Card.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend_geo/src/helper/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/src/helper/common.js" afterDir="false" />
     </list>
@@ -36,6 +28,13 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/app.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/api/image_api.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/api/api_util.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/utils/global_vars.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/utils/db_init.py" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="ProjectId" id="1w25w2XGh7Azau6e0YLoTmRZtrT" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -49,8 +48,13 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../monitoring_geo" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/database" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/database" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="flask_api_geo" type="PythonConfigurationType" factoryName="Python">
@@ -96,6 +100,7 @@
       <workItem from="1627903560567" duration="198000" />
       <workItem from="1627904616507" duration="769000" />
       <workItem from="1627919238132" duration="4659000" />
+      <workItem from="1628153974076" duration="2946000" />
     </task>
     <servers />
   </component>

@@ -41,6 +41,52 @@
     margin-top: 1rem;
 }
 
+.card_score_container {
+    position: relative;
+}
+
+.card_score_text.total_score {
+    top: -1rem;
+    z-index: 1;
+    font-size: 1.2rem;
+    right: 1rem
+}
+
+.card_score_text {
+    color: var(--main-green);
+    font-style: italic;
+    font-weight: 600;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    font-size: 1rem;
+    transform: translateY(-0.4rem);
+}
+
+.card_score_penalty {
+    color: var(--main-red2);
+    transform: translateY(-0.4rem);
+    opacity: 0;
+}
+
+.fly_up {
+    animation: fly_up forwards 1s;
+}
+
+@keyframes fly_up {
+    0% {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(-0.4rem);
+    }
+
+    100% {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-7.4rem);
+    }
+}
+
 .view_hints_container.show_me {
     text-align: center;
 }

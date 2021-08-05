@@ -53,6 +53,7 @@ IMAGE_INFO = "image_info"
 IMAGE_UPLOADED = "image_uploaded"
 HTTP_ORIGIN = "HTTP_ORIGIN"
 HTTP_REFERER = "HTTP_REFERER"
+SCORE = "score"
 
 EP_TOTAL_COUNTRIES = "/countries/total"
 EP_COUNTRIES = "/countries"

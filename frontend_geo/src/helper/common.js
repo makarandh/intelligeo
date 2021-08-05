@@ -10,9 +10,11 @@ export const POST = "POST"
 export const EP_RAND_LIST = "/random-list"
 export const EP_COUNTRY = "/published"
 
-export const GAME_LENGTH = 5
+export const GAME_LENGTH = 1
 export const CHOICE_COUNT = 9
-export const FREE_ANS = 6
+export const FREE_ANS = 5
+export const SCORE_PER_CARD = 100
+export const PENALTY_PER_ANS = 20
 
 export const OUTER_CONTAINER = "outer_container"
 export const LOADING = "loading"
@@ -41,6 +43,10 @@ export const HERO_PERSON3 = "hero_person3"
 export const CARD_HEADING = "card_heading"
 export const HEADING = "heading"
 export const BUTTON = "button"
+export const CARD_SCORE_CONTAINER = "card_score_container"
+export const CARD_SCORE_TEXT = "card_score_text"
+export const TOTAL_SCORE = "total_score"
+export const CARD_SCORE_PENALTY = "card_score_penalty"
 export const BUTTON_SECONDARY = "button_secondary"
 export const BUTTON_DISABLED = "button_disabled"
 export const VIEW_HINTS_CONTAINER = "view_hints_container"
@@ -69,6 +75,10 @@ export const WRONG_ANS = "wrong_ans"
 export const BUTTON_NEXT = "button_next"
 export const ENDGAME = "endgame"
 export const PHOTO_CREDIT_CONTAINER = "photo_credit_container"
+export const FLY_UP = "fly_up"
+export const ENDGAME_TEXT = "endgame_text"
+export const CENTER_TEXT_CONTAINER = "center_text_container"
+export const GREEN = "green"
 
 export const NETWORK_ERROR_CONTAINER = "network_error_container"
 export const ERROR_MESSAGE = "error_message"

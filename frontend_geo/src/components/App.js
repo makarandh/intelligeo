@@ -4,12 +4,10 @@ import {
     BUTTON, CARD, EP_COUNTRY,
     EP_RAND_LIST, ERROR_MESSAGE,
     GAME_LENGTH, GET, LOADING_SCREEN_CONTAINER,
-    MAIN,
-    MAIN_URL,
+    MAIN, MAIN_URL,
     NETWORK_ERROR,
     NETWORK_ERROR_CONTAINER,
-    POST,
-    SECTION, sleep
+    POST, SECTION, sleep
 } from "../helper/common"
 import Card from "./Card"
 import EndGame from "./EndGame"
@@ -20,23 +18,42 @@ export default class App extends React.Component {
 
     state = {
         countryList: [],
-        index: -1,
-        networkError: false
+        index: 0,
+        networkError: false,
+        totalCorrect: 0,
+        totalScore: 0
     }
 
-    goToNextCard = async() => {
+    incrementCorrect = async () => {
         await this.setState((prevState) => {
-            return {index: prevState.index + 1}
+            return {totalCorrect: prevState.totalCorrect + 1}
         })
     }
 
+    updateTotalScore = async (score) => {
+        await this.setState((prevState) => {
+            return {totalScore: prevState.totalScore + score}
+        })
+    }
+
+    goToNextCard = async(increment) => {
+        if(increment) {
+            await this.setState((prevState) => {
+                return {index: prevState.index + 1}
+            })
+        }
+    }
+
     resetGame = async() => {
-        this.setState({
-                          countryList: [],
-                          index: -1,
-                          networkError: false
-                      })
-        this.fetchCountries()
+        await this.setState(
+            {
+                countryList: [],
+                index: 0,
+                networkError: false,
+                totalCorrect: 0,
+                totalScore: 0
+            })
+        await this.fetchCountries()
     }
 
     getCountryIDName = async() => {
@@ -90,7 +107,7 @@ export default class App extends React.Component {
         catch(e) {
             console.error("The following error occurred:")
             console.error(e)
-            this.setState({networkError: true}, this.autoRefresh)
+            await this.setState({networkError: true}, this.autoRefresh)
             return false
         }
     }
@@ -160,9 +177,14 @@ export default class App extends React.Component {
                       {this.state.index < this.state.countryList.length
                        ? < Card getCountryIDName={this.getCountryIDName}
                                 fetchCountry={this.fetchCountry}
+                                incrementCorrect={this.incrementCorrect}
+                                totalScore={this.state.totalScore}
+                                updateTotalScore={this.updateTotalScore}
                                 fetchCountryList={this.fetchCardsList}
                                 goToNextCard={this.goToNextCard}/>
-                       : <EndGame resetGame={this.resetGame}/>
+                       : <EndGame resetGame={this.resetGame}
+                                  totalScore={this.state.totalScore}
+                                  totalCorrect={this.state.totalCorrect}/>
                       }
                   </section>
                   : <div className={LOADING_SCREEN_CONTAINER}>

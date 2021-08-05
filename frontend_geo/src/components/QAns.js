@@ -3,12 +3,26 @@ import {
     ANS_NO,
     ANS_YES,
     ANSWER,
-    BUTTON, BUTTON_DISABLED, BUTTON_SECONDARY, FREE_ANS,
+    BUTTON,
+    BUTTON_DISABLED,
+    BUTTON_SECONDARY,
+    CARD_SCORE_CONTAINER,
+    CARD_SCORE_PENALTY,
+    CARD_SCORE_TEXT,
+    FLY_UP,
+    FREE_ANS,
     HIDE_ME,
+    PENALTY_PER_ANS,
     Q_A_CONTAINER,
-    Q_ANS, Q_ANS_ITEM, QA_INNER_CONTAINER, QA_OUTER_CONTAINER, QUESTION,
-    SHOW_ME,
-    SLIDE_IN, SUBHEADING, VIEW_ANSWER
+    Q_ANS,
+    Q_ANS_ITEM,
+    QA_INNER_CONTAINER,
+    QA_OUTER_CONTAINER,
+    QUESTION,
+    SHOW_ME, sleep,
+    SLIDE_IN,
+    SUBHEADING,
+    VIEW_ANSWER
 } from "../helper/common"
 import "../css/QAns.css"
 
@@ -19,10 +33,11 @@ export default class QAns extends React.Component {
         randomized: false,
         qAns: [],
         freeAns: FREE_ANS,
-        ansViewed: []
+        ansViewed: [],
+        animationInProgress: false
     }
 
-    randomizeQAns = () => {
+    randomizeQAns = async() => {
         let qAns = this.props.getQAns()
         if(!qAns) {
             console.error("Question answers are empty or null")
@@ -41,19 +56,27 @@ export default class QAns extends React.Component {
         randIndices.forEach((value) => {
             randQAns.push(qAns[value])
         })
-        this.setState({randomized: true, qAns: randQAns})
+        await this.setState({randomized: true, qAns: randQAns})
     }
 
-    setAnsViewed = (index) => {
+    setAnsViewed = async(index) => {
         if(this.state.ansViewed[index] || this.props.ansClicked) {
             return
         }
-        this.setState((prevState) => {
+        await this.setState((prevState) => {
             let ansViewed = [...prevState.ansViewed]
             ansViewed[index] = true
             return {
                 ansViewed,
-                freeAns: prevState.freeAns - 1
+                freeAns: prevState.freeAns - 1,
+                animationInProgress: false
+            }
+        }, async() => {
+            if(this.state.freeAns < 0) {
+                this.props.decrementScore()
+                await this.setState({animationInProgress: true})
+                await sleep(0.4)
+                this.setState({animationInProgress: false})
             }
         })
     }
@@ -99,11 +122,22 @@ export default class QAns extends React.Component {
                 {(this.state.randomized
                   ? <div className={Q_A_CONTAINER + " " + (this.props.qAnsVisible ? SLIDE_IN : HIDE_ME)}>
                       {(this.props.ansClicked
-                        ? <h3 className={Q_ANS + " " + SUBHEADING}>Hints you viewed before answering</h3>
-                        : (this.state.freeAns > 0
-                           ? < h3 className={Q_ANS + " " + SUBHEADING}>You can view {this.state.freeAns} hints for
-                                      free</h3>
-                           : <h3 className={Q_ANS + " " + SUBHEADING}>Additional hints costs 10 points each</h3>)
+                        ? <div>
+                            <h3 className={Q_ANS + " " + SUBHEADING}>Hints you viewed before answering</h3>
+                            <div className={CARD_SCORE_CONTAINER}>
+                                <div className={CARD_SCORE_TEXT}>Scored: {this.props.score} points</div>
+                            </div>
+                        </div>
+                        : <div className={CARD_SCORE_CONTAINER}>
+                            <div className={CARD_SCORE_TEXT}>Scorable points: {this.props.score}</div>
+                            <div className={CARD_SCORE_TEXT + " "
+                                            + CARD_SCORE_PENALTY + " " +
+                                            (this.state.animationInProgress ? FLY_UP : "")}>-{PENALTY_PER_ANS}</div>
+                            {(this.state.freeAns > 0
+                              ? <h3 className={Q_ANS + " " + SUBHEADING}>You can view {this.state.freeAns} hints for
+                                    free</h3>
+                              : <h3 className={Q_ANS + " " + SUBHEADING}>Hints costs {PENALTY_PER_ANS} points</h3>)}
+                        </div>
                       )}
                       {this.renderQAns()}
                   </div>

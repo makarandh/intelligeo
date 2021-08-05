@@ -2,12 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fd201f16-eab3-4f38-8d89-ca86d9038e3d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../dashboard_geo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../dashboard_geo/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CardHero.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CardHero.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Card.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Card.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Choices.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Choices.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/EndGame.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/EndGame.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/css/Cardhero.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/Cardhero.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/QAns.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/QAns.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/Card.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/Card.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/css/EndGame.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/EndGame.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/helper/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/helper/common.js" afterDir="false" />
     </list>
@@ -87,6 +89,7 @@
       <workItem from="1628060254729" duration="16568000" />
       <workItem from="1628083790963" duration="10851000" />
       <workItem from="1628109271606" duration="1969000" />
+      <workItem from="1628140781029" duration="14968000" />
     </task>
     <servers />
   </component>

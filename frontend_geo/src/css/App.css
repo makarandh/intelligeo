@@ -39,6 +39,8 @@
     --yes-background: rgba(216, 226, 252, 0.53);
     --no-background: rgba(253, 226, 217, 0.66);
     --main-green: rgba(0, 157, 44, 1);
+    --main-green-light: rgb(31, 200, 78);
+    --main-green-white: rgb(177, 239, 194);
 }
 
 html {

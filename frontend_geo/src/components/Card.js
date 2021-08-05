@@ -1,22 +1,13 @@
 import React from "react"
 import {
-    CARD_CONTAINER,
-    CARD_CHOICES,
-    CARD_CLUES,
-    CARD_HERO_IMAGE,
-    Q_ANS,
-    CARD_TITLE,
-    SUBSECTION,
-    CARD_HEADING,
-    HEADING,
-    LOADING_SCREEN_CONTAINER,
-    CARD,
-    VIEW_HINTS_CONTAINER,
-    HIDE_ME,
-    SHOW_ME,
-    BUTTON,
-    VIEW_HINTS,
-    VIEW_HINTS_OUTER_CONTAINER, CORRECT_WRONG_ICON, BUTTON_NEXT,
+    CARD_CONTAINER, CARD_CHOICES, CARD_CLUES,
+    CARD_HERO_IMAGE, Q_ANS, CARD_TITLE,
+    SUBSECTION, CARD_HEADING, HEADING,
+    LOADING_SCREEN_CONTAINER, CARD,
+    VIEW_HINTS_CONTAINER, HIDE_ME,
+    SHOW_ME, BUTTON, VIEW_HINTS,
+    VIEW_HINTS_OUTER_CONTAINER,
+    CORRECT_WRONG_ICON, BUTTON_NEXT, SCORE_PER_CARD, PENALTY_PER_ANS
 } from "../helper/common"
 import CardHero from "./CardHero"
 import Choices from "./Choices"
@@ -32,11 +23,18 @@ export default class Card extends React.Component {
         country: null,
         qAnsVisible: false,
         ansClicked: false,
-        clickedAns: ""
+        clickedAns: "",
+        score: SCORE_PER_CARD
     }
 
-    setClickedAns = (clickedAns) => {
-        this.setState({clickedAns})
+    setClickedAns = async(clickedAns) => {
+        await this.setState({clickedAns})
+    }
+
+    decrementScore = async() => {
+        await this.setState((prevState) => {
+            return {score: prevState.score - PENALTY_PER_ANS}
+        })
     }
 
     fetchCountrySetState = async(countryID) => {
@@ -49,7 +47,7 @@ export default class Card extends React.Component {
             console.error(result)
             return
         }
-        this.setState({country: result.json.result})
+        await this.setState({country: result.json.result})
     }
 
     getClues = () => {
@@ -67,13 +65,13 @@ export default class Card extends React.Component {
     }
 
     setQAnsVisible = async() => {
-        this.setState({qAnsVisible: true}, async() => {
+        await this.setState({qAnsVisible: true}, async() => {
             window.scroll(0, 1100)
         })
     }
 
-    setAnsClicked = () => {
-        this.setState({ansClicked: true}, () => {
+    setAnsClicked = async() => {
+        await this.setState({ansClicked: true}, () => {
             window.scroll(0, 100)
         })
     }
@@ -82,27 +80,37 @@ export default class Card extends React.Component {
         if(!this.state.country) {
             return false
         }
-        return (this.state.country.name === this.state.clickedAns)
+        return this.state.country.name === this.state.clickedAns
     }
 
-    goToNextCard = async () => {
-        await this.props.goToNextCard()
+    goToNextCard = async(increment = true) => {
+        await this.props.goToNextCard(increment)
         const countryIDName = await this.props.getCountryIDName()
         if(!countryIDName.id) {
             return
         }
         await this.setState({
-                          country: null,
-                          qAnsVisible: false,
-                          ansClicked: false,
-                          clickedAns: ""
-                      })
+                                country: null,
+                                qAnsVisible: false,
+                                ansClicked: false,
+                                clickedAns: "",
+                                score: SCORE_PER_CARD
+                            })
         const countryID = countryIDName.id
         await this.fetchCountrySetState(countryID)
     }
 
+    updateScoreAndCount = async () => {
+        if(this.ansIsCorrect()) {
+            await this.props.incrementCorrect()
+            await this.props.updateTotalScore(this.state.score)
+            return
+        }
+        await this.setState({score: 0})
+    }
+
     componentDidMount() {
-        this.goToNextCard()
+        this.goToNextCard(false)
     }
 
     render() {
@@ -141,6 +149,7 @@ export default class Card extends React.Component {
                         <section className={CARD_CHOICES + " " + SUBSECTION}>
                             <Choices countryID={this.state.country.id}
                                      countryName={this.state.country.name}
+                                     updateScoreAndCount={this.updateScoreAndCount}
                                      setAnsClicked={this.setAnsClicked}
                                      ansClicked={this.state.ansClicked}
                                      clickedAns={this.state.clickedAns}
@@ -150,6 +159,8 @@ export default class Card extends React.Component {
                         <section className={Q_ANS + " " + SUBSECTION}>
                             <QAns getQAns={this.getQAns}
                                   ansClicked={this.state.ansClicked}
+                                  score={this.state.score}
+                                  decrementScore={this.decrementScore}
                                   qAnsVisible={this.state.qAnsVisible}/>
                         </section>
                     </div>
