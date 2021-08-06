@@ -17,6 +17,22 @@ export default class Choices extends React.Component {
         countries: [],
     }
 
+    loadChoicesFromLocalStorage = async () => {
+        const countries = this.props.loadFromLocalStorage(CHOICES)
+        if(countries !== null) {
+            await this.setState({countries, randomized: true})
+            return true
+        }
+        return false
+    }
+
+    loadChoices = async () => {
+        const result = await this.loadChoicesFromLocalStorage()
+        if(!result) {
+            await this.fetchChoices()
+        }
+    }
+
     fetchChoices = async() => {
         const response = await this.props.fetchCountryList(CHOICE_COUNT - 1, this.props.countryID)
         if(response && response.status === 200) {
@@ -27,7 +43,9 @@ export default class Choices extends React.Component {
                 const j = Math.floor(Math.random() * (i + 1));
                 [countries[i], countries[j]] = [countries[j], countries[i]]
             }
-            await this.setState({countries, randomized: true})
+            await this.setState({countries, randomized: true}, () => {
+                this.props.saveToLocalStorage(CHOICES, this.state.countries)
+            })
         }
         else {
             console.error(response)
@@ -84,7 +102,7 @@ export default class Choices extends React.Component {
 
     componentDidMount() {
         console.log(this.props.countryName)
-        this.fetchChoices()
+        this.loadChoices()
     }
 
     render() {

@@ -12,13 +12,6 @@ import "../css/Cardhero.css"
 
 export default class CardHero extends React.Component {
 
-    getImageURL = () => {
-        if(!this.props.country || !this.props.country.id) {
-            return ""
-        }
-        return IMAGE_URL + "/" + this.props.country.id + ".webp"
-    }
-
     getCountryName = () => {
         if(!this.props.country || !this.props.country.name) {
             return ""
@@ -31,6 +24,13 @@ export default class CardHero extends React.Component {
             return ""
         }
         return this.props.country.image_info.url
+    }
+
+    getImageURL = () => {
+        if(!this.props.country || !this.props.country.id) {
+            return ""
+        }
+        return IMAGE_URL + "/" + this.props.country.id + ".webp"
     }
 
     getPhotographer = () => {

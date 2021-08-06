@@ -1,13 +1,11 @@
 import "../css/App.css"
 import React from "react"
 import {
-    BUTTON, CARD, EP_COUNTRY,
+    BUTTON, CARD, COUNTRIESLIST, EP_COUNTRY,
     EP_RAND_LIST, ERROR_MESSAGE,
-    GAME_LENGTH, GET, LOADING_SCREEN_CONTAINER,
-    MAIN, MAIN_URL,
-    NETWORK_ERROR,
-    NETWORK_ERROR_CONTAINER,
-    POST, SECTION, sleep
+    GAME_LENGTH, GET, INPROGRESS, INDEX, LOADING_SCREEN_CONTAINER,
+    MAIN, MAIN_URL, NETWORK_ERROR, NETWORK_ERROR_CONTAINER,
+    POST, SECTION, sleep, TOTALCORRECT, TOTALSCORE
 } from "../helper/common"
 import Card from "./Card"
 import EndGame from "./EndGame"
@@ -17,29 +15,36 @@ import Loading from "./Loading"
 export default class App extends React.Component {
 
     state = {
-        countryList: [],
+        countriesList: [],
         index: 0,
         networkError: false,
         totalCorrect: 0,
-        totalScore: 0
+        totalScore: 0,
+        inProgress: false
     }
 
-    incrementCorrect = async () => {
+    incrementCorrect = async() => {
         await this.setState((prevState) => {
             return {totalCorrect: prevState.totalCorrect + 1}
+        }, () => {
+            this.saveToLocalStorage(TOTALCORRECT, this.state.totalCorrect)
         })
     }
 
-    updateTotalScore = async (score) => {
+    updateTotalScore = async(score) => {
         await this.setState((prevState) => {
             return {totalScore: prevState.totalScore + score}
+        }, () => {
+            this.saveToLocalStorage(TOTALSCORE, this.state.totalScore)
         })
     }
 
-    goToNextCard = async(increment) => {
+    loadCard = async(increment) => {
         if(increment) {
             await this.setState((prevState) => {
                 return {index: prevState.index + 1}
+            }, () => {
+                this.saveToLocalStorage(INDEX, this.state.index)
             })
         }
     }
@@ -47,20 +52,21 @@ export default class App extends React.Component {
     resetGame = async() => {
         await this.setState(
             {
-                countryList: [],
+                countriesList: [],
                 index: 0,
                 networkError: false,
                 totalCorrect: 0,
                 totalScore: 0
             })
-        await this.fetchCountries()
+        this.clearAllLocalStorage()
+        window.location.reload()
     }
 
     getCountryIDName = async() => {
-        if(this.state.index >= this.state.countryList.length) {
-            return {}
+        if(this.state.index >= this.state.countriesList.length) {
+            return false
         }
-        return (this.state.countryList[this.state.index])
+        return (this.state.countriesList[this.state.index])
     }
 
     postData = async(body = {}, endpoint = "") => {
@@ -115,11 +121,9 @@ export default class App extends React.Component {
     fetchCountries = async() => {
         const response = await this.fetchCardsList(GAME_LENGTH)
         if(response && response.status === 200) {
-            this.setState({countryList: response.json.result}, () => {
-                console.log(this.state.countryList.map((element) => {
-                    return element.name
-                }))
-            })
+            const countriesList = response.json.result
+            console.log(countriesList)
+            await this.setState({countriesList})
         }
     }
 
@@ -134,6 +138,7 @@ export default class App extends React.Component {
                 }
             })
             const json = await response.json()
+            console.log(json)
             const status = await response.status
             return {
                 json,
@@ -158,8 +163,74 @@ export default class App extends React.Component {
         }
     }
 
+    loadFromLocalStorage = (name) => {
+        const value = localStorage.getItem(name)
+        if(value === null || value === "") {
+            return value
+        }
+        return JSON.parse(value)
+    }
+
+    loadGameFromLocalStorage = async() => {
+        try {
+            const countriesLS = await this.loadFromLocalStorage(COUNTRIESLIST)
+            if(!countriesLS) {
+                return false
+            }
+            let countriesList = countriesLS.map((element) => {
+                return {"id": element.id, "name": element.name}
+            })
+            const index = await parseInt(this.loadFromLocalStorage(INDEX))
+            const totalCorrect = await parseInt(this.loadFromLocalStorage(TOTALCORRECT))
+            const totalScore = await parseInt(this.loadFromLocalStorage(TOTALSCORE))
+            await this.setState(
+                {
+                    countriesList,
+                    index,
+                    totalCorrect,
+                    totalScore
+                })
+            return true
+        }
+        catch(e) {
+            console.error("Could not load game from local storage")
+            console.error(e)
+            return false
+        }
+    }
+
+    saveToLocalStorage = (name, item) => {
+        localStorage.setItem(name, JSON.stringify(item))
+    }
+
+    loadGameState = async() => {
+        const inProgress = this.loadFromLocalStorage(INPROGRESS)
+        if(inProgress !== null && inProgress === true) {
+            console.log("loading from local storage")
+            await this.setState({inProgress: true})
+            const status = await this.loadGameFromLocalStorage()
+            if(status) {
+                return
+            }
+        }
+        await this.fetchCountries()
+        await this.saveGameState()
+    }
+
+    saveGameState = async() => {
+        this.saveToLocalStorage(COUNTRIESLIST, this.state.countriesList)
+        this.saveToLocalStorage(INDEX, this.state.index)
+        this.saveToLocalStorage(TOTALCORRECT, this.state.totalCorrect)
+        this.saveToLocalStorage(TOTALSCORE, this.state.totalScore)
+        this.saveToLocalStorage(INPROGRESS, true)
+    }
+
+    clearAllLocalStorage = () => {
+        localStorage.clear()
+    }
+
     componentDidMount() {
-        this.fetchCountries()
+        this.loadGameState()
     }
 
     render() {
@@ -172,18 +243,21 @@ export default class App extends React.Component {
                              onClick={this.refreshPage}>Refresh Page
                      </button>
                  </article> :
-                 ((this.state.countryList.length > 0)
+                 ((this.state.countriesList.length > 0)
                   ? <section className={SECTION + " " + CARD}>
-                      {this.state.index < this.state.countryList.length
+                      {this.state.index < this.state.countriesList.length
                        ? < Card getCountryIDName={this.getCountryIDName}
                                 fetchCountry={this.fetchCountry}
                                 incrementCorrect={this.incrementCorrect}
                                 totalScore={this.state.totalScore}
                                 updateTotalScore={this.updateTotalScore}
                                 fetchCountryList={this.fetchCardsList}
-                                goToNextCard={this.goToNextCard}/>
+                                loadFromLocalStorage={this.loadFromLocalStorage}
+                                saveToLocalStorage={this.saveToLocalStorage}
+                                loadCard={this.loadCard}/>
                        : <EndGame resetGame={this.resetGame}
                                   totalScore={this.state.totalScore}
+                                  clearAllLocalStorage={this.clearAllLocalStorage}
                                   totalCorrect={this.state.totalCorrect}/>
                       }
                   </section>

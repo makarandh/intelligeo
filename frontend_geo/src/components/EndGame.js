@@ -7,6 +7,11 @@ import "../css/EndGame.css"
 
 
 export default class EndGame extends React.Component {
+
+    componentDidMount() {
+        this.props.clearAllLocalStorage()
+    }
+
     render() {
         return (
             <section className={CARD_CONTAINER + " " + ENDGAME}>

@@ -3,15 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="50d455e3-e778-4610-ba64-b3fb4f576f51" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/global_vars.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/global_vars.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend_geo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend_geo/src/components/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/src/components/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend_geo/src/components/Card.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/src/components/Card.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend_geo/src/components/Choices.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/src/components/Choices.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend_geo/src/components/EndGame.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/src/components/EndGame.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend_geo/src/components/QAns.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/src/components/QAns.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend_geo/src/css/Card.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/src/css/Card.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend_geo/src/helper/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/src/helper/common.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,6 +93,7 @@
       <workItem from="1627904616507" duration="769000" />
       <workItem from="1627919238132" duration="4659000" />
       <workItem from="1628153974076" duration="2946000" />
+      <workItem from="1628170445425" duration="1858000" />
     </task>
     <servers />
   </component>
@@ -111,6 +104,6 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/flask_api_geo$flask_api_geo.coverage" NAME="flask_api_geo Coverage Results" MODIFIED="1627736282114" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/flask_api_geo$flask_api_geo.coverage" NAME="flask_api_geo Coverage Results" MODIFIED="1628170468515" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

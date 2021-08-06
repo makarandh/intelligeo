@@ -1,7 +1,7 @@
 import React from "react"
 import {
     ANS_NO,
-    ANS_YES,
+    ANS_YES, ANSVIEWED,
     ANSWER,
     BUTTON,
     BUTTON_DISABLED,
@@ -10,14 +10,14 @@ import {
     CARD_SCORE_PENALTY,
     CARD_SCORE_TEXT,
     FLY_UP,
-    FREE_ANS,
-    HIDE_ME,
+    FREE_ANS, FREEANS,
+    HIDE_ME, LOADING_HINTS,
     PENALTY_PER_ANS,
     Q_A_CONTAINER,
     Q_ANS,
     Q_ANS_ITEM,
     QA_INNER_CONTAINER,
-    QA_OUTER_CONTAINER,
+    QA_OUTER_CONTAINER, QANS,
     QUESTION,
     SHOW_ME, sleep,
     SLIDE_IN,
@@ -37,7 +37,28 @@ export default class QAns extends React.Component {
         animationInProgress: false
     }
 
+    loadQAStateFromLocalStorage = async () => {
+        const qAns = this.props.loadFromLocalStorage(QANS)
+        const freeAns = this.props.loadFromLocalStorage(FREEANS)
+        const ansViewed = this.props.loadFromLocalStorage(ANSVIEWED)
+        if(freeAns !== null && qAns !== null && ansViewed !== null) {
+            await this.setState(
+                {
+                    randomized: true,
+                    qAns,
+                    freeAns,
+                    ansViewed
+                })
+            return true
+        }
+        return false
+    }
+
     randomizeQAns = async() => {
+        const result = await this.loadQAStateFromLocalStorage()
+        if(result) {
+            return
+        }
         let qAns = this.props.getQAns()
         if(!qAns) {
             console.error("Question answers are empty or null")
@@ -56,7 +77,13 @@ export default class QAns extends React.Component {
         randIndices.forEach((value) => {
             randQAns.push(qAns[value])
         })
-        await this.setState({randomized: true, qAns: randQAns})
+        await this.setState(
+            {
+                randomized: true,
+                qAns: randQAns
+            }, () => {
+            this.props.saveToLocalStorage(QANS, this.state.qAns)
+        })
     }
 
     setAnsViewed = async(index) => {
@@ -72,8 +99,10 @@ export default class QAns extends React.Component {
                 animationInProgress: false
             }
         }, async() => {
+            this.props.saveToLocalStorage(FREEANS, this.state.freeAns)
+            this.props.saveToLocalStorage(ANSVIEWED, this.state.ansViewed)
             if(this.state.freeAns < 0) {
-                this.props.decrementScore()
+                await this.props.decrementScore()
                 await this.setState({animationInProgress: true})
                 await sleep(0.4)
                 this.setState({animationInProgress: false})
@@ -141,7 +170,7 @@ export default class QAns extends React.Component {
                       )}
                       {this.renderQAns()}
                   </div>
-                  : <div>Initializing QAns...</div>)}
+                  : <div className={LOADING_HINTS}>Loading Hints...</div>)}
             </article>
         )
     }

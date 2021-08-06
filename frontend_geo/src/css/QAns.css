@@ -104,3 +104,6 @@
     cursor: unset;
 }
 
+.loading_hints {
+    padding-bottom: 2rem;
+}

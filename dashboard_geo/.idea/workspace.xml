@@ -3,9 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="d79f164b-1590-4277-9669-7d0c0dc65016" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../flask_api_geo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_api_geo/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend_geo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend_geo/src/components/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/src/components/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend_geo/src/components/Card.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/src/components/Card.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend_geo/src/components/CardHero.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/src/components/CardHero.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend_geo/src/css/Cardhero.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/src/css/Cardhero.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend_geo/src/components/EndGame.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/src/components/EndGame.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend_geo/src/components/QAns.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/src/components/QAns.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend_geo/src/css/QAns.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/src/css/QAns.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend_geo/src/helper/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/src/helper/common.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -59,6 +64,7 @@
       <workItem from="1628072425397" duration="625000" />
       <workItem from="1628084736076" duration="360000" />
       <workItem from="1628109290613" duration="449000" />
+      <workItem from="1628237873536" duration="1650000" />
     </task>
     <servers />
   </component>

@@ -7,7 +7,10 @@ import {
     VIEW_HINTS_CONTAINER, HIDE_ME,
     SHOW_ME, BUTTON, VIEW_HINTS,
     VIEW_HINTS_OUTER_CONTAINER,
-    CORRECT_WRONG_ICON, BUTTON_NEXT, SCORE_PER_CARD, PENALTY_PER_ANS
+    CORRECT_WRONG_ICON, BUTTON_NEXT,
+    SCORE_PER_CARD, PENALTY_PER_ANS, SCORE,
+    COUNTRY, QANS, FREEANS, QANSVISIBLE,
+    ANSCLICKED, CLICKEDANS, CHOICES
 } from "../helper/common"
 import CardHero from "./CardHero"
 import Choices from "./Choices"
@@ -28,12 +31,16 @@ export default class Card extends React.Component {
     }
 
     setClickedAns = async(clickedAns) => {
-        await this.setState({clickedAns})
+        await this.setState({clickedAns}, () => {
+            this.props.saveToLocalStorage(CLICKEDANS, this.state.clickedAns)
+        })
     }
 
     decrementScore = async() => {
         await this.setState((prevState) => {
             return {score: prevState.score - PENALTY_PER_ANS}
+        }, () => {
+            this.props.saveToLocalStorage(SCORE, this.state.score)
         })
     }
 
@@ -47,7 +54,9 @@ export default class Card extends React.Component {
             console.error(result)
             return
         }
-        await this.setState({country: result.json.result})
+        await this.setState({country: result.json.result}, () => {
+            this.props.saveToLocalStorage(COUNTRY, this.state.country)
+        })
     }
 
     getClues = () => {
@@ -67,12 +76,14 @@ export default class Card extends React.Component {
     setQAnsVisible = async() => {
         await this.setState({qAnsVisible: true}, async() => {
             window.scroll(0, 1100)
+            this.props.saveToLocalStorage(QANSVISIBLE, this.state.qAnsVisible)
         })
     }
 
     setAnsClicked = async() => {
         await this.setState({ansClicked: true}, () => {
             window.scroll(0, 100)
+            this.props.saveToLocalStorage(ANSCLICKED, this.state.ansClicked)
         })
     }
 
@@ -83,34 +94,103 @@ export default class Card extends React.Component {
         return this.state.country.name === this.state.clickedAns
     }
 
-    goToNextCard = async(increment = true) => {
-        await this.props.goToNextCard(increment)
+    clearLocalCardState = () => {
+        localStorage.removeItem(COUNTRY)
+        localStorage.removeItem(QANS)
+        localStorage.removeItem(SCORE)
+        localStorage.removeItem(FREEANS)
+        localStorage.removeItem(QANSVISIBLE)
+        localStorage.removeItem(ANSCLICKED)
+        localStorage.removeItem(CLICKEDANS)
+        localStorage.removeItem(CHOICES)
+    }
+
+    loadCardStateFromLocalStorage = async() => {
+        let country = await this.props.loadFromLocalStorage(COUNTRY)
+        if(country === null) {
+            return false
+        }
+        let score = SCORE_PER_CARD
+        let qAnsVisible = false
+        let ansClicked = false
+        let clickedAns = ""
+        try {
+            const localScore = await this.props.loadFromLocalStorage(SCORE)
+            if(localScore !== null) {
+                score = parseInt(localScore)
+            }
+            country = await this.props.loadFromLocalStorage(COUNTRY)
+            let localQAnsVisible = await this.props.loadFromLocalStorage(QANSVISIBLE)
+            if(typeof localQAnsVisible === "boolean") {
+                qAnsVisible = localQAnsVisible
+            }
+            const localAnsClicked = await this.props.loadFromLocalStorage(ANSCLICKED)
+            if(localAnsClicked !== null) {
+                ansClicked = localAnsClicked
+            }
+            const localClickedAns = await this.props.loadFromLocalStorage(CLICKEDANS)
+            if(localClickedAns !== null) {
+                clickedAns = localClickedAns
+            }
+        }
+        catch(e) {
+            console.error("Error loading item for current card from local storage")
+            console.error(e)
+            return false
+        }
+        await this.setState({
+                                country,
+                                qAnsVisible,
+                                ansClicked,
+                                clickedAns,
+                                score
+                            })
+        return true
+    }
+
+    loadCard = async(increment = true) => {
+        if(!increment) {
+            console.log("Attempting to load card state from local storage")
+            if(await this.loadCardStateFromLocalStorage()) {
+                console.log("Successfully loaded card state from local storage")
+                return
+            }
+            console.log("Failed to load card state from local storage")
+        }
+        this.clearLocalCardState()
+        await this.props.loadCard(increment)
         const countryIDName = await this.props.getCountryIDName()
-        if(!countryIDName.id) {
+        if(!countryIDName.id) { // game end
             return
         }
+        console.log(countryIDName)
         await this.setState({
                                 country: null,
                                 qAnsVisible: false,
                                 ansClicked: false,
                                 clickedAns: "",
                                 score: SCORE_PER_CARD
-                            })
+                            }, () => {
+            this.props.saveToLocalStorage(QANSVISIBLE, this.state.qAnsVisible)
+            this.props.saveToLocalStorage(SCORE, this.state.score)
+        })
         const countryID = countryIDName.id
         await this.fetchCountrySetState(countryID)
     }
 
-    updateScoreAndCount = async () => {
+    updateScoreAndCount = async() => {
         if(this.ansIsCorrect()) {
             await this.props.incrementCorrect()
             await this.props.updateTotalScore(this.state.score)
             return
         }
-        await this.setState({score: 0})
+        await this.setState({score: 0}, () => {
+            this.props.saveToLocalStorage(SCORE, this.state.score)
+        })
     }
 
     componentDidMount() {
-        this.goToNextCard(false)
+        this.loadCard(false)
     }
 
     render() {
@@ -119,7 +199,7 @@ export default class Card extends React.Component {
                 <button className={BUTTON
                                    + " " + BUTTON_NEXT
                                    + " " + (this.state.ansClicked ? SHOW_ME : HIDE_ME)}
-                        onClick={this.goToNextCard}>Next &#8811;</button>
+                        onClick={this.loadCard}>Next &#8811;</button>
                 <section className={CARD_HERO_IMAGE + " " + SUBSECTION}>
                     <CardHero ansClicked={this.state.ansClicked}
                               country={this.state.country}/>
@@ -153,6 +233,8 @@ export default class Card extends React.Component {
                                      setAnsClicked={this.setAnsClicked}
                                      ansClicked={this.state.ansClicked}
                                      clickedAns={this.state.clickedAns}
+                                     loadFromLocalStorage={this.props.loadFromLocalStorage}
+                                     saveToLocalStorage={this.props.saveToLocalStorage}
                                      setClickedAns={this.setClickedAns}
                                      fetchCountryList={this.props.fetchCountryList}/>
                         </section>
@@ -161,6 +243,8 @@ export default class Card extends React.Component {
                                   ansClicked={this.state.ansClicked}
                                   score={this.state.score}
                                   decrementScore={this.decrementScore}
+                                  loadFromLocalStorage={this.props.loadFromLocalStorage}
+                                  saveToLocalStorage={this.props.saveToLocalStorage}
                                   qAnsVisible={this.state.qAnsVisible}/>
                         </section>
                     </div>
