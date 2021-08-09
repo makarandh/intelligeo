@@ -14,24 +14,8 @@
 }
 
 .button.choices {
-    background: var(--button-color-alt);
-    color: var(--text-blue-dark);
     border-radius: 2rem;
     padding: 1.5rem;
-}
-
-.button.choices:hover {
-    background: var(--button-color-alt-light);
-}
-
-.button.choices:active {
-    background: radial-gradient(circle, var(--button-color-alt-white), var(--button-color-alt-light));
-}
-
-.button.choices.button_disabled:hover,
-.button.choices.button_disabled:active,
-.button.choices.button_disabled:focus {
-    background: var(--button-color-alt);
 }
 
 .button.choices.correct_ans:hover,

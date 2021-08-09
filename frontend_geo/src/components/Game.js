@@ -1,18 +1,18 @@
-import "../css/App.css"
 import React from "react"
 import {
-    BUTTON, CARD, COUNTRIESLIST, EP_COUNTRY,
-    EP_RAND_LIST, ERROR_MESSAGE,
-    GAME_LENGTH, GET, INPROGRESS, INDEX, LOADING_SCREEN_CONTAINER,
-    MAIN, MAIN_URL, NETWORK_ERROR, NETWORK_ERROR_CONTAINER,
-    POST, SECTION, sleep, TOTALCORRECT, TOTALSCORE
+    CARD, COUNTRIESLIST, EP_COUNTRY,
+    EP_RAND_LIST, GAME_LENGTH, GET,
+    INPROGRESS, INDEX, LOADING_SCREEN_CONTAINER,
+    GAME_MAIN_CONTAINER, MAIN_URL, POST, SECTION,
+    TOTALCORRECT, TOTALSCORE,
+    sleep, ROUTE_NEW_GAME
 } from "../helper/common"
 import Card from "./Card"
 import EndGame from "./EndGame"
 import Loading from "./Loading"
 
 
-export default class App extends React.Component {
+export default class Game extends React.Component {
 
     state = {
         countriesList: [],
@@ -20,7 +20,7 @@ export default class App extends React.Component {
         networkError: false,
         totalCorrect: 0,
         totalScore: 0,
-        inProgress: false
+        inProgress: false,
     }
 
     incrementCorrect = async() => {
@@ -29,6 +29,10 @@ export default class App extends React.Component {
         }, () => {
             this.saveToLocalStorage(TOTALCORRECT, this.state.totalCorrect)
         })
+    }
+
+    lastCard = () => {
+        return (this.state.index + 1) === this.state.countriesList.length
     }
 
     updateTotalScore = async(score) => {
@@ -49,17 +53,21 @@ export default class App extends React.Component {
         }
     }
 
-    resetGame = async() => {
+    resetGame = async(newGame = false) => {
         await this.setState(
             {
                 countriesList: [],
                 index: 0,
                 networkError: false,
                 totalCorrect: 0,
-                totalScore: 0
+                totalScore: 0,
             })
-        this.clearAllLocalStorage()
-        window.location.reload()
+        this.props.clearAllLocalStorage()
+        if(newGame) {
+            window.location.reload()
+            return
+        }
+        window.location.href = ROUTE_NEW_GAME
     }
 
     getCountryIDName = async() => {
@@ -174,7 +182,8 @@ export default class App extends React.Component {
     loadGameFromLocalStorage = async() => {
         try {
             const countriesLS = await this.loadFromLocalStorage(COUNTRIESLIST)
-            if(!countriesLS) {
+            console.log(countriesLS)
+            if(!countriesLS || !Array.isArray(countriesLS) || countriesLS.length === 0) {
                 return false
             }
             let countriesList = countriesLS.map((element) => {
@@ -213,6 +222,7 @@ export default class App extends React.Component {
                 return
             }
         }
+        await this.setState({inProgress: false})
         await this.fetchCountries()
         await this.saveGameState()
     }
@@ -225,47 +235,38 @@ export default class App extends React.Component {
         this.saveToLocalStorage(INPROGRESS, true)
     }
 
-    clearAllLocalStorage = () => {
-        localStorage.clear()
-    }
-
     componentDidMount() {
         this.loadGameState()
     }
 
     render() {
         return (
-            <article className={MAIN}>
-                {(this.state.networkError) ?
-                 <article className={NETWORK_ERROR_CONTAINER}>
-                     <div className={ERROR_MESSAGE}>{NETWORK_ERROR}</div>
-                     <button className={BUTTON}
-                             onClick={this.refreshPage}>Refresh Page
-                     </button>
-                 </article> :
-                 ((this.state.countriesList.length > 0)
-                  ? <section className={SECTION + " " + CARD}>
-                      {this.state.index < this.state.countriesList.length
-                       ? < Card getCountryIDName={this.getCountryIDName}
-                                fetchCountry={this.fetchCountry}
-                                incrementCorrect={this.incrementCorrect}
-                                totalScore={this.state.totalScore}
-                                updateTotalScore={this.updateTotalScore}
-                                fetchCountryList={this.fetchCardsList}
-                                loadFromLocalStorage={this.loadFromLocalStorage}
-                                saveToLocalStorage={this.saveToLocalStorage}
-                                loadCard={this.loadCard}/>
-                       : <EndGame resetGame={this.resetGame}
-                                  totalScore={this.state.totalScore}
-                                  clearAllLocalStorage={this.clearAllLocalStorage}
-                                  totalCorrect={this.state.totalCorrect}/>
-                      }
-                  </section>
-                  : <div className={LOADING_SCREEN_CONTAINER}>
-                      <span>Loading</span>
-                      <Loading width={9} height={2}/>
-                  </div>
-                 )}
+            <article className={GAME_MAIN_CONTAINER}>
+                {this.state.countriesList.length > 0
+                 ? <section className={SECTION + " " + CARD}>
+                     {this.state.index < this.state.countriesList.length
+                      ? <Card getCountryIDName={this.getCountryIDName}
+                              fetchCountry={this.fetchCountry}
+                              incrementCorrect={this.incrementCorrect}
+                              totalScore={this.state.totalScore}
+                              updateTotalScore={this.updateTotalScore}
+                              fetchCountryList={this.fetchCardsList}
+                              loadFromLocalStorage={this.loadFromLocalStorage}
+                              saveToLocalStorage={this.saveToLocalStorage}
+                              resetGame={this.resetGame}
+                              lastCard={this.lastCard}
+                              loadCard={this.loadCard}/>
+                      : <EndGame resetGame={this.resetGame}
+                                 totalScore={this.state.totalScore}
+                                 clearAllLocalStorage={this.props.clearAllLocalStorage}
+                                 totalCorrect={this.state.totalCorrect}/>
+                     }
+                 </section>
+                 : <div className={LOADING_SCREEN_CONTAINER}>
+                     <span>Loading</span>
+                     <Loading width={9} height={2}/>
+                 </div>
+                }
             </article>
         )
     }

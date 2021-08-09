@@ -1,0 +1,91 @@
+.modal.outer_container {
+    transition: all ease-in-out 0.2s;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.73);
+    z-index: 100;
+    overflow: hidden;
+}
+
+.modal.outer_container.invisible {
+    transition: all ease-in-out 0.2s;
+    opacity: 0;
+    z-index: -100;
+}
+
+.modal.outer_container.visible {
+    transition: all ease-in-out 0.2s;
+    opacity: 1;
+    z-index: 100;
+}
+
+.modal.inner_container {
+    transition: all ease-in-out 0.2s;
+    display: flex;
+    justify-items: center;
+}
+
+.modal.card_container {
+    transition: all ease-in-out 0.2s;
+    padding: 1.5rem 3rem 3rem 3rem;
+    max-width: 60vw;
+    margin: 20vh auto 20vh auto;
+    text-align: center;
+    box-shadow: 1px 1px 2px 2px rgba(58, 58, 58, 0.91);
+}
+
+.modal_heading {
+    transition: all ease-in-out 0.2s;
+    font-size: 2.8rem;
+    color: var(--text-red);
+    font-family: "Montserrat", sans-serif;
+    text-transform: uppercase;
+}
+
+.modal_message {
+    transition: all ease-in-out 0.2s;
+    margin-top: 3rem;
+    font-size: 1.2rem;
+}
+
+.modal .button_container {
+    transition: all ease-in-out 0.2s;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 6rem;
+}
+
+.modal .button {
+    transition: all ease-in-out 0.2s;
+    width: 40%;
+    border-radius: 3rem;
+    box-shadow: 1px 1px 2px 2px rgba(58, 58, 58, 0.41);
+}
+
+@media (max-width: 810px) {
+    .modal.card_container {
+        max-width: 90vw;
+    }
+}
+
+@media (max-width: 670px) {
+    .modal .button {
+        margin-top: 1rem;
+        width: 12rem;
+    }
+
+    .modal .button_container {
+        margin-top: 2rem;
+    }
+}
+
+@media (max-width: 440px) {
+    .modal .modal_heading {
+        font-size: 2.3rem;
+    }
+}

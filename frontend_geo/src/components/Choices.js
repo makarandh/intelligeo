@@ -1,7 +1,7 @@
 import React from "react"
 import {
     BUTTON,
-    BUTTON_DISABLED,
+    BUTTON_DISABLED, BUTTON_YELLOW,
     CHOICE_BUTTONS_CONTAINER,
     CHOICE_COUNT,
     CHOICES,
@@ -86,7 +86,7 @@ export default class Choices extends React.Component {
         return (
             <div className={CHOICE_BUTTONS_CONTAINER}>{
                 this.state.countries.map(element => {
-                    return <button className={BUTTON + " " + CHOICES
+                    return <button className={BUTTON + " " +  BUTTON_YELLOW + " " + CHOICES
                                               + " " + this.getClassNames(element)}
                                    key={element}
                                    id={element}

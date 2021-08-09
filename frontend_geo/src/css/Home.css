@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Kalam:wght@300;400&display=swap");
+
+.new_game.card_container {
+    max-width: 35rem;
+    margin: 20vh auto 0 auto;
+    text-align: center;
+    padding: 2rem 0;
+    border-radius: 3.5rem;
+    box-shadow: 2px 2px 5px 4px rgba(40, 40, 40, 0.5);
+}
+
+.new_game.button {
+    margin: 1.5rem auto;
+    width: 82%;
+    padding: 2rem;
+    font-size: 3rem;
+    font-family: "Kalam", cursive;
+    border-width: 0.3rem;
+    border-radius: 5rem;
+    box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
+    transition: all 0.2s ease-in-out;
+}
+
+.new_game.button:hover {
+    border-width: 0.3rem;
+    box-shadow: 2px 2px 5px 3px rgba(0, 0, 0, 0.2);
+    transform: scale(1.01);
+}

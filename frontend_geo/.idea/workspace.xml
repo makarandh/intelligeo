@@ -2,17 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fd201f16-eab3-4f38-8d89-ca86d9038e3d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/MainRouter.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../dashboard_geo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../dashboard_geo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../flask_api_geo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_api_geo/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dashboard_geo/src/helper/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/../dashboard_geo/src/helper/common.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/App.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Card.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Card.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CardHero.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CardHero.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Choices.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Choices.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/EndGame.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/EndGame.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/QAns.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/QAns.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/MainRouter.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/Card.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/Card.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/Choices.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/Choices.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/EndGame.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/EndGame.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/css/QAns.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/QAns.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/utility_classes.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/utility_classes.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/helper/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/helper/common.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/App.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/App.test.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,10 +44,10 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/components/QAns.js" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/components/Choices.js" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/css/App.css" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/css/MainRouter.css" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/components/Card.js" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/helper/common.js" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/components/App.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/components/MainRouter.js" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/css/utility_classes.css" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/css/Choices.css" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -93,7 +101,9 @@
       <workItem from="1628140781029" duration="14968000" />
       <workItem from="1628171020986" duration="1129000" />
       <workItem from="1628173063898" duration="840000" />
-      <workItem from="1628236903814" duration="26655000" />
+      <workItem from="1628236903814" duration="29858000" />
+      <workItem from="1628487556740" duration="11199000" />
+      <workItem from="1628520563449" duration="13347000" />
     </task>
     <servers />
   </component>

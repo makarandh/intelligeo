@@ -161,19 +161,19 @@
     opacity: 1;
 }
 
-.danger.button {
+.button_danger.button {
     color: #f0f0f0;
     transition: all 0.1s ease-in-out;
     background-color: var(--main-red);
 }
 
-.danger.button:hover {
+.button_danger.button:hover {
     transition: all 0.1s ease-in-out;
     color: white;
     background-color: var(--light-red);
 }
 
-.danger.button:active {
+.button_danger.button:active {
     transition: all 0.1s ease-in-out;
     background: radial-gradient(circle, var(--light-red), var(--main-red));
 }
@@ -187,6 +187,33 @@
 .button.button_disabled {
     opacity: 0.9;
     box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.button.button_yellow {
+    background: var(--button-color-alt);
+    color: var(--text-blue-dark);
+}
+
+.button.button_yellow:hover {
+    background: var(--button-color-alt-light);
+}
+
+.button.button_yellow:active {
+    background: radial-gradient(circle, var(--button-color-alt-white), var(--button-color-alt-light));
+}
+
+.button.button_yellow.button_disabled:hover,
+.button.button_yellow.button_disabled:active,
+.button.button_yellow.button_disabled:focus {
+    background: var(--button-color-alt);
+}
+
+.button.button_purple_border {
+    border: 0.3rem solid var(--button-blue);
+}
+
+.button.button_purple_border:hover {
+    border: 0.3rem solid var(--button-blue-hover);
 }
 
 .hide_me {

@@ -1,3 +1,8 @@
+.card.outer_container {
+    text-align: center;
+    position: relative;
+}
+
 .card.section {
     margin: 0 1.7rem;
 }
@@ -113,12 +118,27 @@
     animation: forwards left_right 4s infinite ease-in-out;
 }
 
+.button.button_next span {
+    color: white;
+}
+
 .button.button_next:hover {
     background: rgb(55, 158, 255);
 }
 
+.button.button_quit {
+    padding: 1rem 1.2rem 1rem 1.3rem;
+    border-radius: 4rem;
+    margin-bottom: 1rem;
+    transform: translateY(-2rem);
+}
+
 .button.button_next:active {
     background: radial-gradient(circle, rgb(162, 210, 255), rgb(55, 158, 255));
+}
+
+.quit_button_container {
+    text-align: center;
 }
 
 @keyframes left_right {

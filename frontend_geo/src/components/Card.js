@@ -1,16 +1,15 @@
 import React from "react"
 import {
     CARD_CONTAINER, CARD_CHOICES, CARD_CLUES,
-    CARD_HERO_IMAGE, Q_ANS, CARD_TITLE,
-    SUBSECTION, CARD_HEADING, HEADING,
-    LOADING_SCREEN_CONTAINER, CARD,
-    VIEW_HINTS_CONTAINER, HIDE_ME,
-    SHOW_ME, BUTTON, VIEW_HINTS,
-    VIEW_HINTS_OUTER_CONTAINER,
-    CORRECT_WRONG_ICON, BUTTON_NEXT,
-    SCORE_PER_CARD, PENALTY_PER_ANS, SCORE,
-    COUNTRY, QANS, FREEANS, QANSVISIBLE,
-    ANSCLICKED, CLICKEDANS, CHOICES
+    CARD_HERO_IMAGE, Q_ANS, CARD_TITLE, SUBSECTION,
+    CARD_HEADING, HEADING, LOADING_SCREEN_CONTAINER,
+    CARD, VIEW_HINTS_CONTAINER, HIDE_ME, SHOW_ME,
+    BUTTON, VIEW_HINTS, VIEW_HINTS_OUTER_CONTAINER,
+    CORRECT_WRONG_ICON, BUTTON_NEXT, SCORE_PER_CARD,
+    PENALTY_PER_ANS, SCORE, COUNTRY, QANS, FREEANS,
+    QANSVISIBLE, ANSCLICKED, CLICKEDANS, CHOICES,
+    BUTTON_QUIT, BUTTON_DANGER, QUIT_BUTTON_CONTAINER,
+    QUIT_MESSAGE, QUIT_HEADING
 } from "../helper/common"
 import CardHero from "./CardHero"
 import Choices from "./Choices"
@@ -19,6 +18,7 @@ import Loading from "./Loading"
 import "../css/Card.css"
 import QAns from "./QAns"
 import ResultIcons from "./ResultIcons"
+import YesNoModal from "./YesNoModal"
 
 export default class Card extends React.Component {
 
@@ -27,7 +27,8 @@ export default class Card extends React.Component {
         qAnsVisible: false,
         ansClicked: false,
         clickedAns: "",
-        score: SCORE_PER_CARD
+        score: SCORE_PER_CARD,
+        quitModalVisible: false
     }
 
     setClickedAns = async(clickedAns) => {
@@ -164,16 +165,17 @@ export default class Card extends React.Component {
             return
         }
         console.log(countryIDName)
-        await this.setState({
-                                country: null,
-                                qAnsVisible: false,
-                                ansClicked: false,
-                                clickedAns: "",
-                                score: SCORE_PER_CARD
-                            }, () => {
-            this.props.saveToLocalStorage(QANSVISIBLE, this.state.qAnsVisible)
-            this.props.saveToLocalStorage(SCORE, this.state.score)
-        })
+        await this.setState(
+            {
+                country: null,
+                qAnsVisible: false,
+                ansClicked: false,
+                clickedAns: "",
+                score: SCORE_PER_CARD
+            }, () => {
+                this.props.saveToLocalStorage(QANSVISIBLE, this.state.qAnsVisible)
+                this.props.saveToLocalStorage(SCORE, this.state.score)
+            })
         const countryID = countryIDName.id
         await this.fetchCountrySetState(countryID)
     }
@@ -189,6 +191,20 @@ export default class Card extends React.Component {
         })
     }
 
+    showExitConfirm = (e) => {
+        e.preventDefault()
+        e.stopPropagation()
+        this.setState({quitModalVisible: true})
+    }
+
+    handleQuitYes = () => {
+        this.props.resetGame()
+    }
+
+    handleQuitNo = () => {
+        this.setState({quitModalVisible: false})
+    }
+
     componentDidMount() {
         this.loadCard(false)
     }
@@ -199,7 +215,14 @@ export default class Card extends React.Component {
                 <button className={BUTTON
                                    + " " + BUTTON_NEXT
                                    + " " + (this.state.ansClicked ? SHOW_ME : HIDE_ME)}
-                        onClick={this.loadCard}>Next &#8811;</button>
+                        onClick={this.loadCard}>{this.props.lastCard()
+                                                 ? <span>View End Game Score &#8811;</span>
+                                                 : <span>Next &#8811;</span>}</button>
+                <YesNoModal handleYes={this.handleQuitYes}
+                            handleNo={this.handleQuitNo}
+                            visible={this.state.quitModalVisible}
+                            heading={QUIT_HEADING}
+                            message={QUIT_MESSAGE}/>
                 <section className={CARD_HERO_IMAGE + " " + SUBSECTION}>
                     <CardHero ansClicked={this.state.ansClicked}
                               country={this.state.country}/>
@@ -215,7 +238,8 @@ export default class Card extends React.Component {
                         </section>
                         <section className={VIEW_HINTS_OUTER_CONTAINER + " " + SUBSECTION}>
                             <div className={VIEW_HINTS_CONTAINER + " " +
-                                            ((this.state.qAnsVisible || this.state.ansClicked) ? HIDE_ME : SHOW_ME)}>
+                                            ((this.state.qAnsVisible || this.state.ansClicked) ? HIDE_ME :
+                                             SHOW_ME)}>
                                 <button className={BUTTON + " " + VIEW_HINTS}
                                         onClick={this.setQAnsVisible}>View more hints
                                 </button>
@@ -246,6 +270,11 @@ export default class Card extends React.Component {
                                   loadFromLocalStorage={this.props.loadFromLocalStorage}
                                   saveToLocalStorage={this.props.saveToLocalStorage}
                                   qAnsVisible={this.state.qAnsVisible}/>
+                        </section>
+                        <section className={QUIT_BUTTON_CONTAINER}>
+                            <button className={BUTTON + " " + BUTTON_QUIT + " " + BUTTON_DANGER}
+                                    onClick={this.showExitConfirm}>Quit Game
+                            </button>
                         </section>
                     </div>
                     : <div className={CARD + " " + LOADING_SCREEN_CONTAINER}>
