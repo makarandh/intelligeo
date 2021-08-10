@@ -15,7 +15,6 @@ export const ROUTE_NEW_GAME = "/game"
 export const ROUTE_HOME = "/"
 export const ROUTE_GAME = "/game/play"
 
-export const GAME_LENGTH = 2
 export const SHORT_GAME_LENGTH = 5
 export const MEDIUM_GAME_LENGTH = 10
 export const LONG_GAME_LENGTH = 15

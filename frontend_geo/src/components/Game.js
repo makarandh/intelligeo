@@ -1,7 +1,7 @@
 import React from "react"
 import {
     CARD, COUNTRIESLIST, EP_COUNTRY,
-    EP_RAND_LIST, GAME_LENGTH, GET,
+    EP_RAND_LIST, GET,
     INPROGRESS, INDEX, LOADING_SCREEN_CONTAINER,
     GAME_MAIN_CONTAINER, MAIN_URL, POST, SECTION,
     TOTALCORRECT, TOTALSCORE,
@@ -127,7 +127,7 @@ export default class Game extends React.Component {
     }
 
     fetchCountries = async() => {
-        const response = await this.fetchCardsList(GAME_LENGTH)
+        const response = await this.fetchCardsList(this.props.gameLength)
         if(response && response.status === 200) {
             const countriesList = response.json.result
             console.log(countriesList)
@@ -250,9 +250,11 @@ export default class Game extends React.Component {
                               loadFromLocalStorage={this.loadFromLocalStorage}
                               saveToLocalStorage={this.props.saveToLocalStorage}
                               resetGame={this.resetGame}
+                              gameLength={this.props.gameLength}
                               lastCard={this.lastCard}
                               loadCard={this.loadCard}/>
                       : <EndGame resetGame={this.resetGame}
+                                 gameLength={this.props.gameLength}
                                  totalScore={this.state.totalScore}
                                  clearAllLocalStorage={this.props.clearAllLocalStorage}
                                  totalCorrect={this.state.totalCorrect}/>

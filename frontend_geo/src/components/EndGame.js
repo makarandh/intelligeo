@@ -1,7 +1,7 @@
 import React from "react"
 import {
     BUTTON, CARD_CONTAINER, ENDGAME_TEXT, ENDGAME,
-    GAME_LENGTH, HEADING, CENTER_TEXT_CONTAINER,
+    HEADING, CENTER_TEXT_CONTAINER,
     GREEN, PLAY_AGAIN, GO_HOME
 } from "../helper/common"
 import "../css/EndGame.css"
@@ -27,7 +27,7 @@ export default class EndGame extends React.Component {
                 <h1 className={ENDGAME + " " + HEADING}>End Game Score</h1>
                 <section className={ENDGAME_TEXT}>
                     <div>Thank you for playing!</div>
-                    <div>Out of <span className={GREEN}>{GAME_LENGTH} </span>
+                    <div>Out of <span className={GREEN}>{this.props.gameLength} </span>
                         questions, you answered
                         <span className={GREEN}> {this.props.totalCorrect} </span> correctly.
                     </div>

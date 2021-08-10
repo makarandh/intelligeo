@@ -75,6 +75,7 @@ export default class MainRouter extends React.Component {
                     <Route path={ROUTE_GAME}>
                         <Suspense fallback={<Loading width={9} height={2}/>}>
                             <Game saveToLocalStorage={this.saveToLocalStorage}
+                                  gameLength={this.state.gameLength}
                                   clearAllLocalStorage={this.clearAllLocalStorage}/>
                         </Suspense>
                     </Route>
