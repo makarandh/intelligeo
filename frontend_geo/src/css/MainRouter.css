@@ -27,12 +27,14 @@
     --main-red2: rgb(185, 35, 2);
 
     --light-red: rgb(231, 41, 77);
+    --yellow: rgba(255, 225, 0, 1);
+    --yellow-green: rgb(165, 187, 52);
     --tooltip-orange: rgba(255, 226, 35, 0.93);
     --brand-orange: rgb(205, 87, 2);
     --brand-orange-light: rgb(233, 120, 27);
     --brand-orange-white: rgb(245, 181, 122);
-    --button-color-alt: rgba(250, 196, 35, 1);
-    --button-color-alt-light: rgb(255, 217, 101);
+    --button-color-alt: rgba(254, 228, 7, 1);
+    --button-color-alt-light: rgb(255, 244, 41);
     --button-color-alt-white: rgb(255, 241, 200);
     --main-purple: rgb(29, 101, 190);
     --light-purple: rgb(54, 138, 222);

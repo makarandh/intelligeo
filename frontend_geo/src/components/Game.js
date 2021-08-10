@@ -27,7 +27,7 @@ export default class Game extends React.Component {
         await this.setState((prevState) => {
             return {totalCorrect: prevState.totalCorrect + 1}
         }, () => {
-            this.saveToLocalStorage(TOTALCORRECT, this.state.totalCorrect)
+            this.props.saveToLocalStorage(TOTALCORRECT, this.state.totalCorrect)
         })
     }
 
@@ -39,7 +39,7 @@ export default class Game extends React.Component {
         await this.setState((prevState) => {
             return {totalScore: prevState.totalScore + score}
         }, () => {
-            this.saveToLocalStorage(TOTALSCORE, this.state.totalScore)
+            this.props.saveToLocalStorage(TOTALSCORE, this.state.totalScore)
         })
     }
 
@@ -48,7 +48,7 @@ export default class Game extends React.Component {
             await this.setState((prevState) => {
                 return {index: prevState.index + 1}
             }, () => {
-                this.saveToLocalStorage(INDEX, this.state.index)
+                this.props.saveToLocalStorage(INDEX, this.state.index)
             })
         }
     }
@@ -208,10 +208,6 @@ export default class Game extends React.Component {
         }
     }
 
-    saveToLocalStorage = (name, item) => {
-        localStorage.setItem(name, JSON.stringify(item))
-    }
-
     loadGameState = async() => {
         const inProgress = this.loadFromLocalStorage(INPROGRESS)
         if(inProgress !== null && inProgress === true) {
@@ -228,11 +224,11 @@ export default class Game extends React.Component {
     }
 
     saveGameState = async() => {
-        this.saveToLocalStorage(COUNTRIESLIST, this.state.countriesList)
-        this.saveToLocalStorage(INDEX, this.state.index)
-        this.saveToLocalStorage(TOTALCORRECT, this.state.totalCorrect)
-        this.saveToLocalStorage(TOTALSCORE, this.state.totalScore)
-        this.saveToLocalStorage(INPROGRESS, true)
+        this.props.saveToLocalStorage(COUNTRIESLIST, this.state.countriesList)
+        this.props.saveToLocalStorage(INDEX, this.state.index)
+        this.props.saveToLocalStorage(TOTALCORRECT, this.state.totalCorrect)
+        this.props.saveToLocalStorage(TOTALSCORE, this.state.totalScore)
+        this.props.saveToLocalStorage(INPROGRESS, true)
     }
 
     componentDidMount() {
@@ -252,7 +248,7 @@ export default class Game extends React.Component {
                               updateTotalScore={this.updateTotalScore}
                               fetchCountryList={this.fetchCardsList}
                               loadFromLocalStorage={this.loadFromLocalStorage}
-                              saveToLocalStorage={this.saveToLocalStorage}
+                              saveToLocalStorage={this.props.saveToLocalStorage}
                               resetGame={this.resetGame}
                               lastCard={this.lastCard}
                               loadCard={this.loadCard}/>

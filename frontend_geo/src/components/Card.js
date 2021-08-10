@@ -9,7 +9,7 @@ import {
     PENALTY_PER_ANS, SCORE, COUNTRY, QANS, FREEANS,
     QANSVISIBLE, ANSCLICKED, CLICKEDANS, CHOICES,
     BUTTON_QUIT, BUTTON_DANGER, QUIT_BUTTON_CONTAINER,
-    QUIT_MESSAGE, QUIT_HEADING
+    QUIT_MESSAGE, QUIT_HEADING, ANSVIEWED
 } from "../helper/common"
 import CardHero from "./CardHero"
 import Choices from "./Choices"
@@ -102,6 +102,7 @@ export default class Card extends React.Component {
         localStorage.removeItem(FREEANS)
         localStorage.removeItem(QANSVISIBLE)
         localStorage.removeItem(ANSCLICKED)
+        localStorage.removeItem(ANSVIEWED)
         localStorage.removeItem(CLICKEDANS)
         localStorage.removeItem(CHOICES)
     }

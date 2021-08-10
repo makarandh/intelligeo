@@ -194,6 +194,10 @@
     color: var(--text-blue-dark);
 }
 
+.button.button_orange {
+    background: var(--button-color-alt-light);
+}
+
 .button.button_yellow:hover {
     background: var(--button-color-alt-light);
 }

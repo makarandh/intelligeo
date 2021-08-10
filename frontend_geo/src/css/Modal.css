@@ -41,6 +41,7 @@
 
 .modal_heading {
     transition: all ease-in-out 0.2s;
+    margin-top: 1.2rem;
     font-size: 2.8rem;
     color: var(--text-red);
     font-family: "Montserrat", sans-serif;

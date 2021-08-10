@@ -1,15 +1,21 @@
 import React from "react"
 import {
-    BUTTON, BUTTON_PURPLE_BORDER,
-    BUTTON_YELLOW, CARD_CONTAINER, INPROGRESS,
-    NEW_GAME, ROUTE_GAME
+    BUTTON, BUTTON_ORANGE,
+    BUTTON_PURPLE_BORDER,
+    BUTTON_YELLOW,
+    CARD_CONTAINER,
+    INPROGRESS,
+    NEW_GAME,
+    ROUTE_GAME
 } from "../helper/common"
 import "../css/Home.css"
+import GameOptions from "./GameOptions"
 
 export default class Home extends React.Component {
 
     state = {
-        inProgress: false
+        inProgress: false,
+        optionsVisible: false
     }
 
     checkForOlderGame = async() => {
@@ -30,6 +36,12 @@ export default class Home extends React.Component {
 
     playGame = () => {
         window.location.href = ROUTE_GAME
+    }
+
+    toggleOptions = () => {
+        this.setState((prevState) => {
+            return {optionsVisible: !prevState.optionsVisible}
+        })
     }
 
     componentDidMount() {
@@ -56,9 +68,15 @@ export default class Home extends React.Component {
                 <ul>
                     <button className={BUTTON + " " + NEW_GAME
                                        + " " + BUTTON_YELLOW
-                                       + " " + BUTTON_PURPLE_BORDER}>Options
+                                       + " " + BUTTON_PURPLE_BORDER
+                    + " " + (this.state.optionsVisible && BUTTON_ORANGE)}
+                            onClick={this.toggleOptions}>{(this.state.optionsVisible && "Hide ")}Options
                     </button>
                 </ul>
+                <GameOptions optionsVisible={this.state.optionsVisible}
+                             setGameLength={this.props.setGameLength}
+                             gameLength={this.props.gameLength}
+                             saveToLocalStorage={this.props.saveToLocalStorage}/>
             </article>
         )
     }
