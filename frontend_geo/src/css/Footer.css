@@ -1,0 +1,16 @@
+.footer.outer_container {
+    margin: 1rem 0 0 0;
+    width: 100%;
+    background: linear-gradient(237.15deg, #862DDB 6.88%, #340BC7 42.91%);
+}
+
+.footer_content {
+    padding: 1.2rem 0 1rem 0;
+}
+
+.copyright {
+    color: white;
+    text-align: center;
+    font-size: 0.8rem;
+}
+

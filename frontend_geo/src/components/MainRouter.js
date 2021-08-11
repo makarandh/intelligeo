@@ -5,7 +5,7 @@ import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom"
 import {
     ANSCLICKED, ANSVIEWED, CHOICES, CLICKEDANS,
     COUNTRIESLIST,
-    COUNTRY, FREEANS, GAMELENGTH,
+    COUNTRY, EVERYTHING_EXCEPT_FOOTER, FREEANS, GAMELENGTH,
     INDEX,
     INPROGRESS, LONG_GAME_LENGTH, MEDIUM_GAME_LENGTH, QANS, QANSVISIBLE,
     ROUTE_GAME,
@@ -13,6 +13,7 @@ import {
     TOTALCORRECT,
     TOTALSCORE
 } from "../helper/common"
+import Footer from "./Footer"
 import Loading from "./Loading"
 
 const Home = React.lazy(() => import("./Home"))
@@ -70,34 +71,39 @@ export default class MainRouter extends React.Component {
 
     render() {
         return (
-            <BrowserRouter>
-                <Switch>
-                    <Route path={ROUTE_GAME}>
-                        <Suspense fallback={<Loading width={9} height={2}/>}>
-                            <Game saveToLocalStorage={this.saveToLocalStorage}
-                                  gameLength={this.state.gameLength}
-                                  clearAllLocalStorage={this.clearAllLocalStorage}/>
-                        </Suspense>
-                    </Route>
-                    <Route path={`${ROUTE_GAME}/*`}>
-                        <Redirect to={ROUTE_GAME}/>
-                    </Route>
-                    <Route path={ROUTE_NEW_GAME}>
-                        <Suspense fallback={<Loading width={9} height={2}/>}>
-                            <Home saveToLocalStorage={this.saveToLocalStorage}
-                                  setGameLength={this.setGameLength}
-                                  gameLength={this.state.gameLength}
-                                  clearAllLocalStorage={this.clearAllLocalStorage}/>
-                        </Suspense>
-                    </Route>
-                    <Route path={`${ROUTE_NEW_GAME}/*`}>
-                        <Redirect to={ROUTE_NEW_GAME}/>
-                    </Route>
-                    <Route path={"/"}>
-                        <div><a href="/game">Home</a></div>
-                    </Route>
-                </Switch>
-            </BrowserRouter>
+            <div>
+                <article className={EVERYTHING_EXCEPT_FOOTER}>
+                    <BrowserRouter>
+                        <Switch>
+                            <Route path={ROUTE_GAME}>
+                                <Suspense fallback={<Loading width={9} height={2}/>}>
+                                    <Game saveToLocalStorage={this.saveToLocalStorage}
+                                          gameLength={this.state.gameLength}
+                                          clearAllLocalStorage={this.clearAllLocalStorage}/>
+                                </Suspense>
+                            </Route>
+                            <Route path={`${ROUTE_GAME}/*`}>
+                                <Redirect to={ROUTE_GAME}/>
+                            </Route>
+                            <Route path={ROUTE_NEW_GAME}>
+                                <Suspense fallback={<Loading width={9} height={2}/>}>
+                                    <Home saveToLocalStorage={this.saveToLocalStorage}
+                                          setGameLength={this.setGameLength}
+                                          gameLength={this.state.gameLength}
+                                          clearAllLocalStorage={this.clearAllLocalStorage}/>
+                                </Suspense>
+                            </Route>
+                            <Route path={`${ROUTE_NEW_GAME}/*`}>
+                                <Redirect to={ROUTE_NEW_GAME}/>
+                            </Route>
+                            <Route path={"/"}>
+                                <div><a href="/game">Home</a></div>
+                            </Route>
+                        </Switch>
+                    </BrowserRouter>
+                </article>
+                <Footer/>
+            </div>
         )
     }
 }
