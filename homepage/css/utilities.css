@@ -1,0 +1,20 @@
+.text-primary {
+    color: #500389;
+  }
+  
+  .text-secondary {
+    color: #28a745;
+  }
+
+  /* Button */
+.btn {
+    cursor: pointer;
+    display: inline-block;
+    padding: 20px 100px;
+    color: #fff;
+    border: none;
+  
+    background: linear-gradient(40.14deg, #F28A2B -32.24%, rgba(254, 150, 29, 0.79) 69.17%);
+   border-radius: 12px;
+  }
+  
