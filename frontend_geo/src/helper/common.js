@@ -127,6 +127,8 @@ export const GREEN = "green"
 export const COPYRIGHT = "copyright"
 export const FOOTER = "footer"
 export const FOOTER_CONTENT = "footer_content"
+export const HEADER = "header"
+export const HEADER_CONTENT = "header_content"
 export const EVERYTHING_EXCEPT_FOOTER = "everything_except_footer"
 
 export const INPROGRESS = "inProgress"

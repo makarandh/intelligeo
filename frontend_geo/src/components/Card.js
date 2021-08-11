@@ -44,7 +44,7 @@ import {
     BUTTON_BLUE,
     HELP_BUTTON,
     HELP_SUBSECTION,
-    SLIDE_DOWN, SLIDE_UP, BUTTON_BLUE_PRESSED
+    SLIDE_DOWN, SLIDE_UP, BUTTON_BLUE_PRESSED, ROUTE_NEW_GAME
 } from "../helper/common"
 import CardHero from "./CardHero"
 import Choices from "./Choices"
@@ -120,7 +120,7 @@ export default class Card extends React.Component {
 
     setAnsClicked = async() => {
         await this.setState({ansClicked: true}, () => {
-            window.scroll(0, 100)
+            window.scroll(0, 270)
             this.props.saveToLocalStorage(ANSCLICKED, this.state.ansClicked)
         })
     }
@@ -244,10 +244,10 @@ export default class Card extends React.Component {
     }
 
     goback = () => {
-        window.history.back()
+        window.location.href = ROUTE_NEW_GAME
     }
 
-    toggleViewHelp = async () => {
+    toggleViewHelp = async() => {
         await this.setState((prevState) => {
             return {helpVisible: !prevState.helpVisible}
         })
@@ -275,7 +275,7 @@ export default class Card extends React.Component {
                 <section className={HELP_SUBSECTION
                                     + " "
                                     + (this.state.helpVisible ? SLIDE_DOWN : SLIDE_UP)}>
-                    <HelpText />
+                    <HelpText/>
                 </section>
                 <article className={CARD_CONTAINER}>
                     <button className={BUTTON

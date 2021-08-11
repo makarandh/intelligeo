@@ -259,7 +259,7 @@ export default class Game extends React.Component {
                                       loadFromLocalStorage={this.loadFromLocalStorage}
                                       saveToLocalStorage={this.props.saveToLocalStorage}
                                       resetGame={this.resetGame}
-                                      gameLength={this.props.gameLength}
+                                      gameLength={this.state.countriesList.length}
                                       lastCard={this.lastCard}
                                       index={this.state.index}
                                       loadCard={this.loadCard}/>

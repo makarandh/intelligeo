@@ -1,7 +1,8 @@
 .footer.outer_container {
-    margin: 1rem 0 0 0;
+    margin: 3rem 0 0 0;
     width: 100%;
-    background: linear-gradient(237.15deg, #862DDB 6.88%, #340BC7 42.91%);
+    background: linear-gradient(92.35deg, rgba(242, 167, 26, 0.83) -46.22%, rgba(242, 187, 22, 0.84) 2.17%, rgba(254, 228, 7, 0.86) 98.92%);
+    backdrop-filter: blur(6px);
 }
 
 .footer_content {
@@ -9,7 +10,7 @@
 }
 
 .copyright {
-    color: white;
+    color: var(--night-purple);
     text-align: center;
     font-size: 0.8rem;
 }

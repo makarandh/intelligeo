@@ -4,16 +4,14 @@ import {Suspense} from "react"
 import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom"
 import {
     ANSCLICKED, ANSVIEWED, CHOICES, CLICKEDANS,
-    COUNTRIESLIST,
-    COUNTRY, EVERYTHING_EXCEPT_FOOTER, FREEANS, GAMELENGTH,
-    INDEX,
-    INPROGRESS, LONG_GAME_LENGTH, MEDIUM_GAME_LENGTH, QANS, QANSVISIBLE,
-    ROUTE_GAME,
-    ROUTE_NEW_GAME, SCORE, SHORT_GAME_LENGTH,
-    TOTALCORRECT,
+    COUNTRIESLIST, COUNTRY, EVERYTHING_EXCEPT_FOOTER,
+    FREEANS, GAMELENGTH, INDEX, INPROGRESS, LONG_GAME_LENGTH,
+    MEDIUM_GAME_LENGTH, QANS, QANSVISIBLE, ROUTE_GAME,
+    ROUTE_NEW_GAME, SCORE, SHORT_GAME_LENGTH, TOTALCORRECT,
     TOTALSCORE
 } from "../helper/common"
 import Footer from "./Footer"
+import Header from "./Header"
 import Loading from "./Loading"
 
 const Home = React.lazy(() => import("./Home"))
@@ -73,6 +71,7 @@ export default class MainRouter extends React.Component {
         return (
             <div>
                 <article className={EVERYTHING_EXCEPT_FOOTER}>
+                    <Header/>
                     <BrowserRouter>
                         <Switch>
                             <Route path={ROUTE_GAME}>

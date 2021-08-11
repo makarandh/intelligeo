@@ -1,12 +1,13 @@
 .card_container_container {
     position: relative;
+    margin-top: 7.8rem;
 }
 
 .button.back_button {
     position: fixed;
-    z-index: 1;
+    z-index: 5;
     left: 0.3rem;
-    top: 0.3rem;
+    top: 1rem;
     font-size: 1.4rem;
     padding: 0.6rem 0.8rem;
     border-radius: 2rem;
@@ -15,9 +16,9 @@
 
 .button.help_button {
     position: fixed;
-    z-index: 1;
+    z-index: 5;
     left: 7.6rem;
-    top: 0.3rem;
+    top: 1rem;
     font-size: 1.9rem;
     padding: 0.3rem 1rem;
     border-radius: 2rem;
@@ -27,7 +28,7 @@
 .help_subsection {
     background: white;
     position: fixed;
-    z-index: 1;
+    z-index: 5;
     max-width: 30rem;
     top: 0.3rem;
     left: 11rem;
@@ -156,10 +157,10 @@
 .button.button_next {
     position: fixed;
     right: 0.2rem;
-    top: 0.5rem;
+    top: 0.1rem;
     font-size: 2.5rem;
-    z-index: 2;
-    padding: 1rem 1.2rem 1rem 1.3rem;
+    z-index: 5;
+    padding: 0.9rem 1.2rem 0.9rem 1.3rem;
     border-radius: 4rem;
     box-shadow: 2px 2px 5px 3px rgba(0, 0, 0, 0.2);
     animation: forwards left_right 4s infinite ease-in-out;

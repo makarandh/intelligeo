@@ -35,6 +35,8 @@
     --main-green: rgba(0, 157, 44, 1);
     --main-green-light: rgb(31, 200, 78);
     --main-green-white: rgb(177, 239, 194);
+    --logo-green:  rgba(35, 156, 47, 1);
+
 }
 
 html {
@@ -191,5 +193,5 @@ h1, h2, h3, h4 {
 }
 
 .everything_except_footer {
-    min-height: calc(100vh - 7rem);
+    min-height: calc(100vh - 6rem);
 }
