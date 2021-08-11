@@ -2,15 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fd201f16-eab3-4f38-8d89-ca86d9038e3d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../dashboard_geo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../dashboard_geo/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Card.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Card.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Game.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Game.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/GameOptions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/GameOptions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Home.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/css/Card.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/Card.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/css/EndGame.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/EndGame.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/GameOptions.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/GameOptions.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/Home.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/Home.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/css/MainRouter.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/MainRouter.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/css/QAns.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/QAns.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/css/utility_classes.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/utility_classes.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/helper/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/helper/common.js" afterDir="false" />
     </list>
@@ -25,8 +26,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -97,6 +98,7 @@
       <workItem from="1628487556740" duration="11199000" />
       <workItem from="1628520563449" duration="13347000" />
       <workItem from="1628577202247" duration="27558000" />
+      <workItem from="1628666240264" duration="15571000" />
     </task>
     <servers />
   </component>

@@ -37,11 +37,19 @@ import {
     ANSVIEWED,
     BUTTON_GREEN,
     PROGRESS,
-    PROGRESS_BAR_TEXT, OUTER_CONTAINER, CARD_CONTAINER_CONTAINER, BACK_BUTTON, BUTTON_BLUE
+    PROGRESS_BAR_TEXT,
+    OUTER_CONTAINER,
+    CARD_CONTAINER_CONTAINER,
+    BACK_BUTTON,
+    BUTTON_BLUE,
+    HELP_BUTTON,
+    HELP_SUBSECTION,
+    SLIDE_DOWN, SLIDE_UP, BUTTON_BLUE_PRESSED
 } from "../helper/common"
 import CardHero from "./CardHero"
 import Choices from "./Choices"
 import Clues from "./Clues"
+import HelpText from "./HelpText"
 import Loading from "./Loading"
 import "../css/Card.css"
 import QAns from "./QAns"
@@ -56,7 +64,8 @@ export default class Card extends React.Component {
         ansClicked: false,
         clickedAns: "",
         score: SCORE_PER_CARD,
-        quitModalVisible: false
+        quitModalVisible: false,
+        helpVisible: false
     }
 
     setClickedAns = async(clickedAns) => {
@@ -234,17 +243,40 @@ export default class Card extends React.Component {
         this.setState({quitModalVisible: false})
     }
 
+    goback = () => {
+        window.history.back()
+    }
+
+    toggleViewHelp = async () => {
+        await this.setState((prevState) => {
+            return {helpVisible: !prevState.helpVisible}
+        })
+    }
+
     componentDidMount() {
         this.loadCard(false)
     }
 
     render() {
         return (
-            <div className={OUTER_CONTAINER + " " + CARD_CONTAINER_CONTAINER}>
-                <button className={BUTTON + " " + BACK_BUTTON + " " + BUTTON_BLUE}
-                onClick={() => {
-                    window.history.back()
-                }}>&#8810; Back</button>
+            <div className={OUTER_CONTAINER
+                            + " " + CARD_CONTAINER_CONTAINER}>
+                <button className={BUTTON
+                                   + " " + BACK_BUTTON
+                                   + " " + BUTTON_BLUE}
+                        onClick={this.goback}>&#8810; Back
+                </button>
+                <button className={BUTTON
+                                   + " " + HELP_BUTTON
+                                   + " " + BUTTON_BLUE
+                                   + " " + (this.state.helpVisible && BUTTON_BLUE_PRESSED)}
+                        onClick={this.toggleViewHelp}>?
+                </button>
+                <section className={HELP_SUBSECTION
+                                    + " "
+                                    + (this.state.helpVisible ? SLIDE_DOWN : SLIDE_UP)}>
+                    <HelpText />
+                </section>
                 <article className={CARD_CONTAINER}>
                     <button className={BUTTON
                                        + " " + BUTTON_NEXT

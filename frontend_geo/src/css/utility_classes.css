@@ -2,18 +2,18 @@
     font-size: 1.3rem;
     padding: 1rem;
     color: #f0f0f0;
-    background-color: var(--button-blue);
+    background-color: var(--button-purple);
     transition-property: color, background-color, box-shadow;
     transition-duration: 0.3s;
     transition-timing-function: ease-in-out;
     border-radius: 0.2rem;
-    box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: 1px 1px 4px 2px rgba(0, 0, 0, 0.2);
 }
 
 .button:hover {
     transition: all 0.25s ease-in-out;
     color: white;
-    background-color: var(--button-blue-hover);
+    background-color: var(--button-purple-hover);
     cursor: pointer;
 }
 
@@ -22,7 +22,7 @@
 }
 
 .button:active {
-    background: radial-gradient(circle, var(--light-blue), var(--button-blue-hover));
+    background: radial-gradient(circle, var(--light-purple), var(--button-purple-hover));
 }
 
 .button:disabled, .button:disabled:hover, .button:disabled:active, .button:disabled:active {
@@ -36,16 +36,16 @@
 .button.button_secondary.button_disabled:active {
     background-color: var(--bluish-white);
     background: var(--bluish-white);
-    border: 2px solid var(--button-blue);
+    border: 2px solid var(--button-purple);
     box-shadow: unset;
 }
 
 .button.button_secondary:hover {
-    background-color: var(--light-blue);
+    background-color: var(--light-purple);
 }
 
 .button.button_secondary:active {
-    background: radial-gradient(circle, var(--bluish-white), var(--light-blue));
+    background: radial-gradient(circle, var(--bluish-white), var(--light-purple));
 }
 
 .card_container {
@@ -58,7 +58,7 @@
 .heading {
     font-family: Montserrat, Arial, sans-serif;
     text-transform: uppercase;
-    color: var(--main-heading-blue);
+    color: var(--main-heading-purple);
     font-size: 4rem;
     font-weight: 500;
     text-align: center;
@@ -66,7 +66,7 @@
 
 .subheading {
     font-family: Montserrat, Arial, sans-serif;
-    color: var(--sub-heading-blue);
+    color: var(--sub-heading-purple);
     font-weight: normal;
     font-size: 2rem;
 }
@@ -91,13 +91,13 @@
     top: 0;
     content: attr(tooltip);
     opacity: 0;
-    color: var(--text-blue);
+    color: var(--text-purple);
     background-color: var(--tooltip-orange);
     font-size: 1rem;
     font-weight: normal;
     padding: 0.25rem;
     line-height: 1rem;
-    border: 1px dashed var(--night-blue);
+    border: 1px dashed var(--night-purple);
     transition: all ease-in-out 0.2s;
     transition-delay: 0.2s;
     backdrop-filter: blur(2px);
@@ -145,7 +145,7 @@
 }
 
 .hover_text {
-    background-color: var(--button-blue);
+    background-color: var(--button-purple);
     color: white;
     /*opacity: 0;*/
     position: absolute;
@@ -157,7 +157,7 @@
 }
 
 .hover_text:hover {
-    background-color: var(--button-blue-hover);
+    background-color: var(--button-purple-hover);
     opacity: 1;
 }
 
@@ -191,7 +191,7 @@
 
 .button.button_yellow {
     background: var(--button-color-alt);
-    color: var(--text-blue-dark);
+    color: var(--text-purple-dark);
 }
 
 .button.button_green {
@@ -206,8 +206,29 @@
     background: radial-gradient(circle, var(--main-green-white), var(--main-green-light));
 }
 
-.button.button_orange {
-    background: var(--button-color-alt-light);
+.button.button_blue_pressed {
+    background: radial-gradient(circle, var(--button-blue-white), var(--button-blue)) !important;
+    box-shadow: 1px 1px 3px 2px rgba(10, 10, 10, 0.3) !important;
+}
+
+.button.button_blue_pressed:hover {
+    background: radial-gradient(circle, var(--button-blue-white), var(--button-blue-hover)) !important;
+}
+
+.button.button_blue_pressed:active {
+    background: radial-gradient(circle, var(--button-blue), var(--button-blue-white)) !important;
+}
+
+.button.button_yellow_pressed {
+    background: radial-gradient(circle, var(--button-color-alt-white), var(--button-color-alt-light));
+}
+
+.button.button_yellow_pressed:hover {
+    background: radial-gradient(circle, var(--button-color-alt-white), var(--button-color-alt)) !important;
+}
+
+.button.button_yellow_pressed:active {
+    background: radial-gradient(circle, var(--button-color-alt-white), var(--button-color-alt)) !important;
 }
 
 .button.button_yellow:hover {
@@ -219,15 +240,15 @@
 }
 
 .button.button_blue {
-    background: rgb(29, 133, 229);
+    background: var(--button-blue);
 }
 
 .button.button_blue:hover {
-    background: rgb(55, 158, 255);
+    background: var(--button-blue-hover);
 }
 
 .button.button_blue:active {
-    background: radial-gradient(circle, rgb(162, 210, 255), rgb(55, 158, 255));
+    background: radial-gradient(circle, var(--button-blue-white), var(--button-blue-hover));
 }
 
 .button.button_yellow.button_disabled:hover,
@@ -237,11 +258,11 @@
 }
 
 .button.button_purple_border {
-    border: 0.3rem solid var(--button-blue);
+    border: 0.3rem solid var(--button-purple);
 }
 
 .button.button_purple_border:hover {
-    border: 0.3rem solid var(--button-blue-hover);
+    border: 0.3rem solid var(--button-purple-hover);
 }
 
 .hide_me {
@@ -263,6 +284,15 @@
 
 .slide_in_icon {
     animation: slideInIcon 0.5s forwards cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.help_para {
+    margin-bottom: 1rem;
+}
+
+.help_heading {
+    font-weight: 600;
+    color: var(--main-green);
 }
 
 @keyframes slideInIcon {

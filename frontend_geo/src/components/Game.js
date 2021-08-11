@@ -5,10 +5,11 @@ import {
     INPROGRESS, INDEX, LOADING_SCREEN_CONTAINER,
     GAME_MAIN_CONTAINER, MAIN_URL, POST, SECTION,
     TOTALCORRECT, TOTALSCORE,
-    sleep, ROUTE_NEW_GAME
+    sleep, ROUTE_NEW_GAME, NETWORK_ERROR_CONTAINER, NETWORK_ERROR, ERROR_MESSAGE, BUTTON
 } from "../helper/common"
 import Card from "./Card"
 import EndGame from "./EndGame"
+import ErrorBoundary from "./ErrorBoundary"
 import Loading from "./Loading"
 
 
@@ -20,7 +21,7 @@ export default class Game extends React.Component {
         networkError: false,
         totalCorrect: 0,
         totalScore: 0,
-        inProgress: false,
+        inProgress: false
     }
 
     incrementCorrect = async() => {
@@ -60,7 +61,7 @@ export default class Game extends React.Component {
                 index: 0,
                 networkError: false,
                 totalCorrect: 0,
-                totalScore: 0,
+                totalScore: 0
             })
         this.props.clearAllLocalStorage()
         if(newGame) {
@@ -238,34 +239,43 @@ export default class Game extends React.Component {
     render() {
         return (
             <article className={GAME_MAIN_CONTAINER}>
-                {this.state.countriesList.length > 0
-                 ? <section className={SECTION + " " + CARD}>
-                     {this.state.index < this.state.countriesList.length
-                      ? <Card getCountryIDName={this.getCountryIDName}
-                              fetchCountry={this.fetchCountry}
-                              incrementCorrect={this.incrementCorrect}
-                              totalScore={this.state.totalScore}
-                              updateTotalScore={this.updateTotalScore}
-                              fetchCountryList={this.fetchCardsList}
-                              loadFromLocalStorage={this.loadFromLocalStorage}
-                              saveToLocalStorage={this.props.saveToLocalStorage}
-                              resetGame={this.resetGame}
-                              gameLength={this.props.gameLength}
-                              lastCard={this.lastCard}
-                              index={this.state.index}
-                              loadCard={this.loadCard}/>
-                      : <EndGame resetGame={this.resetGame}
-                                 gameLength={this.props.gameLength}
-                                 totalScore={this.state.totalScore}
-                                 clearAllLocalStorage={this.props.clearAllLocalStorage}
-                                 totalCorrect={this.state.totalCorrect}/>
-                     }
-                 </section>
-                 : <div className={LOADING_SCREEN_CONTAINER}>
-                     <span>Loading</span>
-                     <Loading width={9} height={2}/>
-                 </div>
-                }
+                <ErrorBoundary>
+                    {this.state.networkError
+                     ? (<article className={NETWORK_ERROR_CONTAINER}>
+                            <div className={ERROR_MESSAGE}>{NETWORK_ERROR}</div>
+                            <button className={BUTTON}
+                                    onClick={this.refreshPage}>Refresh Page
+                            </button>
+                        </article>)
+                     : (this.state.countriesList.length > 0
+                        ? <section className={SECTION + " " + CARD}>
+                            {(this.state.index < this.state.countriesList.length
+                              ? <Card getCountryIDName={this.getCountryIDName}
+                                      fetchCountry={this.fetchCountry}
+                                      incrementCorrect={this.incrementCorrect}
+                                      totalScore={this.state.totalScore}
+                                      updateTotalScore={this.updateTotalScore}
+                                      fetchCountryList={this.fetchCardsList}
+                                      loadFromLocalStorage={this.loadFromLocalStorage}
+                                      saveToLocalStorage={this.props.saveToLocalStorage}
+                                      resetGame={this.resetGame}
+                                      gameLength={this.props.gameLength}
+                                      lastCard={this.lastCard}
+                                      index={this.state.index}
+                                      loadCard={this.loadCard}/>
+                              : <EndGame resetGame={this.resetGame}
+                                         gameLength={this.props.gameLength}
+                                         totalScore={this.state.totalScore}
+                                         clearAllLocalStorage={this.props.clearAllLocalStorage}
+                                         totalCorrect={this.state.totalCorrect}/>
+                            )}
+                        </section>
+                        : <div className={LOADING_SCREEN_CONTAINER}>
+                            <span>Loading</span>
+                            <Loading width={9} height={2}/>
+                        </div>)
+                    }
+                </ErrorBoundary>
             </article>
         )
     }

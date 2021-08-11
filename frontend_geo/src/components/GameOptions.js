@@ -19,11 +19,11 @@ export default class GameOptions extends React.Component {
 
     render() {
         return (
-            <section className={SUBSECTION
-                                + " " + OPTIONS_SUBSECTION
-                                + " " + (this.props.optionsVisible
-                                         ? SLIDE_DOWN
-                                         : SLIDE_UP)}>
+            <section className={SUBSECTION + " "
+                                + OPTIONS_SUBSECTION + " "
+                                + (this.props.optionsVisible
+                                   ? SLIDE_DOWN
+                                   : SLIDE_UP)}>
                 <h3 className={SUBHEADING}>Game length </h3>
                 <div>(Only applicable to new games)</div>
                 <div className={OPTIONS_CONTAINER}>

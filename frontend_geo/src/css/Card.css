@@ -3,13 +3,37 @@
 }
 
 .button.back_button {
-    position: absolute;
+    position: fixed;
     z-index: 1;
-    left: -1.5rem;
-    top: -1.8rem;
-    font-size: 1.2rem;
+    left: 0.3rem;
+    top: 0.3rem;
+    font-size: 1.4rem;
     padding: 0.6rem 0.8rem;
     border-radius: 2rem;
+    box-shadow: 2px 2px 3px 2px rgba(10, 10, 10, 0.3);
+}
+
+.button.help_button {
+    position: fixed;
+    z-index: 1;
+    left: 7.6rem;
+    top: 0.3rem;
+    font-size: 1.9rem;
+    padding: 0.3rem 1rem;
+    border-radius: 2rem;
+    box-shadow: 2px 2px 3px 2px rgba(10, 10, 10, 0.3);
+}
+
+.help_subsection {
+    background: white;
+    position: fixed;
+    z-index: 1;
+    max-width: 30rem;
+    top: 0.3rem;
+    left: 11rem;
+    padding: 1rem 1rem 1rem 1.3rem;
+    border-radius: 1rem;
+    box-shadow: 2px 2px 4px 3px rgba(10, 10, 10, 0.3);
 }
 
 .progress.subsection {
@@ -170,3 +194,53 @@
         transform: translateX(0);
     }
 }
+
+
+.slide_down {
+    animation: slideDown 0.3s forwards cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.slide_up {
+    animation: slideUp 0.3s forwards cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+@keyframes slideDown {
+    0% {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-8rem);
+    }
+
+    1% {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(-8rem);
+    }
+
+    100% {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    0% {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    99% {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(-16rem);
+    }
+
+    100% {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-16rem);
+    }
+}
+
