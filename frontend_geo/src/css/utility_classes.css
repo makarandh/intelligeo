@@ -194,6 +194,18 @@
     color: var(--text-blue-dark);
 }
 
+.button.button_green {
+    background: var(--main-green);
+}
+
+.button.button_green:hover {
+    background: var(--main-green-light);
+}
+
+.button.button_green:active {
+    background: radial-gradient(circle, var(--main-green-white), var(--main-green-light));
+}
+
 .button.button_orange {
     background: var(--button-color-alt-light);
 }
@@ -204,6 +216,18 @@
 
 .button.button_yellow:active {
     background: radial-gradient(circle, var(--button-color-alt-white), var(--button-color-alt-light));
+}
+
+.button.button_blue {
+    background: rgb(29, 133, 229);
+}
+
+.button.button_blue:hover {
+    background: rgb(55, 158, 255);
+}
+
+.button.button_blue:active {
+    background: radial-gradient(circle, rgb(162, 210, 255), rgb(55, 158, 255));
 }
 
 .button.button_yellow.button_disabled:hover,

@@ -25,6 +25,7 @@ export default class GameOptions extends React.Component {
                                          ? SLIDE_DOWN
                                          : SLIDE_UP)}>
                 <h3 className={SUBHEADING}>Game length </h3>
+                <div>(Only applicable to new games)</div>
                 <div className={OPTIONS_CONTAINER}>
                     <fieldset onChange={this.handleRadioChange}>
                         <div>

@@ -51,32 +51,35 @@ export default class Home extends React.Component {
     render() {
         return (
             <article className={CARD_CONTAINER + " " + NEW_GAME}>
-                {this.state.inProgress && <ul>
-                    <button className={BUTTON + " " + NEW_GAME
-                                       + " " + BUTTON_YELLOW
-                                       + " " + BUTTON_PURPLE_BORDER}
-                            onClick={this.playGame}>Resume Game
-                    </button>
-                </ul>}
                 <ul>
-                    <button className={BUTTON + " " + NEW_GAME
-                                       + " " + BUTTON_YELLOW
-                                       + " " + BUTTON_PURPLE_BORDER}
-                            onClick={this.startNewGame}>New Game
-                    </button>
+                    {this.state.inProgress && <li>
+
+                        <button className={BUTTON + " " + NEW_GAME
+                                           + " " + BUTTON_YELLOW
+                                           + " " + BUTTON_PURPLE_BORDER}
+                                onClick={this.playGame}>Resume Game
+                        </button>
+                    </li>}
+                    <li>
+                        <button className={BUTTON + " " + NEW_GAME
+                                           + " " + BUTTON_YELLOW
+                                           + " " + BUTTON_PURPLE_BORDER}
+                                onClick={this.startNewGame}>New Game
+                        </button>
+                    </li>
+                    <li>
+                        <button className={BUTTON + " " + NEW_GAME
+                                           + " " + BUTTON_YELLOW
+                                           + " " + BUTTON_PURPLE_BORDER
+                                           + " " + (this.state.optionsVisible && BUTTON_ORANGE)}
+                                onClick={this.toggleOptions}>{(this.state.optionsVisible && "Hide ")}Options
+                        </button>
+                    </li>
+                    <GameOptions optionsVisible={this.state.optionsVisible}
+                                 setGameLength={this.props.setGameLength}
+                                 gameLength={this.props.gameLength}
+                                 saveToLocalStorage={this.props.saveToLocalStorage}/>
                 </ul>
-                <ul>
-                    <button className={BUTTON + " " + NEW_GAME
-                                       + " " + BUTTON_YELLOW
-                                       + " " + BUTTON_PURPLE_BORDER
-                    + " " + (this.state.optionsVisible && BUTTON_ORANGE)}
-                            onClick={this.toggleOptions}>{(this.state.optionsVisible && "Hide ")}Options
-                    </button>
-                </ul>
-                <GameOptions optionsVisible={this.state.optionsVisible}
-                             setGameLength={this.props.setGameLength}
-                             gameLength={this.props.gameLength}
-                             saveToLocalStorage={this.props.saveToLocalStorage}/>
             </article>
         )
     }

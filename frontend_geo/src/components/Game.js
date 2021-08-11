@@ -252,6 +252,7 @@ export default class Game extends React.Component {
                               resetGame={this.resetGame}
                               gameLength={this.props.gameLength}
                               lastCard={this.lastCard}
+                              index={this.state.index}
                               loadCard={this.loadCard}/>
                       : <EndGame resetGame={this.resetGame}
                                  gameLength={this.props.gameLength}

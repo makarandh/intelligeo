@@ -1,15 +1,43 @@
 import React from "react"
 import {
-    CARD_CONTAINER, CARD_CHOICES, CARD_CLUES,
-    CARD_HERO_IMAGE, Q_ANS, CARD_TITLE, SUBSECTION,
-    CARD_HEADING, HEADING, LOADING_SCREEN_CONTAINER,
-    CARD, VIEW_HINTS_CONTAINER, HIDE_ME, SHOW_ME,
-    BUTTON, VIEW_HINTS, VIEW_HINTS_OUTER_CONTAINER,
-    CORRECT_WRONG_ICON, BUTTON_NEXT, SCORE_PER_CARD,
-    PENALTY_PER_ANS, SCORE, COUNTRY, QANS, FREEANS,
-    QANSVISIBLE, ANSCLICKED, CLICKEDANS, CHOICES,
-    BUTTON_QUIT, BUTTON_DANGER, QUIT_BUTTON_CONTAINER,
-    QUIT_MESSAGE, QUIT_HEADING, ANSVIEWED
+    CARD_CONTAINER,
+    CARD_CHOICES,
+    CARD_CLUES,
+    CARD_HERO_IMAGE,
+    Q_ANS,
+    CARD_TITLE,
+    SUBSECTION,
+    CARD_HEADING,
+    HEADING,
+    LOADING_SCREEN_CONTAINER,
+    CARD,
+    VIEW_HINTS_CONTAINER,
+    HIDE_ME,
+    SHOW_ME,
+    BUTTON,
+    VIEW_HINTS,
+    VIEW_HINTS_OUTER_CONTAINER,
+    CORRECT_WRONG_ICON,
+    BUTTON_NEXT,
+    SCORE_PER_CARD,
+    PENALTY_PER_ANS,
+    SCORE,
+    COUNTRY,
+    QANS,
+    FREEANS,
+    QANSVISIBLE,
+    ANSCLICKED,
+    CLICKEDANS,
+    CHOICES,
+    BUTTON_QUIT,
+    BUTTON_DANGER,
+    QUIT_BUTTON_CONTAINER,
+    QUIT_MESSAGE,
+    QUIT_HEADING,
+    ANSVIEWED,
+    BUTTON_GREEN,
+    PROGRESS,
+    PROGRESS_BAR_TEXT, OUTER_CONTAINER, CARD_CONTAINER_CONTAINER, BACK_BUTTON, BUTTON_BLUE
 } from "../helper/common"
 import CardHero from "./CardHero"
 import Choices from "./Choices"
@@ -212,78 +240,89 @@ export default class Card extends React.Component {
 
     render() {
         return (
-            <article className={CARD_CONTAINER}>
-                <button className={BUTTON
-                                   + " " + BUTTON_NEXT
-                                   + " " + (this.state.ansClicked ? SHOW_ME : HIDE_ME)}
-                        onClick={this.loadCard}>{this.props.lastCard()
-                                                 ? <span>View End Game Score &#8811;</span>
-                                                 : <span>Next &#8811;</span>}</button>
-                <YesNoModal handleYes={this.handleQuitYes}
-                            handleNo={this.handleQuitNo}
-                            visible={this.state.quitModalVisible}
-                            heading={QUIT_HEADING}
-                            message={QUIT_MESSAGE}/>
-                <section className={CARD_HERO_IMAGE + " " + SUBSECTION}>
-                    <CardHero ansClicked={this.state.ansClicked}
-                              country={this.state.country}/>
-                </section>
-                <section className={CARD_TITLE + " " + SUBSECTION}>
-                    <div className={CARD_HEADING + " " + HEADING}>Guess The Country</div>
-                </section>
-                {
-                    this.state.country
-                    ? <div>
-                        <section className={CARD_CLUES + " " + SUBSECTION}>
-                            <Clues getClues={this.getClues}/>
-                        </section>
-                        <section className={VIEW_HINTS_OUTER_CONTAINER + " " + SUBSECTION}>
-                            <div className={VIEW_HINTS_CONTAINER + " " +
-                                            ((this.state.qAnsVisible || this.state.ansClicked) ? HIDE_ME :
-                                             SHOW_ME)}>
-                                <button className={BUTTON + " " + VIEW_HINTS}
-                                        onClick={this.setQAnsVisible}>View more hints
+            <div className={OUTER_CONTAINER + " " + CARD_CONTAINER_CONTAINER}>
+                <button className={BUTTON + " " + BACK_BUTTON + " " + BUTTON_BLUE}
+                onClick={() => {
+                    window.history.back()
+                }}>&#8810; Back</button>
+                <article className={CARD_CONTAINER}>
+                    <button className={BUTTON
+                                       + " " + BUTTON_NEXT
+                                       + " " + BUTTON_BLUE
+                                       + " " + (this.state.ansClicked ? SHOW_ME : HIDE_ME)}
+                            onClick={this.loadCard}>{this.props.lastCard()
+                                                     ? <span>View End Game Score &#8811;</span>
+                                                     : <span>Next &#8811;</span>}</button>
+                    <YesNoModal handleYes={this.handleQuitYes}
+                                handleNo={this.handleQuitNo}
+                                visible={this.state.quitModalVisible}
+                                heading={QUIT_HEADING}
+                                message={QUIT_MESSAGE}/>
+                    <section className={CARD_HERO_IMAGE + " " + SUBSECTION}>
+                        <CardHero ansClicked={this.state.ansClicked}
+                                  country={this.state.country}/>
+                    </section>
+                    <section className={CARD_TITLE + " " + SUBSECTION}>
+                        <div className={CARD_HEADING + " " + HEADING}>Guess The Country</div>
+                    </section>
+                    <section className={SUBSECTION + " " + PROGRESS}>
+                        <div className={PROGRESS_BAR_TEXT}>Question: {this.props.index +
+                                                                      1}/{this.props.gameLength}</div>
+                    </section>
+                    {
+                        this.state.country
+                        ? <div>
+                            <section className={CARD_CLUES + " " + SUBSECTION}>
+                                <Clues getClues={this.getClues}/>
+                            </section>
+                            <section className={VIEW_HINTS_OUTER_CONTAINER + " " + SUBSECTION}>
+                                <div className={VIEW_HINTS_CONTAINER + " " +
+                                                ((this.state.qAnsVisible || this.state.ansClicked) ? HIDE_ME :
+                                                 SHOW_ME)}>
+                                    <button className={BUTTON + " " + VIEW_HINTS + " " + BUTTON_GREEN}
+                                            onClick={this.setQAnsVisible}>View more hints
+                                    </button>
+                                </div>
+                            </section>
+                            <section className={CORRECT_WRONG_ICON + " " + SUBSECTION + " " +
+                                                ((this.state.ansClicked) ? SHOW_ME : HIDE_ME)}>
+                                <ResultIcons ansIsCorrect={this.ansIsCorrect}
+                                             ansClicked={this.state.ansClicked}/>
+                            </section>
+                            <section className={CARD_CHOICES + " " + SUBSECTION}>
+                                <Choices countryID={this.state.country.id}
+                                         countryName={this.state.country.name}
+                                         updateScoreAndCount={this.updateScoreAndCount}
+                                         setAnsClicked={this.setAnsClicked}
+                                         ansClicked={this.state.ansClicked}
+                                         clickedAns={this.state.clickedAns}
+                                         loadFromLocalStorage={this.props.loadFromLocalStorage}
+                                         saveToLocalStorage={this.props.saveToLocalStorage}
+                                         setClickedAns={this.setClickedAns}
+                                         fetchCountryList={this.props.fetchCountryList}/>
+                            </section>
+                            <section className={Q_ANS + " " + SUBSECTION}>
+                                <QAns getQAns={this.getQAns}
+                                      ansClicked={this.state.ansClicked}
+                                      score={this.state.score}
+                                      decrementScore={this.decrementScore}
+                                      loadFromLocalStorage={this.props.loadFromLocalStorage}
+                                      saveToLocalStorage={this.props.saveToLocalStorage}
+                                      qAnsVisible={this.state.qAnsVisible}/>
+                            </section>
+                            <section className={QUIT_BUTTON_CONTAINER}>
+                                <button className={BUTTON + " " + BUTTON_QUIT + " " + BUTTON_DANGER}
+                                        onClick={this.showExitConfirm}>Quit Game
                                 </button>
-                            </div>
-                        </section>
-                        <section className={CORRECT_WRONG_ICON + " " + SUBSECTION + " " +
-                                            ((this.state.ansClicked) ? SHOW_ME : HIDE_ME)}>
-                            <ResultIcons ansIsCorrect={this.ansIsCorrect}
-                                         ansClicked={this.state.ansClicked}/>
-                        </section>
-                        <section className={CARD_CHOICES + " " + SUBSECTION}>
-                            <Choices countryID={this.state.country.id}
-                                     countryName={this.state.country.name}
-                                     updateScoreAndCount={this.updateScoreAndCount}
-                                     setAnsClicked={this.setAnsClicked}
-                                     ansClicked={this.state.ansClicked}
-                                     clickedAns={this.state.clickedAns}
-                                     loadFromLocalStorage={this.props.loadFromLocalStorage}
-                                     saveToLocalStorage={this.props.saveToLocalStorage}
-                                     setClickedAns={this.setClickedAns}
-                                     fetchCountryList={this.props.fetchCountryList}/>
-                        </section>
-                        <section className={Q_ANS + " " + SUBSECTION}>
-                            <QAns getQAns={this.getQAns}
-                                  ansClicked={this.state.ansClicked}
-                                  score={this.state.score}
-                                  decrementScore={this.decrementScore}
-                                  loadFromLocalStorage={this.props.loadFromLocalStorage}
-                                  saveToLocalStorage={this.props.saveToLocalStorage}
-                                  qAnsVisible={this.state.qAnsVisible}/>
-                        </section>
-                        <section className={QUIT_BUTTON_CONTAINER}>
-                            <button className={BUTTON + " " + BUTTON_QUIT + " " + BUTTON_DANGER}
-                                    onClick={this.showExitConfirm}>Quit Game
-                            </button>
-                        </section>
-                    </div>
-                    : <div className={CARD + " " + LOADING_SCREEN_CONTAINER}>
-                        <span>Loading data...</span>
-                        <Loading width={9} height={2}/>
-                    </div>
-                }
-            </article>
+                            </section>
+                        </div>
+                        : <div className={CARD + " " + LOADING_SCREEN_CONTAINER}>
+                            <span>Loading data...</span>
+                            <Loading width={9} height={2}/>
+                        </div>
+                    }
+                </article>
+            </div>
         )
     }
 }

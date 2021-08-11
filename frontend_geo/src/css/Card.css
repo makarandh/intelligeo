@@ -1,3 +1,27 @@
+.card_container_container {
+    position: relative;
+}
+
+.button.back_button {
+    position: absolute;
+    z-index: 1;
+    left: -1.5rem;
+    top: -1.8rem;
+    font-size: 1.2rem;
+    padding: 0.6rem 0.8rem;
+    border-radius: 2rem;
+}
+
+.progress.subsection {
+    text-align: center;
+}
+
+.progress_bar_text {
+    font-size: 1rem;
+    font-style: italic;
+    font-weight: 400;
+}
+
 .card.outer_container {
     text-align: center;
     position: relative;
@@ -109,7 +133,6 @@
     position: fixed;
     right: 0.2rem;
     top: 0.5rem;
-    background: rgb(29, 133, 229);
     font-size: 2.5rem;
     z-index: 2;
     padding: 1rem 1.2rem 1rem 1.3rem;
@@ -122,19 +145,11 @@
     color: white;
 }
 
-.button.button_next:hover {
-    background: rgb(55, 158, 255);
-}
-
 .button.button_quit {
     padding: 1rem 1.2rem 1rem 1.3rem;
     border-radius: 4rem;
     margin-bottom: 1rem;
     transform: translateY(-2rem);
-}
-
-.button.button_next:active {
-    background: radial-gradient(circle, rgb(162, 210, 255), rgb(55, 158, 255));
 }
 
 .quit_button_container {
