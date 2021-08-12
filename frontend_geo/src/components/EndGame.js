@@ -1,8 +1,7 @@
 import React from "react"
 import {
     BUTTON, CARD_CONTAINER, ENDGAME_TEXT, ENDGAME,
-    HEADING, CENTER_TEXT_CONTAINER,
-    GREEN, PLAY_AGAIN, GO_HOME
+    HEADING, GREEN, PLAY_AGAIN, GO_HOME, ENDGAME_BUTTON_CONTAINER
 } from "../helper/common"
 import "../css/EndGame.css"
 
@@ -33,7 +32,7 @@ export default class EndGame extends React.Component {
                     </div>
                     <div>You scored a total of <span className={GREEN}>{this.props.totalScore}</span> points.</div>
                 </section>
-                <div className={CENTER_TEXT_CONTAINER}>
+                <div className={ENDGAME + " " + ENDGAME_BUTTON_CONTAINER}>
                     <button className={PLAY_AGAIN + " " + ENDGAME + " " + BUTTON}
                             onClick={this.startNewGame}>Play again
                     </button>
