@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Kalam:wght@300;400&display=swap");
 
+.game_menu.card_container_container {
+    padding: 0 1rem 0 1rem;
+}
+
 .game_menu.card_container {
     position: relative;
     max-width: 40rem;
@@ -74,5 +78,43 @@
         visibility: hidden;
         height: 0;
         transform: translateY(-15rem);
+    }
+}
+
+@media (max-width: 650px) {
+    .game_menu.card_container {
+        margin-top: 8rem;
+    }
+
+    .game_menu.button {
+        padding: 1rem;
+        width: 26rem;
+    }
+}
+
+@media (max-width: 550px) {
+    .game_menu.card_container {
+        margin-top: 7.5rem;
+    }
+    .game_menu.button {
+        font-size: 2.5rem;
+        width: 22rem;
+    }
+}
+
+@media (max-width: 440px) {
+    .game_menu.card_container {
+        margin-top: 7rem;
+    }
+    .game_menu.button {
+        font-size: 2.2rem;
+        width: 18rem;
+    }
+}
+
+@media (max-width: 380px) {
+    .game_menu.button {
+        font-size: 1.8rem;
+        width: 16rem;
     }
 }

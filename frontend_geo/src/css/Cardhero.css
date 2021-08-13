@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Kalam:wght@300;400&display=swap");
 .card_container .card_hero_image .hero_image_container {
     text-align: center;
     position: relative;
@@ -38,7 +38,7 @@
 }
 
 .ans_below_image {
-    font-family: 'Kalam', cursive;
+    font-family: "Kalam", cursive;
     text-transform: uppercase;
     font-size: 7rem;
     font-weight: 300;
@@ -47,8 +47,8 @@
     bottom: 4.5rem;
     transform: rotate(-20deg);
     background: rgba(254, 249, 222, 1);
-    padding: 1.2rem 2rem 0.2rem 2rem;
-    line-height: 5rem;
+    padding: 1.6rem 1rem 0.2rem 1rem;
+    line-height: 4.2rem;
     box-shadow: 2px 2px 5px 3px rgba(0, 0, 0, 0.3);
     color: var(--main-green)
 }
@@ -65,3 +65,54 @@
     bottom: 1.5rem;
 }
 
+@media (max-width: 1020px) {
+    .ans_below_image {
+        font-size: 6rem;
+    }
+}
+
+@media (max-width: 900px) {
+    .ans_below_image {
+        font-size: 5rem;
+        padding: 1rem 0.5rem 0 0.5rem;
+        line-height: 3.5rem;
+    }
+}
+
+@media (max-width: 800px) {
+    .ans_below_image {
+        font-size: 4rem;
+    }
+}
+
+@media (max-width: 700px) {
+    .ans_below_image {
+        padding: 0.8rem 0.2rem 0 0.2rem;
+        line-height: 2.8rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .ans_below_image {
+        font-size: 4rem;
+        padding: 0.7rem 0.2rem 0 0.2rem;
+        line-height: 2.6rem;
+    }
+}
+
+@media (max-width: 540px) {
+    .ans_below_image {
+        left: -0.8rem;
+        right: unset;
+        bottom: 2rem;
+        font-size: 3rem;
+        padding: 0.7rem 0.2rem 0 0.2rem;
+        line-height: 2rem;
+    }
+}
+
+@media (max-width: 440px) {
+    .ans_below_image {
+        bottom: 2.5rem;
+    }
+}

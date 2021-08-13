@@ -34,3 +34,48 @@
     color: white;
     cursor: unset;
 }
+
+@media (max-width: 770px) {
+    .choice_buttons_container {
+        grid-template-columns: repeat(auto-fit, minmax(13rem, auto));
+    }
+    .choices.container {
+        margin-left: 3rem;
+        margin-right: 3rem;
+    }
+}
+
+@media (max-width: 683px) {
+    .choice_buttons_container {
+        grid-template-columns: repeat(auto-fit, minmax(12rem, auto));
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media (max-width: 620px) {
+    .button.choices {
+        font-size: 1.2rem;
+    }
+    .choice_buttons_container {
+        grid-template-columns: repeat(auto-fit, minmax(10rem, auto));
+    }
+}
+
+@media (max-width: 520px) {
+    .button.choices {
+        font-size: 1rem;
+        padding: 1.3rem;
+    }
+    .choice_buttons_container {
+        margin-left: auto;
+        margin-right: auto;
+        row-gap: 2.5rem;
+    }
+}
+
+@media (max-width: 460px) {
+    .choices.container {
+        margin: 0 2.9rem;
+    }
+}

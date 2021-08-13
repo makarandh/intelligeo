@@ -113,14 +113,14 @@ export default class Card extends React.Component {
 
     setQAnsVisible = async() => {
         await this.setState({qAnsVisible: true}, async() => {
-            window.scroll(0, 1100)
+            window.scroll(0, 1200)
             this.props.saveToLocalStorage(QANSVISIBLE, this.state.qAnsVisible)
         })
     }
 
     setAnsClicked = async() => {
         await this.setState({ansClicked: true}, () => {
-            window.scroll(0, 270)
+            window.scroll(0, 100)
             this.props.saveToLocalStorage(ANSCLICKED, this.state.ansClicked)
         })
     }
@@ -187,7 +187,11 @@ export default class Card extends React.Component {
         return true
     }
 
-    loadCard = async(increment = true) => {
+    loadCard = async(increment = true, e) => {
+        if(e) {
+            console.log("loadcard even handler ")
+            console.log(e.target)
+        }
         if(!increment) {
             console.log("Attempting to load card state from local storage")
             if(await this.loadCardStateFromLocalStorage()) {
@@ -231,7 +235,6 @@ export default class Card extends React.Component {
 
     showExitConfirm = (e) => {
         e.preventDefault()
-        e.stopPropagation()
         this.setState({quitModalVisible: true})
     }
 
@@ -243,14 +246,29 @@ export default class Card extends React.Component {
         this.setState({quitModalVisible: false})
     }
 
-    goback = () => {
+    goback = (e) => {
+        e && e.preventDefault()
         window.location.href = ROUTE_NEW_GAME
     }
 
-    toggleViewHelp = async() => {
+    toggleViewHelp = async(e) => {
+        if(e) {
+            e.preventDefault()
+        }
         await this.setState((prevState) => {
             return {helpVisible: !prevState.helpVisible}
         })
+    }
+
+    handleUnhandledClick = async(e) => {
+        if(e) {
+            e.preventDefault()
+            e.stopPropagation()
+        }
+        console.log(e.target)
+        if(this.state.helpVisible) {
+            await this.setState({helpVisible: false})
+        }
     }
 
     componentDidMount() {
@@ -260,7 +278,8 @@ export default class Card extends React.Component {
     render() {
         return (
             <div className={OUTER_CONTAINER
-                            + " " + CARD_CONTAINER_CONTAINER}>
+                            + " " + CARD_CONTAINER_CONTAINER}
+                 onClick={this.handleUnhandledClick}>
                 <button className={BUTTON
                                    + " " + BACK_BUTTON
                                    + " " + BUTTON_BLUE}

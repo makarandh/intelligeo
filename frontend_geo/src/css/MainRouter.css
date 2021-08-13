@@ -1,5 +1,5 @@
 @import "utility_classes.css";
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap");
 
 :root {
     --night-purple: rgb(11, 5, 47);
@@ -35,7 +35,7 @@
     --main-green: rgba(0, 157, 44, 1);
     --main-green-light: rgb(31, 200, 78);
     --main-green-white: rgb(177, 239, 194);
-    --logo-green:  rgba(35, 156, 47, 1);
+    --logo-green: rgba(35, 156, 47, 1);
 
 }
 
@@ -99,9 +99,15 @@ h1, h2, h3, h4 {
 .network_error_container {
     display: flex;
     max-width: 40rem;
-    margin: 4rem auto;
+    margin: 4rem auto 0 auto;
     flex-direction: column;
     align-items: center;
+    background: white;
+    padding: 3rem;
+    border-radius: 1rem;
+    box-shadow: 2px 2px 4px 2px rgba(50, 50, 50, 0.35);
+    transition: all ease-in-out 0.2s 0.5s;
+    transform: translateY(10rem);
 }
 
 .network_error_container .error_message {
@@ -110,12 +116,15 @@ h1, h2, h3, h4 {
     color: var(--text-purple);
     font-size: 1.5rem;
     line-height: 2rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 1px 1px rgba(50, 50, 50, 0.15);
 }
 
 .network_error_container .button {
     margin: 4rem auto 0 auto;
     border-radius: 2rem;
-    box-shadow: 0 0 1px 1px rgba(50, 50, 50, 0.14);
+    box-shadow: 1px 1px 3px 2px rgba(50, 50, 50, 0.2);
 }
 
 .intelligeo_logo {
@@ -145,37 +154,6 @@ h1, h2, h3, h4 {
     margin: 0 1rem;
 }
 
-.network_error_container {
-    display: flex;
-    max-width: 40rem;
-    margin: 0 auto;
-    flex-direction: column;
-    align-items: center;
-    background: white;
-    padding: 3rem;
-    border-radius: 1rem;
-    box-shadow: 2px 2px 4px 2px rgba(50, 50, 50, 0.35);
-    transition: all ease-in-out 0.2s 0.5s;
-    transform: translateY(10rem);
-}
-
-.network_error_container .error_message {
-    opacity: 1;
-    position: unset;
-    color: var(--text-purple);
-    font-size: 1.5rem;
-    line-height: 2rem;
-    padding: 1rem;
-    border-radius: 1rem;
-    box-shadow: 0 0 1px 1px rgba(50, 50, 50, 0.15);
-}
-
-.network_error_container .button {
-    margin: 4rem auto 0 auto;
-    border-radius: 2rem;
-    box-shadow: 1px 1px 3px 2px rgba(50, 50, 50, 0.2);
-}
-
 .loading_screen_container {
     margin: 10rem auto;
     width: 35rem;
@@ -193,5 +171,11 @@ h1, h2, h3, h4 {
 }
 
 .everything_except_footer {
-    min-height: calc(100vh - 6rem);
+    min-height: calc(90vh);
+}
+@media (max-width: 660px) {
+    .network_error_container {
+        margin-right: 1rem;
+        margin-left: 1rem;
+    }
 }

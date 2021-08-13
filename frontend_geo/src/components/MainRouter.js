@@ -96,7 +96,7 @@ export default class MainRouter extends React.Component {
                                 <Redirect to={ROUTE_NEW_GAME}/>
                             </Route>
                             <Route path={"/"}>
-                                <div><a href="/game">Home</a></div>
+                                <div><br/><br/><br/><br/><br/><a href="/game">Home</a></div>
                             </Route>
                         </Switch>
                     </BrowserRouter>

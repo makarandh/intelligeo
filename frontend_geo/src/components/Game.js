@@ -167,7 +167,7 @@ export default class Game extends React.Component {
 
     autoRefresh = async() => {
         if(this.state.networkError) {
-            await sleep(10)
+            await sleep(20)
             this.refreshPage()
         }
     }

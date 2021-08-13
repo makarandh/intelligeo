@@ -141,7 +141,7 @@ export default class QAns extends React.Component {
                   ? <div className={Q_A_CONTAINER + " " + (this.props.qAnsVisible ? SLIDE_IN : HIDE_ME)}>
                       {(this.props.ansClicked
                         ? <div>
-                            <h3 className={Q_ANS + " " + SUBHEADING}>Hints you viewed before answering</h3>
+                            <h3 className={Q_ANS + " " + SUBHEADING}>Hints you viewed</h3>
                             <div className={CARD_SCORE_CONTAINER}>
                                 <div className={CARD_SCORE_TEXT}>Scored: {this.props.score} points</div>
                             </div>
@@ -152,8 +152,7 @@ export default class QAns extends React.Component {
                                             + CARD_SCORE_PENALTY + " " +
                                             (this.state.animationInProgress ? FLY_UP : "")}>-{PENALTY_PER_ANS}</div>
                             {(this.state.freeAns > 0
-                              ? <h3 className={Q_ANS + " " + SUBHEADING}>You can view {this.state.freeAns} hints for
-                                    free</h3>
+                              ? <h3 className={Q_ANS + " " + SUBHEADING}>View {this.state.freeAns} hints for free</h3>
                               : <h3 className={Q_ANS + " " + SUBHEADING}>Hints costs {PENALTY_PER_ANS} points</h3>)}
                         </div>
                       )}

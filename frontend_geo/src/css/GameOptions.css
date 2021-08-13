@@ -46,3 +46,9 @@
     color: white;
     box-shadow: 1px 1px 4px 3px rgba(10, 100, 30, 0.5);
 }
+
+@media (max-width: 380px) {
+    .option_container {
+        width: 18rem;
+    }
+}

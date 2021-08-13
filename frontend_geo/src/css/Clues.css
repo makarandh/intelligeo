@@ -7,3 +7,45 @@
     line-height: 2.5rem;
     list-style: disc;
 }
+
+@media (max-width: 850px) {
+    .clues {
+        font-size: 1.2rem;
+        max-width: 30rem;
+    }
+
+    .clues ul li {
+        line-height: 1.5;
+    }
+}
+
+@media (max-width: 750px) {
+    .clues {
+        max-width: 28rem;
+        font-size: 1.1rem;
+    }
+
+    .clues ul li {
+        line-height: 1.2;
+        margin-bottom: 0.6rem;
+    }
+}
+
+@media (max-width: 675px) {
+    .clues {
+        max-width: 22rem;
+    }
+}
+
+@media (max-width: 628px) {
+    .clues {
+        max-width: 16rem;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 550px) {
+    .clues {
+        max-width: 15rem;
+    }
+}
