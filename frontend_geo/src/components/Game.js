@@ -104,6 +104,10 @@ export default class Game extends React.Component {
         }
         try {
             const response = await this.postData(body, EP_RAND_LIST)
+            if(response.status === 500) {
+                this.setNetworkError()
+                return
+            }
             if(response.status !== 200) {
                 console.error("Couldn't fetch cards list")
                 console.error(response)
@@ -232,6 +236,10 @@ export default class Game extends React.Component {
         this.props.saveToLocalStorage(INPROGRESS, true)
     }
 
+    setNetworkError = async() => {
+        await this.setState({networkError: true})
+    }
+
     componentDidMount() {
         this.loadGameState()
     }
@@ -262,6 +270,7 @@ export default class Game extends React.Component {
                                       gameLength={this.state.countriesList.length}
                                       lastCard={this.lastCard}
                                       index={this.state.index}
+                                      setNetworkError={this.setNetworkError}
                                       loadCard={this.loadCard}/>
                               : <EndGame resetGame={this.resetGame}
                                          gameLength={this.props.gameLength}

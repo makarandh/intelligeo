@@ -46,6 +46,8 @@ export default class Choices extends React.Component {
             await this.setState({countries, randomized: true}, () => {
                 this.props.saveToLocalStorage(CHOICES, this.state.countries)
             })
+        } else if(response && response.status === 500) {
+            this.props.setNetworkError()
         }
         else {
             console.error(response)

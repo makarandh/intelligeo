@@ -2,27 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fd201f16-eab3-4f38-8d89-ca86d9038e3d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../dashboard_geo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../dashboard_geo/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../flask_api_geo/Pipfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_api_geo/Pipfile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Card.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Card.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/EndGame.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/EndGame.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Choices.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Choices.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Game.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Game.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/MainRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MainRouter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/QAns.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/QAns.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/YesNoModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/YesNoModal.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/css/Card.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/Card.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/css/Cardhero.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/Cardhero.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/css/Choices.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/Choices.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/css/Clues.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/Clues.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/css/EndGame.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/EndGame.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/css/GameOptions.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/GameOptions.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/css/Header.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/Header.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/css/Home.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/Home.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/css/MainRouter.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/MainRouter.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/css/QAns.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/QAns.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/css/ResultIcon.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/ResultIcon.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/Modal.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/Modal.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/helper/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/helper/common.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,6 +99,7 @@
       <workItem from="1628577202247" duration="27558000" />
       <workItem from="1628666240264" duration="34546000" />
       <workItem from="1628755995401" duration="21123000" />
+      <workItem from="1628839558799" duration="3262000" />
     </task>
     <servers />
   </component>

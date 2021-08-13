@@ -44,7 +44,7 @@ import {
     BUTTON_BLUE,
     HELP_BUTTON,
     HELP_SUBSECTION,
-    SLIDE_DOWN, SLIDE_UP, BUTTON_BLUE_PRESSED, ROUTE_NEW_GAME
+    SLIDE_DOWN, SLIDE_UP, BUTTON_BLUE_PRESSED, ROUTE_NEW_GAME, LOADING_TEXT
 } from "../helper/common"
 import CardHero from "./CardHero"
 import Choices from "./Choices"
@@ -347,6 +347,7 @@ export default class Card extends React.Component {
                                          setAnsClicked={this.setAnsClicked}
                                          ansClicked={this.state.ansClicked}
                                          clickedAns={this.state.clickedAns}
+                                         setNetworkError={this.props.setNetworkError}
                                          loadFromLocalStorage={this.props.loadFromLocalStorage}
                                          saveToLocalStorage={this.props.saveToLocalStorage}
                                          setClickedAns={this.setClickedAns}
@@ -368,7 +369,7 @@ export default class Card extends React.Component {
                             </section>
                         </div>
                         : <div className={CARD + " " + LOADING_SCREEN_CONTAINER}>
-                            <span>Loading data...</span>
+                            <span className={LOADING_TEXT}>Loading data...</span>
                             <Loading width={9} height={2}/>
                         </div>
                     }

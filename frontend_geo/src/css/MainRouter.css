@@ -115,7 +115,7 @@ h1, h2, h3, h4 {
     position: unset;
     color: var(--text-purple);
     font-size: 1.5rem;
-    line-height: 2rem;
+    line-height: 1.5;
     padding: 1rem;
     border-radius: 1rem;
     box-shadow: 0 0 1px 1px rgba(50, 50, 50, 0.15);
@@ -123,7 +123,8 @@ h1, h2, h3, h4 {
 
 .network_error_container .button {
     margin: 4rem auto 0 auto;
-    border-radius: 2rem;
+    border-radius: 3rem;
+    padding: 1.5rem 2rem;
     box-shadow: 1px 1px 3px 2px rgba(50, 50, 50, 0.2);
 }
 
@@ -147,7 +148,7 @@ h1, h2, h3, h4 {
 }
 
 .app_content {
-    min-height: 89vh;
+    min-height: 90vh;
 }
 
 .main {
@@ -171,11 +172,31 @@ h1, h2, h3, h4 {
 }
 
 .everything_except_footer {
-    min-height: calc(90vh);
+    min-height: 91.2vh;
 }
 @media (max-width: 660px) {
+    .network_error_container .error_message {
+        font-size: 1.3rem;
+    }
     .network_error_container {
-        margin-right: 1rem;
-        margin-left: 1rem;
+        margin: 0 1rem;
+        padding: 2rem;
+    }
+}
+
+@media (max-width: 570px) {
+    .network_error_container .error_message {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 470px) {
+    .network_error_container .button {
+        font-size: 1.2rem;
+        padding: 1rem 1.5rem;
+        margin-top: 3rem;
+    }
+    .network_error_container .error_message {
+        font-size: 1rem;
     }
 }
