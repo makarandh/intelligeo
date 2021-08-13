@@ -46,10 +46,12 @@
 
   /* Flex columns */
   .flex-columns {
+    position: relative;
     overflow: hidden;
   }
   .flex-columns .shapes {
-    position: relative;
+    position: static;
+    float: left;
   }
 
   .flex-columns .img1 {
@@ -61,7 +63,7 @@
     width: 43rem;
     height: 38rem;
     margin-left: 12rem;
-    z-index: 1;
+    z-index: 2;
   }
 
   .flex-columns .img2 {
@@ -72,12 +74,12 @@
     width: 49rem;
     height: 43rem;
     
-    z-index: 1;
+    z-index: 2;
   }
 
   .flex-columns  .row {
     background-color: #FEFCEF ;
-    flex-direction: column;
+    
   }
 
   .flex-columns .row {
@@ -86,13 +88,13 @@
   flex-wrap: nowrap;
   justify-content: space-between;
   width: 100%;
-  height: 100vh;
+  
   }
 
   .flex-columns .column-2 {
   display: flex;
   flex-direction: column;
-  margin-top: 10rem ;
+  /* margin-top: 10rem ; */
   
   margin-right: 17rem;
   }
@@ -104,7 +106,7 @@
 
   .flex-columns img {
   width: 130%;
-  height: 130%;
+  /* height: 130%; */
   
   z-index: 10;
   }
@@ -132,7 +134,7 @@
   font-size: 1.6rem;
 /* or 168% */
   color: rgba(87, 7, 163, 0.75);
-  margin: 2rem 0;
+  /* margin: 2rem 0; */
   }
 
   .flex-columns .fun, 
@@ -143,7 +145,4 @@
   color: #11bb39;
   }
 
-  .footer {
-    position: relative;
-    z-index: 50;
-  }
+  

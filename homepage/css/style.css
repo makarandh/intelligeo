@@ -8,7 +8,8 @@
 
 body {
     font-family: 'Roboto', sans-serif;
-    background: #fff;
+    background-color: #FEFCEF ;
+    
     color: #333;
     /* line-height: 1.6; */
 }
@@ -99,8 +100,8 @@ img {
 /* Header */
 .hero {
     background: #fff;
-    height: 100vh;
-    position: relative;
+    height: 100%;
+    
   }
   
   .hero .content {
@@ -109,8 +110,9 @@ img {
     align-items: center;
     justify-content: center;
     text-align: center;
-    height: 100%;
+    
     padding-top: 17rem;
+    z-index: 1;
   }
 
   .hero .content h1 {
@@ -155,14 +157,21 @@ img {
     color: #FFFFFF;
   }
 
-   .hero .content .img {
-     
-     width: 105%;
+   
+
+  .landmarks {
+    width: 100%;
+    position: static; 
+    padding-top: 4rem;
+  }
+ .hero .content .img {
+    width: 105%;
+    transform: translateX(-5rem);
+    
+    margin-bottom: -2.5rem;
   }
 
-   .hero * { 
-     z-index: 100;
-  }
+   
 
   .main-container {
       display: flex;
@@ -173,8 +182,7 @@ img {
       padding-left: 15px;
       margin-right: auto;
       margin-left: auto;
-      padding-top: 15px;
-      padding-bottom: 15px;
+      
       
   }
 
@@ -183,8 +191,8 @@ img {
     color: #fff;
     width: 100%;
     height: auto;
-    padding-top: 1rem;
-
+    
+    position: static;
   }
 
   .footer a {
@@ -194,7 +202,7 @@ img {
   .footer .logo {
     font-weight: 500;
     margin-top: 2.4rem;
-    margin-bottom: 0;
+    
     /* text-align: center; */
     font-family: "Montserrat", sans-serif;
     font-size: 2.2rem;
@@ -231,8 +239,17 @@ img {
     margin-left: 1.5rem;
 }
 
-.social a:hover {
-    color: #239C2F;
+.social .fb a:hover {
+    color: #177BF2;
+}
+.social .twitter a:hover {
+    color: #1DA1F2;
+}
+.social .youtube a:hover {
+    color: #ff0000;
+}
+.social .linkedin a:hover {
+    color: #0a66c2;
 }
 
 .footer ul {
@@ -322,3 +339,19 @@ img {
     margin-top: .5rem;
 } */
   
+/* Mobile */
+@media(min-width: 769px) and (max-width: 1200px)) {
+    .navbar {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      justify-content: space-between;
+      height: 8rem;
+      padding: 1rem;
+    }
+    
+    .navbar ul a {
+        padding: 1rem 1rem;
+        margin: 0 .3rem;
+    } 
+}
