@@ -38,7 +38,7 @@ services:
     build:
       context: ./nginx_geo
       dockerfile: Dockerfile
-    volumes:
+    volumes: # Logs and images are stored in /site_data in host
       - /site_data/logs/nginx-logs:/var/log/nginx
       - ./nginx_geo/sites:/docker_nginx/sites
       - /site_data/files_and_data/static:/docker_nginx/static

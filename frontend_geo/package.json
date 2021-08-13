@@ -12,6 +12,7 @@
     "react-scripts": "4.0.3",
     "web-vitals": "^2.1.0"
   },
+  "homepage": "/game",
   "scripts": {
     "start": "export PORT=3030; react-scripts start",
     "build": "react-scripts build",

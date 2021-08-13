@@ -188,17 +188,10 @@ export default class Card extends React.Component {
     }
 
     loadCard = async(increment = true, e) => {
-        if(e) {
-            console.log("loadcard even handler ")
-            console.log(e.target)
-        }
         if(!increment) {
-            console.log("Attempting to load card state from local storage")
             if(await this.loadCardStateFromLocalStorage()) {
-                console.log("Successfully loaded card state from local storage")
                 return
             }
-            console.log("Failed to load card state from local storage")
         }
         this.clearLocalCardState()
         await this.props.loadCard(increment)
@@ -206,7 +199,7 @@ export default class Card extends React.Component {
         if(!countryIDName.id) { // game end
             return
         }
-        console.log(countryIDName)
+        // console.log(countryIDName)
         await this.setState(
             {
                 country: null,
@@ -265,7 +258,6 @@ export default class Card extends React.Component {
             e.preventDefault()
             e.stopPropagation()
         }
-        console.log(e.target)
         if(this.state.helpVisible) {
             await this.setState({helpVisible: false})
         }

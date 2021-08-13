@@ -6,7 +6,7 @@ import {
     HERO_PERSON1,
     HERO_PERSON2,
     HERO_PERSON3,
-    HERO_WORLD_MAP, HIDE_ME, IMAGE_URL, PHOTO_CREDIT_CONTAINER, SHOW_ME, WORLD_MAP_CONTAINER
+    HERO_WORLD_MAP, HIDE_ME, IMAGE_URL, IMAGES_PATH, PHOTO_CREDIT_CONTAINER, SHOW_ME, WORLD_MAP_CONTAINER
 } from "../helper/common"
 import "../css/Cardhero.css"
 
@@ -44,10 +44,10 @@ export default class CardHero extends React.Component {
         return (
             <div className={HERO_IMAGE_CONTAINER}>
                 <div className={WORLD_MAP_CONTAINER + " " + (this.props.ansClicked ? HIDE_ME : SHOW_ME)}>
-                    <img className={HERO_WORLD_MAP} src="/static/images/hero-image-world.svg" alt="world map"/>
-                    <img className={HERO_PERSON1} src="/static/images/hero-image-person1.svg" alt="person1"/>
-                    <img className={HERO_PERSON2} src="/static/images/hero-image-person2.svg" alt="person2"/>
-                    <img className={HERO_PERSON3} src="/static/images/hero-image-person3.svg" alt="person3"/>
+                    <img className={HERO_WORLD_MAP} src={`${IMAGES_PATH}/hero-image-world.svg`} alt="world map"/>
+                    <img className={HERO_PERSON1} src={`${IMAGES_PATH}/hero-image-person1.svg`} alt="person1"/>
+                    <img className={HERO_PERSON2} src={`${IMAGES_PATH}/hero-image-person2.svg`} alt="person2"/>
+                    <img className={HERO_PERSON3} src={`${IMAGES_PATH}/hero-image-person3.svg`} alt="person3"/>
                 </div>
                 <div className={ANS_IMAGE_CONTAINER + " " + (this.props.ansClicked ? SHOW_ME : HIDE_ME)}>
                     <img src={this.getImageURL()} alt="Answer"/>

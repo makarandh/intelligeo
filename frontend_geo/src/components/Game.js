@@ -135,7 +135,7 @@ export default class Game extends React.Component {
         const response = await this.fetchCardsList(this.props.gameLength)
         if(response && response.status === 200) {
             const countriesList = response.json.result
-            console.log(countriesList)
+            // console.log(countriesList)
             await this.setState({countriesList})
         }
     }
@@ -151,7 +151,7 @@ export default class Game extends React.Component {
                 }
             })
             const json = await response.json()
-            console.log(json)
+            // console.log(json)
             const status = await response.status
             return {
                 json,
@@ -187,7 +187,6 @@ export default class Game extends React.Component {
     loadGameFromLocalStorage = async() => {
         try {
             const countriesLS = await this.loadFromLocalStorage(COUNTRIESLIST)
-            console.log(countriesLS)
             if(!countriesLS || !Array.isArray(countriesLS) || countriesLS.length === 0) {
                 return false
             }
@@ -216,7 +215,6 @@ export default class Game extends React.Component {
     loadGameState = async() => {
         const inProgress = this.loadFromLocalStorage(INPROGRESS)
         if(inProgress !== null && inProgress === true) {
-            console.log("loading from local storage")
             await this.setState({inProgress: true})
             const status = await this.loadGameFromLocalStorage()
             if(status) {

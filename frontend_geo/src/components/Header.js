@@ -7,7 +7,7 @@ function Header() {
     return (
         <header className={HEADER + " " + OUTER_CONTAINER}>
             <article className="intelligeo-logo">
-                <a href="https://geo.intellideep.digital">
+                <a href="/">
                     <span className="intelli">Intelli</span><span className="geo">Geo</span>
                 </a>
             </article>

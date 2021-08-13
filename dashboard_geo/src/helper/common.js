@@ -1,6 +1,6 @@
 // export const MAIN_URL = "https://api.geo.intellideep.digital"
-// export const MAIN_URL = "https://localhost:5000"
-export const MAIN_URL = "http://localhost:3000"
+export const MAIN_URL = "https://localhost:5000"
+// export const MAIN_URL = "http://localhost:3000"
 export const intITEMS_PER_PAGE = 300
 export const APP_NAME = "IntelliGeo Admin Dashboard"
 export const USERNAME = "username"

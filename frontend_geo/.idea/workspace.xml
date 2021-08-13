@@ -2,16 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fd201f16-eab3-4f38-8d89-ca86d9038e3d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../flask_api_geo/Pipfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_api_geo/Pipfile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dashboard_geo/src/helper/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/../dashboard_geo/src/helper/common.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../flask_api_geo/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_api_geo/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Card.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Card.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Choices.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Choices.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CardHero.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CardHero.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Game.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Game.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/YesNoModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/YesNoModal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/css/Card.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/Card.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/css/MainRouter.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/MainRouter.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/css/Modal.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/Modal.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/MainRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MainRouter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ResultIcons.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ResultIcons.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/helper/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/helper/common.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../nginx_geo/nginx.conf" beforeDir="false" afterPath="$PROJECT_DIR$/../nginx_geo/nginx.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../nginx_geo/sites/geo.intellideep.digital/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../nginx_geo/sites/geo.intellideep.digital/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../start-server-prod" beforeDir="false" afterPath="$PROJECT_DIR$/../start-server-prod" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,6 +106,8 @@
       <workItem from="1628666240264" duration="34546000" />
       <workItem from="1628755995401" duration="21123000" />
       <workItem from="1628839558799" duration="3262000" />
+      <workItem from="1628855278879" duration="661000" />
+      <workItem from="1628856421736" duration="583000" />
     </task>
     <servers />
   </component>
