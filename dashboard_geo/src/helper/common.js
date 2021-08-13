@@ -1,8 +1,7 @@
-// export const MAIN_URL = "https://api.geo.intellideep.digital"
-export const MAIN_URL = "https://localhost:5000"
+export const MAIN_URL = "https://api.geo.intellideep.digital"
+// export const MAIN_URL = "https://localhost:5000"
 // export const MAIN_URL = "http://localhost:3000"
 export const intITEMS_PER_PAGE = 300
-export const APP_NAME = "IntelliGeo Admin Dashboard"
 export const USERNAME = "username"
 export const PASSWORD = "password"
 export const LOGIN = "login"
@@ -34,7 +33,6 @@ export const CREATE_CARD_HEADING = "Add A New Country"
 export const UPDATE_CARD_HEADING = "Edit Country"
 
 export const INTELLIGEO_LOGO = "intelligeo_logo"
-export const NONLOGO_TEXT = "nonlogo_text"
 export const INTELLI = "intelli"
 export const GEO = "geo"
 export const TOP_BAR = "top_bar"

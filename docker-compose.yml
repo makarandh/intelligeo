@@ -47,7 +47,7 @@ services:
     ports:
       - 80:80
       - 443:443
-      - 127.0.0.1:5000:5000
+#      - 127.0.0.1:5000:5000
     networks:
       - default
     stdin_open: true

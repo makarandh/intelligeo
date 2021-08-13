@@ -6,8 +6,11 @@
    1. Comment out local testing server blocks (admin console, api) in nginx.conf
 3. Dashboard frontend helper/common.js 
    1. Change fetch URL
-4. docker-compose:
+4. Game frontend helper/common.js 
+   1. Change fetch URL
+   2. Change Image URL
+5. docker-compose:
    1. Comment out port opening in nginx for - 127.0.0.1:5000:5000
-5. env:
+6. env:
    1. Comment out DEBUG=1 in flask production.evn
-6. Use -f option to start server (this will delete old frontend)
+7. Use -f option to start server (this will delete old frontend)
