@@ -73,7 +73,7 @@ img {
     display: flex;
 }
 
-.logo {
+.hero .logo {
     font-weight: 500;
     margin-top: .6rem;
     margin-bottom: 0;
@@ -83,12 +83,12 @@ img {
     margin-left: 2.5rem;
 }
 
- .logo .intelli {
+ .hero .logo .intelli {
     color: #500389;
     padding: 0.2rem 0.2rem 0.2rem 0.5rem; 
 }
 
-.logo .geo {
+ .hero .logo .geo {
     background-color: #239C2F;
     color: #fff;
     border: 0.2rem solid #239C2F;
@@ -98,7 +98,7 @@ img {
 
 /* Header */
 .hero {
-    background: #EFEAFF;
+    background: #fff;
     height: 100vh;
     position: relative;
   }
@@ -110,7 +110,7 @@ img {
     justify-content: center;
     text-align: center;
     height: 100%;
-    padding-top: 19rem;
+    padding-top: 17rem;
   }
 
   .hero .content h1 {
@@ -158,7 +158,6 @@ img {
    .hero .content .img {
      
      width: 105%;
-     ;
   }
 
    .hero * { 
@@ -166,71 +165,47 @@ img {
   }
 
   .main-container {
-      max-width: 110rem;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+      padding-right: 15px;
+      padding-left: 15px;
       margin-right: auto;
       margin-left: auto;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      
   }
 
   .footer {
     background: #500389;
     color: #fff;
-    width: fit-content;
+    width: 100%;
+    height: auto;
+    padding-top: 1rem;
+
   }
 
   .footer a {
       color: #fff;
   }
-  
-  #footer  {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    /* background-color: #; */
-    color: #fff;
-    /* opacity: 1; */
-    width: 100%;
-    height: 8rem;
-    /* position: fixed; */
-    top: 0px;
-    /* padding: 30px 30px; */
-  }
 
-  #footer a {
-    font-size: 1.4rem;
-    color: #fff;
-    /* padding: 10px 40px; */
-    margin: 0 .4rem;
-}
-
-#footer a:hover {
-    border-bottom: #fff .2rem solid;
-    padding-bottom: .8rem;
-}
-
-#footer li {
-    padding: 1rem 2rem;
-}
-
-#footer ul {
-    margin-top: 4.8rem;
-}
-
-.logo-footer {
+  .footer .logo {
     font-weight: 500;
-    margin-top: .8rem;
+    margin-top: 2.4rem;
     margin-bottom: 0;
-    text-align: center;
+    /* text-align: center; */
     font-family: "Montserrat", sans-serif;
     font-size: 2.2rem;
-    margin-left: 2.5rem;
 }
 
- .logo-footer .intelli {
+ .footer .logo .intelli {
     color: #fff;
-    padding: 0.2rem 0.2rem 0.2rem 0.5rem; 
+    padding: 0.2rem 0.2rem 0.2rem 0rem; 
 }
 
-.logo-footer .geo {
+ .footer .logo .geo {
     background-color: #239C2F;
     color: #fff;
     border: 0.2rem solid #239C2F;
@@ -238,16 +213,112 @@ img {
     border-radius: 100rem;
 }
 
-.footer p {
-    margin-left: 3rem;
+.footer .copyright {
+    margin-top: 2.5rem;
+    font-size: 1rem;
+}
+
+.social { 
     display: flex;
+    
+    /* text-align: center; */
+    align-items: center;
+    padding-bottom: .8rem;
+    margin-right: 9rem;
+} 
+
+.social a {
+    margin-left: 1.5rem;
+}
+
+.social a:hover {
+    color: #239C2F;
+}
+
+.footer ul {
+    display: flex;
+    
+    flex-direction: column;
+    row-gap: .7rem;
+    margin-top: 1.5rem;
 }
 
   
-   .social {
+  /* #footer  {
     display: flex;
-    margin-left: 50rem;
-    text-align: center;
+    flex-direction: column;
+    /* align-items: center; */
+    /* justify-content: space-between; */
+    /* background-color: #; */
+    /* color: #fff; */
+    /* opacity: 1; */
+    /* width: 100%;
+    height: 8rem; */
+    /* position: fixed; */
+    /* top: 0px; */
+    /* padding: 30px 30px;
+   } */
+
+  /* #footer a {
+    font-size: 1.4rem;
+    color: #fff;
+    /* padding: 10px 40px; */
+    /* margin: 0 .4rem;
+} */ 
+
+/* #footer a:hover {
+    border-bottom: #fff .2rem solid;
+    padding-bottom: .8rem;
+} */
+
+/* #footer li {
+    padding: 1rem 2rem;
+} */
+
+/* #footer ul {
+    margin-top: 4.8rem;
+} */
+
+/* .logo-footer {
+    font-weight: 500;
     margin-top: .8rem;
-  }
+    margin-bottom: 0;
+    /* text-align: center; */
+    font-family: "Montserrat", sans-serif;
+    font-size: 2.2rem;
+    margin-left: 2.5rem;
+} */
+
+ /* .logo-footer .intelli {
+    color: #fff;
+    padding: 0.2rem 0.2rem 0.2rem 0.5rem; 
+} */
+
+/* .logo-footer .geo {
+    background-color: #239C2F;
+    color: #fff;
+    border: 0.2rem solid #239C2F;
+    padding: 1.4rem .6rem;
+    border-radius: 100rem;
+} */
+
+/* .footer p {
+    
+ display: flex;
+} */
+  
+/* .social {
+    display: flex;
+    text-align: center;
+    margin-left: 46rem;
+    margin-top: .8rem;
+} */
+
+/* .social a {
+    margin-left: 1.5rem;
+} */
+
+/* .social h4 {
+    margin-top: .5rem;
+} */
   
