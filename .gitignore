@@ -13,3 +13,4 @@ hello.py
 hello.js
 nginx_geo/sites/admin.geo.intellideep.digital
 nginx_geo/sites/geo.intellideep.digital/game
+nginx_geo/sites/geo.intellideep.digital/.idea/

@@ -86,7 +86,6 @@
   flex-wrap: nowrap;
   justify-content: space-between;
   width: 100%;
-  height: 100vh;
   }
 
   .flex-columns .column-2 {
