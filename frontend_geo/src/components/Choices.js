@@ -103,7 +103,6 @@ export default class Choices extends React.Component {
     }
 
     componentDidMount() {
-        console.log(this.props.countryName)
         this.loadChoices()
     }
 

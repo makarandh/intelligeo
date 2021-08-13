@@ -66,6 +66,9 @@ export default class QAns extends React.Component {
         randIndices.forEach((value) => {
             randQAns.push(qAns[value])
         })
+        if(randQAns.length > 9) {
+            randQAns = randQAns.slice(0, 9)
+        }
         await this.setState(
             {
                 randomized: true,

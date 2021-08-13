@@ -115,7 +115,6 @@ export default class Game extends React.Component {
             else if(response.json.count !== listLength) {
                 console.error(`Requested ${listLength} cards, server sent ${response.json.count}`)
             }
-            // console.log(response.json.result.map(element => element.name))
             const status = response.status
             const json = response.json
             return {
@@ -135,7 +134,6 @@ export default class Game extends React.Component {
         const response = await this.fetchCardsList(this.props.gameLength)
         if(response && response.status === 200) {
             const countriesList = response.json.result
-            // console.log(countriesList)
             await this.setState({countriesList})
         }
     }
@@ -151,7 +149,6 @@ export default class Game extends React.Component {
                 }
             })
             const json = await response.json()
-            // console.log(json)
             const status = await response.status
             return {
                 json,

@@ -19,6 +19,9 @@ export default class Clues extends React.Component {
             const j = Math.floor(Math.random() * (i + 1));
             [clues[i], clues[j]] = [clues[j], clues[i]]
         }
+        if(clues.length > 3) {
+            clues = clues.slice(0, 9)
+        }
         this.setState({randomized: true, clues})
     }
 

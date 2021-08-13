@@ -2,10 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d79f164b-1590-4277-9669-7d0c0dc65016" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../flask_api_geo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_api_geo/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend_geo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend_geo/src/components/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/src/components/Home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend_geo/src/css/Card.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/src/css/Card.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend_geo/src/css/Home.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/src/css/Home.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend_geo/src/components/Card.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/src/components/Card.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend_geo/src/components/Choices.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/src/components/Choices.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend_geo/src/components/Game.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/src/components/Game.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend_geo/src/helper/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/src/helper/common.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,6 +69,7 @@
       <workItem from="1628667128812" duration="221000" />
       <workItem from="1628683622864" duration="892000" />
       <workItem from="1628699644532" duration="231000" />
+      <workItem from="1628872603079" duration="11000" />
     </task>
     <servers />
   </component>

@@ -199,7 +199,6 @@ export default class Card extends React.Component {
         if(!countryIDName.id) { // game end
             return
         }
-        // console.log(countryIDName)
         await this.setState(
             {
                 country: null,
