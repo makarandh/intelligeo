@@ -56,8 +56,10 @@ a, a:hover, a:link, a:visited {
     border-radius: 100rem;
 }
 
-
- /* Header - navbar*/
+/* Header - navbar*/
+.hamburger-button-container {
+    display: none;
+}
 
 #navbar {
     display: flex;
@@ -83,13 +85,12 @@ a, a:hover, a:link, a:visited {
     border-bottom: #500389 .2rem solid;
 }
 
-.dropdown {
-    font-size: 2rem;
-    display: none;
-}
-
 .content {
     margin-top: 5rem;
+}
+
+#nav-close-icon {
+    transform: translateY(-0.7rem);
 }
 
 
@@ -131,8 +132,6 @@ a, a:hover, a:link, a:visited {
 /*    transform: translateX(-5rem);*/
 /*    margin-bottom: -2.5rem;*/
 /*}*/
-
-
 
 /*!* Button *!*/
 /*.btn {*/
@@ -232,14 +231,9 @@ a, a:hover, a:link, a:visited {
 /*    color: #11bb39;*/
 /*}*/
 
-
-
 /*.button {*/
 /*    text-align: center;*/
 /*}*/
-
-
-
 
 /*    text-align: center;*/
 
@@ -247,13 +241,11 @@ a, a:hover, a:link, a:visited {
 /*    margin: 1.8rem 0 2.8rem;*/
 /*}*/
 
-
 /*.landmarks {*/
 /*    width: 100%;*/
 /*    position: static;*/
 /*    padding-top: 4rem;*/
 /*}*/
-
 
 /*.main-container {*/
 /*    display: flex;*/
@@ -341,7 +333,6 @@ a, a:hover, a:link, a:visited {
 /*    margin-top: 1.5rem;*/
 /*}*/
 
-
 @media (max-width: 1264px) {
     .header .logo {
         margin-left: 1rem;
@@ -353,52 +344,62 @@ a, a:hover, a:link, a:visited {
     }
 }
 
+
 @media (max-width: 760px) {
     .header .logo {
         margin-left: 0.2rem;
     }
 
-    .dropdown {
-        /*display: block;*/
-        margin: 1.8rem 0.8rem 0 0;
+    .hamburger-button-container {
+        display: block;
+        font-size: 2rem;
+        margin: 0 0.8rem 0.5rem 0;
         color: var(--text-purple);
         transition: all ease-in-out 0.2s;
     }
 
-    .dropdown:hover {
+    .hamburger-button-container:hover {
         cursor: pointer;
         color: var(--text-purple-light);
     }
 
-    #navbar {
-        display: block;
+    .nav-menu-container {
+        display: none;
     }
 
-    .nav-menu {
-        /*display: none;*/
-    }
     .nav-menu {
         display: flex;
         flex-direction: column;
         padding: 0;
-        /*border: 1px solid var(--text-purple);*/
+        border-left: 1px solid var(--text-purple);
         border-bottom-left-radius: 0.2rem;
-        box-shadow: 2px 2px 6px 4px rgba(0, 0, 0, 0.3);
     }
+
     .nav-menu li {
         border-bottom: 1px solid var(--text-purple);
         margin: 0;
         transition: all ease-in-out 0.2s;
     }
+
     .nav-menu li:hover {
         cursor: pointer;
         background: var(--light-purple-background);
     }
+
     .nav-menu li a {
         display: inline-block;
         margin: 1rem 1rem;
     }
+
     .nav-menu a:hover {
         border-bottom: none;
     }
+}
+
+.hide_me {
+    display: none;
+}
+
+.show_me {
+    display: inline-block;
 }
