@@ -33,7 +33,7 @@ a, a:hover, a:link, a:visited {
 }
 
 /* Header - Logo */
-.header .logo {
+.logo {
     margin-top: 2rem;
     margin-bottom: 0;
     text-align: center;
@@ -41,12 +41,12 @@ a, a:hover, a:link, a:visited {
     margin-left: 2rem;
 }
 
-.header .logo .intelli {
+.logo .intelli {
     color: var(--text-purple);
     padding: 0.2rem 0.2rem 0.2rem 0.5rem;
 }
 
-.header .logo .geo {
+.logo .geo {
     background-color: #239C2F;
     color: #fff;
     border: 0.2rem solid #239C2F;
@@ -275,88 +275,79 @@ a, a:hover, a:link, a:visited {
 }
 
 .main-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
 }
 
-.footer {
+.footer-container {
     background: #500389;
     color: #fff;
     width: 100%;
-    height: auto;
-
-    position: static;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1rem;
 }
 
-.footer a {
+.footer-container a, .footer-container .logo .intelli {
     color: #fff;
 }
 
-.footer .logo {
-    font-weight: 500;
-    margin-top: 2.4rem;
-
-    font-family: "Montserrat", sans-serif;
-    font-size: 2.2rem;
+.footer-container .logo {
+    margin: 1.5rem 0 0 0;
+    font-size: 1.7rem;
 }
 
-.footer .logo .intelli {
-    color: #fff;
-    padding: 0.2rem 0.2rem 0.2rem 0;
+.logo-copyright-container, .social-outer-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.footer .logo .geo {
-    background-color: #239C2F;
-    color: #fff;
-    border: 0.2rem solid #239C2F;
-    padding: 1.4rem .6rem;
-    border-radius: 100rem;
-}
-
-.footer .copyright {
-    margin-top: 2.5rem;
-    font-size: 1rem;
+.footer-container .copyright {
+    margin-top: 1.4rem;
+    font-size: 0.8rem;
 }
 
 .social {
+    display: inline-block;
+    margin: 0 0.4rem;
+}
+
+.social-container a {
+    transition: color 0.2s ease-in-out;
+}
+
+.social-container .fb a:hover {
+    color: #5883dc;
+}
+
+.social-container .twitter a:hover {
+    color: #00a2f5;
+}
+
+.social-container .youtube a:hover {
+    color: #f91f1f;
+}
+
+.social-container .linkedin a:hover {
+    color: #0181c4;
+}
+
+.footer-container ul {
     display: flex;
-    align-items: center;
-    padding-bottom: .8rem;
-    margin-right: 8.2rem;
-}
-
-.social a {
-    margin-left: 1.5rem;
-}
-
-.social .fb a:hover {
-    color: #177BF2;
-}
-
-.social .twitter a:hover {
-    color: #1DA1F2;
-}
-
-.social .youtube a:hover {
-    color: #ff0000;
-}
-
-.social .linkedin a:hover {
-    color: #0a66c2;
-}
-
-.footer ul {
-    display: flex;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     flex-direction: column;
     row-gap: .8rem;
-    margin-top: 1.5rem;
+    margin-top: 1rem;
+}
+
+.footer-container ul a {
+    border-bottom: #500389 .2rem solid;
+    transition: border-bottom 0.2s ease-in-out;
+}
+
+.footer-container ul a:hover {
+    border-bottom: #fff .2rem solid;
+    transition: border-bottom 0.2s ease-in-out;
 }
 
 .slide_out {
@@ -391,11 +382,6 @@ a, a:hover, a:link, a:visited {
     100% {
         transform: translateX(10rem);
     }
-}
-
-.footer ul a:hover {
-    border-bottom: #fff .2rem solid;
-    transition: border-bottom 0.2s ease-in-out;
 }
 
 @media (max-width: 1920px) {
@@ -482,30 +468,8 @@ a, a:hover, a:link, a:visited {
         font-size: 3.5rem;
     }
 
-    .footer .logo {
+    .footer-container .logo {
         font-size: 2rem;
-    }
-
-    .footer .logo .geo {
-        border: 0.2rem solid #239C2F;
-        padding: 1.2rem .4rem;
-        border-radius: 100rem;
-    }
-
-    .footer .copyright {
-        font-size: .8rem;
-    }
-
-    .social {
-        margin-right: 1.2rem;
-    }
-
-    .social a {
-        margin-left: 2.5rem;
-    }
-
-    .footer ul {
-        font-size: 1.3rem;
     }
 }
 
@@ -535,32 +499,6 @@ a, a:hover, a:link, a:visited {
     .page2-image img {
         width: 70%;
     }
-
-    .footer .logo {
-        font-size: 1.8rem;
-    }
-
-    .footer .logo .geo {
-        border: 0.2rem solid #239C2F;
-        padding: 1rem .2rem;
-        border-radius: 100rem;
-    }
-
-    .footer .copyright {
-        font-size: .7rem;
-    }
-
-    .social {
-        margin-right: 3rem;
-    }
-
-    .social a {
-        margin-left: .8rem;
-    }
-
-    .footer ul {
-        font-size: 1.2rem;
-    }
 }
 
 @media (max-width: 1164px) {
@@ -582,14 +520,14 @@ a, a:hover, a:link, a:visited {
         width: 150%;
         transform: translateX(-15rem);
     }
-
-    .social {
-        align-items: center;
-        margin-right: 4rem;
-    }
 }
 
 @media (max-width: 760px) {
+
+    body {
+        overflow-x: hidden;
+    }
+
     .img img {
         width: 250%;
         transform: translateX(-25rem);
@@ -628,7 +566,6 @@ a, a:hover, a:link, a:visited {
     }
 
     .nav-menu {
-        /*position: absolute;*/
         display: flex;
         flex-direction: column;
         padding: 0;
@@ -643,15 +580,21 @@ a, a:hover, a:link, a:visited {
         transition: all ease-in-out 0.2s;
     }
 
-    .nav-menu li:hover {
-        cursor: pointer;
-        background-color: var(--text-purple-light);
-    }
-
     .nav-menu li a {
         display: inline-block;
         margin: 1rem 1rem;
         border-bottom: none;
+    }
+
+    .nav-menu li:hover {
+        cursor: pointer;
+        background-color: var(--text-purple-light);
+        color: white;
+    }
+
+    .nav-menu li:hover a {
+        cursor: pointer;
+        color: white;
     }
 
     .nav-menu a:hover {
@@ -730,31 +673,21 @@ a, a:hover, a:link, a:visited {
         bottom: -10rem;
     }
 
-    .footer .logo {
-        font-size: 1.5rem;
-    }
-
-    .footer .logo .geo {
-        border: 0.2rem solid #239C2F;
-        padding: .8rem .2rem;
-        border-radius: 100rem;
-    }
-
-    .footer .copyright {
-        font-size: .6rem;
-    }
-
-    .social {
-        display: flex;
-        align-items: center;
-        padding-bottom: .8rem;
-        margin-right: 4.5rem;
-    }
-
-    .footer ul {
+    .footer-container ul {
         font-size: 1rem;
     }
 
+    .footer-container .logo {
+        font-size: 1.2rem;
+    }
+
+    .footer-container .logo .geo {
+        padding: 0.4rem 0.1rem;
+    }
+
+    .social-container div a {
+        font-size: 0.7rem;
+    }
 }
 
 @media (max-width: 600px) {
@@ -762,5 +695,34 @@ a, a:hover, a:link, a:visited {
         max-width: 25rem;
         margin-left: auto;
         margin-right: auto;
+    }
+
+    .social-container {
+        margin-top: 0.5rem;
+        display: grid;
+        grid-template-columns: repeat(2, 2rem);
+        grid-template-rows: auto;
+        gap: 0.5rem 0.5rem;
+    }
+
+    .social-container div a {
+        font-size: 0.5rem;
+    }
+
+    .footer-container {
+        padding: 1rem 0.5rem;
+    }
+
+    .footer-container .logo {
+        font-size: 1rem;
+    }
+
+    .footer-container .copyright {
+        margin-top: 1rem;
+        font-size: 0.5rem;
+    }
+
+    .footer-container ul {
+        font-size: 0.7rem;
     }
 }

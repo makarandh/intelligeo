@@ -37,15 +37,11 @@ const hideNavDropdown = () => {
 }
 
 showNavButton.addEventListener("click", (e) => {
-    e.preventDefault()
-    e.stopPropagation()
     showNavDropdown()
     menuVisible = true
 })
 
 hideNavButton.addEventListener("click", (e) => {
-    e.preventDefault()
-    e.stopPropagation()
     hideNavDropdown()
     menuVisible = false
 })
@@ -66,6 +62,7 @@ const init = () => {
     if(windowWidth <= MAX_WINDOW_WIDTH) {
         hideNavDropdown()
     }
+    document.getElementById("year").innerHTML = new Date().getFullYear();
 }
 
 init()
