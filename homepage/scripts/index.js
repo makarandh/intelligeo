@@ -1,41 +1,71 @@
 "use strict"
 
+const SLIDE_OUT = "slide_out"
+const SLIDE_IN = "slide_in"
 const HIDE_ME = "hide_me"
 const SHOW_ME = "show_me"
-
-const navBarButton = document.getElementById("nav-menu-button")
+const MAX_WINDOW_WIDTH = 760
 const navMenu = document.getElementById("nav-menu")
-const navCloseIcon = document.getElementById("nav-close-icon")
-const navHamburgerIcon = document.getElementById("nav-hamburger-icon")
+const hideNavButton = document.getElementById("nav-close-icon")
+const showNavButton = document.getElementById("nav-hamburger-icon")
 
+let windowWidth = window.innerWidth
+let prevWindowWidth = windowWidth
 let menuVisible = false
 
-const toggleMenu = () => {
-    if(menuVisible) {
-        navMenu.classList.remove(SHOW_ME)
-        navMenu.classList.add(HIDE_ME)
-        navCloseIcon.classList.remove(SHOW_ME)
-        navCloseIcon.classList.add(HIDE_ME)
-        console.log(navCloseIcon)
-        navHamburgerIcon.classList.add(SHOW_ME)
-        navHamburgerIcon.classList.remove(HIDE_ME)
-        console.log(navHamburgerIcon)
-    }
-    else {
-        navMenu.classList.remove(HIDE_ME)
-        navMenu.classList.add(SHOW_ME)
-        navCloseIcon.classList.remove(HIDE_ME)
-        navCloseIcon.classList.add(SHOW_ME)
-        console.log(navCloseIcon)
-        navHamburgerIcon.classList.add(HIDE_ME)
-        navHamburgerIcon.classList.remove(SHOW_ME)
-        console.log(navHamburgerIcon)
-    }
-    menuVisible = !menuVisible
+const makeWideNavMenuVisible = () => {
+    navMenu.classList.remove(SLIDE_OUT)
+    navMenu.classList.add(SLIDE_IN)
 }
 
-navBarButton.addEventListener("click", (e) => {
+const showNavDropdown = () => {
+    showNavButton.classList.add(HIDE_ME)
+    showNavButton.classList.remove(SHOW_ME)
+    navMenu.classList.remove(SLIDE_OUT)
+    navMenu.classList.add(SLIDE_IN)
+    hideNavButton.classList.remove(SLIDE_OUT)
+    hideNavButton.classList.add(SLIDE_IN)
+}
+
+const hideNavDropdown = () => {
+    navMenu.classList.add(SLIDE_OUT)
+    hideNavButton.classList.add(SLIDE_OUT)
+    navMenu.classList.remove(SLIDE_IN)
+    hideNavButton.classList.remove(SLIDE_IN)
+    showNavButton.classList.add(SHOW_ME)
+    showNavButton.classList.remove(HIDE_ME)
+}
+
+showNavButton.addEventListener("click", (e) => {
     e.preventDefault()
     e.stopPropagation()
-    toggleMenu()
+    showNavDropdown()
+    menuVisible = true
 })
+
+hideNavButton.addEventListener("click", (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+    hideNavDropdown()
+    menuVisible = false
+})
+
+window.addEventListener("resize", () => {
+    windowWidth = window.innerWidth
+    if(windowWidth > MAX_WINDOW_WIDTH && prevWindowWidth <= MAX_WINDOW_WIDTH) {
+        makeWideNavMenuVisible()
+    }
+    if(windowWidth <= MAX_WINDOW_WIDTH && prevWindowWidth > MAX_WINDOW_WIDTH) {
+        hideNavDropdown()
+    }
+    prevWindowWidth = windowWidth
+})
+
+
+const init = () => {
+    if(windowWidth <= MAX_WINDOW_WIDTH) {
+        hideNavDropdown()
+    }
+}
+
+init()
