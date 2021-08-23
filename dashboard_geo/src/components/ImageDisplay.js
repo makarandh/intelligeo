@@ -1,5 +1,6 @@
 import React from "react"
 import {
+    IMAGE_URL,
     SUBSECTION,
     CARD_CONTENT,
     IMAGE_THUMBNAIL,
@@ -14,8 +15,15 @@ export default class ImageDisplay extends React.Component {
         imageBlobURL: null
     }
 
+    getImageURL = () => {
+        if(!this.props.countryID) {
+            return ""
+        }
+        return IMAGE_URL + "/" + this.props.countryID + ".webp"
+    }
+
     fetchImage = async() => {
-        const response = await this.props.fetchOrDie(`${EP_COUNTRY_IMAGE}?id=${this.props.countryID}`, GET)
+        const response = await this.props.fetchOrDie(this.getImageURL(), GET)
         if(response.status === 200) {
             const imageBlob = await response.blob()
             const imageBlobURL = URL.createObjectURL(imageBlob)

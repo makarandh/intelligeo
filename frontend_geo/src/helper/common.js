@@ -1,9 +1,9 @@
-// export const MAIN_URL = "https://api.geo.intellideep.digital"
-// export const IMAGE_URL = "https://api.geo.intellideep.digital/static/images/countries"
+export const MAIN_URL = "https://api.geo.intellideep.digital"
+export const IMAGE_URL = "https://api.geo.intellideep.digital/static/images/countries"
 // export const MAIN_URL = "https://localhost:5000"
 // export const IMAGE_URL = "https://localhost:5000/static/images/countries"
-export const MAIN_URL = "http://localhost"
-export const IMAGE_URL = "http://localhost/static/images/countries"
+// export const MAIN_URL = "http://localhost"
+// export const IMAGE_URL = "http://localhost/static/images/countries"
 export const STATIC_PATH = "/game/static"
 export const IMAGES_PATH = `${STATIC_PATH}/images`
 export const GET = "GET"

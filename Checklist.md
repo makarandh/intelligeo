@@ -12,5 +12,5 @@
 5. docker-compose:
    1. Comment out port opening in nginx for - 127.0.0.1:5000:5000
 6. env:
-   1. Comment out DEBUG=1 in flask production.evn
+   1. Comment out DEBUG=1 in flask production.env
 7. Use -f option to start server (this will delete old frontend)

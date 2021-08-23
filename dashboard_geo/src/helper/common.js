@@ -1,6 +1,9 @@
 export const MAIN_URL = "https://api.geo.intellideep.digital"
+export const IMAGE_URL = "https://api.geo.intellideep.digital/static/images/countries"
 // export const MAIN_URL = "https://localhost:5000"
+// export const IMAGE_URL = "https://localhost:5000/static/images/countries"
 // export const MAIN_URL = "http://localhost:3000"
+// export const IMAGE_URL = "http://localhost/static/images/countries"
 export const intITEMS_PER_PAGE = 300
 export const USERNAME = "username"
 export const PASSWORD = "password"
