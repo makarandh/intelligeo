@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
 app = Flask(__name__)
-# cors = CORS(app, resources={r"*": {"origins": "*"}})
+cors = CORS(app, resources={r"*": {"origins": "*"}})
 
 if __name__ == "__main__":
     logger.warning("Running directly without WSGI, loading development environment variables")

@@ -4,8 +4,7 @@ import {
     SUBSECTION,
     CARD_CONTENT,
     IMAGE_THUMBNAIL,
-    EP_COUNTRY_IMAGE,
-    GET, LOADING
+    LOADING
 } from "../helper/common"
 import "../css/CreateCardClues.css"
 import LoadingImage from "./Icons/LoadingImage"
@@ -23,7 +22,7 @@ export default class ImageDisplay extends React.Component {
     }
 
     fetchImage = async() => {
-        const response = await this.props.fetchOrDie(this.getImageURL(), GET)
+        const response = await fetch(this.getImageURL())
         if(response.status === 200) {
             const imageBlob = await response.blob()
             const imageBlobURL = URL.createObjectURL(imageBlob)

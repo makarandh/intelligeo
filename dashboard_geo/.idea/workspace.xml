@@ -3,13 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="d79f164b-1590-4277-9669-7d0c0dc65016" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ImageDisplay.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ImageDisplay.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../flask_api_geo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_api_geo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend_geo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend_geo/src/components/Card.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/src/components/Card.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend_geo/src/components/Choices.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/src/components/Choices.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend_geo/src/components/Game.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/src/components/Game.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend_geo/src/helper/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/src/helper/common.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../flask_api_geo/api/api_util.py" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_api_geo/api/api_util.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../flask_api_geo/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_api_geo/app.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +18,12 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/components/App.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/helper/common.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/css/Login.css" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/components/ImageDisplay.js" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="PackageJsonUpdateNotifier">
     <dismissed value="$PROJECT_DIR$/package.json" />
@@ -70,6 +73,7 @@
       <workItem from="1628683622864" duration="892000" />
       <workItem from="1628699644532" duration="231000" />
       <workItem from="1628872603079" duration="11000" />
+      <workItem from="1629813341320" duration="1625000" />
     </task>
     <servers />
   </component>

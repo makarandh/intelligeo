@@ -1,100 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
-    <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" data-auto-add-css="false"></script>
-    <link href="https://use.fontawesome.com/releases/v5.15.4/css/svg-with-js.css" rel="stylesheet" />
-      <link rel="stylesheet" href="css/utilities.css">
-    <link rel="stylesheet" href="css/style.css">
-    <title>Welcome to IntelliGeo</title>
-</head>
-<body>
-    <header class="hero">
-        <div id="navbar" class="navbar top">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.png"/>
+        <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" data-auto-add-css="false"></script>
+        <link href="https://use.fontawesome.com/releases/v5.15.4/css/svg-with-js.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="css/style.css">
+        <title>Welcome to IntelliGeo</title>
+    </head>
+    <body>
+        <header class="header">
             <div class="logo">
                 <span class="intelli">Intelli</span><span class="geo">Geo</span>
             </div>
-          <nav>
+            <div id="navbar">
+                <div id="nav-menu" class="nav-menu-container">
+                    <ul class="nav-menu">
+                        <li><a href="howtoplay.html">How to play</a></li>
+                        <li><a href="about.html">About us</a></li>
+                        <li><a href="contact.html">Contact us</a></li>
+                    </ul>
+                </div>
+                <div id="nav-menu-button" class="hamburger-button-container">
+                    <div id="nav-close-icon" class="slide_out">
+                        <i class="fas fa-window-close"></i>
+                    </div>
+                    <div id="nav-hamburger-icon">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section class="content">
+                <div class="main-content">
+                    <h1>Welcome to IntelliGeo</h1>
+                    <p>Play and learn some interesting facts about the countries of the world</p>
+                    <a href="/game" class="btn">Start playing</a>
+                </div>
+                <div class="img">
+                    <img src="/images/landmarks.png" alt="Landmarks">
+                </div>
+            </section>
+            <section class="page-2">
+                <div class="blob1"><img src="/images/circle.svg" alt="circle"></div>
+                <div class="blob2"><img src="/images/circle.svg" alt="circle"></div>
+                <div class="page2-content">
+                    <div class="page2-text">
+                        <h2>A <span class="fun">fun</span> and <span class="exciting">exciting</span> geography
+                            game</h2>
+                        <p>Challange yours geography knowledge or compete with your friends for a high score!</p>
+                    </div>
+                    <div class="page2-image">
+                        <img src="/images/mockup.png" alt="">
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer-container">
+            <div class="logo-copyright-container">
+                <div class="logo">
+                    <span class="intelli">Intelli</span><span class="geo">Geo</span>
+                </div>
+                <div class="copyright">
+                    <p>Copyright &copy; <span id="year"></span> - IntelliDeep</p>
+                </div>
+            </div>
+
+            <section class="social-outer-container">
+                <div class="social-container">
+                    <div class="social fb">
+                        <a href="#"><i class="fab fa-facebook fa-2x"></i></a>
+                    </div>
+                    <div class="social twitter">
+                        <a href="#"><i class="fab fa-twitter fa-2x"></i></a>
+                    </div>
+                    <div class="social youtube">
+                        <a href="#"><i class="fab fa-youtube fa-2x"></i></a>
+                    </div>
+                    <div class="social linkedin">
+                        <a href="#"><i class="fab fa-linkedin fa-2x"></i></a>
+                    </div>
+                </div>
+            </section>
             <ul>
-              <li><a href="howtoplay.html">How to play</a></li>
-              <li><a href="about.html">About us</a></li>
-              <li><a href="contact.html">Contact us</a></li>
+                <li><a href="about.html">About us</a></li>
+                <li><a href="contact.html">Get in touch</a></li>
             </ul>
-          </nav>
-        </div>
-    
-        <div class="content">
-          <div class="main-content">
-            <h1>Welcome to IntelliGeo</h1>
-            <p>Play and learn some interesting facts about the countries of the world</p>
-            <div class="button"><a href="/game" class="btn">
-            Start playing</a></div>
-          </div>
-          <div class="landmarks">
-           <div class="img"><img src="/images/Landmarks card.svg" alt="Landmarks"></div>
-          </div>
-        </div>
-      </header>
-
-      <main>
-        <section class="sub-header flex-columns">
-         <div class="shapes">
-          <div class="img1"><img src="/images/circle.svg" alt="circle"></div>
-          <div class="img2"><img src="/images/circle.svg" alt="circle"></div>
-         </div>
-         
-            <div class="row">
-              <div class="column-1">
-              <h2>A <span class="fun">fun</span> and <span class="exciting">exciting</span> free geography game for all</h2>
-              <p>Three different game modes to challenge you in different and keep things interesting.</p>
-              </div>
-              
-               <div class="column-2">
-                  <img src="/images/mockup.svg" alt="">
-                  </div>
-               </div>
-             </div>
-        </section>
-      </main>
-
-      <footer class="footer">
-        <div class="main-container">
-         <div class="logo-copyright">
-          <div class="logo">
-           <span class="intelli">Intelli</span><span class="geo">Geo</span>
-          </div>
-          <div class="copyright">
-            <p>Copyright &copy; 2021 - IntelliDeep</p>
-          </div>
-         </div>
-        
-         <div class="social">
-          <div class="fb">
-           <a href="#"><i class="fab fa-facebook fa-2x"></i></a>
-          </div>
-          <div class="twitter">
-           <a href="#"><i class="fab fa-twitter fa-2x"></i></a>
-          </div>
-          <div class="youtube">
-           <a href="#"><i class="fab fa-youtube fa-2x"></i></a>
-          </div>
-          <div class="linkedin">
-           <a href="#"><i class="fab fa-linkedin fa-2x"></i></a>
-          </div>
-         </div>
-
-         <nav> 
-          <ul>
-           <li><a href="about.html">About us</a></li>
-           <div class="ul-li2">
-            <li><a href="contact.html">Contact us</a></li>
-          </div>
-          </ul>
-         </nav>
-        </div>
-      </footer>
-</body>
+        </footer>
+        <script src="/scripts/index.js"></script>
+    </body>
 </html>
