@@ -12,7 +12,7 @@ logger.setLevel(logging.DEBUG)
 VALID_REFERER_ORIGINS = [
     "https://geo.intellideep.digital",
     "https://admin.geo.intellideep.digital",
-    "https://localhost",
+    "https://localhost"
 ]
 
 
@@ -22,9 +22,11 @@ def test_referer_origin(environ) -> bool:
     http_referer = "null"
 
     if HTTP_ORIGIN not in environ:
+        logger.warning("http_origin not found")
         test_passed = False
     else:
         http_origin = environ[HTTP_ORIGIN]
+        logger.info("http_origin: {}".format(http_origin))
         if http_origin[-1] == "/":
             http_origin = http_origin[:-1]
         if http_origin not in VALID_REFERER_ORIGINS:
@@ -32,9 +34,11 @@ def test_referer_origin(environ) -> bool:
             test_passed = False
 
     if HTTP_REFERER not in environ:
+        logger.warning("http_referer not found")
         test_passed = True
     else:
         http_referer = environ[HTTP_REFERER]
+        logger.info("http_referer: {}".format(http_referer))
         if http_referer[-1] == "/":
             http_referer = http_referer[:-1]
         if http_referer not in VALID_REFERER_ORIGINS:
