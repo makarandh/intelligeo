@@ -15,13 +15,16 @@ export default class Clues extends React.Component {
             console.error("Clues are empty or null")
             return
         }
+        const mustHaveClue = clues[0]
+        clues = clues.slice(1)
         for(let i = clues.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [clues[i], clues[j]] = [clues[j], clues[i]]
         }
-        if(clues.length > 3) {
-            clues = clues.slice(0, 9)
+        if(clues.length > 2) {
+            clues = clues.slice(0, 2)
         }
+        clues.unshift(mustHaveClue)
         this.setState({randomized: true, clues})
     }
 

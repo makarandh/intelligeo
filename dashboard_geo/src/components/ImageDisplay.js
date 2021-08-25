@@ -11,7 +11,7 @@ import LoadingImage from "./Icons/LoadingImage"
 
 export default class ImageDisplay extends React.Component {
     state = {
-        imageBlobURL: null
+        showImage: true
     }
 
     getImageURL = () => {
@@ -21,27 +21,14 @@ export default class ImageDisplay extends React.Component {
         return IMAGE_URL + "/" + this.props.countryID + ".webp"
     }
 
-    fetchImage = async() => {
-        const response = await fetch(this.getImageURL())
-        if(response.status === 200) {
-            const imageBlob = await response.blob()
-            const imageBlobURL = URL.createObjectURL(imageBlob)
-            this.setState({
-                              imageBlobURL
-                          })
-            if(this.props.setThumbnailEmpty) {
-                this.props.setThumbnailEmpty(false)
-            }
-        }
-        else if(this.props.setThumbnailEmpty) {
-            this.props.setThumbnailEmpty(true)
-        }
+    setShowImage = () => {
+        this.setState({showImage: true})
+        this.props.setThumbnailEmpty && this.props.setThumbnailEmpty(false)
     }
 
-    componentDidMount() {
-        if(this.props.image_uploaded) {
-            this.fetchImage()
-        }
+    unsetShowImage = () => {
+        this.setState({showImage: false})
+        this.props.setThumbnailEmpty && this.props.setThumbnailEmpty(true)
     }
 
     render() {
@@ -49,8 +36,11 @@ export default class ImageDisplay extends React.Component {
             <React.Fragment>
                 {this.props.image_uploaded &&
                  <section className={CARD_CONTENT + " " + SUBSECTION + " " + IMAGE_THUMBNAIL}>
-                     {(this.state.imageBlobURL && (!this.props.thumbnailEmpty))
-                      ? <img src={this.state.imageBlobURL} alt="country"/>
+                     {(this.state.showImage && (!this.props.thumbnailEmpty))
+                      ? <img src={this.getImageURL()}
+                             alt="country"
+                             onError={this.unsetShowImage}
+                             onLoad={this.setShowImage}/>
                       :
                       <div className={CARD_CONTENT + " " + SUBSECTION + " " + LOADING}>
                           <LoadingImage width={4}

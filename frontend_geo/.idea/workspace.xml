@@ -2,16 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fd201f16-eab3-4f38-8d89-ca86d9038e3d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../dashboard_geo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../dashboard_geo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dashboard_geo/src/components/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../dashboard_geo/src/components/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../flask_api_geo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_api_geo/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Card.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Card.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Choices.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Choices.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Clues.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Clues.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Game.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Game.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/QAns.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/QAns.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helper/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/helper/common.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,11 +30,13 @@
     <setting file="file://$PROJECT_DIR$/src/components/QAns.js" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/components/Choices.js" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/css/MainRouter.css" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/components/Game.js" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/components/Card.js" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/helper/common.js" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/components/MainRouter.js" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/css/utility_classes.css" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/css/Choices.css" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/components/Clues.js" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="PackageJsonUpdateNotifier">
     <dismissed value="$PROJECT_DIR$/package.json" />
@@ -106,6 +102,8 @@
       <workItem from="1628855278879" duration="661000" />
       <workItem from="1628856421736" duration="583000" />
       <workItem from="1628871939246" duration="1469000" />
+      <workItem from="1629885620636" duration="324000" />
+      <workItem from="1629904895273" duration="513000" />
     </task>
     <servers />
   </component>

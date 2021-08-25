@@ -46,7 +46,7 @@ export default class EditCard extends React.Component {
         modalHeading: null,
         modalMessage: null,
         deleteContent: null,
-        thumbnailEmpty: true,
+        thumbnailEmpty: false,
         imageErrorMessage: null
     }
 

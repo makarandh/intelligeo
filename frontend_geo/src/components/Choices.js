@@ -82,8 +82,8 @@ export default class Choices extends React.Component {
     }
 
     renderChoices = () => {
-        if(this.state.countries.length < CHOICE_COUNT) {
-            return <div>{"Fewer than " + CHOICE_COUNT + " countries available. Please add more countries"}</div>
+        if(this.state.countries.length === 0) {
+            return <div>{"No choices available. Please add at least one country"}</div>
         }
         return (
             <div className={CHOICE_BUTTONS_CONTAINER}>{
