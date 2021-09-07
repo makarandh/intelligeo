@@ -528,6 +528,10 @@ a, a:hover, a:link, a:visited {
         overflow-x: hidden;
     }
 
+    .body_container {
+        overflow-x: hidden;
+    }
+
     .img img {
         width: 250%;
         transform: translateX(-25rem);
