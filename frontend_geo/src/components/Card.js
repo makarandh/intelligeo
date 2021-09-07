@@ -113,7 +113,7 @@ export default class Card extends React.Component {
 
     setQAnsVisible = async() => {
         await this.setState({qAnsVisible: true}, async() => {
-            window.scroll(0, 1200)
+            window.scroll(0, 1600)
             this.props.saveToLocalStorage(QANSVISIBLE, this.state.qAnsVisible)
         })
     }
@@ -253,10 +253,6 @@ export default class Card extends React.Component {
     }
 
     handleUnhandledClick = async(e) => {
-        if(e) {
-            e.preventDefault()
-            e.stopPropagation()
-        }
         if(this.state.helpVisible) {
             await this.setState({helpVisible: false})
         }
@@ -308,12 +304,17 @@ export default class Card extends React.Component {
                         <div className={CARD_HEADING + " " + HEADING}>Guess The Country</div>
                     </section>
                     <section className={SUBSECTION + " " + PROGRESS}>
-                        <div className={PROGRESS_BAR_TEXT}>Question: {this.props.index +
+                        <div className={PROGRESS_BAR_TEXT}>{this.props.index +
                                                                       1}/{this.props.gameLength}</div>
                     </section>
                     {
                         this.state.country
                         ? <div>
+                            <section className={CORRECT_WRONG_ICON + " " + SUBSECTION + " " +
+                                                ((this.state.ansClicked) ? SHOW_ME : HIDE_ME)}>
+                                <ResultIcons ansIsCorrect={this.ansIsCorrect}
+                                             ansClicked={this.state.ansClicked}/>
+                            </section>
                             <section className={CARD_CLUES + " " + SUBSECTION}>
                                 <Clues getClues={this.getClues}/>
                             </section>
@@ -325,11 +326,6 @@ export default class Card extends React.Component {
                                             onClick={this.setQAnsVisible}>View more hints
                                     </button>
                                 </div>
-                            </section>
-                            <section className={CORRECT_WRONG_ICON + " " + SUBSECTION + " " +
-                                                ((this.state.ansClicked) ? SHOW_ME : HIDE_ME)}>
-                                <ResultIcons ansIsCorrect={this.ansIsCorrect}
-                                             ansClicked={this.state.ansClicked}/>
                             </section>
                             <section className={CARD_CHOICES + " " + SUBSECTION}>
                                 <Choices countryID={this.state.country.id}

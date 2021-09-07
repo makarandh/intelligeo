@@ -1,6 +1,5 @@
 import datetime
 import logging
-import os
 
 from database.blacklist_db import BlacklistModel
 from database.country_model import QuestionAns, Meta, CountryModel

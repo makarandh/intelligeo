@@ -148,7 +148,10 @@ export default class App extends React.Component {
         }
     }
 
-    fetchOrDie = async(endpoint, method, body = null, formdata = false, secondTry = false) => {
+    fetchOrDie = async(endpoint = null, method = null, body = null, formdata = false, secondTry = false) => {
+        if(endpoint === null || method === null) {
+            return false
+        }
         if(!this.state.accessToken && !this.getAT()) {
             await this.getNewAT()
         }
@@ -166,7 +169,7 @@ export default class App extends React.Component {
             return response
         }
         catch(e) {
-            console.error("Exception fetching access token " + e)
+            console.error("Exception fetching request " + e)
             this.setState({networkError: true}, this.autoRefresh)
             return false
         }

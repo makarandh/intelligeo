@@ -29,13 +29,16 @@ export default class Clues extends React.Component {
     }
 
     renderClues = () => {
-        if(this.state.clues.length < 3) {
+        if(this.state.clues.length < 1) {
             return <div/>
         }
         return (
-            <ul>{
-                this.state.clues.slice(0, 3).map(element => <li key={element}>{element}</li>)
-            }</ul>
+            <ul>
+                <li key={this.state.clues[0]}>{this.state.clues[0]} (according to UN Geoscheme)</li>
+                {
+                    this.state.clues.slice(1).map(element => <li key={element}>{element}</li>)
+                }
+            </ul>
         )
     }
 

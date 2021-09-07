@@ -2,8 +2,9 @@
 
 echo "Initializing..."
 
-BACKUP_DIR="/site_data/files_and_data" 
+BACKUP_DIR="/site_data/files_and_data/static" 
 DIRNAME="/home/ubuntu/geo-backup"
+DB_DIR="${DIRNAME}/db_backup"
 FILENAME="${DIRNAME}-$(date +%Y-%m-%d-%H-%M-%S).tar.gz"
 S3_BUCKET="s3://geo-backup-intellideep.digital"
 BUCKET_NAME="geo-backup-intellideep.digital"
@@ -20,6 +21,10 @@ sudo cp -r ${BACKUP_DIR} ${DIRNAME}
 echo "Changing ownership of files to back backed up..."
 sudo chown -R ubuntu:ubuntu ${DIRNAME}
 
+mkdir ${DB_DIR}
+
+mongodump -d geo -o ${DB_DIR} -u geo -p ${MONGO_PASS} --authenticationDatabase geo
+
 echo -e "Creating tarball ${FILENAME}..."
 tar czf ${FILENAME} ${DIRNAME}
 
@@ -29,7 +34,6 @@ echo -e "Uploading to bucket: ${S3_BUCKET}..."
 if [[ ${?} -eq 0 ]]
 then 
     echo -e "Upload completed successfully."
-    rm -rf ${DIRNAME}
     exit 0
 else 
     echo -e "There was problem uploading to S3 bucket."  >&2

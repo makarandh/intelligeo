@@ -3,10 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="d79f164b-1590-4277-9669-7d0c0dc65016" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ImageDisplay.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ImageDisplay.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../flask_api_geo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_api_geo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../flask_api_geo/api/api_util.py" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_api_geo/api/api_util.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../flask_api_geo/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_api_geo/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helper/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/helper/common.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend_geo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend_geo/src/components/Clues.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/src/components/Clues.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,6 +74,19 @@
       <workItem from="1628699644532" duration="231000" />
       <workItem from="1628872603079" duration="11000" />
       <workItem from="1629813341320" duration="1625000" />
+      <workItem from="1630423409774" duration="49000" />
+      <workItem from="1630427814670" duration="69000" />
+      <workItem from="1630485261284" duration="38000" />
+      <workItem from="1630485360790" duration="12000" />
+      <workItem from="1630485537722" duration="405000" />
+      <workItem from="1630510658627" duration="2024000" />
+      <workItem from="1630577852876" duration="132000" />
+      <workItem from="1630653957888" duration="430000" />
+      <workItem from="1630681057482" duration="10000" />
+      <workItem from="1630681079282" duration="1293000" />
+      <workItem from="1630684203982" duration="27000" />
+      <workItem from="1630684668932" duration="1001000" />
+      <workItem from="1630999920554" duration="1298000" />
     </task>
     <servers />
   </component>
