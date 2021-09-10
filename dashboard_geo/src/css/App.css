@@ -120,6 +120,10 @@ h1, h2, h3, h4 {
     line-height: var(--line-height);
 }
 
+.intelligeo_logo .heading2 {
+    color: var(--main-color1);
+}
+
 .intelligeo_logo .intelli {
     color: var(--main-color1);
     padding: 0.2rem 0.2rem 0.2rem 0.5rem;
@@ -136,5 +140,4 @@ h1, h2, h3, h4 {
 .app_content {
     min-height: 89vh;
 }
-
 
