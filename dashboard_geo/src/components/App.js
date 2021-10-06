@@ -191,7 +191,7 @@ export default class App extends React.Component {
 
     autoRefresh = async() => {
         if(this.state.networkError) {
-            await sleep(60)
+            await sleep(10)
             this.refreshPage()
         }
     }

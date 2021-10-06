@@ -3,9 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="d79f164b-1590-4277-9669-7d0c0dc65016" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/css/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/EditCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/EditCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/EditCardClues.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/EditCardClues.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/EditCardMeta.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/EditCardMeta.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/EditCardQA.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/EditCardQA.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../nginx_geo/sites/homepage.tar.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../start-server-prod" beforeDir="false" afterPath="$PROJECT_DIR$/../start-server-prod" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,6 +99,8 @@
       <workItem from="1630684668932" duration="1001000" />
       <workItem from="1630999920554" duration="1298000" />
       <workItem from="1631274641524" duration="1364000" />
+      <workItem from="1632817864439" duration="840000" />
+      <workItem from="1633401024725" duration="406000" />
     </task>
     <servers />
   </component>

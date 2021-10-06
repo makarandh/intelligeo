@@ -86,6 +86,7 @@ export default class EditCardQA extends React.Component {
                                    onKeyDown={this.handleEnterKeypress}
                                    onKeyUp={this.handleEnterKeypress}
                                    type="text"
+                                   spellCheck={"true"}
                                    onChange={this.handleQuestionListChange}
                                    value={qAns.question}/>
                             <div className={SLIDER_CONTAINER}>
@@ -188,6 +189,7 @@ export default class EditCardQA extends React.Component {
                              onClick={this.handleLatestAns}
                              className={INPUT_FIELD_CONTAINER + " " + QUESTION_ANSWERS}>
                             <input type="text"
+                                   spellCheck={"true"}
                                    onChange={this.handleLatestQ}
                                    onKeyPress={this.handleKeypress}
                                    onKeyDown={this.handleKeypress}

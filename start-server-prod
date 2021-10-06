@@ -1,12 +1,28 @@
 #!/bin/bash
 
+if [[ ${1} == "-h" ]]||[[ ${1} == "--help" ]]; then
+    echo -e "Usage: ${0} [OPTIONS...]\n"
+    echo "   It will start the server using docker-compose."
+    echo "   All the options will be passed to docker-compose except if the first option is '-b'."
+    echo "   In this case, the first option will be processed by ${0} and the rest"
+    echo "   of the options will be passed to docker-compose."
+    echo -e "\n  -b       Build admin dashboard before running docker-compose. This needs to be the first option."
+    echo "           Note: This will delete the previously built admin dashboard and replace with newly built one."
+    echo -e "\nAny other options will be passed on to docker-compose."
+    echo -e "\nExample: "
+    echo "${0} -b -d --build"
+    echo "               This will pass '-d' and '--build' options to docker-compose. So docker compose will"
+    echo "               start in the background and will rebuild Dockerfiles"
+    exit 0
+fi
+
 NGINX_FOLDER="nginx_geo/sites"
 SITE_FOLDER="geo.intellideep.digital/game"
 ADMIN_SITE_FOLDER="admin.geo.intellideep.digital"
 ADMIN_CODE_FOLDER="dashboard_geo"
 FRONTEND_CODE_FOLDER="frontend_geo"
 
-if [[ ${1} == "-f" ]]; then
+if [[ ${1} == "-b" ]]; then
     echo "Deleting folders: ${ADMIN_SITE_FOLDER}, ${SITE_FOLDER}"
     rm -rf ${NGINX_FOLDER}/${ADMIN_SITE_FOLDER}
     rm -rf ${NGINX_FOLDER}/${SITE_FOLDER}

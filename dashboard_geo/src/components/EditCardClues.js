@@ -43,6 +43,7 @@ export default class EditCardClues extends React.Component {
                                    onKeyDown={this.handleEnterKeypress}
                                    onKeyUp={this.handleEnterKeypress}
                                    type="text"
+                                   spellCheck={"true"}
                                    value={clue}
                                    onChange={this.handleCluesListChange}/>
                             <div className={TOOLTIP_CONTAINER}
@@ -101,6 +102,7 @@ export default class EditCardClues extends React.Component {
                             <input key={"clueLatestInput"}
                                    type="text"
                                    onKeyDown={this.handleKeypress}
+                                   spellCheck={"true"}
                                    onKeyPress={this.handleKeypress}
                                    onKeyUp={this.handleKeypress}
                                    value={this.props.getLatestClue()}

@@ -665,10 +665,14 @@ export default class EditCard extends React.Component {
                             heading={this.state.modalHeading}
                             message={this.state.modalMessage}/>
                 <form className={CARD_CONTAINER + " " + EDIT_CARD}>
-                    <h2 className={HEADING + " " + EDIT_CARD}>{this.props.heading}</h2>
+                    <h2 className={HEADING + " " + EDIT_CARD}>{this.props.heading +
+                                                               (this.state.name
+                                                                ? ": " + this.state.name
+                                                                : "")}</h2>
                     <section className={EDIT_CARD + " " + SUBSECTION + " " + NAME}>
                         <h3 className={EDIT_CARD + " " + SUBHEADING + " " + NAME}>Name</h3>
                         <input type="text"
+                               spellCheck={"true"}
                                placeholder={COUNTRY_NAME}
                                onKeyDown={this.handleKeypress}
                                onKeyPress={this.handleKeypress}

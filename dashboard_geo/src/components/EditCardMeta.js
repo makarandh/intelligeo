@@ -45,6 +45,7 @@ export default class EditCardMeta extends React.Component {
                         <div className={EDIT_CARD + " " + SUB_SUBHEADING_CONTAINER}>
                             <label className={EDIT_CARD + " " + SUB_SUBHEADING}>Continent </label>
                             <input type="text"
+                                   spellCheck={"true"}
                                    onKeyDown={this.handleKeypress}
                                    onKeyPress={this.handleKeypress}
                                    onKeyUp={this.handleKeypress}
@@ -56,6 +57,7 @@ export default class EditCardMeta extends React.Component {
                         <div className={EDIT_CARD + " " + SUB_SUBHEADING_CONTAINER}>
                             <label className={EDIT_CARD + " " + SUB_SUBHEADING}>Region </label>
                             <input type="text"
+                                   spellCheck={"true"}
                                    onKeyDown={this.handleKeypress}
                                    onKeyPress={this.handleKeypress}
                                    onKeyUp={this.handleKeypress}
