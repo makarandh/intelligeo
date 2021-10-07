@@ -274,15 +274,14 @@ a, a:hover, a:link, a:visited {
     max-width: 100%;
 }
 
-.main-container {
-}
+
 
 .footer-container {
     background: #500389;
     color: #fff;
     width: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     padding: 1rem;
 }
@@ -302,10 +301,16 @@ a, a:hover, a:link, a:visited {
     justify-content: center;
 }
 
+.logo-copyright-container {
+    margin-left: 5rem;
+}
+
 .footer-container .copyright {
     margin-top: 1.4rem;
     font-size: 0.8rem;
+    margin-left: 1.8rem;
 }
+
 
 .social {
     display: inline-block;
@@ -338,6 +343,7 @@ a, a:hover, a:link, a:visited {
     flex-direction: column;
     row-gap: .8rem;
     margin-top: 1rem;
+    margin-right: 5rem;
 }
 
 .footer-container ul a {
@@ -348,6 +354,28 @@ a, a:hover, a:link, a:visited {
 .footer-container ul a:hover {
     border-bottom: #fff .2rem solid;
     transition: border-bottom 0.2s ease-in-out;
+}
+
+.credits {
+    background: #290146;
+}
+
+.attributes {
+    font-size: 0.8rem; 
+    display: flex;
+    flex-direction: column;
+    align-items: center ;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.attributes a {
+    color: #fff;
+    padding-top: 0.5rem;
+}
+
+.attributes a:hover {
+    color: bisque;
 }
 
 .slide_out {
