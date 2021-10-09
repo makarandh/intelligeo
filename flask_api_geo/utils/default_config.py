@@ -10,3 +10,9 @@ JWT_ACCESS_TOKEN_EXPIRES=datetime.timedelta(minutes=15)
 JWT_REFRESH_TOKEN_EXPIRES=datetime.timedelta(days=30)
 TTL_SECONDS = 30 * 24 * 60 * 60
 DELETED_ENTRY_TTL = 30 * 24 * 60 * 60
+
+MAIL_USERNAME = "info@intellideep.digital"
+MAIL_PASSWORD = "OyZ7I4Y06E-JikXP9x1s2w"
+MAIL_SERVER = "127.0.0.1"
+MAIL_PORT = 1025
+MAIL_USE_TLS = True

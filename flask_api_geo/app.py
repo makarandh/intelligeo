@@ -3,11 +3,13 @@ import os
 
 from dotenv import load_dotenv
 from flask import Flask, jsonify, request
+from flask_mail import Mail
 from flask_restful import Api
 from flask_jwt_extended import JWTManager
 from marshmallow import ValidationError
 from flask_cors import CORS
-
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
 
 logging.basicConfig(level=logging.DEBUG,
                     format='[%(asctime)s] [%(levelname)s] [%(filename)s] [%(lineno)s]: %(message)s')
@@ -15,7 +17,13 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
 app = Flask(__name__)
-# cors = CORS(app, resources={r"*": {"origins": "*"}})
+cors = CORS(app, resources={r"*": {"origins": "*"}})
+
+limiter = Limiter(
+    app,
+    key_func=get_remote_address,
+    default_limits=["2000 per day", "120 per hour"]
+)
 
 if __name__ == "__main__":
     logger.warning("Running directly without WSGI, loading development environment variables")
@@ -26,12 +34,14 @@ else:
 
 from utils.global_vars import (MESSAGE, AUTH_ERROR, EP_TOTAL_COUNTRIES, EP_COUNTRIES, EP_COUNTRY, EP_COUNTRY_IMAGE,
                                EP_COUNTRY_FLAG, RESOURCE_NOT_FOUND, EP_PUBLISH, EP_PUBLISHED, EP_LOGIN, EP_REFRESH,
-                               EP_LOGOUT, EP_USERNAME, EP_TOTAL_PUBLISHED, EP_PUBLISHED_ID, EP_RANDOM_LIST)
+                               EP_LOGOUT, EP_USERNAME, EP_TOTAL_PUBLISHED, EP_PUBLISHED_ID, EP_RANDOM_LIST,
+                               EP_CONTACT_US)
 from api.auth_api import AuthAPI
 from api.country_api import CountriesAPI, CountryAPI
 from api.image_api import ImageAPI
 from api.publish_api import PublishAPI, PublishedCountryAPI
 from api.random_api import RandomAPI
+from api.contact_us_api import ContactUsAPI
 from database.blacklist_db import BlacklistModel
 
 # Why two app.config? Refer to: https://flask.palletsprojects.com/en/0.12.x/config/#development-production
@@ -91,6 +101,10 @@ api.add_resource(PublishAPI, EP_PUBLISH, EP_PUBLISHED, EP_TOTAL_PUBLISHED)
 api.add_resource(PublishedCountryAPI, EP_PUBLISHED_ID)
 api.add_resource(ImageAPI, EP_COUNTRY_IMAGE, EP_COUNTRY_FLAG)
 api.add_resource(RandomAPI, EP_RANDOM_LIST)
+api.add_resource(ContactUsAPI, EP_CONTACT_US)
+
+mail = Mail(app)
+
 
 if __name__ == "__main__":
     if "DOCKER" in os.environ and os.environ["DOCKER"] == "false":

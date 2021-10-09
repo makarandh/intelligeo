@@ -18,6 +18,8 @@ supervisor = "*"
 pillow = "*"
 bcrypt = "*"
 olefile = "*"
+flask-mail = "*"
+flask-limiter = "*"
 
 [dev-packages]
 

@@ -1,0 +1,37 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500&family=Roboto:ital,wght@0,300;0,400;0,500;1,300&family=Kalam:wght@400;700&display=swap");
+
+:root {
+    --text-purple: rgb(80, 3, 137);
+    --text-purple-light: rgb(131, 9, 221);
+    --light-purple-background: rgb(249, 242, 255);
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+    background: white;
+    color: #333;
+}
+
+ul {
+    list-style: none;
+}
+
+a, a:hover, a:link, a:visited {
+    text-decoration: none;
+}
+
+
+.hide_me {
+    display: none;
+}
+
+.show_me {
+    display: block;
+}
+

@@ -46,22 +46,22 @@ hideNavButton.addEventListener("click", (e) => {
     menuVisible = false
 })
 
-window.addEventListener("resize", () => {
-    windowWidth = window.innerWidth
-    if(windowWidth > MAX_WINDOW_WIDTH && prevWindowWidth <= MAX_WINDOW_WIDTH) {
-        makeWideNavMenuVisible()
-    }
-    if(windowWidth <= MAX_WINDOW_WIDTH && prevWindowWidth > MAX_WINDOW_WIDTH) {
-        hideNavDropdown()
-    }
-    prevWindowWidth = windowWidth
-})
+// window.addEventListener("resize", () => {
+//     windowWidth = window.innerWidth
+//     if(windowWidth > MAX_WINDOW_WIDTH && prevWindowWidth <= MAX_WINDOW_WIDTH) {
+//         makeWideNavMenuVisible()
+//     }
+//     if(windowWidth <= MAX_WINDOW_WIDTH && prevWindowWidth > MAX_WINDOW_WIDTH) {
+//         hideNavDropdown()
+//     }
+//     prevWindowWidth = windowWidth
+// })
 
 
 const init = () => {
-    if(windowWidth <= MAX_WINDOW_WIDTH) {
-        hideNavDropdown()
-    }
+    // if(windowWidth <= MAX_WINDOW_WIDTH) {
+    //     hideNavDropdown()
+    // }
     document.getElementById("year").innerHTML = new Date().getFullYear();
 }
 

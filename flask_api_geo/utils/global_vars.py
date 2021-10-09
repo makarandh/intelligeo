@@ -57,6 +57,7 @@ SCORE = "score"
 
 EP_TOTAL_COUNTRIES = "/countries/total"
 EP_COUNTRIES = "/countries"
+EP_CONTACT_US = "/contact-us"
 EP_RANDOM_LIST = "/random-list"
 EP_COUNTRY = "/country"
 EP_COUNTRY_IMAGE = "/country/image"
