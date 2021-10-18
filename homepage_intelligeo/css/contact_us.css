@@ -1,8 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500&family=Roboto:ital,wght@0,300;0,400;0,500;1,300&family=Kalam:wght@400;700&display=swap");
 
 :root {
-    --text-purple: rgb(80, 3, 137);
-    --text-purple-light: rgb(131, 9, 221);
+    --text-purple: rgb(15, 0, 26);
+    --text-purple-light: rgb(116, 5, 196);
     --light-purple-background: rgb(249, 242, 255);
 }
 
@@ -14,8 +14,8 @@
 
 body {
     font-family: "Roboto", sans-serif;
-    background: white;
-    color: #333;
+    background: var(--light-purple-background);
+    color: var(--text-purple-light);
 }
 
 ul {
@@ -26,7 +26,106 @@ a, a:hover, a:link, a:visited {
     text-decoration: none;
 }
 
+.form-card {
+    position: relative;
+    background: #fff;
+    max-width: 60rem;
+    border-radius: 3rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    margin: 9.5rem auto 0;
+}
 
+.heading {
+    justify-content: center;
+    text-align: center;
+}
+
+.heading h1 {
+    color: #500389;
+    font-family: 'Montserrat';
+    font-size: 2.5rem;
+}
+
+.heading p {
+    /* max-width: 30rem; */
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.3rem;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.form-inputs {
+    max-width: 30rem;
+    display: flex;
+    flex-direction: column;
+    color: #7a65b4;
+    margin-left: auto;
+    margin-right: auto;
+    /* text-align: center; */
+}
+
+.your-name {
+    width: 100%;
+    /* background: red; */
+    /* justify-content: space-around; */
+    font-size: 1.2rem;
+    /* background: violet; */
+    padding-top: 1rem;
+    color: #7a65b4;
+}
+
+.name {
+    display: inline-block;
+    width: 7rem;
+}
+
+#name-input {
+    line-height: 1.5rem;
+    border: 2px solid #c6b8ec;
+    border-radius: .3rem;
+}
+
+.your-email {
+    width: 100%;
+    /* background: blue; */
+    padding-top: 1.5rem;
+    font-size: 1.2rem;
+}
+
+.email {
+    display: inline-block;
+    width: 7rem;
+}
+
+#email-input {
+    line-height: 1.5rem;
+    border: 2px solid #c6b8ec;
+    border-radius: .3rem;
+}
+
+.your-message {
+    width: 100%;
+    /* padding-left: 2rem; */
+    padding-top: 1.5rem;
+    font-size: 1.2rem;
+}
+
+.message {
+    display: inline-block;
+    width: 7rem;
+    vertical-align: top;
+}
+
+#message-input {
+    border: 2px solid #c6b8ec;
+    border-radius: .5rem;
+}
+
+#message-length {
+    position: relative;
+    padding-left: 27rem;
+}
 .hide_me {
     display: none;
 }
