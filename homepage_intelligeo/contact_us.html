@@ -8,25 +8,31 @@
     </head>
     <body>
         <main>
-            <form>
-                <section>
-                    <label for="name-input">Name: </label>
+            <form class="form-card">
+                <section class="heading">
+                    <h1>Contact</h1>
+                    <p>Feel free to convey your message or to contact us if u think we can be if any help to u.<p>
+                </section>
+                <div class="form-inputs">
+                  <section class="your-name">
+                    <label for="name-input" class="name">Name: </label>
                     <input type="text" id="name-input">
                     <div class="error_message hide_me" id="name-error">Please enter your name.</div>
-                </section>
-                <section>
-                    <label for="email-input">Email: </label>
+                  </section>
+                  <section class="your-email">
+                    <label for="email-input" class="email">Email: </label>
                     <input type="email" id="email-input">
                     <div class="error_message hide_me" id="email-error">Please enter a valid email address.</div>
-                </section>
-                <section>
-                    <label for="message-input">Message: </label>
+                  </section>
+                  <section class="your-message">
+                    <label for="message-input" class="message">Message: </label>
                     <textarea id="message-input" rows="5" cols="40"></textarea>
                     <div id="message-length">0/5000</div>
                     <div class="error_message hide_me" id="message-error">The message needs to be at least 10 characters
                         long.
                     </div>
-                </section>
+                  </section>
+                </div>
                 <button id="submit-button">Submit</button>
             </form>
         </main>
