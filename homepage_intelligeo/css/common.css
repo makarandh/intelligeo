@@ -1,0 +1,257 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Roboto:ital,wght@0,300;0,400;0,500;1,300&family=Kalam:wght@400;700&display=swap");
+
+:root {
+    --main-purple: rgb(80, 3, 137);
+    --main-purple-dark: rgb(41, 1, 70);
+    --main-purple-medium: rgba(80, 3, 137, 0.7);
+    --main-purple-light: rgb(131, 9, 221);
+    --light-purple-background: rgb(249, 242, 255);
+    --light-gray: rgba(200, 200, 200, 0.6);
+    --orange: rgb(242, 138, 43);
+    --orange-light: rgb(255, 153, 63);
+    --green: rgb(35, 156, 47);
+    --error-background: rgba(255, 35, 9, 0.06)
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+    background: white;
+    color: #333;
+}
+
+ul {
+    list-style: none;
+}
+
+a, a:hover, a:link, a:visited {
+    text-decoration: none;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Header - Logo */
+.logo {
+    margin-top: 2rem;
+    margin-bottom: 0;
+    text-align: center;
+    font-size: 2.2rem;
+    margin-left: 2rem;
+}
+
+.logo .intelli {
+    color: var(--main-purple);
+    padding: 0.2rem 0.2rem 0.2rem 0.5rem;
+}
+
+.logo .geo {
+    background-color: var(--green);
+    color: #fff;
+    border: 0.2rem solid var(--green);
+    padding: 0.7rem .2rem;
+    border-radius: 4rem;
+}
+
+.btn {
+    cursor: pointer;
+    display: inline-block;
+    padding: 1.4rem 5rem;
+    font-size: 1.6rem;
+    color: #fff;
+    border: none;
+    background-color: var(--orange);
+    border-radius: 12px;
+    transition: background-color 0.2s ease-in-out;
+    box-shadow: 1px 1px 3px 1px rgba(10, 10, 10, 0.3);
+}
+
+.btn:hover {
+    background-color: var(--orange-light);
+}
+
+.btn-secondary {
+    color: var(--orange);
+    background-color: white;
+    box-shadow: none;
+    border: 2px solid var(--orange);
+    border-radius: 4rem;
+    padding: 0.8rem 3rem;
+    font-size: 1.6rem;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.btn-secondary:focus, .btn-secondary:active {
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    background-color: var(--orange);
+    border: 2px dotted white;
+    outline: none;
+    color: white;
+}
+
+.btn-secondary:hover {
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    background-color: var(--orange-light);
+    border: 2px solid var(--orange-light);
+    color: white;
+}
+
+.footer-container {
+    background: var(--main-purple);
+    color: #fff;
+    width: 100%;
+    padding: 1rem;
+}
+
+.footer-content-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 1rem;
+}
+
+.footer-container a, .footer-container .logo .intelli {
+    color: #fff;
+}
+
+.footer-container .logo {
+    margin: 1.5rem 0 0 0;
+    font-size: 1.7rem;
+}
+
+.logo-copyright-container, .social-outer-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.copyright {
+    text-align: center;
+}
+
+.footer-container .copyright {
+    margin-top: 1.4rem;
+    font-size: 0.8rem;
+}
+
+.social {
+    display: inline-block;
+    margin: 0 0.4rem;
+}
+
+.social-container a {
+    transition: color 0.2s ease-in-out;
+}
+
+.social-container .fb a:hover {
+    color: #5883dc;
+}
+
+.social-container .twitter a:hover {
+    color: #00a2f5;
+}
+
+.social-container .youtube a:hover {
+    color: #f91f1f;
+}
+
+.social-container .linkedin a:hover {
+    color: #0181c4;
+}
+
+.footer-container ul {
+    display: flex;
+    font-size: 1.2rem;
+    flex-direction: column;
+    row-gap: .8rem;
+    margin-top: 1rem;
+}
+
+.footer-container ul a {
+    border-bottom: var(--main-purple) .2rem solid;
+    transition: border-bottom 0.2s ease-in-out;
+}
+
+.footer-container ul a:hover {
+    border-bottom: #fff .2rem solid;
+    transition: border-bottom 0.2s ease-in-out;
+}
+
+@media (max-width: 1440px) {
+    .header .logo {
+        font-size: 1.8rem;
+    }
+
+    .footer-container .logo {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 1264px) {
+    .header .logo {
+        margin-left: 1rem;
+    }
+}
+
+@media (max-width: 760px) {
+
+    .header .logo {
+        margin-left: 0.2rem;
+        font-size: 1.8rem;
+    }
+
+    .footer-container ul {
+        font-size: 1rem;
+    }
+
+    .footer-container .logo {
+        font-size: 1.2rem;
+    }
+
+    .footer-container .logo .geo {
+        padding: 0.4rem 0.1rem;
+    }
+
+    .social-container div a {
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .social-container {
+        margin-top: 0.5rem;
+        display: grid;
+        grid-template-columns: repeat(2, 2rem);
+        grid-template-rows: auto;
+        gap: 0.5rem 0.5rem;
+    }
+
+    .social-container div a {
+        font-size: 0.5rem;
+    }
+
+    .footer-container {
+        padding: 1rem 0.5rem;
+    }
+
+    .footer-container .logo {
+        font-size: 1rem;
+    }
+
+    .footer-container .copyright {
+        margin-top: 1rem;
+        font-size: 0.5rem;
+    }
+
+    .footer-container ul {
+        font-size: 0.7rem;
+    }
+}

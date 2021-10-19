@@ -2,6 +2,7 @@
 
 const HIDE_ME = "hide_me"
 const SHOW_ME = "show_me"
+const INPUT_ERROR_TRUE = "input-error-true"
 const btnSubmit = document.getElementById("submit-button")
 const inputName = document.getElementById("name-input")
 const inputEmail = document.getElementById("email-input")
@@ -41,10 +42,19 @@ const hideElement = (element) => {
     element.classList.remove(SHOW_ME)
 }
 
+const setErrorBackground = (element) => {
+    element.classList.add(INPUT_ERROR_TRUE)
+}
+
+const removeErrorBackground = (element) => {
+    element.classList.remove(INPUT_ERROR_TRUE)
+}
+
 inputName.addEventListener("input", (e) => {
     const name = e.target.value
     if(nameIsValid(name)) {
         hideElement(nameError)
+        removeErrorBackground(inputName)
     }
 })
 
@@ -52,6 +62,7 @@ inputEmail.addEventListener("input", (e) => {
     const email = e.target.value
     if(emailIsValid(email)) {
         hideElement(emailError)
+        removeErrorBackground(inputEmail)
     }
 })
 
@@ -60,6 +71,7 @@ inputMessage.addEventListener("input", (e) => {
     messageLength.innerText = `${message.length}/5000`
     if(messageIsValid(message)) {
         hideElement(messageError)
+        removeErrorBackground(inputMessage)
     }
 })
 
@@ -70,11 +82,13 @@ btnSubmit.addEventListener("click", (e) => {
     if(!nameIsValid(name)) {
         error = true
         showElement(nameError)
+        setErrorBackground(inputName)
     }
     const email = inputEmail.value
     if(!emailIsValid(email)) {
         error = true
         showElement(emailError)
+        setErrorBackground(inputEmail)
     }
     const message = inputMessage.value.trim()
     inputMessage.value = message
@@ -82,6 +96,7 @@ btnSubmit.addEventListener("click", (e) => {
     if(!messageIsValid(message)) {
         error = true
         showElement(messageError)
+        setErrorBackground(inputMessage)
     }
 
     if(!error) {
@@ -103,7 +118,7 @@ const submit_form = async(name, email, message) => {
         },
         body: body
     })
-    const responseBody =  await response.json()
+    const responseBody = await response.json()
     console.log(response.status)
     console.log(responseBody)
 }
@@ -113,6 +128,7 @@ const init = () => {
     const message = inputMessage.value.trim()
     inputMessage.value = message
     messageLength.innerText = `${message.length}/5000`
+    commonInit()
 }
 
 init()

@@ -62,7 +62,7 @@ const init = () => {
     // if(windowWidth <= MAX_WINDOW_WIDTH) {
     //     hideNavDropdown()
     // }
-    document.getElementById("year").innerHTML = new Date().getFullYear();
+    commonInit()
 }
 
 init()

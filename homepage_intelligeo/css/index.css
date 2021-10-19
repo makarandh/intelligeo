@@ -1,58 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500&family=Roboto:ital,wght@0,300;0,400;0,500;1,300&family=Kalam:wght@400;700&display=swap");
-
-:root {
-    --text-purple: rgb(80, 3, 137);
-    --text-purple-light: rgb(131, 9, 221);
-    --light-purple-background: rgb(249, 242, 255);
-}
-
-* {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-}
-
-body {
-    font-family: "Roboto", sans-serif;
-    background: white;
-    color: #333;
-}
-
-ul {
-    list-style: none;
-}
-
-a, a:hover, a:link, a:visited {
-    text-decoration: none;
-}
-
-/* Header */
-.header {
-    display: flex;
-    justify-content: space-between;
-}
-
-/* Header - Logo */
-.logo {
-    margin-top: 2rem;
-    margin-bottom: 0;
-    text-align: center;
-    font-size: 2.2rem;
-    margin-left: 2rem;
-}
-
-.logo .intelli {
-    color: var(--text-purple);
-    padding: 0.2rem 0.2rem 0.2rem 0.5rem;
-}
-
-.logo .geo {
-    background-color: #239C2F;
-    color: #fff;
-    border: 0.2rem solid #239C2F;
-    padding: 0.7rem .2rem;
-    border-radius: 4rem;
-}
+@import "common.css";
 
 /* Header - navbar*/
 .hamburger-button-container {
@@ -93,13 +39,13 @@ a, a:hover, a:link, a:visited {
 
 .nav-menu a {
     font-size: 1.4rem;
-    color: #500389;
+    color: var(--main-purple);
     transition: all 0.2s ease-in-out;
     border-bottom: white .2rem solid;
 }
 
 .nav-menu a:hover {
-    border-bottom: #500389 .2rem solid;
+    border-bottom: var(--main-purple-light) .2rem solid;
     transition: border-bottom 0.2s ease-in-out;
 }
 
@@ -115,18 +61,20 @@ a, a:hover, a:link, a:visited {
 }
 
 .main-content h1 {
-    color: var(--text-purple);
-    font-weight: 500;
-    font-size: 4rem;
+    color: var(--main-purple);
+    font-weight: 300;
     text-align: center;
+    font-family: "Montserrat", sans-serif;
+    font-style: normal;
+    font-size: 5rem;
 }
 
 .main-content p {
     font-style: normal;
     font-weight: 400;
-    font-size: 1.6rem;
-    color: #5707A3;
+    color: var(--main-purple-medium);
     margin-top: 1rem;
+    font-size: 1.4rem;
 }
 
 #nav-close-icon {
@@ -145,20 +93,6 @@ a, a:hover, a:link, a:visited {
     position: relative;
 }
 
-.content h1 {
-    font-family: "Montserrat", sans-serif;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 4rem;
-    text-align: center;
-    color: #500389;
-}
-
-.content p {
-    margin-top: 1rem;
-    font-size: 1.6rem;
-}
-
 .content a {
     margin-top: 3rem;
     font-size: 1.8rem;
@@ -170,23 +104,6 @@ a, a:hover, a:link, a:visited {
     width: 105%;
     margin-top: 0;
     transform: translateX(-3%);
-}
-
-/*!* Button *!*/
-.btn {
-    cursor: pointer;
-    display: inline-block;
-    padding: 1.4rem 5rem;
-    color: #fff;
-    border: none;
-    background-color: #F28A2B;
-    border-radius: 12px;
-    transition: background-color 0.2s ease-in-out;
-    box-shadow: 1px 1px 3px 1px rgba(10, 10, 10, 0.3);
-}
-
-.btn:hover {
-    background-color: #ff993f;
 }
 
 .page-2 {
@@ -274,108 +191,33 @@ a, a:hover, a:link, a:visited {
     max-width: 100%;
 }
 
-
-
-.footer-container {
-    background: #500389;
-    color: #fff;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-}
-
-.footer-container a, .footer-container .logo .intelli {
-    color: #fff;
-}
-
-.footer-container .logo {
-    margin: 1.5rem 0 0 0;
-    font-size: 1.7rem;
-}
-
-.logo-copyright-container, .social-outer-container {
+.credits {
     display: flex;
     flex-direction: column;
     justify-content: center;
-}
-
-.logo-copyright-container {
-    margin-left: 5rem;
-}
-
-.footer-container .copyright {
-    margin-top: 1.4rem;
-    font-size: 0.8rem;
-    margin-left: 1.8rem;
-}
-
-
-.social {
-    display: inline-block;
-    margin: 0 0.4rem;
-}
-
-.social-container a {
-    transition: color 0.2s ease-in-out;
-}
-
-.social-container .fb a:hover {
-    color: #5883dc;
-}
-
-.social-container .twitter a:hover {
-    color: #00a2f5;
-}
-
-.social-container .youtube a:hover {
-    color: #f91f1f;
-}
-
-.social-container .linkedin a:hover {
-    color: #0181c4;
-}
-
-.footer-container ul {
-    display: flex;
-    font-size: 1.2rem;
-    flex-direction: column;
-    row-gap: .8rem;
-    margin-top: 1rem;
-    margin-right: 5rem;
-}
-
-.footer-container ul a {
-    border-bottom: #500389 .2rem solid;
-    transition: border-bottom 0.2s ease-in-out;
-}
-
-.footer-container ul a:hover {
-    border-bottom: #fff .2rem solid;
-    transition: border-bottom 0.2s ease-in-out;
-}
-
-.credits {
-    background: #290146;
+    align-items: center;
 }
 
 .attributes {
     font-size: 0.8rem; 
     display: flex;
     flex-direction: column;
-    align-items: center ;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    align-items: flex-start;
+    margin-top: 0.5rem;
 }
 
 .attributes a {
     color: #fff;
-    padding-top: 0.5rem;
+    padding-bottom: 0.1rem;
+    padding-top: 0.4rem;
+    border-bottom: 1px rgba(255, 228, 196, 0) solid;
+    transition: border 0.2s ease-in-out;
 }
 
 .attributes a:hover {
     color: bisque;
+    border-bottom: 1px bisque solid;
+    transition: border 0.2s ease-in-out;
 }
 
 .slide_out {
@@ -426,10 +268,6 @@ a, a:hover, a:link, a:visited {
 }
 
 @media (max-width: 1440px) {
-    .header .logo {
-        font-size: 1.8rem;
-    }
-
     .nav-menu a {
         font-size: 1.1rem;
     }
@@ -489,17 +327,9 @@ a, a:hover, a:link, a:visited {
     .page2-text .exciting {
         font-size: 3.5rem;
     }
-
-    .footer-container .logo {
-        font-size: 2rem;
-    }
 }
 
 @media (max-width: 1264px) {
-    .header .logo {
-        margin-left: 1rem;
-    }
-
     body {
         overflow-x: hidden;
     }
@@ -564,21 +394,17 @@ a, a:hover, a:link, a:visited {
         padding-right: 2rem;
     }
 
-    .header .logo {
-        margin-left: 0.2rem;
-    }
-
     /*.hamburger-button-container {*/
     /*    display: block;*/
     /*    font-size: 2rem;*/
     /*    margin: 0 0.8rem 0.5rem 0;*/
-    /*    color: var(--text-purple);*/
+    /*    color: var(--main-purple);*/
     /*    transition: all ease-in-out 0.2s;*/
     /*}*/
 
     /*#nav-close-icon:hover, #nav-hamburger-icon:hover {*/
     /*    cursor: pointer;*/
-    /*    color: var(--text-purple-light);*/
+    /*    color: var(--main-purple-light);*/
     /*}*/
 
     /*.header {*/
@@ -595,13 +421,13 @@ a, a:hover, a:link, a:visited {
     /*    display: flex;*/
     /*    flex-direction: column;*/
     /*    padding: 0;*/
-    /*    border-left: 0.01px solid var(--text-purple);*/
+    /*    border-left: 0.01px solid var(--main-purple);*/
     /*    border-bottom-left-radius: 0.2rem;*/
     /*}*/
 
     /*.nav-menu li {*/
     /*    background: var(--light-purple-background);*/
-    /*    border-bottom: 0.01px solid var(--text-purple);*/
+    /*    border-bottom: 0.01px solid var(--main-purple);*/
     /*    margin: 0;*/
     /*    transition: all ease-in-out 0.2s;*/
     /*}*/
@@ -614,7 +440,7 @@ a, a:hover, a:link, a:visited {
 
     /*.nav-menu li:hover {*/
     /*    cursor: pointer;*/
-    /*    background-color: var(--text-purple-light);*/
+    /*    background-color: var(--main-purple-light);*/
     /*    color: white;*/
     /*}*/
 
@@ -698,22 +524,6 @@ a, a:hover, a:link, a:visited {
     .blob2 img {
         bottom: -10rem;
     }
-
-    .footer-container ul {
-        font-size: 1rem;
-    }
-
-    .footer-container .logo {
-        font-size: 1.2rem;
-    }
-
-    .footer-container .logo .geo {
-        padding: 0.4rem 0.1rem;
-    }
-
-    .social-container div a {
-        font-size: 0.7rem;
-    }
 }
 
 @media (max-width: 600px) {
@@ -721,34 +531,5 @@ a, a:hover, a:link, a:visited {
         max-width: 25rem;
         margin-left: auto;
         margin-right: auto;
-    }
-
-    .social-container {
-        margin-top: 0.5rem;
-        display: grid;
-        grid-template-columns: repeat(2, 2rem);
-        grid-template-rows: auto;
-        gap: 0.5rem 0.5rem;
-    }
-
-    .social-container div a {
-        font-size: 0.5rem;
-    }
-
-    .footer-container {
-        padding: 1rem 0.5rem;
-    }
-
-    .footer-container .logo {
-        font-size: 1rem;
-    }
-
-    .footer-container .copyright {
-        margin-top: 1rem;
-        font-size: 0.5rem;
-    }
-
-    .footer-container ul {
-        font-size: 0.7rem;
     }
 }
