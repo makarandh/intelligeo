@@ -6,7 +6,6 @@ from flask_restful import Resource
 from flask import request
 from marshmallow import EXCLUDE
 
-from app import limiter
 from database.country_model import CountryModel, ImageInfo
 from schemas.country_schema import CountrySchema, CountryRequestSchema, CountriesSchema
 from utils.image_helper import get_fq_filename
@@ -59,7 +58,6 @@ class CountryAPI(Resource):
 
     @staticmethod
     @jwt_required()
-    @limiter.limit("2000 per hour", override_defaults=True)
     def get():
         logger.info("url: {}; from: {};".format(request.url, request.remote_addr))
         try:
@@ -158,7 +156,6 @@ class CountryAPI(Resource):
 class CountriesAPI(Resource):
 
     @jwt_required()
-    @limiter.limit("2000 per hour", override_defaults=True)
     def get(self):
         user = get_jwt_identity()
         endpoint = request.path

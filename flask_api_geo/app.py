@@ -20,9 +20,9 @@ app = Flask(__name__)
 cors = CORS(app, resources={r"*": {"origins": "*"}})
 
 limiter = Limiter(
-    app,
-    key_func=get_remote_address,
-    default_limits=["2000 per day", "120 per hour"]
+        app,
+        key_func=get_remote_address,
+        default_limits=["2000 per day", "240 per hour"]
 )
 
 if __name__ == "__main__":
@@ -32,23 +32,16 @@ else:
     logger.info("Running with WSGI, loading production environment variables")
     load_dotenv("production.env", verbose=True)
 
-from utils.global_vars import (MESSAGE, AUTH_ERROR, EP_TOTAL_COUNTRIES, EP_COUNTRIES, EP_COUNTRY, EP_COUNTRY_IMAGE,
-                               EP_COUNTRY_FLAG, RESOURCE_NOT_FOUND, EP_PUBLISH, EP_PUBLISHED, EP_LOGIN, EP_REFRESH,
-                               EP_LOGOUT, EP_USERNAME, EP_TOTAL_PUBLISHED, EP_PUBLISHED_ID, EP_RANDOM_LIST,
-                               EP_CONTACT_US)
-from api.auth_api import AuthAPI
-from api.country_api import CountriesAPI, CountryAPI
-from api.image_api import ImageAPI
-from api.publish_api import PublishAPI, PublishedCountryAPI
-from api.random_api import RandomAPI
-from api.contact_us_api import ContactUsAPI
-from database.blacklist_db import BlacklistModel
-
 # Why two app.config? Refer to: https://flask.palletsprojects.com/en/0.12.x/config/#development-production
 app.config.from_object("utils.default_config")
 app.config.from_envvar("APPLICATION_SETTINGS")
 jwt = JWTManager(app)
 api = Api(app)
+
+from utils.global_vars import (MESSAGE, AUTH_ERROR, EP_TOTAL_COUNTRIES, EP_COUNTRIES, EP_COUNTRY, EP_COUNTRY_IMAGE,
+                               EP_COUNTRY_FLAG, RESOURCE_NOT_FOUND, EP_PUBLISH, EP_PUBLISHED, EP_LOGIN, EP_REFRESH,
+                               EP_LOGOUT, EP_USERNAME, EP_TOTAL_PUBLISHED, EP_PUBLISHED_ID, EP_RANDOM_LIST,
+                               EP_CONTACT_US)
 
 
 @app.errorhandler(ValidationError)
@@ -78,6 +71,9 @@ def handle_expired_token_error(header, payload):
     return {MESSAGE: AUTH_ERROR}, 401
 
 
+from database.blacklist_db import BlacklistModel
+
+
 @jwt.token_in_blocklist_loader
 def check_if_token_is_revoked(jwt_header, jwt_payload):
     jti = jwt_payload["jti"]
@@ -94,6 +90,14 @@ def first_run_init():
     initialize_db()
 
 
+from api.auth_api import AuthAPI
+from api.image_api import ImageAPI
+from api.publish_api import PublishAPI, PublishedCountryAPI
+from api.random_api import RandomAPI
+from api.contact_us_api import ContactUsAPI
+from api.country_api import CountriesAPI, CountryAPI
+
+
 api.add_resource(AuthAPI, EP_LOGIN, EP_LOGOUT, EP_USERNAME, EP_REFRESH)
 api.add_resource(CountriesAPI, EP_COUNTRIES, EP_TOTAL_COUNTRIES)
 api.add_resource(CountryAPI, EP_COUNTRY)
@@ -105,10 +109,8 @@ api.add_resource(ContactUsAPI, EP_CONTACT_US)
 
 mail = Mail(app)
 
-
 if __name__ == "__main__":
     if "DOCKER" in os.environ and os.environ["DOCKER"] == "false":
         app.run(host="127.0.0.1", port=3000)
     else:
         app.run(host="0.0.0.0", port=3000)
-

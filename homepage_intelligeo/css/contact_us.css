@@ -93,15 +93,15 @@
     width: 20rem;
 }
 
-.error_message {
+.error-message {
     color: #cb1515;
 }
 
-.hide_me {
+.hide-me {
     display: none;
 }
 
-.show_me {
+.show-me {
     display: block;
 }
 
@@ -116,6 +116,34 @@
 
 .contact-us.outer-container {
     min-height: 77vh;
+}
+
+#submit-button.btn-submitting {
+    color: var(--dark-gray);
+    background-color: var(--light-gray);
+    border: 2px solid var(--light-gray);
+}
+
+#submit-button.btn-submitting:hover {
+    cursor: unset;
+}
+
+#submit-button.btn-submitting:focus, #submit-button.btn-submitting:active {
+    border: 2px dashed var(--dark-gray);
+}
+
+#submit-result {
+    margin: 2rem 0 0 6rem;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+#submit-result.success-message {
+    color: var(--green);
+}
+
+#submit-result.error-message {
+    color: red;
 }
 
 body {

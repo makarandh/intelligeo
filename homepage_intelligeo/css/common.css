@@ -7,8 +7,10 @@
     --main-purple-light: rgb(131, 9, 221);
     --light-purple-background: rgb(249, 242, 255);
     --light-gray: rgba(200, 200, 200, 0.6);
+    --dark-gray: rgb(120, 120, 120);
     --orange: rgb(242, 138, 43);
     --orange-light: rgb(255, 153, 63);
+    --orange-disabled: rgba(255, 153, 63, 0.5);
     --green: rgb(35, 156, 47);
     --error-background: rgba(255, 35, 9, 0.06)
 }

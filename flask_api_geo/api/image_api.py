@@ -6,7 +6,6 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 from flask_restful import Resource
 from marshmallow import EXCLUDE
 
-from app import limiter
 from database.country_model import CountryModel
 from database.publish_card_db import Publisher
 from schemas.country_schema import CountryRequestSchema
@@ -83,7 +82,6 @@ class ImageAPI(Resource):
 
     @staticmethod
     @jwt_required()
-    @limiter.limit("2000 per hour", override_defaults=True)
     def get():
         user = get_jwt_identity()
         logger.info("url: {}; from: {}; by: {};".format(request.url, request.remote_addr, user))

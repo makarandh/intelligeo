@@ -220,19 +220,19 @@
     transition: border 0.2s ease-in-out;
 }
 
-.slide_out {
+.slide-out {
     animation: forwards ease-in-out 0.2s slide_to_right;
 }
 
-.slide_in {
+.slide-in {
     animation: forwards ease-in-out 0.2s slide_from_right;
 }
 
-.hide_me {
+.hide-me {
     display: none;
 }
 
-.show_me {
+.show-me {
     display: inline-block;
 }
 
@@ -380,7 +380,7 @@
         overflow-x: hidden;
     }
 
-    .body_container {
+    .body-container {
         overflow-x: hidden;
     }
 

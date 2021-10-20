@@ -4,7 +4,6 @@ from flask import request
 from flask_restful import Resource
 from marshmallow import EXCLUDE
 
-from app import limiter
 from schemas.email_schema import EmailSchema
 from utils.email import send_contact_us_email
 from utils.global_vars import MESSAGE, INVALID_DATA, SUCCESS, INTERNAL_SERVER_ERROR
@@ -17,7 +16,6 @@ logger.setLevel(logging.DEBUG)
 class ContactUsAPI(Resource):
 
     @staticmethod
-    @limiter.limit("2/minute", override_defaults=False)
     def post():
         json_data = request.get_json()
         logger.info("url: {}; from: {}; data: {}".format(request.url, request.remote_addr, json_data))

@@ -1,9 +1,9 @@
 "use strict"
 
-const SLIDE_OUT = "slide_out"
-const SLIDE_IN = "slide_in"
-const HIDE_ME = "hide_me"
-const SHOW_ME = "show_me"
+const SLIDE_OUT = "slide-out"
+const SLIDE_IN = "slide-in"
+const HIDE_ME = "hide-me"
+const SHOW_ME = "show-me"
 const MAX_WINDOW_WIDTH = 760
 const navMenu = document.getElementById("nav-menu")
 const hideNavButton = document.getElementById("nav-close-icon")
