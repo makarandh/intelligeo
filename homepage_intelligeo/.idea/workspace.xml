@@ -2,22 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a0e05ee0-1fbd-48ce-89a0-19b6578da0fc" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../dashboard_geo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../dashboard_geo/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../flask_api_geo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_api_geo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../flask_api_geo/Pipfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_api_geo/Pipfile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../flask_api_geo/api/contact_us_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_api_geo/api/contact_us_api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../flask_api_geo/api/country_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_api_geo/api/country_api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../flask_api_geo/api/image_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_api_geo/api/image_api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../flask_api_geo/api/random_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_api_geo/api/random_api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../flask_api_geo/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_api_geo/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/contact_us.html" beforeDir="false" afterPath="$PROJECT_DIR$/contact_us.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/css/common.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/common.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/css/contact_us.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/contact_us.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/index.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/contact_us.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/contact_us.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,6 +61,7 @@
       <workItem from="1634629476492" duration="17185000" />
       <workItem from="1634717783898" duration="7257000" />
       <workItem from="1634735981800" duration="6261000" />
+      <workItem from="1634820844674" duration="3643000" />
     </task>
     <servers />
   </component>

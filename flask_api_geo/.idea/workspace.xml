@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="50d455e3-e778-4610-ba64-b3fb4f576f51" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/db_connect.py" beforeDir="false" afterPath="$PROJECT_DIR$/database/db_connect.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/develop.env" beforeDir="false" afterPath="$PROJECT_DIR$/develop.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flaskapp.conf" beforeDir="false" afterPath="$PROJECT_DIR$/flaskapp.conf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/default_config.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/default_config.py" afterDir="false" />
-    </list>
+    <list default="true" id="50d455e3-e778-4610-ba64-b3fb4f576f51" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -142,7 +135,7 @@
       <workItem from="1633773710329" duration="2997000" />
       <workItem from="1634743170755" duration="4311000" />
       <workItem from="1634756042401" duration="2102000" />
-      <workItem from="1634810694549" duration="2290000" />
+      <workItem from="1634810694549" duration="2889000" />
     </task>
     <servers />
   </component>

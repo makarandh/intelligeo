@@ -1,9 +1,5 @@
 @import "common.css";
 
-.contact-us.outer-container {
-    margin-right: 3rem;
-}
-
 .heading {
     text-align: center;
     margin: 3rem auto 2rem auto;
@@ -105,17 +101,14 @@
     display: block;
 }
 
-.img {
-    margin-right: -1.5rem;
+.img.contact-us {
+    overflow: hidden;
 }
 
 .img img {
-    width: 101%;
+    width: 105%;
     margin-top: 0;
-}
-
-.contact-us.outer-container {
-    min-height: 77vh;
+    transform: translateX(-3%);
 }
 
 #submit-button.btn-submitting {
@@ -146,9 +139,6 @@
     color: red;
 }
 
-body {
-    overflow-x: hidden;
-}
 
 .footer-container.contact-us {
     padding-top: 1rem;
