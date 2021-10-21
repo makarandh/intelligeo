@@ -12,10 +12,11 @@ def get_db():
             If you want to change the basename, please change it here.
         :return: MongoDB database
     """
-    if platform.node() == "workhorse":
-        mongo_url = "mongodb://localhost"
-    else:
-        mongo_url = "mongodb://mongo-server"
+    mongo_url = "mongodb://localhost"
+    # if platform.node() == "workhorse":
+    #     mongo_url = "mongodb://localhost"
+    # else:
+    #     mongo_url = "mongodb://mongo-server"
 
     client = MongoClient(mongo_url,
                          username=MONGO_USER,

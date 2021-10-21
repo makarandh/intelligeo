@@ -1,0 +1,250 @@
+@import "common.css";
+
+.contact-us.outer-container {
+    margin-right: 3rem;
+}
+
+.heading {
+    text-align: center;
+    margin: 3rem auto 2rem auto;
+    padding-left: 5rem;
+}
+
+.heading h1 {
+    color: var(--main-purple);
+    font-family: "Montserrat", serif;
+    font-size: 3.3rem;
+    font-weight: 300;
+}
+
+.heading h4 {
+    font-family: "kalam", cursive;
+    margin-top: 1rem;
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--orange);
+}
+
+.contact-form {
+    max-width: 40rem;
+    margin: 4rem auto 0 auto;
+}
+
+.form-inputs {
+    max-width: 40rem;
+    color: var(--main-purple);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.input-label-container {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.3rem;
+    margin-top: 1.5rem;
+    font-weight: 400;
+}
+
+.form-input label {
+    min-width: 6.5rem;
+    padding: 0.5rem 0.6rem;
+    text-align: right;
+}
+
+.form-input input, .form-input textarea {
+    width: 100%;
+    font-size: 1.1rem;
+    border: 2px solid var(--light-gray);
+    border-radius: .3rem;
+    padding: 0.5rem 0.6rem;
+    transition: border 0.2s ease-in-out;
+    resize: none;
+}
+
+.form-input input:focus, .form-input textarea:focus {
+    border: 2px solid var(--main-purple-light);
+    outline: none;
+    transition: border 0.3s ease-in-out;
+}
+
+.message.input-label {
+    padding-top: 0;
+}
+
+.form-meta-container {
+    margin-left: 6.5rem;
+}
+
+#message-length {
+    font-size: 0.9rem;
+    color: var(--main-purple-medium);
+}
+
+.input-error-true {
+    background-color: var(--error-background);
+}
+
+.form-submit {
+    margin: 3.2rem 3rem 0 7rem;
+    text-align: center;
+}
+
+#submit-button {
+    width: 20rem;
+}
+
+.error-message {
+    color: #cb1515;
+}
+
+.hide-me {
+    display: none;
+}
+
+.show-me {
+    display: block;
+}
+
+.img {
+    margin-right: -1.5rem;
+}
+
+.img img {
+    width: 101%;
+    margin-top: 0;
+}
+
+.contact-us.outer-container {
+    min-height: 77vh;
+}
+
+#submit-button.btn-submitting {
+    color: var(--dark-gray);
+    background-color: var(--light-gray);
+    border: 2px solid var(--light-gray);
+}
+
+#submit-button.btn-submitting:hover {
+    cursor: unset;
+}
+
+#submit-button.btn-submitting:focus, #submit-button.btn-submitting:active {
+    border: 2px dashed var(--dark-gray);
+}
+
+#submit-result {
+    margin: 2rem 0 0 6rem;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+#submit-result.success-message {
+    color: var(--green);
+}
+
+#submit-result.error-message {
+    color: red;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+.footer-container.contact-us {
+    padding-top: 1rem;
+    padding-bottom: 5rem;
+}
+
+.footer-content-container.contact-us {
+    display: flex;
+    justify-content: center;
+}
+
+@media (max-width: 1700px) {
+    .img img {
+        width: 115%;
+        margin-top: 1rem;
+        transform: translateX(-7%);
+    }
+}
+
+@media (max-width: 1450px) {
+    .img img {
+        width: 135%;
+        margin-top: 4rem;
+        transform: translateX(-12%);
+    }
+}
+
+@media (max-width: 1100px) {
+    .img img {
+        width: 145%;
+        margin-top: 6rem;
+        transform: translateX(-14%);
+    }
+}
+
+@media (max-width: 900px) {
+    .img img {
+        width: 175%;
+        margin-top: 6rem;
+        transform: translateX(-20%);
+    }
+}
+
+@media (max-width: 650px) {
+
+    .heading {
+        padding-left: 0.5rem;
+    }
+
+    .heading h1 {
+        font-size: 3rem;
+    }
+
+    .heading h4 {
+        font-size: 1.2rem;
+    }
+
+    .contact-form {
+        margin-top: 1rem;
+    !important;
+    }
+
+    .contact-us.outer-container {
+        margin: 0 1.5rem;
+    }
+
+    .input-label-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .form-input label {
+        min-width: unset;
+        padding-left: 0;
+    }
+
+    .form-meta-container {
+        margin-left: 0;
+    }
+
+    .form-submit {
+        margin: 3.2rem 0 2rem 0;
+    }
+
+    .footer-container.contact-us {
+        position: static;
+    }
+
+    .img img {
+        width: 200%;
+        transform: translateX(-25%);
+    }
+
+    .header.contact-us {
+        display: flex;
+        justify-content: center;
+    }
+}

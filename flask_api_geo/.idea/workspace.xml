@@ -3,20 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="50d455e3-e778-4610-ba64-b3fb4f576f51" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/contact_us_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/contact_us_api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/country_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/country_api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/image_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/image_api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/random_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/random_api.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../homepage_intelligeo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../homepage_intelligeo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../homepage_intelligeo/contact_us.html" beforeDir="false" afterPath="$PROJECT_DIR$/../homepage_intelligeo/contact_us.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../homepage_intelligeo/css/common.css" beforeDir="false" afterPath="$PROJECT_DIR$/../homepage_intelligeo/css/common.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../homepage_intelligeo/css/contact_us.css" beforeDir="false" afterPath="$PROJECT_DIR$/../homepage_intelligeo/css/contact_us.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../homepage_intelligeo/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/../homepage_intelligeo/css/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../homepage_intelligeo/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../homepage_intelligeo/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../homepage_intelligeo/scripts/contact_us.js" beforeDir="false" afterPath="$PROJECT_DIR$/../homepage_intelligeo/scripts/contact_us.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../homepage_intelligeo/scripts/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../homepage_intelligeo/scripts/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/db_connect.py" beforeDir="false" afterPath="$PROJECT_DIR$/database/db_connect.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/develop.env" beforeDir="false" afterPath="$PROJECT_DIR$/develop.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flaskapp.conf" beforeDir="false" afterPath="$PROJECT_DIR$/flaskapp.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/default_config.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/default_config.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,17 +25,18 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/api/auth_api.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/api/publish_api.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/database/country_model.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/app.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/production.env" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/auth/security.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/api/country_api.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/database/score_model.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/api/image_api.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/api/api_util.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/utils/global_vars.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/utils/db_init.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/api/auth_api.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/api/publish_api.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/database/country_model.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/api/api_util.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/utils/config.py" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="1w25w2XGh7Azau6e0YLoTmRZtrT" />
@@ -149,6 +141,8 @@
       <workItem from="1633671216174" duration="6548000" />
       <workItem from="1633773710329" duration="2997000" />
       <workItem from="1634743170755" duration="4311000" />
+      <workItem from="1634756042401" duration="2102000" />
+      <workItem from="1634810694549" duration="2290000" />
     </task>
     <servers />
   </component>

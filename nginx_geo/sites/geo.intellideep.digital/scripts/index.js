@@ -1,9 +1,9 @@
 "use strict"
 
-const SLIDE_OUT = "slide_out"
-const SLIDE_IN = "slide_in"
-const HIDE_ME = "hide_me"
-const SHOW_ME = "show_me"
+const SLIDE_OUT = "slide-out"
+const SLIDE_IN = "slide-in"
+const HIDE_ME = "hide-me"
+const SHOW_ME = "show-me"
 const MAX_WINDOW_WIDTH = 760
 const navMenu = document.getElementById("nav-menu")
 const hideNavButton = document.getElementById("nav-close-icon")
@@ -46,23 +46,23 @@ hideNavButton.addEventListener("click", (e) => {
     menuVisible = false
 })
 
-window.addEventListener("resize", () => {
-    windowWidth = window.innerWidth
-    if(windowWidth > MAX_WINDOW_WIDTH && prevWindowWidth <= MAX_WINDOW_WIDTH) {
-        makeWideNavMenuVisible()
-    }
-    if(windowWidth <= MAX_WINDOW_WIDTH && prevWindowWidth > MAX_WINDOW_WIDTH) {
-        hideNavDropdown()
-    }
-    prevWindowWidth = windowWidth
-})
+// window.addEventListener("resize", () => {
+//     windowWidth = window.innerWidth
+//     if(windowWidth > MAX_WINDOW_WIDTH && prevWindowWidth <= MAX_WINDOW_WIDTH) {
+//         makeWideNavMenuVisible()
+//     }
+//     if(windowWidth <= MAX_WINDOW_WIDTH && prevWindowWidth > MAX_WINDOW_WIDTH) {
+//         hideNavDropdown()
+//     }
+//     prevWindowWidth = windowWidth
+// })
 
 
 const init = () => {
-    if(windowWidth <= MAX_WINDOW_WIDTH) {
-        hideNavDropdown()
-    }
-    document.getElementById("year").innerHTML = new Date().getFullYear();
+    // if(windowWidth <= MAX_WINDOW_WIDTH) {
+    //     hideNavDropdown()
+    // }
+    commonInit()
 }
 
 init()

@@ -17,7 +17,6 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
 app = Flask(__name__)
-cors = CORS(app, resources={r"*": {"origins": "*"}})
 
 limiter = Limiter(
         app,
@@ -26,6 +25,7 @@ limiter = Limiter(
 )
 
 if __name__ == "__main__":
+    cors = CORS(app, resources={r"*": {"origins": "*"}})
     logger.warning("Running directly without WSGI, loading development environment variables")
     load_dotenv("develop.env", verbose=True)
 else:
@@ -110,7 +110,8 @@ api.add_resource(ContactUsAPI, EP_CONTACT_US)
 mail = Mail(app)
 
 if __name__ == "__main__":
-    if "DOCKER" in os.environ and os.environ["DOCKER"] == "false":
-        app.run(host="127.0.0.1", port=3000)
-    else:
-        app.run(host="0.0.0.0", port=3000)
+    app.run(host="127.0.0.1", port=3000)
+    # if "DOCKER" in os.environ and os.environ["DOCKER"] == "false":
+    #     app.run(host="127.0.0.1", port=3000)
+    # else:
+    #     app.run(host="0.0.0.0", port=3000)
