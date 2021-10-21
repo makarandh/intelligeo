@@ -26,7 +26,7 @@ limiter = Limiter(
 
 if __name__ == "__main__":
     cors = CORS(app, resources={r"*": {"origins": "*"}})
-    logger.warning("Running directly without WSGI, loading development environment variables")
+    logger.info("Running directly without WSGI, loading development environment variables")
     load_dotenv("develop.env", verbose=True)
 else:
     logger.info("Running with WSGI, loading production environment variables")

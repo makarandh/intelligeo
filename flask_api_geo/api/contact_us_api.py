@@ -1,5 +1,5 @@
 import logging
-
+import bleach
 from flask import request
 from flask_restful import Resource
 from marshmallow import EXCLUDE
@@ -30,6 +30,9 @@ class ContactUsAPI(Resource):
             return {MESSAGE: INVALID_DATA}, 400
 
         email_dict = schema.load(json_data)
+        logger.info("Pre-sanitization text: {}".format(email_dict["message"]))
+        email_dict["message"] = bleach.clean(email_dict["message"])
+        logger.info("Post-sanitization text: {}".format(email_dict["message"]))
         email_message = """<div>
                             <p><strong>Name</strong>: {}</p> 
                             <p><strong>Email</strong>: {}</p>

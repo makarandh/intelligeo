@@ -17,6 +17,8 @@ if [[ ${1} == "-h" ]]||[[ ${1} == "--help" ]]; then
 fi
 
 NGINX_FOLDER="nginx_geo/sites"
+HOMEPAGE_SOURCE_FOLDER="homepage_intelligeo"
+HOMEPAGE_FOLDER="geo.intellideep.digital"
 SITE_FOLDER="geo.intellideep.digital/game"
 ADMIN_SITE_FOLDER="admin.geo.intellideep.digital"
 ADMIN_CODE_FOLDER="dashboard_geo"
@@ -26,6 +28,7 @@ if [[ ${1} == "-b" ]]; then
     echo "Deleting folders: ${ADMIN_SITE_FOLDER}, ${SITE_FOLDER}"
     rm -rf ${NGINX_FOLDER}/${ADMIN_SITE_FOLDER}
     rm -rf ${NGINX_FOLDER}/${SITE_FOLDER}
+    rm -rf ${NGINX_FOLDER}/${HOMEPAGE_FOLDER}
     shift
 fi
 
@@ -47,6 +50,12 @@ if ! [[ -d ${NGINX_FOLDER}/${ADMIN_SITE_FOLDER} ]]; then
         mv build ../${NGINX_FOLDER}/${ADMIN_SITE_FOLDER}
     fi
     cd ..
+fi
+
+if ! [[ -d ${NGINX_FOLDER}/${HOMEPAGE_FOLDER} ]]; then
+    echo "Copying homepage to production..."
+    cp -r ${HOMEPAGE_SOURCE_FOLDER} ${NGINX_FOLDER}
+    mv ${NGINX_FOLDER}/${HOMEPAGE_SOURCE_FOLDER} ${NGINX_FOLDER}/${HOMEPAGE_FOLDER}
 fi
 
 if ! [[ -d ${NGINX_FOLDER}/${SITE_FOLDER} ]]; then

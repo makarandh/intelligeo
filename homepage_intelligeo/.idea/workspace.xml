@@ -3,12 +3,18 @@
   <component name="ChangeListManager">
     <list default="true" id="a0e05ee0-1fbd-48ce-89a0-19b6578da0fc" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../flask_api_geo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_api_geo/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../flask_api_geo/Pipfile" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_api_geo/Pipfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../flask_api_geo/Pipfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_api_geo/Pipfile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../flask_api_geo/api/contact_us_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_api_geo/api/contact_us_api.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../flask_api_geo/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_api_geo/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/contact_us.html" beforeDir="false" afterPath="$PROJECT_DIR$/contact_us.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/common.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/common.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/contact_us.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/contact_us.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/contact_us.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/contact_us.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../nginx_geo/sites/geo.intellideep.digital/contact_us.html" beforeDir="false" afterPath="$PROJECT_DIR$/../nginx_geo/sites/geo.intellideep.digital/contact_us.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../nginx_geo/sites/geo.intellideep.digital/css/common.css" beforeDir="false" afterPath="$PROJECT_DIR$/../nginx_geo/sites/geo.intellideep.digital/css/common.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../nginx_geo/sites/geo.intellideep.digital/css/contact_us.css" beforeDir="false" afterPath="$PROJECT_DIR$/../nginx_geo/sites/geo.intellideep.digital/css/contact_us.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../nginx_geo/sites/geo.intellideep.digital/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/../nginx_geo/sites/geo.intellideep.digital/css/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../nginx_geo/sites/geo.intellideep.digital/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../nginx_geo/sites/geo.intellideep.digital/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../nginx_geo/sites/geo.intellideep.digital/scripts/contact_us.js" beforeDir="false" afterPath="$PROJECT_DIR$/../nginx_geo/sites/geo.intellideep.digital/scripts/contact_us.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +35,10 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/css/index.css" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/scripts/contact_us.js" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="1zDxrPhk88SXwfO6XCWqpvZ8kkh" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -62,6 +72,8 @@
       <workItem from="1634717783898" duration="7257000" />
       <workItem from="1634735981800" duration="6261000" />
       <workItem from="1634820844674" duration="3643000" />
+      <workItem from="1634826593381" duration="758000" />
+      <workItem from="1634828303314" duration="481000" />
     </task>
     <servers />
   </component>

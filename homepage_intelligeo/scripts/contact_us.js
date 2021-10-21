@@ -19,6 +19,9 @@ const emailError = document.getElementById("email-error")
 const messageError = document.getElementById("message-error")
 const messageLength = document.getElementById("message-length")
 const submitResult = document.getElementById("submit-result")
+const CONTACT_URL = "https://api.geo.intellideep.digital/contact-us"
+// const CONTACT_URL = "http://127.0.0.1:3000/contact-us"
+
 
 const emailIsValid = (email) => {
     if(!email || typeof email !== "string") {
@@ -166,19 +169,17 @@ const submitForm = async(name, email, message) => {
     body = JSON.stringify(body)
 
     try {
-        const response = await fetch("https://api.geo.intellideep.digital/contact-us", {
+        const response = await fetch(CONTACT_URL, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: body
         })
-        const responseBody = await response.json()
+        // const responseBody = await response.json()
         const responseStatus = response.status
         submitting = false
         updateSubmitButton()
-        console.log(responseStatus)
-        console.log(responseBody)
         if(responseStatus === 200) {
             updateSubmitSuccessUI()
             return
@@ -191,6 +192,7 @@ const submitForm = async(name, email, message) => {
         submitting = false
         updateSubmitButton()
         showElement(submitResult)
+        updateSubmitFailUI()
     }
 }
 
