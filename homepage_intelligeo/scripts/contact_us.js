@@ -27,7 +27,7 @@ const emailIsValid = (email) => {
     if(!email || typeof email !== "string") {
         return false
     }
-    const reEmail = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,20})+$/
+    const reEmail = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,})+$/
     return reEmail.test(email)
 }
 

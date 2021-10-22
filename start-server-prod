@@ -26,9 +26,9 @@ FRONTEND_CODE_FOLDER="frontend_geo"
 
 if [[ ${1} == "-b" ]]; then
     echo "Deleting folders: ${ADMIN_SITE_FOLDER}, ${SITE_FOLDER}"
-    rm -rf ${NGINX_FOLDER}/${ADMIN_SITE_FOLDER}
-    rm -rf ${NGINX_FOLDER}/${SITE_FOLDER}
-    rm -rf ${NGINX_FOLDER}/${HOMEPAGE_FOLDER}
+    sudo rm -rf ${NGINX_FOLDER}/${ADMIN_SITE_FOLDER}
+    sudo rm -rf ${NGINX_FOLDER}/${SITE_FOLDER}
+    sudo rm -rf ${NGINX_FOLDER}/${HOMEPAGE_FOLDER}
     shift
 fi
 
@@ -47,7 +47,7 @@ if ! [[ -d ${NGINX_FOLDER}/${ADMIN_SITE_FOLDER} ]]; then
         exit 1
     else
         echo "Admin site built. Moving site..."
-        mv build ../${NGINX_FOLDER}/${ADMIN_SITE_FOLDER}
+        sudo mv build ../${NGINX_FOLDER}/${ADMIN_SITE_FOLDER}
     fi
     cd ..
 fi
@@ -73,7 +73,7 @@ if ! [[ -d ${NGINX_FOLDER}/${SITE_FOLDER} ]]; then
         exit 1
     else
         echo "Frontend built. Moving site..."
-        mv build ../${NGINX_FOLDER}/${SITE_FOLDER}
+        sudo mv build ../${NGINX_FOLDER}/${SITE_FOLDER}
     fi
     cd ..
 fi

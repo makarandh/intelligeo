@@ -41,6 +41,11 @@ a, a:hover, a:link, a:visited {
     justify-content: space-between;
 }
 
+/* Header - navbar*/
+.hamburger-button-container {
+    display: none;
+}
+
 /* Header - Logo */
 .logo {
     margin-top: 2rem;
@@ -61,6 +66,54 @@ a, a:hover, a:link, a:visited {
     border: 0.2rem solid var(--green);
     padding: 0.7rem .2rem;
     border-radius: 4rem;
+}
+
+#nav-menu-button {
+    position: absolute;
+    top: 1.3rem;
+    right: 0;
+}
+
+#nav-close-icon {
+    position: absolute;
+    top: 8.6rem;
+    right: 5rem;
+    z-index: 2;
+}
+
+#navbar {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.nav-menu-container {
+    display: inline-block;
+}
+
+.nav-menu {
+    margin-bottom: 0.5rem;
+}
+
+.nav-menu li {
+    display: inline-block;
+    margin-right: 3rem;
+}
+
+.nav-menu a {
+    font-size: 1.4rem;
+    color: var(--main-purple);
+    transition: all 0.2s ease-in-out;
+    border-bottom: white .2rem solid;
+}
+
+.nav-menu a:hover {
+    border-bottom: var(--main-purple-light) .2rem solid;
+    transition: border-bottom 0.2s ease-in-out;
+}
+
+#nav-close-icon {
+    transform: translateY(-0.7rem);
 }
 
 .btn {
@@ -192,6 +245,10 @@ a, a:hover, a:link, a:visited {
         font-size: 1.8rem;
     }
 
+    .nav-menu a {
+        font-size: 1.2rem;
+    }
+
     .footer-container .logo {
         font-size: 2rem;
     }
@@ -210,6 +267,67 @@ a, a:hover, a:link, a:visited {
         font-size: 1.8rem;
     }
 
+    .nav-menu a {
+        font-size: 1rem;
+    }
+
+    .nav-menu li {
+        margin-right: 1.6rem;
+    }
+
+    /*.hamburger-button-container {*/
+    /*    display: block;*/
+    /*    font-size: 2rem;*/
+    /*    margin: 0 0.8rem 0.5rem 0;*/
+    /*    color: var(--main-purple);*/
+    /*    transition: all ease-in-out 0.2s;*/
+    /*}*/
+    /*#nav-close-icon:hover, #nav-hamburger-icon:hover {*/
+    /*    cursor: pointer;*/
+    /*    color: var(--main-purple-light);*/
+    /*}*/
+    /*.header {*/
+    /*    position: relative;*/
+    /*}*/
+    /*#navbar {*/
+    /*    position: absolute;*/
+    /*    top: 0;*/
+    /*    right: 0;*/
+    /*}*/
+    /*.nav-menu {*/
+    /*    display: flex;*/
+    /*    flex-direction: column;*/
+    /*    padding: 0;*/
+    /*    border-left: 0.01px solid var(--main-purple);*/
+    /*    border-bottom-left-radius: 0.2rem;*/
+    /*}*/
+    /*.nav-menu li {*/
+    /*    background: var(--light-purple-background);*/
+    /*    border-bottom: 0.01px solid var(--main-purple);*/
+    /*    margin: 0;*/
+    /*    transition: all ease-in-out 0.2s;*/
+    /*}*/
+    /*.nav-menu li a {*/
+    /*    display: inline-block;*/
+    /*    margin: 1rem 1rem;*/
+    /*    border-bottom: none;*/
+    /*}*/
+    /*.nav-menu li:hover {*/
+    /*    cursor: pointer;*/
+    /*    background-color: var(--main-purple-light);*/
+    /*    color: white;*/
+    /*}*/
+    /*.nav-menu li:hover a {*/
+    /*    cursor: pointer;*/
+    /*    color: white;*/
+    /*}*/
+    /*.nav-menu a:hover {*/
+    /*    color: #fff;*/
+    /*    border-bottom: none;*/
+    /*}*/
+    /*.nav-menu a {*/
+    /*    font-size: 1.1rem;*/
+    /*}*/
     .footer-container ul {
         font-size: 1rem;
     }
