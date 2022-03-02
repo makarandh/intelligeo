@@ -2,21 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d79f164b-1590-4277-9669-7d0c0dc65016" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/MainRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MainRouter.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../flask_api_geo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_api_geo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../flask_api_geo/Pipfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_api_geo/Pipfile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../flask_api_geo/api/contact_us_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_api_geo/api/contact_us_api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../flask_api_geo/api/country_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_api_geo/api/country_api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../flask_api_geo/api/image_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_api_geo/api/image_api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../flask_api_geo/api/random_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_api_geo/api/random_api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../flask_api_geo/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/../flask_api_geo/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend_geo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend_geo/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend_geo/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend_geo/src/components/MainRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/src/components/MainRouter.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../homepage_intelligeo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../homepage_intelligeo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../homepage_intelligeo/contact_us.html" beforeDir="false" afterPath="$PROJECT_DIR$/../homepage_intelligeo/contact_us.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../homepage_intelligeo/css/common.css" beforeDir="false" afterPath="$PROJECT_DIR$/../homepage_intelligeo/css/common.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../homepage_intelligeo/css/contact_us.css" beforeDir="false" afterPath="$PROJECT_DIR$/../homepage_intelligeo/css/contact_us.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../homepage_intelligeo/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/../homepage_intelligeo/css/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../homepage_intelligeo/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../homepage_intelligeo/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../homepage_intelligeo/scripts/contact_us.js" beforeDir="false" afterPath="$PROJECT_DIR$/../homepage_intelligeo/scripts/contact_us.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../homepage_intelligeo/scripts/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../homepage_intelligeo/scripts/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../nginx_geo/sites/geo.intellideep.digital/about.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../nginx_geo/sites/geo.intellideep.digital/contact_us.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../nginx_geo/sites/geo.intellideep.digital/css/common.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../nginx_geo/sites/geo.intellideep.digital/css/contact_us.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../nginx_geo/sites/geo.intellideep.digital/css/index.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../nginx_geo/sites/geo.intellideep.digital/howtoplay.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../nginx_geo/sites/geo.intellideep.digital/images/circle.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../nginx_geo/sites/geo.intellideep.digital/images/favicon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../nginx_geo/sites/geo.intellideep.digital/images/halfcircle.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../nginx_geo/sites/geo.intellideep.digital/images/landmarks.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../nginx_geo/sites/geo.intellideep.digital/images/mockup.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../nginx_geo/sites/geo.intellideep.digital/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../nginx_geo/sites/geo.intellideep.digital/scripts/common.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../nginx_geo/sites/geo.intellideep.digital/scripts/contact_us.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../nginx_geo/sites/geo.intellideep.digital/scripts/index.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,10 +48,13 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/components/ImageDisplay.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/css/Login.css" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/components/App.js" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/helper/common.js" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/css/Login.css" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/components/ImageDisplay.js" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="PackageJsonUpdateNotifier">
     <dismissed value="$PROJECT_DIR$/package.json" />
@@ -109,6 +122,8 @@
       <workItem from="1632817864439" duration="840000" />
       <workItem from="1633401024725" duration="406000" />
       <workItem from="1634748821776" duration="28000" />
+      <workItem from="1637098202273" duration="2569000" />
+      <workItem from="1645621177911" duration="553000" />
     </task>
     <servers />
   </component>
@@ -125,6 +140,5 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

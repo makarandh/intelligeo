@@ -1,30 +1,34 @@
-import React from "react"
-import {BrowserRouter as Router, Switch, Route, NavLink, Redirect} from "react-router-dom"
-import {Suspense} from "react"
+import React, {Suspense} from "react"
+import {BrowserRouter as Router, NavLink, Route, Routes} from "react-router-dom"
 import "../css/MainRouter.css"
 import {
+    BLURIFY,
     BUTTON,
+    DANGER,
+    EP_PUBLISHED,
+    HIDE_MENU_TRANSLATE,
+    LOGOUT,
     NAV_ITEM,
     NAV_LINK,
     NAV_LINKS,
-    PATH_CREATE,
-    PATH_UPDATE,
-    PATH_HOME,
-    TOP_BAR,
-    TOP_BAR_LEFT,
-    TOP_BAR_RIGHT,
-    DANGER,
-    LOGOUT,
+    PAGE_CONTENT,
     PATH_COUNTRY,
-    TOP_BAR_CONTAINER,
+    PATH_CREATE,
     PATH_DRAFTS,
-    EP_PUBLISHED,
+    PATH_HOME,
+    PATH_UPDATE,
+    ROTATE_LEFT,
+    ROTATE_RIGHT,
     SHOW_MENU,
-    HIDE_MENU_TRANSLATE,
-    SHOW_MENU_TRANSLATE, ROTATE_LEFT, ROTATE_RIGHT, PAGE_CONTENT, BLURIFY
+    SHOW_MENU_TRANSLATE,
+    TOP_BAR,
+    TOP_BAR_CONTAINER,
+    TOP_BAR_LEFT,
+    TOP_BAR_RIGHT
 } from "../helper/common"
 import LoadingText from "./Icons/LoadingText"
 import MenuArrow from "./Icons/MenuArrow"
+
 
 const Home = React.lazy(() => import("./Home"))
 const Drafts = React.lazy(() => import("./Drafts"))
@@ -117,47 +121,28 @@ export class MainRouter extends React.Component {
                     <div className={this.state.menuVisible ? "inactivate" : ""} onClick={this.hideMenu}/>
                     <section className={PAGE_CONTENT + " "
                                         + (this.state.menuVisible ? BLURIFY : " ")}>
-                        <Switch>
-                            <Route path={PATH_CREATE}>
-                                <Suspense fallback={<LoadingText width={16} height={2}/>}>
-                                    <CreateCard fetchOrDie={this.props.fetchOrDie}/>
-                                </Suspense>
-                            </Route>
-                            <Route path={`${PATH_UPDATE}/:id`}>
-                                <Suspense fallback={<LoadingText width={16} height={2}/>}>
-                                    <UpdateCard fetchOrDie={this.props.fetchOrDie}/>
-                                </Suspense>
-                            </Route>
-                            <Route path={`${PATH_COUNTRY}/:id`}>
-                                <Suspense fallback={<LoadingText width={16} height={2}/>}>
-                                    <Country fetchOrDie={this.props.fetchOrDie}/>
-                                </Suspense>
-                            </Route>
-                            <Route path={`${EP_PUBLISHED}/:id`}>
-                                <Suspense fallback={<LoadingText width={16} height={2}/>}>
-                                    <PublishedCard fetchOrDie={this.props.fetchOrDie}/>
-                                </Suspense>
-                            </Route>
-                            <Route path={PATH_DRAFTS}>
-                                <Suspense fallback={<LoadingText width={16} height={2}/>}>
-                                    <Drafts fetchOrDie={this.props.fetchOrDie}/>
-                                </Suspense>
-                            </Route>
-                            <Route path={EP_PUBLISHED}>
-                                <Suspense fallback={<LoadingText width={16} height={2}/>}>
-                                    <Published fetchOrDie={this.props.fetchOrDie}/>
-                                </Suspense>
-                            </Route>
-                            <Route path={PATH_HOME}>
-                                <Suspense fallback={<LoadingText width={16} height={2}/>}>
-                                    <Home getUsername={this.props.getUsername}
-                                          fetchOrDie={this.props.fetchOrDie}/>
-                                </Suspense>
-                            </Route>
-                            <Route path={"/"}>
-                                <Redirect to={PATH_HOME}/>
-                            </Route>
-                        </Switch>
+                        <Suspense fallback={<LoadingText width={16} height={2}/>}>
+                            <Routes>
+                                <Route path={PATH_CREATE}
+                                       element={<CreateCard fetchOrDie={this.props.fetchOrDie}/>}/>
+                                <Route path={`${PATH_UPDATE}/:id`}
+                                       element={<UpdateCard fetchOrDie={this.props.fetchOrDie}/>}/>
+                                <Route path={`${PATH_COUNTRY}/:id`}
+                                       element={<Country fetchOrDie={this.props.fetchOrDie}/>}/>
+                                <Route path={`${EP_PUBLISHED}/:id`}
+                                       element={<PublishedCard fetchOrDie={this.props.fetchOrDie}/>}/>
+                                <Route path={PATH_DRAFTS}
+                                       element={<Drafts fetchOrDie={this.props.fetchOrDie}/>}/>
+                                <Route path={EP_PUBLISHED}
+                                       element={<Published fetchOrDie={this.props.fetchOrDie}/>}/>
+                                <Route path={PATH_HOME}
+                                       element={<Home getUsername={this.props.getUsername}
+                                                      fetchOrDie={this.props.fetchOrDie}/>}/>
+                                <Route path={"/"}
+                                       element={<Home getUsername={this.props.getUsername}
+                                                      fetchOrDie={this.props.fetchOrDie}/>}/>
+                            </Routes>
+                        </Suspense>
                     </section>
                 </section>
             </Router>

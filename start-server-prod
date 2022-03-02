@@ -2,17 +2,17 @@
 
 if [[ ${1} == "-h" ]]||[[ ${1} == "--help" ]]; then
     echo -e "Usage: ${0} [OPTIONS...]\n"
-    echo "   It will start the server using docker-compose."
-    echo "   All the options will be passed to docker-compose except if the first option is '-b'."
-    echo "   In this case, the first option will be processed by ${0} and the rest"
-    echo "   of the options will be passed to docker-compose."
+    echo -e "\n   It will start the server using docker-compose."
+    echo -e "\n   All the options will be passed to docker-compose except if the first option is '-b'."
+    echo -e "\n   In this case, the first option will be processed by ${0} and the rest"
+    echo -e "\n   of the options will be passed to docker-compose."
     echo -e "\n  -b       Build admin dashboard before running docker-compose. This needs to be the first option."
-    echo "           Note: This will delete the previously built admin dashboard and replace with newly built one."
+    echo -e "\n           Note: This will delete the previously built admin dashboard and replace with newly built one."
     echo -e "\nAny other options will be passed on to docker-compose."
     echo -e "\nExample: "
-    echo "${0} -b -d --build"
-    echo "               This will pass '-d' and '--build' options to docker-compose. So docker compose will"
-    echo "               start in the background and will rebuild Dockerfiles"
+    echo -e "\n${0} -b -d --build"
+    echo -e "\n               This will pass '-d' and '--build' options to docker-compose. So docker compose will"
+    echo -e "\n               start in the background and will rebuild Dockerfiles"
     exit 0
 fi
 
@@ -25,58 +25,60 @@ ADMIN_CODE_FOLDER="dashboard_geo"
 FRONTEND_CODE_FOLDER="frontend_geo"
 
 if [[ ${1} == "-b" ]]; then
-    echo "Deleting folders: ${ADMIN_SITE_FOLDER}, ${SITE_FOLDER}"
+    echo -e "\nDeleting folder ${NGINX_FOLDER}/${ADMIN_SITE_FOLDER}..."
     sudo rm -rf ${NGINX_FOLDER}/${ADMIN_SITE_FOLDER}
+    echo -e "\nDeleting folder ${NGINX_FOLDER}/${SITE_FOLDER}..."
     sudo rm -rf ${NGINX_FOLDER}/${SITE_FOLDER}
+    echo -e "\nDeleting folder ${NGINX_FOLDER}/${HOMEPAGE_FOLDER}..."
     sudo rm -rf ${NGINX_FOLDER}/${HOMEPAGE_FOLDER}
     shift
 fi
 
 if ! [[ -d ${NGINX_FOLDER}/${ADMIN_SITE_FOLDER} ]]; then
-    echo "Building admin site.... "
+    echo -e "\nBuilding admin site.... "
     cd ${ADMIN_CODE_FOLDER}
 
     if ! [[ -d node_modules ]]; then
-        echo "Node modules not installed. Installing..."
+        echo -e "\nNode modules not installed. Installing..."
         ncu -u
         npm install
     fi
     npm run build
     if [[ ${?} -ne 0 ]]; then
-        echo "Error building admin site"
+        echo -e "\nError building admin site"
         exit 1
     else
-        echo "Admin site built. Moving site..."
+        echo -e "\nAdmin site built. Moving site to ${NGINX_FOLDER}/${ADMIN_SITE_FOLDER}..."
         sudo mv build ../${NGINX_FOLDER}/${ADMIN_SITE_FOLDER}
     fi
     cd ..
 fi
 
 if ! [[ -d ${NGINX_FOLDER}/${HOMEPAGE_FOLDER} ]]; then
-    echo "Copying homepage to production..."
-    cp -r ${HOMEPAGE_SOURCE_FOLDER} ${NGINX_FOLDER}
-    mv ${NGINX_FOLDER}/${HOMEPAGE_SOURCE_FOLDER} ${NGINX_FOLDER}/${HOMEPAGE_FOLDER}
+    echo -e "\nCopying homepage from ${HOMEPAGE_SOURCE_FOLDER} to production folder ${NGINX_FOLDER}/${HOMEPAGE_FOLDER}..."
+    sudo cp -r ${HOMEPAGE_SOURCE_FOLDER} ${NGINX_FOLDER}
+    sudo mv ${NGINX_FOLDER}/${HOMEPAGE_SOURCE_FOLDER} ${NGINX_FOLDER}/${HOMEPAGE_FOLDER}
 fi
 
 if ! [[ -d ${NGINX_FOLDER}/${SITE_FOLDER} ]]; then
-    echo "Building frontend.... "
+    echo -e "\nBuilding frontend.... "
     cd ${FRONTEND_CODE_FOLDER}
 
     if ! [[ -d node_modules ]]; then
-        echo "Node modules not installed. Installing..."
+        echo -e "\nNode modules not installed. Installing..."
         ncu -u
         npm install
     fi
     npm run build
     if [[ ${?} -ne 0 ]]; then
-        echo "Error building frontend"
+        echo -e "\nError building frontend"
         exit 1
     else
-        echo "Frontend built. Moving site..."
+        echo -e "\nFrontend built. Moving site to ${NGINX_FOLDER}/${SITE_FOLDER}..."
         sudo mv build ../${NGINX_FOLDER}/${SITE_FOLDER}
     fi
     cd ..
 fi
 
-echo "Starting production server..."
+echo -e "\nStarting production server..."
 docker-compose --env-file docker.production.env up ${@}

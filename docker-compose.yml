@@ -27,12 +27,12 @@ services:
     volumes:
       - /site_data/logs/flask-logs:/flaskapp/log
       - /site_data/files_and_data/static:/flaskapp/static
-#    ports:
-#      - 127.0.0.1:3000:3000
+    ports:
+      - 127.0.0.1:3000:3000
 
     network_mode: host
-#    networks:
-#      - default
+    networks:
+      - default
     stdin_open: true
     tty: true
     depends_on:
@@ -49,12 +49,12 @@ services:
       - /site_data/files_and_data/static:/docker_nginx/static
       - ./nginx_geo/ssl/dhparam:/etc/nginx/ssl/dhparam
       - /etc/letsencrypt:/etc/letsencrypt
-    network_mode: host
-#    ports:
-#      - 80:80
-#      - 443:443
-#    networks:
-#      - default
+#    network_mode: host
+    ports:
+      - 80:80
+      - 443:443
+    networks:
+      - default
     stdin_open: true
     tty: true
     depends_on:
