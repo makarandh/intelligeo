@@ -2,7 +2,7 @@ version: "3"
 
 services:
   mongo-server:
-    image: mongo
+    image: mongo:4.4
     restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER}
@@ -26,11 +26,11 @@ services:
     volumes:
       - /site_data/logs/flask-logs:/flaskapp/log
       - /site_data/files_and_data/static:/flaskapp/static
-    ports:
-      - 127.0.0.1:3000:3000
+#    ports:
+#      - 127.0.0.1:3000:3000
+#    networks:
+#      - default
     network_mode: host
-    networks:
-      - default
     stdin_open: true
     tty: true
     depends_on:
@@ -43,6 +43,8 @@ services:
       MARIADB_ROOT_PASSWORD: ${MARIADB_PASS}
     stdin_open: true
     tty: true
+    networks:
+      - default
     ports:
       - 127.0.0.1:3306:3306
     volumes:
@@ -60,11 +62,10 @@ services:
       - ./nginx_geo/ssl/dhparam:/etc/nginx/ssl/dhparam
       - /etc/letsencrypt:/etc/letsencrypt
       - ./portfolio_wp:/var/www/html/portfolio_wp
-    ports:
-      - 80:80
-      - 443:443
-    networks:
-      - default
+#    ports:
+ #     - 80:80
+  #    - 443:443
+    network_mode: host
     stdin_open: true
     tty: true
     depends_on:
