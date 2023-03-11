@@ -26,29 +26,11 @@ services:
     volumes:
       - /site_data/logs/flask-logs:/flaskapp/log
       - /site_data/files_and_data/static:/flaskapp/static
-#    ports:
-#      - 127.0.0.1:3000:3000
-#    networks:
-#      - default
     network_mode: host
     stdin_open: true
     tty: true
     depends_on:
       - mongo-server
-
-  mariadb-server:
-    image: mariadb
-    restart: always
-    environment:
-      MARIADB_ROOT_PASSWORD: ${MARIADB_PASS}
-    stdin_open: true
-    tty: true
-    networks:
-      - default
-    ports:
-      - 127.0.0.1:3306:3306
-    volumes:
-      - ./mariadb:/var/lib/mysql
 
   nginx-server:
     restart: always
@@ -61,17 +43,13 @@ services:
       - /site_data/files_and_data/static:/docker_nginx/static
       - ./nginx_geo/ssl/dhparam:/etc/nginx/ssl/dhparam
       - /etc/letsencrypt:/etc/letsencrypt
-      - ./portfolio_wp:/var/www/html/portfolio_wp
-#    ports:
- #     - 80:80
-  #    - 443:443
+      - ~/projects/portfolio_kal/portfolio_wp:/var/www/html/portfolio_wp
     network_mode: host
     stdin_open: true
     tty: true
     depends_on:
       - mongo-server
       - flask-app
-      - mariadb-server
 
 networks:
   default:

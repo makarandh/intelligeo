@@ -7,5 +7,4 @@ COPY ["./proxy_params", "/etc/nginx/"]
 COPY ["./start_services.sh", "./"]
 RUN chown -R nginx:nginx /docker_nginx
 RUN chmod +x ./start_services.sh
-COPY ["./php.ini", "./etc/php/7.4/fpm/php.ini"]
 CMD ["/bin/bash", "-c", "./start_services.sh"]
