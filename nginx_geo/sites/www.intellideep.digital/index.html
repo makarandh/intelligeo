@@ -7,10 +7,35 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <section class="main-container">
-            <article class="intellideep-logo">
-                <span class="intelli">Intelli</span><span class="deep">Deep</span>
-            </article>
-        </section>
+        <main  class="main-container">
+            <section class="hero-section">
+                <article class="intellideep-logo">
+                    <span class="intelli">Welcome To Intelli</span><span class="deep">Deep</span>
+                </article>
+                <article class="site-contents">
+                    <div class="main-button" id="main-button">
+                        <div class="main-heading">Play IntelliGeo
+                        </div>
+                        <div class="main-subheading">A fun geography game</div>
+                    </div>
+                </article>
+            </section>
+            <section class="about-us-section">
+                <h2>About Us</h2>
+                <article class="site-contents">
+                    <h3 class="content-heading"><a href="https://www.linkedin.com/in/makarandh/" target="_blank">Makarand Hazarika</a></h3>
+                    <div class="content-subheading">Senior Software Engineer</div>
+                </article>
+                <article class="site-contents">
+                    <h3 class="content-heading"><a href="https://kal.intellideep.digital" target="_blank">Kalyani Konwar</a></h3>
+                    <div class="content-subheading">UI/UX & Graphics Designer</div>
+                </article>
+            </section>
+        </main>
+        <script>
+            document.getElementById("main-button").addEventListener("click", () => {
+                window.open("https://geo.intellideep.digital/game", "_blank")
+            })
+        </script>
     </body>
 </html>

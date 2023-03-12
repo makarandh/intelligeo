@@ -3,8 +3,10 @@
 :root {
     --main-color1: #500389;
     --main-color2: #DE6A01;
-    --font-size: 4rem;
+    --font-size: 3rem;
     --font-weight: 500;
+    --content-heading-color: #223443;
+    --content-subheading-color: #111111;
 }
 
 * {
@@ -14,17 +16,15 @@
 }
 
 body {
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
+    font-family: "Montserrat", sans-serif;
 }
 
 .main-container {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
+    margin-top: 5rem;
     justify-content: center;
+    max-width: 80rem;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .intellideep-logo {
@@ -52,4 +52,75 @@ body {
     border-top-right-radius: var(--font-size);
     border-top-left-radius: 0.2rem;
     border-bottom-left-radius: 0.2rem;
+}
+
+.site-contents {
+    margin-top: 3rem;
+    max-width: 40rem;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: "Lexend Deca",sans-serif;
+}
+
+a, a:link, a:visited {
+    text-decoration: none;
+    color: var(--content-heading-color);
+}
+
+.main-heading {
+    font-size: 4rem;
+    font-weight: 300;
+    color: var(--content-heading-color);
+}
+
+.main-subheading {
+    margin-top: 0.5rem;
+    color: var(--content-subheading-color)
+}
+
+.main-button {
+    margin-top: 10rem;
+    display: inline-block;
+    padding: 1.5rem 4rem;
+    border-radius: 2rem;
+    box-shadow: 2px 2px 3px 3px rgba(62, 62, 62, 0.3);
+    background-color: #ffbc44;
+    cursor: pointer;
+}
+
+.main-button:hover {
+    background-color: #fbd34f;
+    box-shadow: 2px 2px 5px 5px rgba(62, 62, 62, 0.3);
+    transition: background-color 0.25s ease-in, box-shadow 0.2s linear;
+}
+
+.main-button:active {
+    background-image: radial-gradient(#f1dcba, #fbd34f);
+    box-shadow: 1px 1px 2px 2px rgba(62, 62, 62, 0.3);
+    transition: background-color 0s, box-shadow 0s;
+}
+
+.about-us-section {
+    margin-top: 10rem;
+    max-width: 40rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h2 {
+    font-size: 2.2rem;
+    font-weight: 400;
+}
+
+h3 {
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+.content-heading {
+    color: var(--content-heading-color);
+}
+
+.content-subheading {
+    margin-top: 0.5rem;
 }
