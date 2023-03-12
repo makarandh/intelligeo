@@ -25,6 +25,7 @@ body {
     max-width: 80rem;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 3rem;
 }
 
 .intellideep-logo {
@@ -54,12 +55,16 @@ body {
     border-bottom-left-radius: 0.2rem;
 }
 
+.hero-section {
+    text-align: center;
+}
+
 .site-contents {
     margin-top: 3rem;
     max-width: 40rem;
     margin-left: auto;
     margin-right: auto;
-    font-family: "Lexend Deca",sans-serif;
+    font-family: "Lexend Deca", sans-serif;
 }
 
 a, a:link, a:visited {
@@ -86,6 +91,8 @@ a, a:link, a:visited {
     box-shadow: 2px 2px 3px 3px rgba(62, 62, 62, 0.3);
     background-color: #ffbc44;
     cursor: pointer;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .main-button:hover {
@@ -102,7 +109,7 @@ a, a:link, a:visited {
 
 .about-us-section {
     margin-top: 10rem;
-    max-width: 40rem;
+    max-width: 38rem;
     margin-left: auto;
     margin-right: auto;
 }
@@ -123,4 +130,110 @@ h3 {
 
 .content-subheading {
     margin-top: 0.5rem;
+}
+
+
+@media only screen and (max-width: 900px) {
+    .main-container {
+        margin-left: 2.5rem;
+        margin-right: 2.5rem;
+    }
+
+    .main-heading {
+        font-size: 3rem;
+    }
+    h2 {
+        font-size: 2rem;
+        font-weight: 400;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+        font-weight: 400;
+    }
+
+    .content-subheading {
+        font-size: 0.9rem;
+    }
+    .about-us-section {
+        max-width: 30rem;
+    }
+}
+
+@media only screen and (max-width: 750px) {
+    .main-button {
+        margin-top: 2.5rem;
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    .intellideep-logo {
+        font-size: 2.2rem;
+    }
+
+    .main-button {
+        padding: 1.5rem 3rem;
+        border-radius: 1rem;
+    }
+
+    .main-heading {
+        font-size: 2.4rem;
+        font-weight: 300;
+    }
+
+    .content-subheading {
+        font-size: 0.9rem;
+    }
+
+    .about-us-section {
+        max-width: 24rem;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+        font-weight: 400;
+    }
+
+    h3 {
+        font-size: 1rem;
+        font-weight: 600;
+    }
+
+    .site-contents {
+        margin-top: 1rem;
+    }
+    .content-subheading {
+        margin-top: 0.2rem;
+    }
+}
+
+@media only screen and (max-width: 350px) {
+    .intellideep-logo {
+        font-size: 2rem;
+    }
+
+    .main-button {
+        padding: 1rem 2rem;
+        border-radius: 1rem;
+    }
+
+    .main-heading {
+        font-size: 2rem;
+        font-weight: 500;
+    }
+
+    .content-subheading {
+        font-size: 0.9rem;
+    }
+
+    .about-us-section {
+        margin-top: 6rem;
+    }
+
+    .site-contents {
+        margin-top: 1.2rem;
+    }
+    .content-subheading {
+        margin-top: 0.2rem;
+    }
 }
