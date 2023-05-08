@@ -1,34 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="50d455e3-e778-4610-ba64-b3fb4f576f51" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../dashboard_geo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../dashboard_geo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dashboard_geo/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../dashboard_geo/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dashboard_geo/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../dashboard_geo/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dashboard_geo/src/components/MainRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/../dashboard_geo/src/components/MainRouter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dashboard_geo/src/helper/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/../dashboard_geo/src/helper/common.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend_geo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend_geo/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend_geo/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend_geo/src/components/MainRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/src/components/MainRouter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend_geo/src/helper/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_geo/src/helper/common.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../homepage_intelligeo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../homepage_intelligeo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../nginx_geo/sites/geo.intellideep.digital/about.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../nginx_geo/sites/geo.intellideep.digital/contact_us.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../nginx_geo/sites/geo.intellideep.digital/css/common.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../nginx_geo/sites/geo.intellideep.digital/css/contact_us.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../nginx_geo/sites/geo.intellideep.digital/css/index.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../nginx_geo/sites/geo.intellideep.digital/howtoplay.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../nginx_geo/sites/geo.intellideep.digital/images/circle.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../nginx_geo/sites/geo.intellideep.digital/images/favicon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../nginx_geo/sites/geo.intellideep.digital/images/halfcircle.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../nginx_geo/sites/geo.intellideep.digital/images/landmarks.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../nginx_geo/sites/geo.intellideep.digital/images/mockup.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../nginx_geo/sites/geo.intellideep.digital/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../nginx_geo/sites/geo.intellideep.digital/scripts/common.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../nginx_geo/sites/geo.intellideep.digital/scripts/contact_us.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../nginx_geo/sites/geo.intellideep.digital/scripts/index.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,20 +23,20 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/api/api_util.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/api/auth_api.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/api/country_api.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/api/image_api.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/api/publish_api.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/app.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/auth/security.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/database/score_model.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/api/api_util.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/utils/db_init.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/api/auth_api.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/utils/global_vars.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/api/image_api.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/api/country_api.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/database/country_model.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/utils/config.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/production.env" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/database/db_connect.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/api/publish_api.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/database/score_model.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/production.env" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/utils/config.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/utils/db_init.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/utils/global_vars.py" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -72,14 +49,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../DSAlgo/dsalgo_tut/dsalgo_python_tut" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
-  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/mak/code/projects/IntelliGeo/flask_api_geo&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/schemas" />
@@ -172,6 +154,8 @@
       <workItem from="1642351111533" duration="1888000" />
       <workItem from="1645257817418" duration="680000" />
       <workItem from="1645421532933" duration="39000" />
+      <workItem from="1678718767459" duration="563000" />
+      <workItem from="1678720709115" duration="417000" />
     </task>
     <servers />
   </component>

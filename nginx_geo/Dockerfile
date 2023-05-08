@@ -1,6 +1,6 @@
 FROM nginx:latest
 WORKDIR /docker_nginx
-RUN apt update && apt -y upgrade && apt -y autoremove && apt install -y nginx-full php-curl php-gd php-intl php-mbstring php-soap php-xml php-xmlrpc php-zip php-mysql
+RUN apt update && apt -y upgrade && apt -y autoremove && apt install -y nginx-full
 RUN mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.old
 COPY ["./nginx.conf", "/etc/nginx/"]
 COPY ["./proxy_params", "/etc/nginx/"]
