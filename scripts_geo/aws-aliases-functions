@@ -5,35 +5,41 @@ alias aws-view-buckets='aws s3api list-buckets'
 alias aws-view-intellideep-s3='aws s3api list-objects --bucket geo-backup-intellideep.digital  --query "Contents[].{Key: Key, Size: Size}"'
 alias qb='fbc -lang qb'
 aws-cp-intellideep-s3() {
-	aws s3 cp s3://geo-backup-intellideep.digital/${1} .
+  echo "Copying contents of s3 bucket to current directory..."
+  aws s3 cp s3://geo-backup-intellideep.digital/${1} .
 }
 aws-sync-intellideep-s3() {
-	if [[ -z ${1} ]]
-	then 
-		aws s3 sync s3://geo-backup-intellideep.digital .
-	else
-		aws s3 sync ${1} s3://geo-backup-intellideep.digital ${2}
-	fi
-
+  if [[ -z ${1} ]]; then
+    CURR_DIR=${PWD}
+    echo -e "Entering directory ${HOME}/s3-intellideep/\n"
+    cd ${HOME}/s3-intellideep/ || echo "Couldn't cd into ${HOME}/s3-intellideep Exitting..." && return
+    aws s3 sync s3://geo-backup-intellideep.digital .
+    echo -e "\nSync complete"
+    cd ${CURR_DIR}
+  else
+    aws s3 sync ${1} s3://geo-backup-intellideep.digital ${2}
+  fi
 }
+
 aws-sync-intellideep-s3-and-delete() {
-	echo "Fetching data..."
-	
-	files_in_bucket=$(aws s3 ls geo-backup-intellideep.digital | wc -l)
-	files_in_dir=$(ls -l | grep -v "total" | wc -l)
-	files_to_delete=$(( ${files_in_bucket} - ${files_in_dir} ))
+  CURR_DIR=${PWD}
+  echo "Entering directory ${HOME}/s3-intellideep/"
+  cd ${HOME}/s3-intellideep/ || echo "Couldn't cd into ${HOME}/s3-intellideep Exitting..." && return
+  echo "Fetching data..."
 
-	echo -e "\nNumber of files in bucket: ${files_in_bucket}"
-	echo "Number of files in ${PWD}: ${files_in_dir}"
+  files_in_bucket=$(aws s3 ls geo-backup-intellideep.digital | wc -l)
+  files_in_dir=$(ls -l | grep -v "total" | wc -l)
+  files_to_delete=$((${files_in_bucket} - ${files_in_dir}))
 
-
-	echo -e -n "\n${files_to_delete} files will be deleted from bucket. Are you sure (y/n) ? "
-	read aws_ans
-	if [[ ${aws_ans} == "y" ]] 
-	then 
-		echo "Syncing with delete..."
-		aws s3 sync . s3://geo-backup-intellideep.digital --delete
-	else 
-		echo "User canceled."
-	fi
+  echo -e "\nNumber of files in bucket: ${files_in_bucket}"
+  echo "Number of files in ${PWD}: ${files_in_dir}"
+  echo -e -n "\n${files_to_delete} files will be deleted from bucket. Are you sure (y/n) ? "
+  read aws_ans
+  if [[ ${aws_ans} == "y" ]]; then
+    echo "Syncing with delete..."
+    aws s3 sync . s3://geo-backup-intellideep.digital --delete
+  else
+    echo "User canceled."
+  fi
+  cd ${CURR_DIR}
 }
